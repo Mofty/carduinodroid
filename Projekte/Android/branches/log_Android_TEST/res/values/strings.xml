@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, Log_Android_TESTActivity!</string>
+    <string name="app_name">Log_Android_TEST</string>
+
+</resources>
