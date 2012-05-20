@@ -16,20 +16,20 @@ import java.awt.Color;
 public class GUI_Computer extends JFrame {
 	public static void main(String[]args){
 		
-		//Programm Startgrößenparameter 
+		//windowsize parameter 
 		int window_width = 1024;
 		int window_high = 768;
 		
-		//Programmfenster erzeugen mit festgelegter Startgröße von 800*600 Pixeln als zentriertes Fenster
+		//create programwindow
 		JFrame Mainwindow = new JFrame("CarDuinoDroid");
 		Mainwindow.setSize(window_width,window_high);
 		Mainwindow.setLocationRelativeTo(null);
 		Mainwindow.setBackground(Color.darkGray);
 		
-		//Menüleiste
+		//menubar
 		JMenuBar Menubar = new JMenuBar();
 		
-		//Menü "Datei" mit Unterpunkten
+		//menu "Datei" inlcuding menupoints
 		JMenu File = new JMenu("Datei");
 		JSeparator Separator_File = new JSeparator();
 		JMenuItem Quit = new JMenuItem("Beenden");
@@ -40,28 +40,28 @@ public class GUI_Computer extends JFrame {
 		File.add(Separator_File);
 		File.add(Quit);
 		
-		//Menü "Einstellungen" mit Unterpunkten
+		//menu "Einstellungen" including menupoints
 		JMenu Preferences = new JMenu("Einstellungen");
 		JCheckBoxMenuItem Light = new JCheckBoxMenuItem("Licht");
-		//Untermenü "Kamera"
+		//submenu "Kamera"
 		JMenu Camera = new JMenu("Kamera");
 		boolean bool_active_camera = true;
 		JRadioButtonMenuItem Frontcamera = new JRadioButtonMenuItem("Frontkamera", bool_active_camera);
 		JRadioButtonMenuItem Backcamera = new JRadioButtonMenuItem("R¸ckkamera", !bool_active_camera);
 		Camera.add(Frontcamera);
 		Camera.add(Backcamera);
-		//Menü "Einstellungen mit Unterpunkten
+		//menu "Einstellungen"
 		Preferences.add(Camera);
 		Preferences.add(Light);
 		
-		//Menüs der Menüleiste zuordnen
+		//menus allocate to menubar
 		Menubar.add(File);
 		Menubar.add(Preferences);
 		
-		//Menüleiste dem Programmfenster zuordnen
+		//menubar allocate window
 		Mainwindow.setJMenuBar(Menubar);
 		
-		//Live-Log Anzeige
+		//Live-Log screen
 		JPanel Live_Log = new JPanel();
 		Live_Log.setBackground(Color.white);
 		Live_Log.add(new JLabel("Log"));
@@ -69,7 +69,7 @@ public class GUI_Computer extends JFrame {
 		Mainwindow.add(Live_Log_Scrollbar,BorderLayout.SOUTH);
 		
 		
-		//Programmfenster sichtbar machen
+		//make programwindow visible
 		Mainwindow.setVisible(true);
 	}
 }
