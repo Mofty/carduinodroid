@@ -1,3 +1,5 @@
+package View;
+
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -9,13 +11,27 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JLabel;
+import javax.swing.ButtonGroup;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.WindowListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
-public class GUI_Computer extends JFrame {
-	public static void main(String[]args){
+public class GUI_Computer extends JFrame{
+	
+	public GUI_Computer(){
 		
+		//create programwindow
+		this.initWindow();
+			
+	}
+	
+	//method: create window
+	protected void initWindow(){
+			
 		//windowsize parameter 
 		int window_width = 1024;
 		int window_high = 768;
@@ -33,6 +49,11 @@ public class GUI_Computer extends JFrame {
 		JMenu File = new JMenu("Datei");
 		JSeparator Separator_File = new JSeparator();
 		JMenuItem Quit = new JMenuItem("Beenden");
+		Quit.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        System.exit(0);
+		    }
+		});
 		JMenuItem Connection = new JMenuItem("Verbindung");
 		JMenuItem About = new JMenuItem("Über CarDuinoDroid");
 		File.add(About);
@@ -45,9 +66,11 @@ public class GUI_Computer extends JFrame {
 		JCheckBoxMenuItem Light = new JCheckBoxMenuItem("Licht");
 		//submenu "Kamera"
 		JMenu Camera = new JMenu("Kamera");
-		boolean bool_active_camera = true;
-		JRadioButtonMenuItem Frontcamera = new JRadioButtonMenuItem("Frontkamera", bool_active_camera);
-		JRadioButtonMenuItem Backcamera = new JRadioButtonMenuItem("Rückkamera", !bool_active_camera);
+		ButtonGroup Camerachoice = new ButtonGroup(); 
+		JRadioButtonMenuItem Frontcamera = new JRadioButtonMenuItem("Frontkamera",true);
+		JRadioButtonMenuItem Backcamera = new JRadioButtonMenuItem("Rückkamera");
+		Camerachoice.add(Frontcamera);
+		Camerachoice.add(Backcamera);
 		Camera.add(Frontcamera);
 		Camera.add(Backcamera);
 		//menu "Einstellungen"
@@ -66,7 +89,13 @@ public class GUI_Computer extends JFrame {
 		Live_Log.setBackground(Color.white);
 		Live_Log.add(new JLabel("Log"));
 		JScrollPane Live_Log_Scrollbar = new JScrollPane(Live_Log, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		Mainwindow.add(Live_Log_Scrollbar,BorderLayout.SOUTH);
+		Mainwindow.add(Live_Log_Scrollbar, BorderLayout.SOUTH);
+		
+		//informationbox
+		JPanel informationbox = new JPanel();
+		informationbox.setBackground(Color.green);
+		Mainwindow.add(informationbox, BorderLayout.EAST);
+		
 		
 		
 		//make programwindow visible
