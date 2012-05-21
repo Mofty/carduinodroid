@@ -12,6 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JLabel;
 import javax.swing.ButtonGroup;
+import javax.swing.JTextField;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.WindowListener;
@@ -23,6 +24,7 @@ import java.awt.event.ActionEvent;
 public class GUI_Computer extends JFrame{
 	
 	public GUI_Computer(){
+		this.getContentPane().setLayout(null);
 		
 		//create programwindow
 		this.initWindow();
@@ -52,29 +54,17 @@ public class GUI_Computer extends JFrame{
 			}
 
 			public void windowIconified(WindowEvent arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 
 			public void windowOpened(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
+								
 			}
 		});
 	}
 	
 	//method: create window
 	protected void initWindow(){
-			
-		//windowsize parameter 
-		int window_width = 1024;
-		int window_high = 768;
-		
-		//create programwindow
-		JFrame Mainwindow = new JFrame("CarDuinoDroid");
-		Mainwindow.setSize(window_width,window_high);
-		Mainwindow.setLocationRelativeTo(null);
-		Mainwindow.setBackground(Color.darkGray);
 		
 		//menubar
 		JMenuBar Menubar = new JMenuBar();
@@ -116,23 +106,20 @@ public class GUI_Computer extends JFrame{
 		Menubar.add(Preferences);
 		
 		//menubar allocate window
-		Mainwindow.setJMenuBar(Menubar);
+		this.setJMenuBar(Menubar);
 		
 		//Live-Log screen
-		JPanel Live_Log = new JPanel();
+		JTextField Live_Log = new JTextField();
 		Live_Log.setBackground(Color.white);
 		Live_Log.add(new JLabel("Log"));
-		JScrollPane Live_Log_Scrollbar = new JScrollPane(Live_Log, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		Mainwindow.add(Live_Log_Scrollbar, BorderLayout.SOUTH);
+		JScrollPane Live_Log_Scrollbar = new JScrollPane(Live_Log, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		Live_Log_Scrollbar.setBounds(0, 624, 1024, 100);
+		this.getContentPane().add(Live_Log_Scrollbar);
 		
 		//informationbox
-		JPanel informationbox = new JPanel();
-		informationbox.setBackground(Color.green);
-		Mainwindow.add(informationbox, BorderLayout.EAST);
-		
-		
-		
-		//make programwindow visible
-		Mainwindow.setVisible(true);
+		//JTextField informationbox = new JTextField();
+		//informationbox.setBackground(Color.green);
+		//informationbox.setBounds(0, 668, 1024, 768);
+		//this.getContentPane().add(informationbox);
 	}
 }
