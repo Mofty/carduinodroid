@@ -41,33 +41,27 @@ public class LOG{
 	
 
 	void write_log(String line) {
-		try {
+		String timestr;
+		time.setToNow(); // aktualisiert die in "time" gespeicherte zeit
+		timestr = time.hour+":"+time.minute+":"+time.second+" ";
+	
+		try {// schreibt die zeit gefolgt vom übergebenen String "line in die datei ung fügt eine Leerzeile an.
+			buffwrite.write(timestr,0,timestr.length());
 			buffwrite.write(line,0,line.length());
-			} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			}
-		try {
 			buffwrite.newLine();
 			} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			}
-	}
+		}
 	
 	void save_log() {
 		try {
 			buffwrite.flush();
-			} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			}
-		try {
 			buffwrite.close();
 			} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			}
+			}	
 	}
-	
 }
