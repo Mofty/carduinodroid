@@ -26,7 +26,41 @@ public class GUI_Computer extends JFrame{
 		
 		//create programwindow
 		this.initWindow();
+		
+		//window listener for closing
+		this.addWindowListener(new WindowListener(){
 			
+			public void windowActivated(WindowEvent arg0) {
+		
+			}
+
+			public void windowClosed(WindowEvent arg0) {
+				
+			}
+
+			public void windowClosing(WindowEvent arg0) {
+				System.exit(0);
+				
+			}
+
+			public void windowDeactivated(WindowEvent arg0) {
+				
+			}
+
+			public void windowDeiconified(WindowEvent arg0) {
+				
+			}
+
+			public void windowIconified(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			public void windowOpened(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}
 	
 	//method: create window
