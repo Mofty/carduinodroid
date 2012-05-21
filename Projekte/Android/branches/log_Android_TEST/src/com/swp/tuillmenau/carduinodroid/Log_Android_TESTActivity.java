@@ -27,25 +27,30 @@ public class Log_Android_TESTActivity extends Activity {
 class LOG{
 	
 	Time time;
+	File path;
 	File file;
-	FileWriter filewriter;
-	String logpath ="sdcard/carduinodroid/log";
+	BufferedWriter buffwrite;
+	String logpath ="/sdcard/carduinodroid/log";
 	
 	LOG() {
 	// ruft datum und zeit ab	
 	time = new Time();
+	time.setToNow();
 	// erstellt datei mit schreibrechten
-	file = new File(logpath,"LOG_"+time.month+time.monthDay+"_"+time.hour+time.minute);
+	path = new File(logpath);
+	path.mkdirs();
+	file = new File(logpath,"LOG_"+time.month+time.monthDay+"_"+time.hour+time.minute+".txt");
 	try {
 		file.createNewFile();
-		} catch (IOException e1) {
+		} catch (IOException e) {
 		// TODO Auto-generated catch block
-		e1.printStackTrace();
+		e.printStackTrace();
 		}
 	file.canWrite();
+	file.canRead();
 	// erstellt den FileWriter zum schreiben von strings in die datei
 	try {
-		filewriter = new FileWriter(file, true);
+		buffwrite = new BufferedWriter(new FileWriter(file));
 		} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -55,7 +60,13 @@ class LOG{
 
 	void write_log(String line) {
 		try {
-			filewriter.write(line);
+			buffwrite.write(line,0,line.length());
+			} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			}
+		try {
+			buffwrite.newLine();
 			} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -64,13 +75,13 @@ class LOG{
 	
 	void save_log() {
 		try {
-			filewriter.flush();
+			buffwrite.flush();
 			} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			}
 		try {
-			filewriter.close();
+			buffwrite.close();
 			} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
