@@ -30,7 +30,7 @@ public class LOG{
 		}
 	file.canWrite();
 	file.canRead();
-	// erstellt den FileWriter zum schreiben von strings in die datei
+	// erstellt den BufferedWriter zum schreiben von strings in die datei
 	try {
 		buffwrite = new BufferedWriter(new FileWriter(file));
 		} catch (IOException e) {
