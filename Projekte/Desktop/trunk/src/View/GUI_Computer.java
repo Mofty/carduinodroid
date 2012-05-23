@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.ButtonGroup;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
+import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.WindowListener;
 import java.awt.event.WindowEvent;
@@ -117,8 +118,13 @@ public class GUI_Computer extends JFrame{
 		
 		//light button
 		JToggleButton light_button = new JToggleButton("Licht", false);
-		light_button.setBounds(900,200,50,20);
+		light_button.setBounds(750,570,120,30);
 		this.getContentPane().add(light_button);
+		
+		//map button
+		JButton map_button = new JButton("Karte öffnen");
+		map_button.setBounds(880,570,120,30);
+		this.getContentPane().add(map_button);
 		
 	}
 }
