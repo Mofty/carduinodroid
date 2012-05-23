@@ -114,10 +114,5 @@ public class GUI_Computer extends JFrame{
 		Live_Log_Scrollbar.setBounds(0, 624, 1024, 100);
 		this.getContentPane().add(Live_Log_Scrollbar);
 		
-		//informationbox
-		//JTextField informationbox = new JTextField();
-		//informationbox.setBackground(Color.green);
-		//informationbox.setBounds(0, 668, 1024, 768);
-		//this.getContentPane().add(informationbox);
 	}
 }
