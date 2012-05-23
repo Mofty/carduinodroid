@@ -14,7 +14,7 @@ public class LOG{
 	BufferedWriter buffwrite;
 	String logpath ="/sdcard/carduinodroid/log";
 	
-	LOG() {
+	public LOG() {
 	// ruft datum und zeit ab	
 	time = new Time();
 	time.setToNow();
