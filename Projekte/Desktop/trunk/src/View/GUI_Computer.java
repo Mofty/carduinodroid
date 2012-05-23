@@ -14,6 +14,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import java.awt.Color;
 import java.awt.event.WindowListener;
 import java.awt.event.WindowEvent;
@@ -126,5 +127,10 @@ public class GUI_Computer extends JFrame{
 		map_button.setBounds(880,570,120,30);
 		this.getContentPane().add(map_button);
 		
+		//resolution_change
+		String resolution_list[] = {"400x320","800x600","1024*768","1380x720","1920x1080"};
+		JComboBox resolution_change = new JComboBox(resolution_list);
+		resolution_change.setBounds(880, 10, 120, 30);
+		this.getContentPane().add(resolution_change);
 	}
 }
