@@ -111,7 +111,7 @@ public class GUI_Computer extends JFrame{
 		Live_Log.setBackground(Color.white);
 		Live_Log.add(new JLabel("Log"));
 		JScrollPane Live_Log_Scrollbar = new JScrollPane(Live_Log, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		Live_Log_Scrollbar.setBounds(0, 624, 1024, 100);
+		Live_Log_Scrollbar.setBounds(0, 610, 1024, 100);
 		this.getContentPane().add(Live_Log_Scrollbar);
 		
 	}
