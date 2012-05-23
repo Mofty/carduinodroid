@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.event.WindowListener;
 import java.awt.event.WindowEvent;
@@ -127,10 +128,27 @@ public class GUI_Computer extends JFrame{
 		map_button.setBounds(880,570,120,30);
 		this.getContentPane().add(map_button);
 		
+		//key feedback
+		JToggleButton up = new JToggleButton("^");
+		JToggleButton down = new JToggleButton("u");
+		JToggleButton left = new JToggleButton("<--");
+		JToggleButton right = new JToggleButton("-->");
+		up.setBounds(890, 440, 50, 50);
+		down.setBounds(890, 500, 50, 50);
+		left.setBounds(830, 500, 50, 50);
+		right.setBounds(950, 500, 50, 50);
+		this.getContentPane().add(up);
+		this.getContentPane().add(down);
+		this.getContentPane().add(left);
+		this.getContentPane().add(right);
+		
 		//resolution_change
-		String resolution_list[] = {"400x320","800x600","1024*768","1380x720","1920x1080"};
+		String resolution_list[] = {"320x240", "640x480", "720x576", "800x600", "1024*768", "1280x720", "1920x1080"};
 		JComboBox resolution_change = new JComboBox(resolution_list);
 		resolution_change.setBounds(880, 10, 120, 30);
+		JLabel resolution_list_text = new JLabel("Auflösung:");
+		resolution_list_text.setBounds(800, 10, 70, 30);
+		this.getContentPane().add(resolution_list_text);
 		this.getContentPane().add(resolution_change);
 	}
 }
