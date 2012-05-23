@@ -20,5 +20,6 @@ public class CarDuinoDroidAppActivity extends Activity {
         
         log = new LOG();
         gps = new GPS();
+        connection = new Connection();
     }
 }
