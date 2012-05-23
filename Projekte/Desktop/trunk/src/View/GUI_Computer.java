@@ -12,6 +12,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.JLabel;
 import javax.swing.ButtonGroup;
 import javax.swing.JTextField;
+import javax.swing.JToggleButton;
 import java.awt.Color;
 import java.awt.event.WindowListener;
 import java.awt.event.WindowEvent;
@@ -113,6 +114,11 @@ public class GUI_Computer extends JFrame{
 		JScrollPane Live_Log_Scrollbar = new JScrollPane(Live_Log, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		Live_Log_Scrollbar.setBounds(0, 610, 1024, 100);
 		this.getContentPane().add(Live_Log_Scrollbar);
+		
+		//light button
+		JToggleButton light_button = new JToggleButton("Licht", false);
+		light_button.setBounds(900,200,50,20);
+		this.getContentPane().add(light_button);
 		
 	}
 }
