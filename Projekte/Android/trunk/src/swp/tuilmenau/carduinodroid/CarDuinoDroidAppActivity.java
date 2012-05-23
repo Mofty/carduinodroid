@@ -1,5 +1,6 @@
 package swp.tuilmenau.carduinodroid;
 
+import swp.tuilmenau.carduinodroid.controller.Connection;
 import swp.tuilmenau.carduinodroid.controller.GPS;
 import swp.tuilmenau.carduinodroid.model.LOG;
 import android.app.Activity;
@@ -9,6 +10,7 @@ public class CarDuinoDroidAppActivity extends Activity {
 	
 	LOG log;
 	GPS gps;
+	Connection connection;
 	
     /** Called when the activity is first created. */
     @Override
