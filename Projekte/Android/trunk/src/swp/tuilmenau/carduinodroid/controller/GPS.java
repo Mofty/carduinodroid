@@ -11,7 +11,7 @@ public class GPS {
 	LocationListener locationListener;
 	double longitude, latitude;
 	
-	GPS() 
+	public GPS() 
 	{
 		// ruft eine Instanz des LocationManagers ab
 		// warum genau er da nen fehler haut weiss ich nicht..
@@ -40,5 +40,11 @@ public class GPS {
 		// registriert den LocationListener zum erhalten von Updates zur Position
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
 	}
+	
+	public String getGPS()
+	{	
+		return longitude+";"+latitude;
+	}
+
 
 }
