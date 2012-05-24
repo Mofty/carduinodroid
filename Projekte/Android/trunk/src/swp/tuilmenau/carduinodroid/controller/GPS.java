@@ -15,9 +15,6 @@ public class GPS {
 	public GPS(Context context) 
 	{
 		// ruft eine Instanz des LocationManagers ab
-		// warum genau er da nen fehler haut weiss ich nicht..
-		// is genauso von developer.android.com kopiert ...
-		// locationManager = (LocationManager) Context.getSystemService(Context.LOCATION_SERVICE);
 		locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 
 		

@@ -32,7 +32,7 @@ public class CarDuinoDroidAppActivity extends Activity {
         
         log.write("test test");
         
-        // log.write(gps.getGPS());
+        log.write(gps.getGPS());
         
         if (connection.getMobile()) log.write("Mobiles Internet verfügbar.");
         else log.write("Mobiles Internet nicht verfügbar.");
