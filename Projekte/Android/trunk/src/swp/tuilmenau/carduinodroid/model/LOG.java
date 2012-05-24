@@ -49,6 +49,7 @@ public class LOG{
 			buffwrite.write(timestr,0,timestr.length());
 			buffwrite.write(line,0,line.length());
 			buffwrite.newLine();
+			buffwrite.flush();
 			} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

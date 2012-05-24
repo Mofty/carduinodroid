@@ -6,23 +6,23 @@ import android.net.*;
 public class Connection 
 {
 	ConnectivityManager connection;
- 	NetworkInfo[] networkInfo;
+ 	NetworkInfo mobileInfo;
+ 	NetworkInfo WLANInfo;
 	
 	public Connection (Context context)
 	{
 		connection = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-		networkInfo = new NetworkInfo[1];
 	}
 	
 	public boolean getMobile()
 	{
-		networkInfo[0] = connection.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-		return networkInfo[0].isAvailable();
+		mobileInfo = connection.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+		return mobileInfo.isAvailable();
 	}
 	
 	public boolean getWLAN()
 	{
-		networkInfo[1] = connection.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-		return networkInfo[1].isAvailable();
+		WLANInfo = connection.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+		return WLANInfo.isAvailable();
 	}
 }
