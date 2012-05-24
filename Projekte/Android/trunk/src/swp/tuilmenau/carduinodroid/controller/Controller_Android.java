@@ -1,14 +1,16 @@
 package swp.tuilmenau.carduinodroid.controller;
 
+import swp.tuilmenau.carduinodroid.model.*;
+
 public class Controller_Android {
 	
 	Arduino arduino;
 	Connection connection;
 	GPS gps;
-	Kamera kamera;
+	Camera camera;
 	Network network;
-	RecordSound recordsound;
-	Log_Android log_android;
+	Record_Sound record_sound;
+	LOG log;
 	Sound sound;
 	Controller_Android controller_android;
 	int framerate;
@@ -18,10 +20,10 @@ public class Controller_Android {
 		arduino = new Arduino();
 		connection = new Connection();
 		gps = new GPS();
-		kamera = new Kamera();
+		camera = new Camera();
 		network = new Network(controller_android);
-		recordsound = new RecordSound();
-		log_android = new Log_Android();
+		record_sound = new Record_Sound();
+		log = new LOG();
 		sound = new Sound();
 	}
 	
