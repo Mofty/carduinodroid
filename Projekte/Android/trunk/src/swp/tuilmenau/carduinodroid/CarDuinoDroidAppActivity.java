@@ -26,8 +26,8 @@ public class CarDuinoDroidAppActivity extends Activity {
         setContentView(R.layout.main);
         
         log = new LOG();
-        gps = new GPS();
-        // connection = new Connection();
+        gps = new GPS(this);
+        connection = new Connection(this);
         network = new Network(controller_android);
         
         log.write_log(gps.getGPS());

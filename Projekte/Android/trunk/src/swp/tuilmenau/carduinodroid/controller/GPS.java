@@ -12,12 +12,14 @@ public class GPS {
 	LocationListener locationListener;
 	double longitude, latitude;
 	
-	public GPS() 
+	public GPS(Context context) 
 	{
 		// ruft eine Instanz des LocationManagers ab
 		// warum genau er da nen fehler haut weiss ich nicht..
 		// is genauso von developer.android.com kopiert ...
-		locationManager = (LocationManager) Context.getSystemService(Context.LOCATION_SERVICE);
+		// locationManager = (LocationManager) Context.getSystemService(Context.LOCATION_SERVICE);
+		locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+
 		
 		// erstellt einen LocationListener der auf Änderung der GPS Position reagiert
 		locationListener = new LocationListener() 
@@ -42,6 +44,7 @@ public class GPS {
 		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, locationListener);
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
 	}
+	
 	
 	public String getGPS()
 	{	
