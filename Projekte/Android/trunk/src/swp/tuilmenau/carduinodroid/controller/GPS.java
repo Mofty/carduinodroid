@@ -38,8 +38,8 @@ public class GPS {
 				// TODO Auto-generated method stub
 				
 		};
-		// registriert den LocationListener zum erhalten von Updates zur Position
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+		// registriert den LocationListener zum erhalten von Updates zur Position jede sekunde (1000 ms)
+		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
 	}
 	
 	public String getGPS()

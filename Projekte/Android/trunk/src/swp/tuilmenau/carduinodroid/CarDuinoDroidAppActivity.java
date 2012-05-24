@@ -27,7 +27,9 @@ public class CarDuinoDroidAppActivity extends Activity {
         
         log = new LOG();
         gps = new GPS();
-        connection = new Connection();
+        // connection = new Connection();
         network = new Network(controller_android);
+        
+        log.write_log(gps.getGPS());
     }
 }
