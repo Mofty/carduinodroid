@@ -5,14 +5,16 @@ import swp.tuilmenau.carduinodroid.model.*;
 public class Controller_Android {
 	
 	Arduino arduino;
-	Connection connection;
-	GPS gps;
 	Camera camera;
+	Connection connection;
+	Controller_Android controller_android;
+	GPS gps;
 	Network network;
 	Record_Sound record_sound;
-	LOG log;
 	Sound sound;
-	Controller_Android controller_android;
+	
+	LOG log;
+	
 	int framerate;
 	
 	public Controller_Android() {

@@ -8,15 +8,16 @@ import android.os.Bundle;
 
 public class CarDuinoDroidAppActivity extends Activity {
 	
-	LOG log;
-	GPS gps;
-	Connection connection;
-	Network network;
-	Controller_Android controller_android;
 	Arduino arduino;
 	Camera camera;
+	Connection connection;
+	Controller_Android controller_android;
+	GPS gps;
+	Network network;
 	Record_Sound record_sound;
 	Sound sound;
+	
+	LOG log;
 	
     /** Called when the activity is first created. */
     @Override
