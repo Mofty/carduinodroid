@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 public class GPS {
 	LocationManager locationManager;
+	
 	LocationListener locationListener;
 	double longitude, latitude;
 	
