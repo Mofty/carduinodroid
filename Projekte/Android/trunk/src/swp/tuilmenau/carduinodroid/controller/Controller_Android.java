@@ -20,8 +20,8 @@ public class Controller_Android {
 	public Controller_Android() {
 		
 		arduino = new Arduino();
-		connection = new Connection();
-		gps = new GPS();
+		//connection = new Connection());
+		// gps = new GPS();
 		camera = new Camera();
 		network = new Network(controller_android);
 		record_sound = new Record_Sound();
