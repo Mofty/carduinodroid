@@ -16,9 +16,9 @@ public class Network {
 	Socket_Controller socket_controller;
 	Thread t1;
 	Thread t2;
-	Controller controller;
+	Controller_Android controller;
 		
-	public Network(Controller n_controller)
+	public Network(Controller_Android n_controller)
 	{
 		socket_package = new Socket_Package();
 		socket_controller = new Socket_Controller(this);
