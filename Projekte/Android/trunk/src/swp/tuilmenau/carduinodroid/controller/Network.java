@@ -18,7 +18,7 @@ public class Network {
 	Thread t2;
 	Controller controller;
 		
-	Network(Controller n_controller)
+	public Network(Controller n_controller)
 	{
 		socket_package = new Socket_Package();
 		socket_controller = new Socket_Controller(this);
