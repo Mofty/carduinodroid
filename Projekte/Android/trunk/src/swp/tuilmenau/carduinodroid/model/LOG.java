@@ -40,7 +40,7 @@ public class LOG{
 	}
 	
 
-	public void write_log(String line) {
+	public void write(String line) {
 		String timestr;
 		time.setToNow(); // aktualisiert die in "time" gespeicherte zeit
 		timestr = time.hour+":"+time.minute+":"+time.second+" ";
@@ -55,7 +55,7 @@ public class LOG{
 			}
 		}
 	
-	public void save_log() {
+	public void save() {
 		try {
 			buffwrite.flush();
 			buffwrite.close();
