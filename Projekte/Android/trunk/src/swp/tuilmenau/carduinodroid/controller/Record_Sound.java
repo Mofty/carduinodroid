@@ -1,5 +1,5 @@
 package swp.tuilmenau.carduinodroid.controller;
 
-public class RecordSound {
+public class Record_Sound {
 
 }

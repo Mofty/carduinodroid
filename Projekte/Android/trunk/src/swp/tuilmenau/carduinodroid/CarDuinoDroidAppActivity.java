@@ -1,8 +1,8 @@
 package swp.tuilmenau.carduinodroid;
 
-import swp.tuilmenau.carduinodroid.controller.Connection;
-import swp.tuilmenau.carduinodroid.controller.GPS;
-import swp.tuilmenau.carduinodroid.model.LOG;
+import swp.tuilmenau.carduinodroid.controller.*;
+import swp.tuilmenau.carduinodroid.model.*;
+import swp.tuilmenau.carduinodroid.view.*;
 import android.app.Activity;
 import android.os.Bundle;
 
@@ -11,6 +11,12 @@ public class CarDuinoDroidAppActivity extends Activity {
 	LOG log;
 	GPS gps;
 	Connection connection;
+	Network network;
+	Controller_Android controller_android;
+	Arduino arduino;
+	Camera camera;
+	Record_Sound record_sound;
+	Sound sound;
 	
     /** Called when the activity is first created. */
     @Override
