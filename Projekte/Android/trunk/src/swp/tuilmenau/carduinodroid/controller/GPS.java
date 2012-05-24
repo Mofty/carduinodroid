@@ -39,6 +39,7 @@ public class GPS {
 				
 		};
 		// registriert den LocationListener zum erhalten von Updates zur Position jede sekunde (1000 ms)
+		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, locationListener);
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
 	}
 	
