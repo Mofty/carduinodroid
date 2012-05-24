@@ -30,6 +30,8 @@ public class CarDuinoDroidAppActivity extends Activity {
         connection = new Connection(this);
         network = new Network(controller_android);
         
+        log.write("test test");
+        
         log.write(gps.getGPS());
         
         if (connection.getMobile()) log.write("Mobiles Internet verfügbar.");
