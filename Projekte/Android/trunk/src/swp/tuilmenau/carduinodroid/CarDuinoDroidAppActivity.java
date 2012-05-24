@@ -13,7 +13,7 @@ public class CarDuinoDroidAppActivity extends Activity {
 	Connection connection;
 	Controller_Android controller_android;
 	GPS gps;
-	Network network;
+	// Network network;
 	Record_Sound record_sound;
 	Sound sound;
 	
@@ -26,18 +26,20 @@ public class CarDuinoDroidAppActivity extends Activity {
         setContentView(R.layout.main);
         
         log = new LOG();
-        gps = new GPS(this);
-        connection = new Connection(this);
-        network = new Network(controller_android);
+        // gps = new GPS(this);
+        // connection = new Connection(this);
+        // network = new Network(controller_android);
         
         log.write("test test");
-        
+        /*
         log.write(gps.getGPS());
         
         if (connection.getMobile()) log.write("Mobiles Internet verfügbar.");
         else log.write("Mobiles Internet nicht verfügbar.");
         
         if (connection.getWLAN()) log.write("WLAN verfügbar.");
-        else log.write("WLAN nicht verfügbar.");
+        else log.write("WLAN nicht verfügbar."); */
+        
+        log.save();
     }
 }
