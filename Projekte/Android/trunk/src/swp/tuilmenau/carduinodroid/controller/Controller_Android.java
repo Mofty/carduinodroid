@@ -18,17 +18,19 @@ public class Controller_Android {
 	
 	int framerate;
 	
-	public Controller_Android(Context context) {
+	public Controller_Android(Context context) 
+	{
+	
+		log = new LOG();
 		
 		arduino = new Arduino();
 		camera = new Camera();
 		connection = new Connection(context);
-		gps = new GPS(context);
+		gps = new GPS(context,/* zu testzwecken. in der finalen version löschen */ this);
 		network = new Network(this);
 		record_sound = new Record_Sound();
 		sound = new Sound();
-		
-		log = new LOG();
+	
 	}
 	
 	public void SendData() {

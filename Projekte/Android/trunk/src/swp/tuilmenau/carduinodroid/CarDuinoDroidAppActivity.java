@@ -32,7 +32,7 @@ public class CarDuinoDroidAppActivity extends Activity {
 				e.printStackTrace();
 			} 
         } while (!controller_Android.gps.newerFixAvailable()); */
-        ProgressDialog dialog = ProgressDialog.show(this, "GPS wird abgerufen", "Bitte warten...", true);
+        // ProgressDialog dialog = ProgressDialog.show(this, "GPS wird abgerufen", "Bitte warten...", true);
         
         controller_Android.log.write(controller_Android.gps.getGPS());
         
@@ -56,6 +56,6 @@ public class CarDuinoDroidAppActivity extends Activity {
         else 
         	controller_Android.log.write("WLAN nicht verfügbar.");
         
-        controller_Android.log.save();
+         // controller_Android.log.save();
     }
 }
