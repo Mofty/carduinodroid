@@ -25,4 +25,15 @@ public class Connection
 		WLANInfo = connection.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 		return WLANInfo.isConnected();
 	}
+	public boolean getMobileAvailable()
+	{
+		mobileInfo = connection.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+		return mobileInfo.isAvailable();
+	}
+	
+	public boolean getWLANAvailable()
+	{
+		WLANInfo = connection.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+		return WLANInfo.isAvailable();
+	}
 }
