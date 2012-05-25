@@ -143,7 +143,7 @@ public class GUI_Computer extends JFrame{
 		this.getContentPane().add(right);
 		
 		//resolution_change
-		String resolution_list[] = {"320x240", "640x480", "720x576", "800x600", "1024*768", "1280x720", "1920x1080"};
+		String resolution_list[] = {"320x240", "640x480", "720x576", "800x600", "1024x768", "1280x720", "1920x1080"};
 		JComboBox resolution_change = new JComboBox(resolution_list);
 		resolution_change.setBounds(880, 10, 120, 30);
 		JLabel resolution_list_text = new JLabel("Auflösung:");
