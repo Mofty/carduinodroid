@@ -17,12 +17,12 @@ public class Connection
 	public boolean getMobile()
 	{
 		mobileInfo = connection.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-		return mobileInfo.isAvailable();
+		return mobileInfo.isConnected();
 	}
 	
 	public boolean getWLAN()
 	{
 		WLANInfo = connection.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-		return WLANInfo.isAvailable();
+		return WLANInfo.isConnected();
 	}
 }
