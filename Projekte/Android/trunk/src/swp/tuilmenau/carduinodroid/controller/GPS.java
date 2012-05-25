@@ -11,9 +11,11 @@ public class GPS {
 	
 	LocationListener locationListener;
 	double longitude, latitude;
+	boolean newerFixAvailable;
 	
 	public GPS(Context context) 
 	{
+		newerFixAvailable =false;
 		// ruft eine Instanz des LocationManagers ab
 		locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 
@@ -24,6 +26,7 @@ public class GPS {
 		    public void onLocationChanged(Location location) 
 		    {
 		      // Called when a new location is found by the network location provider.
+		    	newerFixAvailable = true;
 		    	latitude = location.getLatitude();
 		    	longitude = location.getLongitude();
 		    }
@@ -45,6 +48,7 @@ public class GPS {
 	
 	public String getGPS()
 	{	
+		newerFixAvailable = false;
 		return longitude+";"+latitude;
 	}
 
