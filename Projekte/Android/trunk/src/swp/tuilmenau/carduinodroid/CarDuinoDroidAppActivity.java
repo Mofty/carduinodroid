@@ -8,16 +8,7 @@ import android.os.Bundle;
 
 public class CarDuinoDroidAppActivity extends Activity {
 	
-	Arduino arduino;
-	Camera camera;
-	Connection connection;
-	Controller_Android controller_android;
-	GPS gps;
-	Network network;
-	Record_Sound record_sound;
-	Sound sound;
-	
-	LOG log;
+	Controller_Android controller_Android;
 	
     /** Called when the activity is first created. */
     @Override
@@ -25,21 +16,19 @@ public class CarDuinoDroidAppActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        log = new LOG();
-        gps = new GPS(this);
-        connection = new Connection(this);
-        network = new Network(controller_android);
+        controller_Android = new Controller_Android(this);
         
-        log.write("test test");
+        // nur zu testzwecken
+        controller_Android.log.write("App erfolgreich gestartet");
         
-        log.write(gps.getGPS());
+        controller_Android.log.write(controller_Android.gps.getGPS());
         
-        if (connection.getMobile()) log.write("Mobiles Internet verfügbar.");
-        else log.write("Mobiles Internet nicht verfügbar.");
+        if (controller_Android.connection.getMobile()) controller_Android.log.write("Mobiles Internet verfügbar.");
+        else controller_Android.log.write("Mobiles Internet nicht verfügbar.");
         
-        if (connection.getWLAN()) log.write("WLAN verfügbar.");
-        else log.write("WLAN nicht verfügbar.");
+        if (controller_Android.connection.getWLAN()) controller_Android.log.write("WLAN verfügbar.");
+        else controller_Android.log.write("WLAN nicht verfügbar.");
         
-        log.save();
+        controller_Android.log.save();
     }
 }

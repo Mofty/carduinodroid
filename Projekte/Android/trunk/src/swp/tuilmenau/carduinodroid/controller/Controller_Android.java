@@ -6,15 +6,15 @@ import swp.tuilmenau.carduinodroid.view.*;
 
 public class Controller_Android {
 	
-	Arduino arduino;
-	Camera camera;
-	Connection connection;
-	GPS gps;
-	Network network;
-	Record_Sound record_sound;
-	Sound sound;
+	public Arduino arduino;
+	public Camera camera;
+	public Connection connection;
+	public GPS gps;
+	public Network network;
+	public Record_Sound record_sound;
+	public Sound sound;
 	
-	LOG log;
+	public LOG log;
 	
 	int framerate;
 	
