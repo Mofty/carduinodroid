@@ -1,6 +1,8 @@
 package swp.tuilmenau.carduinodroid.controller;
 
+import android.content.Context;
 import swp.tuilmenau.carduinodroid.model.*;
+import swp.tuilmenau.carduinodroid.view.*;
 
 public class Controller_Android {
 	
@@ -17,16 +19,17 @@ public class Controller_Android {
 	
 	int framerate;
 	
-	public Controller_Android() {
+	public Controller_Android(Context context) {
 		
 		arduino = new Arduino();
-		//connection = new Connection());
-		// gps = new GPS();
+		connection = new Connection(context);
+		gps = new GPS(context);
 		camera = new Camera();
-		network = new Network(controller_android);
+		network = new Network(this);
 		record_sound = new Record_Sound();
-		log = new LOG();
 		sound = new Sound();
+		
+		log = new LOG();
 	}
 	
 	public void SendData() {
