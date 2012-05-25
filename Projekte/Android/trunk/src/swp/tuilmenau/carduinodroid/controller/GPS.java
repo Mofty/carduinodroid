@@ -15,7 +15,7 @@ public class GPS {
 	
 	public GPS(Context context) 
 	{
-		newerFixAvailable =false;
+		newerFixAvailable = false;
 		// ruft eine Instanz des LocationManagers ab
 		locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 
