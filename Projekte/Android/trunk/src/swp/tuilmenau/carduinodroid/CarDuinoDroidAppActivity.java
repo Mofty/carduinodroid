@@ -4,6 +4,7 @@ import swp.tuilmenau.carduinodroid.controller.*;
 import swp.tuilmenau.carduinodroid.model.*;
 import swp.tuilmenau.carduinodroid.view.*;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 public class CarDuinoDroidAppActivity extends Activity {
@@ -21,7 +22,7 @@ public class CarDuinoDroidAppActivity extends Activity {
         // nur zu testzwecken
         controller_Android.log.write("App erfolgreich gestartet");
         
-        do 
+       /* do 
         { 
         	try 
         	{
@@ -30,7 +31,9 @@ public class CarDuinoDroidAppActivity extends Activity {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} 
-        } while (!controller_Android.gps.newerFixAvailable());
+        } while (!controller_Android.gps.newerFixAvailable()); */
+        ProgressDialog dialog = ProgressDialog.show(this, "GPS wird abgerufen", "Bitte warten...", true);
+        
         controller_Android.log.write(controller_Android.gps.getGPS());
         
         if (controller_Android.connection.getMobileAvailable()){
