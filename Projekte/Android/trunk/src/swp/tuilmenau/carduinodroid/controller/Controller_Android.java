@@ -22,9 +22,9 @@ public class Controller_Android {
 	public Controller_Android(Context context) {
 		
 		arduino = new Arduino();
+		camera = new Camera();
 		connection = new Connection(context);
 		gps = new GPS(context);
-		camera = new Camera();
 		network = new Network(this);
 		record_sound = new Record_Sound();
 		sound = new Sound();
