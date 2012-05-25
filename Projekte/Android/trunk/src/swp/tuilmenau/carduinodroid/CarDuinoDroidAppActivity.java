@@ -23,23 +23,25 @@ public class CarDuinoDroidAppActivity extends Activity {
         
         controller_Android.log.write(controller_Android.gps.getGPS());
         
-        if (controller_Android.connection.getMobile() & controller_Android.connection.getMobileAvailable()){
-        	controller_Android.log.write("Mobiles Internet verbunden.");
+        if (controller_Android.connection.getMobileAvailable()){
         	controller_Android.log.write("Mobiles Internet verfügbar.");
+        		if (controller_Android.connection.getMobile())
+        			controller_Android.log.write("Mobiles Internet verbunden.");
+        		else 
+        			controller_Android.log.write("Mobiles Internet nicht verbunden."); 
         }
-        else {
-        	controller_Android.log.write("Mobiles Internet nicht verbunden.");
+        else
         	controller_Android.log.write("Mobiles Internet nicht verfügbar.");
-        }
         
-        if (controller_Android.connection.getWLAN() & controller_Android.connection.getWLANAvailable()){
-        	controller_Android.log.write("WLAN verbunden.");
+        if (controller_Android.connection.getWLANAvailable()){
         	controller_Android.log.write("WLAN verfügbar.");
+        	if (controller_Android.connection.getWLAN())
+        		controller_Android.log.write("WLAN verbunden.");
+        	else
+        		controller_Android.log.write("WLAN nicht verbunden.");
         }
-        else {
-        	controller_Android.log.write("WLAN nicht verbunden.");
+        else 
         	controller_Android.log.write("WLAN nicht verfügbar.");
-        }
         
         controller_Android.log.save();
     }
