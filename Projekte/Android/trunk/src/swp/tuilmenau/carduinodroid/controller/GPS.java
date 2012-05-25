@@ -51,6 +51,11 @@ public class GPS {
 		newerFixAvailable = false;
 		return longitude+";"+latitude;
 	}
+	
+	public boolean newerFixAvailable()
+	{
+		return newerFixAvailable;
+	}
 
 
 }
