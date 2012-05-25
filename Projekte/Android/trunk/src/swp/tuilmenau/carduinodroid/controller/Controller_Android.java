@@ -9,7 +9,6 @@ public class Controller_Android {
 	Arduino arduino;
 	Camera camera;
 	Connection connection;
-	Controller_Android controller_android;
 	GPS gps;
 	Network network;
 	Record_Sound record_sound;
