@@ -35,6 +35,6 @@ public class Controller_Android {
 	}
 	public void receiveSteuerdaten(String Steuerdaten) {
 	}
-	public void kamerabild() {
+	public void camerPicture() {
 	}	
 }
