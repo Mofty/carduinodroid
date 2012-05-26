@@ -78,38 +78,74 @@ public class GUI_Computer extends JFrame{
 		//read in names of elements (dependently on languagefile)
 		ArrayList<String> Names = Language_name();
 		
-		//menubar
+		//initiate Strings
+		String resolution_list[] = {"320x240", "640x480", "720x576", "800x600", "1024x768", "1280x720", "1920x1080"};
+
+		//initiate Menubar
 		JMenuBar Menubar = new JMenuBar();
 		
-		//menu "Datei" inlcuding menupoints
+		//initiate Menus
 		JMenu File = new JMenu(Names.get(0));
-		JSeparator Separator_File = new JSeparator();
+		JMenu Preferences = new JMenu(Names.get(4));
+		JMenu Camera = new JMenu(Names.get(6));
+		
+		//initiate MenuItems
 		JMenuItem Quit = new JMenuItem(Names.get(1));
+		JMenuItem Connection = new JMenuItem(Names.get(2));
+		JMenuItem About = new JMenuItem(Names.get(3));
+		
+		//initiate CheckBoxMenuItems
+		JCheckBoxMenuItem Light = new JCheckBoxMenuItem(Names.get(5));
+		
+		//initiate RadioButtonMenuItems
+		JRadioButtonMenuItem Frontcamera = new JRadioButtonMenuItem(Names.get(7),true);
+		JRadioButtonMenuItem Backcamera = new JRadioButtonMenuItem(Names.get(8));
+		
+		//initiate Separators
+		JSeparator Separator_File = new JSeparator();
+	
+		//initiate Buttons
+		JButton map_button = new JButton(Names.get(9));
+		
+		//initiate ToggleButtons
+		JToggleButton light_button = new JToggleButton(Names.get(5), false);
+		JToggleButton up = new JToggleButton("^");
+		JToggleButton down = new JToggleButton("u");
+		JToggleButton left = new JToggleButton("<--");
+		JToggleButton right = new JToggleButton("-->");
+		
+		//initiate ComboBoxes
+		JComboBox resolution_change = new JComboBox(resolution_list);
+		
+		//initiate ButtonGroups
+		ButtonGroup Camerachoice = new ButtonGroup(); 
+		
+		//initiate TextFilds
+		JTextField Live_Log = new JTextField();
+		
+		//initiate ScrollPanes
+		JScrollPane Live_Log_Scrollbar = new JScrollPane(Live_Log, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		
+		//initiate JLabels
+		JLabel resolution_list_text = new JLabel(Names.get(10) + ": ");
+
+		
+		//menu "file"
 		Quit.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        System.exit(0);
 		    }
 		});
-		JMenuItem Connection = new JMenuItem(Names.get(2));
-		JMenuItem About = new JMenuItem(Names.get(3));
 		File.add(About);
 		File.add(Connection);
 		File.add(Separator_File);
 		File.add(Quit);
 		
-		//menu "Einstellungen" including menupoints
-		JMenu Preferences = new JMenu(Names.get(4));
-		JCheckBoxMenuItem Light = new JCheckBoxMenuItem(Names.get(5));
-		//submenu "Kamera"
-		JMenu Camera = new JMenu(Names.get(6));
-		ButtonGroup Camerachoice = new ButtonGroup(); 
-		JRadioButtonMenuItem Frontcamera = new JRadioButtonMenuItem(Names.get(7),true);
-		JRadioButtonMenuItem Backcamera = new JRadioButtonMenuItem(Names.get(8));
+		//menu "Preferences" including submenus
 		Camerachoice.add(Frontcamera);
 		Camerachoice.add(Backcamera);
 		Camera.add(Frontcamera);
 		Camera.add(Backcamera);
-		//menu "Einstellungen"
 		Preferences.add(Camera);
 		Preferences.add(Light);
 		
@@ -121,28 +157,19 @@ public class GUI_Computer extends JFrame{
 		this.setJMenuBar(Menubar);
 		
 		//Live-Log screen
-		JTextField Live_Log = new JTextField();
 		Live_Log.setBackground(Color.white);
-		Live_Log.add(new JLabel("Log"));
-		JScrollPane Live_Log_Scrollbar = new JScrollPane(Live_Log, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		Live_Log_Scrollbar.setBounds(0, 610, 1024, 100);
 		this.getContentPane().add(Live_Log_Scrollbar);
 		
 		//light button
-		JToggleButton light_button = new JToggleButton(Names.get(5), false);
 		light_button.setBounds(750,570,120,30);
 		this.getContentPane().add(light_button);
 		
 		//map button
-		JButton map_button = new JButton(Names.get(9));
 		map_button.setBounds(880,570,120,30);
 		this.getContentPane().add(map_button);
 		
 		//key feedback
-		JToggleButton up = new JToggleButton("^");
-		JToggleButton down = new JToggleButton("u");
-		JToggleButton left = new JToggleButton("<--");
-		JToggleButton right = new JToggleButton("-->");
 		up.setBounds(890, 440, 50, 50);
 		down.setBounds(890, 500, 50, 50);
 		left.setBounds(830, 500, 50, 50);
@@ -153,10 +180,7 @@ public class GUI_Computer extends JFrame{
 		this.getContentPane().add(right);
 		
 		//resolution_change
-		String resolution_list[] = {"320x240", "640x480", "720x576", "800x600", "1024x768", "1280x720", "1920x1080"};
-		JComboBox resolution_change = new JComboBox(resolution_list);
 		resolution_change.setBounds(880, 10, 120, 30);
-		JLabel resolution_list_text = new JLabel(Names.get(10) + ": ");
 		resolution_list_text.setBounds(790, 10, 80, 30);
 		this.getContentPane().add(resolution_list_text);
 		this.getContentPane().add(resolution_change);
@@ -185,6 +209,7 @@ public class GUI_Computer extends JFrame{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//language_reader.close();
 		return Name;
 	}
 }
