@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import android.os.Environment;
 import android.text.format.Time;
 
 public class LOG
@@ -12,7 +14,7 @@ public class LOG
 	File path;
 	File file;
 	BufferedWriter buffwrite;
-	String logpath ="/sdcard/carduinodroid/log";
+	String logpath = Environment.getExternalStorageDirectory().getPath()+"/carduinodroid/log";
 	
 	public LOG() {
 	// ruft datum und zeit ab	
@@ -23,11 +25,8 @@ public class LOG
 	path.mkdirs();
 	file = new File(logpath,"LOG_"+time.month+time.monthDay+"_"+time.hour+time.minute+time.second+".txt");
 	try {
-		file.createNewFile();
-		} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-		}
+			file.createNewFile();
+		} catch (IOException e) { e.printStackTrace(); }
 	file.canWrite();
 	file.canRead();
 	// erstellt den BufferedWriter zum schreiben von strings in die datei
