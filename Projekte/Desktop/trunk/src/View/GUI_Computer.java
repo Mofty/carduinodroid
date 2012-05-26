@@ -1,6 +1,8 @@
 package View;
 
 import Model.Log;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -109,10 +111,10 @@ public class GUI_Computer extends JFrame{
 		
 		//initiate ToggleButtons
 		JToggleButton light_button = new JToggleButton(Names.get(5), false);
-		JToggleButton up = new JToggleButton("^");
-		JToggleButton down = new JToggleButton("u");
-		JToggleButton left = new JToggleButton("<--");
-		JToggleButton right = new JToggleButton("-->");
+		JToggleButton up = new JToggleButton(new ImageIcon ("src/View/Icons/Icon_up.gif"));
+		JToggleButton down = new JToggleButton(new ImageIcon ("src/View/Icons/Icon_down.gif"));
+		JToggleButton left = new JToggleButton(new ImageIcon ("src/View/Icons/Icon_left.gif"));
+		JToggleButton right = new JToggleButton(new ImageIcon ("src/View/Icons/Icon_right.gif"));
 		
 		//initiate ComboBoxes
 		JComboBox resolution_change = new JComboBox(resolution_list);
