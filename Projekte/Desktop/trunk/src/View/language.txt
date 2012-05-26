@@ -1,11 +1,1 @@
-Datei
-Beenden
-Verbindung
-Ueber CarDuinoDroid
-Einstellungen
-Licht
-Kamera
-Frontkamera
-Rueckkamera
-Karte oeffnen
-Aufloesung
+german
