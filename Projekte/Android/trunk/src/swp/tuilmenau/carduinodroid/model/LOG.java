@@ -13,7 +13,7 @@ public class LOG
 	Time time;
 	File path;
 	File file;
-	BufferedWriter buffwrite; 
+	BufferedWriter buffwrite;
 	String logpath = Environment.getExternalStorageDirectory().getPath()+"/carduinodroid/log";
 	
 	public LOG() {
