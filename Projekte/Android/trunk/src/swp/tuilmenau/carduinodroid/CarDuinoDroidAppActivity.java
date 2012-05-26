@@ -21,18 +21,6 @@ public class CarDuinoDroidAppActivity extends Activity {
         // nur zu testzwecken
         controller_Android.log.write("App erfolgreich gestartet");
         
-       /* do 
-        { 
-        	try 
-        	{
-				wait(250);
-				} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 
-        } while (!controller_Android.gps.newerFixAvailable()); */
-        // ProgressDialog dialog = ProgressDialog.show(this, "GPS wird abgerufen", "Bitte warten...", true);
-        
         controller_Android.log.write(controller_Android.gps.getGPS());
         
         if (controller_Android.connection.getMobileAvailable()){
