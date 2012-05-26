@@ -1,5 +1,6 @@
 package View;
 
+import Model.Log;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -21,6 +22,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -167,19 +169,24 @@ public class GUI_Computer extends JFrame{
 		String Language = null;
 		
 		try {
-			language_reader = new BufferedReader (new FileReader("/Users/k0ng3n/Documents/workspace/CarDuinoDroid Java Programm/src/View/language.txt"));
+			language_reader = new BufferedReader (new FileReader("language.txt"));
 			Language = language_reader.readLine();
+		} catch (FileNotFoundException e){
+			Log.writelogfile(Language + ".txt doesn't exist or contains wrong content!");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			language_reader = new BufferedReader(new FileReader("/Users/k0ng3n/Documents/workspace/CarDuinoDroid Java Programm/src/View/" + Language + ".txt"));
+			language_reader = new BufferedReader(new FileReader(Language + ".txt"));
 			while((Line = language_reader.readLine()) != null) Name.add(Line);
-		} 
-		catch (IOException e) {
+		} catch (FileNotFoundException e){
+			Log.writelogfile(Language + ".txt doesn't exist or contains wrong content!");
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		//language_reader.close();
 		return Name;
 	}
 }
