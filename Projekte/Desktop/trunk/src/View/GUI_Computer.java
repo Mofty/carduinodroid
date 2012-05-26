@@ -21,7 +21,6 @@ import java.awt.event.WindowEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -178,8 +177,8 @@ public class GUI_Computer extends JFrame{
 			language_reader = new BufferedReader(new FileReader("/Users/k0ng3n/Documents/workspace/CarDuinoDroid Java Programm/src/View/" + Language + ".txt"));
 			while((Line = language_reader.readLine()) != null) Name.add(Line);
 		} 
-		catch (IOException e1) {
-			e1.printStackTrace();
+		catch (IOException e) {
+			e.printStackTrace();
 		}
 		return Name;
 	}
