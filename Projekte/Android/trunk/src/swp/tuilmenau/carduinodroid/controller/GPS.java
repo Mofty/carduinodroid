@@ -1,6 +1,5 @@
 package swp.tuilmenau.carduinodroid.controller;
 
-import swp.tuilmenau.carduinodroid.model.LOG; // zu testzwecken. in der finalen version löschen
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
