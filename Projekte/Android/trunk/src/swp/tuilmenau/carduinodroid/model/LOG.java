@@ -14,6 +14,7 @@ public class LOG
 	File path;
 	File file;
 	BufferedWriter buffwrite;
+
 	String logpath = Environment.getExternalStorageDirectory().getPath()+"/carduinodroid/log";
 	
 	public LOG() {
