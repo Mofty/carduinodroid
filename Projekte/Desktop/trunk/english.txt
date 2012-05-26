@@ -1,0 +1,11 @@
+File
+Quit
+Connection
+About CarDuinoDroid
+Preferences
+Light
+Camera
+Frontcamera
+Backcamera
+Open Map
+Resolution
