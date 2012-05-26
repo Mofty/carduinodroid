@@ -6,8 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import android.text.format.Time;
 
-public class LOG{
-	
+public class LOG
+{	
 	Time time;
 	File path;
 	File file;
@@ -32,39 +32,31 @@ public class LOG{
 	file.canRead();
 	// erstellt den BufferedWriter zum schreiben von strings in die datei
 	try {
-		buffwrite = new BufferedWriter(new FileWriter(file));
-		} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-		}
+			buffwrite = new BufferedWriter(new FileWriter(file));
+		} catch (IOException e) { e.printStackTrace(); }
 	}
 	
 
-	public void write(String line) {
+	public void write(String line) 
+	{
 		String timestr;
 		time.setToNow(); // aktualisiert die in "time" gespeicherte zeit
 		timestr = time.hour+":"+time.minute+":"+time.second+" ";
 		
 		// schreibt die zeit gefolgt vom übergebenen String "line" in die datei und springt zu nächsten zeile Leerzeile.
 		try {
-			buffwrite.write(timestr,0,timestr.length());
-			buffwrite.write(line,0,line.length());
-			buffwrite.newLine();
-			buffwrite.flush();
-			} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			}
-		}
+				buffwrite.write(timestr,0,timestr.length());
+				buffwrite.write(line,0,line.length());
+				buffwrite.newLine();
+				buffwrite.flush();
+			} catch (IOException e) { e.printStackTrace(); }
+	}
 	
 	public void save() {
 		// speichert und schliesst die datei
 		try {
-			buffwrite.flush();
-			buffwrite.close();
-			} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			}	
+				buffwrite.flush();
+				buffwrite.close();
+			} catch (IOException e) { e.printStackTrace(); }	
 	}
 }
