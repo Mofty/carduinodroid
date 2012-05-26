@@ -4,7 +4,6 @@ import swp.tuilmenau.carduinodroid.controller.*;
 import swp.tuilmenau.carduinodroid.model.*;
 import swp.tuilmenau.carduinodroid.view.*;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.os.Bundle;
 
 public class CarDuinoDroidAppActivity extends Activity {
