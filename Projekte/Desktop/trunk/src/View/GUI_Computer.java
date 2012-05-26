@@ -15,15 +15,20 @@ import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.event.WindowListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class GUI_Computer extends JFrame{
+	
+	static BufferedReader language_reader;
 	
 	public GUI_Computer(){
 		this.getContentPane().setLayout(null);
@@ -68,33 +73,36 @@ public class GUI_Computer extends JFrame{
 	//method: create window
 	protected void initWindow(){
 		
+		//read in names of elements (dependently on languagefile)
+		ArrayList<String> Names = Language_name();
+		
 		//menubar
 		JMenuBar Menubar = new JMenuBar();
 		
 		//menu "Datei" inlcuding menupoints
-		JMenu File = new JMenu("Datei");
+		JMenu File = new JMenu(Names.get(0));
 		JSeparator Separator_File = new JSeparator();
-		JMenuItem Quit = new JMenuItem("Beenden");
+		JMenuItem Quit = new JMenuItem(Names.get(1));
 		Quit.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        System.exit(0);
 		    }
 		});
-		JMenuItem Connection = new JMenuItem("Verbindung");
-		JMenuItem About = new JMenuItem("Über CarDuinoDroid");
+		JMenuItem Connection = new JMenuItem(Names.get(2));
+		JMenuItem About = new JMenuItem(Names.get(3));
 		File.add(About);
 		File.add(Connection);
 		File.add(Separator_File);
 		File.add(Quit);
 		
 		//menu "Einstellungen" including menupoints
-		JMenu Preferences = new JMenu("Einstellungen");
-		JCheckBoxMenuItem Light = new JCheckBoxMenuItem("Licht");
+		JMenu Preferences = new JMenu(Names.get(4));
+		JCheckBoxMenuItem Light = new JCheckBoxMenuItem(Names.get(5));
 		//submenu "Kamera"
-		JMenu Camera = new JMenu("Kamera");
+		JMenu Camera = new JMenu(Names.get(6));
 		ButtonGroup Camerachoice = new ButtonGroup(); 
-		JRadioButtonMenuItem Frontcamera = new JRadioButtonMenuItem("Frontkamera",true);
-		JRadioButtonMenuItem Backcamera = new JRadioButtonMenuItem("Rückkamera");
+		JRadioButtonMenuItem Frontcamera = new JRadioButtonMenuItem(Names.get(7),true);
+		JRadioButtonMenuItem Backcamera = new JRadioButtonMenuItem(Names.get(8));
 		Camerachoice.add(Frontcamera);
 		Camerachoice.add(Backcamera);
 		Camera.add(Frontcamera);
@@ -119,12 +127,12 @@ public class GUI_Computer extends JFrame{
 		this.getContentPane().add(Live_Log_Scrollbar);
 		
 		//light button
-		JToggleButton light_button = new JToggleButton("Licht", false);
+		JToggleButton light_button = new JToggleButton(Names.get(5), false);
 		light_button.setBounds(750,570,120,30);
 		this.getContentPane().add(light_button);
 		
 		//map button
-		JButton map_button = new JButton("Karte öffnen");
+		JButton map_button = new JButton(Names.get(9));
 		map_button.setBounds(880,570,120,30);
 		this.getContentPane().add(map_button);
 		
@@ -146,9 +154,23 @@ public class GUI_Computer extends JFrame{
 		String resolution_list[] = {"320x240", "640x480", "720x576", "800x600", "1024x768", "1280x720", "1920x1080"};
 		JComboBox resolution_change = new JComboBox(resolution_list);
 		resolution_change.setBounds(880, 10, 120, 30);
-		JLabel resolution_list_text = new JLabel("Auflösung:");
-		resolution_list_text.setBounds(800, 10, 70, 30);
+		JLabel resolution_list_text = new JLabel(Names.get(10) + ": ");
+		resolution_list_text.setBounds(790, 10, 80, 30);
 		this.getContentPane().add(resolution_list_text);
 		this.getContentPane().add(resolution_change);
+	}
+	
+	//method for read in language file (names of different elements)
+	protected ArrayList<String> Language_name (){
+		ArrayList<String> Name = new ArrayList<String>();
+		String Line = null;
+		try {
+			language_reader = new BufferedReader(new FileReader("/Users/k0ng3n/Documents/workspace/CarDuinoDroid Java Programm/src/View/language.txt"));
+			while((Line = language_reader.readLine()) != null) Name.add(Line);
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		return Name;
 	}
 }
