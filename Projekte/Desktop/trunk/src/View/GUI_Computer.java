@@ -169,7 +169,7 @@ public class GUI_Computer extends JFrame{
 		String Language = null;
 		
 		try {
-			language_reader = new BufferedReader (new FileReader("language.txt"));
+			language_reader = new BufferedReader (new FileReader("src/View/language.txt"));
 			Language = language_reader.readLine();
 		} catch (FileNotFoundException e){
 			Log.writelogfile(Language + ".txt doesn't exist or contains wrong content!");
@@ -178,7 +178,7 @@ public class GUI_Computer extends JFrame{
 		}
 		
 		try {
-			language_reader = new BufferedReader(new FileReader(Language + ".txt"));
+			language_reader = new BufferedReader(new FileReader("src/View/languages/" + Language + ".txt"));
 			while((Line = language_reader.readLine()) != null) Name.add(Line);
 		} catch (FileNotFoundException e){
 			Log.writelogfile(Language + ".txt doesn't exist or contains wrong content!");
