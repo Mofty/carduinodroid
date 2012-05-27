@@ -4,6 +4,7 @@ import swp.tuilmenau.carduinodroid.controller.*;
 import swp.tuilmenau.carduinodroid.model.*;
 import swp.tuilmenau.carduinodroid.view.*;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 public class CarDuinoDroidAppActivity extends Activity 
@@ -16,10 +17,13 @@ public class CarDuinoDroidAppActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        controller_Android = new Controller_Android(this);
+        Intent carduinodroidservice = new Intent(this, CarDuinoDroidService.class);
+        startService(carduinodroidservice);
+        
+       // controller_Android = new Controller_Android(this);
         
         // nur zu testzwecken
-        controller_Android.log.write("App erfolgreich gestartet");
+        /* controller_Android.log.write("App erfolgreich gestartet");
         
         controller_Android.log.write(controller_Android.gps.getGPS());
         
@@ -43,6 +47,6 @@ public class CarDuinoDroidAppActivity extends Activity
         else 
         	controller_Android.log.write("WLAN nicht verfügbar.");
         
-         // controller_Android.log.save();
+         // controller_Android.log.save(); */
     }
 }
