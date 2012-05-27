@@ -43,6 +43,8 @@ public class CarDuinoDroidService extends Service
         }
         else 
         	controller_Android.log.write("WLAN nicht verfügbar.");
+        
+        controller_Android.log.write(controller_Android.connection.getIP());
  
 		
         return super.onStartCommand(intent, flags, startId);
