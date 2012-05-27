@@ -45,10 +45,12 @@ public class Connection
 	
 	public String getLocalWLANIP()
 	{
-		int ipAddress;
-		
-		wifiInfo = wifiManager.getConnectionInfo();
-		ipAddress = wifiInfo.getIpAddress(); 
-		return Formatter.formatIpAddress(ipAddress);
+		if (getWLANAvailable())
+		{	
+			wifiInfo = wifiManager.getConnectionInfo();
+			int ipAddress = wifiInfo.getIpAddress(); 
+			return Formatter.formatIpAddress(ipAddress);
+		} else return null;
+			
 	} 	
 }
