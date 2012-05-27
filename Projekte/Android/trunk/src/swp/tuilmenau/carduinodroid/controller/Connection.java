@@ -44,10 +44,12 @@ public class Connection
 	
 	public String getIP()
 	{
+		String temp = null;
 		try {
 				IP = InetAddress.getLocalHost();
+				temp = IP.getHostAddress();
 			} catch (UnknownHostException e) { e.printStackTrace(); }
-		return IP.getHostAddress();
+		return temp;
 	}
 	
 }
