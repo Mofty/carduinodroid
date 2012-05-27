@@ -10,18 +10,13 @@
         android:layout_height="wrap_content"
         android:text="IP Adresse"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <EditText
-        android:id="@+id/editText1"
+
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal" android:clickable="false" android:cursorVisible="false">
-
-        <requestFocus />
-    </EditText>
-
-   
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageView
         android:id="@+id/imageView1"
