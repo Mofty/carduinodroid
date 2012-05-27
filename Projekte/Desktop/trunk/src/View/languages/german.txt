@@ -1,14 +1,15 @@
 Datei
 Beenden
 Verbindung
-Ueber CarDuinoDroid
+Über CarDuinoDroid
 Einstellungen
 Licht
 Kamera
 Frontkamera
-Rueckkamera
+Rückkamera
 Karte
-Aufloesung
+Auflösung
 Koordinaten
 Verbindung
-Ip-Konfiguration
+IP-Konfiguration
+IP-Adresse des Zielgerätes eingeben

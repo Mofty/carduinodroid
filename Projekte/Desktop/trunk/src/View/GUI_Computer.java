@@ -24,7 +24,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
-import java.awt.event.WindowListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -52,11 +51,11 @@ public class GUI_Computer extends JFrame{
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosed(WindowEvent arg0) {
 				System.exit(0);
-				Log.writelogfile("ja");
+				Log.writelogfile("windowCloesed funzt");
 			}
 			public void windowClosing(WindowEvent arg0) {
 				System.exit(0);
-				Log.writelogfile("nein");
+				Log.writelogfile("windowClosing funzt");
 			}
 		});
 	}
@@ -69,6 +68,7 @@ public class GUI_Computer extends JFrame{
 		
 		//initiate Strings
 		String resolution_list[] = {"320x240", "640x480", "720x576", "800x600", "1024x768", "1280x720", "1920x1080"};
+		String Ip_adress;
 
 		//initiate Menubar
 		JMenuBar Menubar = new JMenuBar();
@@ -111,6 +111,7 @@ public class GUI_Computer extends JFrame{
 		ButtonGroup Camerachoice = new ButtonGroup(); 
 		
 		//initiate TextFilds
+		final JTextField ip_adress_input = new JTextField();
 		JTextField Live_Log = new JTextField();
 		
 		//initiate ScrollPanes
@@ -120,6 +121,7 @@ public class GUI_Computer extends JFrame{
 		JLabel resolution_list_text = new JLabel(Names.get(10) + ": ");
 		JLabel gps_coordinates_text = new JLabel(Names.get(11) + ": ");
 		JLabel connection_type_text = new JLabel(Names.get(12) + ": ");
+		JLabel label_ip_config = new JLabel(Names.get(13) + ": ");
 		
 		//initiate JPanels
 		JPanel panel_video = new JPanel();
@@ -143,10 +145,16 @@ public class GUI_Computer extends JFrame{
 		ip_configuration.setSize(300, 200);
 		ip_configuration.setLocationRelativeTo(null);
 		ip_configuration.setLayout(null);
+		label_ip_config.setBounds(100, 20, 200, 20);
+		ip_adress_input.setBounds(20, 60 , 240, 20);
 		ip_config_ok_button.setBounds(110, 135, 80, 20);
+		ip_configuration.add(label_ip_config);
+		ip_configuration.add(ip_adress_input);
 		ip_configuration.add(ip_config_ok_button);
 		ip_config_ok_button.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
+		    	String Ip = ip_adress_input.getText();
+		    	System.out.println(Ip);
 		    	ip_configuration.setVisible(false);
 				ip_configuration.setModal(false);
 		    }
