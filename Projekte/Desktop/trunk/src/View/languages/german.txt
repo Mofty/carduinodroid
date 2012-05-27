@@ -11,3 +11,4 @@ Karte
 Aufloesung
 Koordinaten
 Verbindung
+Ip-Konfiguration

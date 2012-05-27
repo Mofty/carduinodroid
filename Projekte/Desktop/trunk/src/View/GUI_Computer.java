@@ -3,6 +3,7 @@ package View;
 import Model.Log;
 
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -22,6 +23,7 @@ import javax.swing.JComboBox;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionListener;
@@ -44,37 +46,17 @@ public class GUI_Computer extends JFrame{
 		this.initWindow();
 		
 		this.setExtendedState(this.MAXIMIZED_BOTH);
+		this.setTitle("CarDuinoDroid");
 		
 		//window listener for closing
-		this.addWindowListener(new WindowListener(){
-			
-			public void windowActivated(WindowEvent arg0) {
-		
-			}
-
+		this.addWindowListener(new WindowAdapter() {
 			public void windowClosed(WindowEvent arg0) {
-				
+				System.exit(0);
+				Log.writelogfile("ja");
 			}
-
 			public void windowClosing(WindowEvent arg0) {
 				System.exit(0);
-				
-			}
-
-			public void windowDeactivated(WindowEvent arg0) {
-				
-			}
-
-			public void windowDeiconified(WindowEvent arg0) {
-				
-			}
-
-			public void windowIconified(WindowEvent arg0) {
-				
-			}
-
-			public void windowOpened(WindowEvent arg0) {
-								
+				Log.writelogfile("nein");
 			}
 		});
 	}
@@ -113,6 +95,7 @@ public class GUI_Computer extends JFrame{
 	
 		//initiate Buttons
 		JButton map_button = new JButton(Names.get(9));
+		JButton ip_config_ok_button = new JButton("Ok");
 		
 		//initiate ToggleButtons
 		JToggleButton light_button = new JToggleButton(Names.get(5), false);
@@ -141,6 +124,9 @@ public class GUI_Computer extends JFrame{
 		//initiate JPanels
 		JPanel panel_video = new JPanel();
 		JPanel panel_other = new JPanel();
+		
+		//initiate JDialoges
+		final JDialog ip_configuration = new JDialog();
 
 		//edit Layout
 		this.setLayout(new BorderLayout());
@@ -152,10 +138,36 @@ public class GUI_Computer extends JFrame{
 		panel_other.setLayout(null);
 		Live_Log.setPreferredSize(new Dimension(1024,100));
 		
+		//ip_configuration
+		ip_configuration.setTitle(Names.get(13));
+		ip_configuration.setSize(300, 200);
+		ip_configuration.setLocationRelativeTo(null);
+		ip_configuration.setLayout(null);
+		ip_config_ok_button.setBounds(110, 135, 80, 20);
+		ip_configuration.add(ip_config_ok_button);
+		ip_config_ok_button.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	ip_configuration.setVisible(false);
+				ip_configuration.setModal(false);
+		    }
+		});
+		ip_configuration.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				ip_configuration.setVisible(false);
+				ip_configuration.setModal(false);
+			}
+		});
+			
 		//menu "file"
 		Quit.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        System.exit(0);
+		    }
+		});
+		Connection.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	ip_configuration.setVisible(true);
+				ip_configuration.setModal(true);
 		    }
 		});
 		File.add(About);
