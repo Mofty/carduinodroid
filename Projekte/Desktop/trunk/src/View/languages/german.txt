@@ -7,5 +7,7 @@ Licht
 Kamera
 Frontkamera
 Rueckkamera
-Karte oeffnen
+Karte
 Aufloesung
+Koordinaten
+Verbindung
