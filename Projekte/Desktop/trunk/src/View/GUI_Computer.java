@@ -8,6 +8,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JSeparator;
 import javax.swing.JScrollPane;
@@ -18,7 +19,10 @@ import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.WindowListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionListener;
@@ -78,7 +82,7 @@ public class GUI_Computer extends JFrame{
 	protected void initWindow(){
 		
 		//read in names of elements (dependently on languagefile)
-		ArrayList<String> Names = Language_name();
+		ArrayList<String> Names = Language();
 		
 		//initiate Strings
 		String resolution_list[] = {"320x240", "640x480", "720x576", "800x600", "1024x768", "1280x720", "1920x1080"};
@@ -130,7 +134,20 @@ public class GUI_Computer extends JFrame{
 		
 		//initiate JLabels
 		JLabel resolution_list_text = new JLabel(Names.get(10) + ": ");
+		
+		//initiate JPanels
+		JPanel panel_video = new JPanel();
+		JPanel panel_other = new JPanel();
 
+		//edit Layout
+		this.setLayout(new BorderLayout());
+		this.getContentPane().add(panel_video, BorderLayout.CENTER);
+		this.getContentPane().add(panel_other, BorderLayout.EAST);
+		this.getContentPane().add(Live_Log, BorderLayout.SOUTH);
+		panel_other.setPreferredSize(new Dimension(200,600));
+		panel_other.setBackground(Color.lightGray);
+		panel_other.setLayout(null);
+		Live_Log.setPreferredSize(new Dimension(1024,100));
 		
 		//menu "file"
 		Quit.addActionListener(new ActionListener() {
@@ -157,7 +174,24 @@ public class GUI_Computer extends JFrame{
 		
 		//menubar allocate window
 		this.setJMenuBar(Menubar);
+
+		//resolution_change
+		resolution_change.setBounds(90, 5, 105, 20);
+		resolution_list_text.setBounds(5, 5, 80, 20);
+		panel_other.add(resolution_list_text);
+		panel_other.add(resolution_change);
 		
+		//key feedback
+		up.setBounds(130, 530, 30, 30);
+		down.setBounds(130, 565, 30, 30);
+		left.setBounds(95, 565, 30, 30);
+		right.setBounds(165, 565, 30, 30);
+		panel_other.add(up);
+		panel_other.add(down);
+		panel_other.add(left);
+		panel_other.add(right);
+		
+		/*
 		//Live-Log screen
 		Live_Log.setBackground(Color.white);
 		Live_Log_Scrollbar.setBounds(0, 610, 1024, 100);
@@ -171,47 +205,41 @@ public class GUI_Computer extends JFrame{
 		map_button.setBounds(880,570,120,30);
 		this.getContentPane().add(map_button);
 		
-		//key feedback
-		up.setBounds(890, 440, 50, 50);
-		down.setBounds(890, 500, 50, 50);
-		left.setBounds(830, 500, 50, 50);
-		right.setBounds(950, 500, 50, 50);
-		this.getContentPane().add(up);
-		this.getContentPane().add(down);
-		this.getContentPane().add(left);
-		this.getContentPane().add(right);
-		
-		//resolution_change
-		resolution_change.setBounds(880, 10, 120, 30);
-		resolution_list_text.setBounds(790, 10, 80, 30);
-		this.getContentPane().add(resolution_list_text);
-		this.getContentPane().add(resolution_change);
+		*/
 	}
 	
 	//method for read in language file (names of different elements)
-	protected ArrayList<String> Language_name (){
-		ArrayList<String> Name = new ArrayList<String>();
-		String Line = null;
+	protected ArrayList<String> Language(){
+		ArrayList<String> Language_Name = new ArrayList<String>();
 		String Language = null;
 		
 		try {
 			language_reader = new BufferedReader (new FileReader("src/View/language.txt"));
 			Language = language_reader.readLine();
 		} catch (FileNotFoundException e){
-			Log.writelogfile("language.txt doesn't exist or contains wrong content!");
+			Log.writelogfile("language.txt doesn't exist!");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
+		Language_Name = Language_name(Language);
+		//language_reader.close();
+		return Language_Name;
+	}
+	
+	protected ArrayList<String> Language_name (String Language){
+		ArrayList<String> Name = new ArrayList<String>();
+		String Line = null;
+		
 		try {
 			language_reader = new BufferedReader(new FileReader("src/View/languages/" + Language + ".txt"));
 			while((Line = language_reader.readLine()) != null) Name.add(Line);
-		} catch (FileNotFoundException e){
-			Log.writelogfile(Language + ".txt doesn't exist or contains wrong content!");
+		} catch (FileNotFoundException e) {
+			Name = Language_name("english");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		//language_reader.close();
+		
 		return Name;
 	}
 }
