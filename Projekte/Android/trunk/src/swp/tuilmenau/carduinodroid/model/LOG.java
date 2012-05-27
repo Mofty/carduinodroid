@@ -17,26 +17,26 @@ public class LOG
 
 	String logpath = Environment.getExternalStorageDirectory().getPath()+"/carduinodroid/log";
 	
-	public LOG() {
-	// ruft datum und zeit ab	
-	time = new Time();
-	time.setToNow();
-	// erstellt datei mit schreibrechten
-	path = new File(logpath);
-	path.mkdirs();
-	file = new File(logpath,"LOG_"+time.month+time.monthDay+"_"+time.hour+time.minute+time.second+".txt");
-	try {
-			file.createNewFile();
-		} catch (IOException e) { e.printStackTrace(); }
-	file.canWrite();
-	file.canRead();
-	// erstellt den BufferedWriter zum schreiben von strings in die datei
-	try {
-			buffwrite = new BufferedWriter(new FileWriter(file));
-		} catch (IOException e) { e.printStackTrace(); }
+	public LOG() 
+	{
+		// ruft datum und zeit ab	
+		time = new Time();
+		time.setToNow();
+		// erstellt datei mit schreibrechten
+		path = new File(logpath);
+		path.mkdirs();
+		file = new File(logpath,"LOG_"+time.month+time.monthDay+"_"+time.hour+time.minute+time.second+".txt");
+		try {
+				file.createNewFile();
+			} catch (IOException e) { e.printStackTrace(); }
+		file.canWrite();
+		file.canRead();
+		// erstellt den BufferedWriter zum schreiben von strings in die datei
+		try {
+				buffwrite = new BufferedWriter(new FileWriter(file));
+			} catch (IOException e) { e.printStackTrace(); }
 	}
 	
-
 	public void write(String line) 
 	{
 		String timestr;

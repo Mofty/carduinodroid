@@ -14,17 +14,6 @@ public class Connection
 		connection = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 	}
 	
-	public boolean getMobile()
-	{
-		mobileInfo = connection.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-		return mobileInfo.isConnected();
-	}
-	
-	public boolean getWLAN()
-	{
-		WLANInfo = connection.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-		return WLANInfo.isConnected();
-	}
 	public boolean getMobileAvailable()
 	{
 		mobileInfo = connection.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
@@ -36,4 +25,17 @@ public class Connection
 		WLANInfo = connection.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 		return WLANInfo.isAvailable();
 	}
+	
+	public boolean getMobile()
+	{
+		mobileInfo = connection.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+		return mobileInfo.isConnected();
+	}
+	
+	public boolean getWLAN()
+	{
+		WLANInfo = connection.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+		return WLANInfo.isConnected();
+	}
+	
 }
