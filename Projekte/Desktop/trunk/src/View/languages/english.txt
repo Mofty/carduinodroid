@@ -11,3 +11,4 @@ Map
 Resolution
 Coordinates
 Connection
+Ip-configuration
