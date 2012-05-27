@@ -46,6 +46,7 @@ public class CarDuinoDroidService extends Service
         
         // methode kaputt siehe connection klasse
         //controller_Android.log.write(controller_Android.connection.getIP());
+        controller_Android.log.write(controller_Android.connection.getLocalWLANIP());
  
 		
         return super.onStartCommand(intent, flags, startId);
