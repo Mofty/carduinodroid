@@ -11,7 +11,7 @@ public class Connection
 	ConnectivityManager connection;
  	NetworkInfo mobileInfo;
  	NetworkInfo WLANInfo;
- 	static InetAddress IP;
+ 	InetAddress IP;
 	
 	public Connection (Context context)
 	{
@@ -47,7 +47,7 @@ public class Connection
 		try {
 				IP = InetAddress.getLocalHost();
 			} catch (UnknownHostException e) { e.printStackTrace(); }
-		return IP.toString();
+		return IP.getHostAddress();
 	}
 	
 }
