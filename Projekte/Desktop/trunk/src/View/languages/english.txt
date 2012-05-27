@@ -11,4 +11,5 @@ Map
 Resolution
 Coordinates
 Connection
-Ip-configuration
+IP-Configuration
+Enter ip-adress of objective system
