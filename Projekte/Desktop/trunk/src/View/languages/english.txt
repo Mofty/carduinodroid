@@ -7,5 +7,7 @@ Light
 Camera
 Frontcamera
 Backcamera
-Open Map
+Map
 Resolution
+Coordinates
+Connection

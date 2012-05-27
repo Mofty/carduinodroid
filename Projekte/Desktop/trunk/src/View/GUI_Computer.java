@@ -19,7 +19,6 @@ import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -43,6 +42,8 @@ public class GUI_Computer extends JFrame{
 		
 		//create programwindow
 		this.initWindow();
+		
+		this.setExtendedState(this.MAXIMIZED_BOTH);
 		
 		//window listener for closing
 		this.addWindowListener(new WindowListener(){
@@ -134,6 +135,8 @@ public class GUI_Computer extends JFrame{
 		
 		//initiate JLabels
 		JLabel resolution_list_text = new JLabel(Names.get(10) + ": ");
+		JLabel gps_coordinates_text = new JLabel(Names.get(11) + ": ");
+		JLabel connection_type_text = new JLabel(Names.get(12) + ": ");
 		
 		//initiate JPanels
 		JPanel panel_video = new JPanel();
@@ -181,6 +184,14 @@ public class GUI_Computer extends JFrame{
 		panel_other.add(resolution_list_text);
 		panel_other.add(resolution_change);
 		
+		//gps_coordinates
+		gps_coordinates_text.setBounds(5, 100, 80, 20);
+		panel_other.add(gps_coordinates_text);
+		
+		//connection_type
+		connection_type_text.setBounds(5, 160, 80, 20);
+		panel_other.add(connection_type_text);
+		
 		//key feedback
 		up.setBounds(130, 530, 30, 30);
 		down.setBounds(130, 565, 30, 30);
@@ -191,21 +202,16 @@ public class GUI_Computer extends JFrame{
 		panel_other.add(left);
 		panel_other.add(right);
 		
-		/*
-		//Live-Log screen
-		Live_Log.setBackground(Color.white);
-		Live_Log_Scrollbar.setBounds(0, 610, 1024, 100);
-		this.getContentPane().add(Live_Log_Scrollbar);
-		
-		//light button
-		light_button.setBounds(750,570,120,30);
-		this.getContentPane().add(light_button);
+		//light_button
+		light_button.setBounds(30,470,80,20);
+		panel_other.add(light_button);
 		
 		//map button
-		map_button.setBounds(880,570,120,30);
-		this.getContentPane().add(map_button);
+		map_button.setBounds(115,470,80,20);
+		panel_other.add(map_button);
 		
-		*/
+		//Live-Log screen
+		Live_Log.add(Live_Log_Scrollbar);
 	}
 	
 	//method for read in language file (names of different elements)
@@ -235,6 +241,7 @@ public class GUI_Computer extends JFrame{
 			language_reader = new BufferedReader(new FileReader("src/View/languages/" + Language + ".txt"));
 			while((Line = language_reader.readLine()) != null) Name.add(Line);
 		} catch (FileNotFoundException e) {
+			Log.writelogfile(Language + ".txt doesn't exist!");
 			Name = Language_name("english");
 		} catch (IOException e) {
 			e.printStackTrace();
