@@ -1,5 +1,8 @@
 package swp.tuilmenau.carduinodroid.controller;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import android.content.Context;
 import android.net.*;
 
@@ -8,6 +11,7 @@ public class Connection
 	ConnectivityManager connection;
  	NetworkInfo mobileInfo;
  	NetworkInfo WLANInfo;
+ 	static InetAddress IP;
 	
 	public Connection (Context context)
 	{
@@ -36,6 +40,14 @@ public class Connection
 	{
 		WLANInfo = connection.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 		return WLANInfo.isConnected();
+	}
+	
+	public String getIP()
+	{
+		try {
+				IP = InetAddress.getLocalHost();
+			} catch (UnknownHostException e) { e.printStackTrace(); }
+		return IP.toString();
 	}
 	
 }
