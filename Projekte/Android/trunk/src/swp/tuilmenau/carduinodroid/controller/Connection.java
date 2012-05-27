@@ -11,7 +11,7 @@ public class Connection
 	ConnectivityManager connection;
  	NetworkInfo mobileInfo;
  	NetworkInfo WLANInfo;
- 	InetAddress IP;
+ 	// InetAddress IP;
 	
 	public Connection (Context context)
 	{
@@ -42,6 +42,9 @@ public class Connection
 		return WLANInfo.isConnected();
 	}
 	
+	/* aus irgendeinem mir unerklärlichen grud führt die methode zum absturz der app
+	 * wer langeweile hat kann sich das ja mal ankucken und es evtl reparieren
+	 
 	public String getIP()
 	{
 		String temp = null;
@@ -50,6 +53,6 @@ public class Connection
 				temp = IP.getHostAddress();
 			} catch (UnknownHostException e) { e.printStackTrace(); }
 		return temp;
-	}
+	} */
 	
 }
