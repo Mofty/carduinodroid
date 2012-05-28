@@ -37,25 +37,24 @@ import java.util.ArrayList;
 public class GUI_Computer extends JFrame{
 	
 	static BufferedReader language_reader;
+	Log log = new Log();
 	
 	public GUI_Computer(){
 		this.getContentPane().setLayout(null);
 		
 		//create programwindow
 		this.initWindow();
-		
+				
 		this.setExtendedState(this.MAXIMIZED_BOTH);
 		this.setTitle("CarDuinoDroid");
 		
 		//window listener for closing
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosed(WindowEvent arg0) {
-				Log log = new Log ();
 				log.writelogfile("CarDuinoDroid wurde beendet.");
 				System.exit(0);
 			}
 			public void windowClosing(WindowEvent arg0) {
-				Log log = new Log ();
 				log.writelogfile("CarDuinoDroid wurde beendet.");
 				System.exit(0);
 			}
@@ -97,6 +96,7 @@ public class GUI_Computer extends JFrame{
 	
 		//initiate Buttons
 		JButton map_button = new JButton(Names.get(9));
+		JButton signal_button = new JButton(Names.get(15));
 		JButton ip_config_ok_button = new JButton("Ok");
 		
 		//initiate ToggleButtons
@@ -137,8 +137,8 @@ public class GUI_Computer extends JFrame{
 		this.getContentPane().add(panel_video, BorderLayout.CENTER);
 		this.getContentPane().add(panel_other, BorderLayout.EAST);
 		this.getContentPane().add(Live_Log, BorderLayout.SOUTH);
+		panel_video.setBackground(Color.lightGray);
 		panel_other.setPreferredSize(new Dimension(200,600));
-		panel_other.setBackground(Color.lightGray);
 		panel_other.setLayout(null);
 		Live_Log.setPreferredSize(new Dimension(1024,100));
 		
@@ -171,7 +171,6 @@ public class GUI_Computer extends JFrame{
 		//menu "file"
 		Quit.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		    	Log log = new Log ();
 		        log.writelogfile("CarDuinoDroid wurde beendet.");
 		        System.exit(0);
 		    }
@@ -230,15 +229,21 @@ public class GUI_Computer extends JFrame{
 		light_button.setBounds(30,470,80,20);
 		panel_other.add(light_button);
 		
-		//map button
+		//map_button
 		map_button.setBounds(115,470,80,20);
 		panel_other.add(map_button);
+		
+		//signal_button
+		signal_button.setBounds(30, 400, 165, 40);
+		panel_other.add(signal_button);
 		
 		//Live-Log screen
 		Live_Log.add(Live_Log_Scrollbar);
 	}
 	
-	//method for read in language file (names of different elements)
+	//protected void 
+	
+	//method for read language.txt
 	protected ArrayList<String> Language(){
 		ArrayList<String> Language_Name = new ArrayList<String>();
 		String Language = null;
@@ -247,7 +252,6 @@ public class GUI_Computer extends JFrame{
 			language_reader = new BufferedReader (new FileReader("src/View/language.txt"));
 			Language = language_reader.readLine();
 		} catch (FileNotFoundException e){
-			Log log = new Log ();
 			log.writelogfile("language.txt doesn't exist!");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -258,6 +262,7 @@ public class GUI_Computer extends JFrame{
 		return Language_Name;
 	}
 	
+	//method for read in language (names of different elements)
 	protected ArrayList<String> Language_name (String Language){
 		ArrayList<String> Name = new ArrayList<String>();
 		String Line = null;
@@ -266,7 +271,6 @@ public class GUI_Computer extends JFrame{
 			language_reader = new BufferedReader(new FileReader("src/View/languages/" + Language + ".txt"));
 			while((Line = language_reader.readLine()) != null) Name.add(Line);
 		} catch (FileNotFoundException e) {
-			Log log = new Log ();
 			log.writelogfile(Language + ".txt doesn't exist!");
 			Name = Language_name("english");
 		} catch (IOException e) {
