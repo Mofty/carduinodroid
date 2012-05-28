@@ -236,18 +236,12 @@ public class GUI_Computer extends JFrame{
 		//signal_button
 		signal_button.setBounds(30, 400, 165, 40);
 		panel_other.add(signal_button);
-		signal_button.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		    	log.writelogfile("Signalton wurde gesendet.");
-		    }
-		});
+		signal_button.addActionListener(new Signal_ActionListener());
 		
 		//Live-Log screen
 		Live_Log.add(Live_Log_Scrollbar);
 	}
-	
-	//protected void actionPerformed (ActionPerformed)
-	
+		
 	//method for read language.txt
 	protected ArrayList<String> Language(){
 		ArrayList<String> Language_Name = new ArrayList<String>();
