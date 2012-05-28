@@ -55,11 +55,11 @@ public class GUI_Computer extends JFrame{
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosed(WindowEvent arg0) {
 				System.exit(0);
-				log.writelogfile("windowCloesed funzt");
+				log.writelogfile("CarDuinoDroid wurde beendet.");
 			}
 			public void windowClosing(WindowEvent arg0) {
 				System.exit(0);
-				log.writelogfile("windowClosing funzt");
+				log.writelogfile("CarDuinoDroid wurde beendet.");
 			}
 		});
 	}
@@ -174,6 +174,7 @@ public class GUI_Computer extends JFrame{
 		Quit.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        System.exit(0);
+		        log.writelogfile("CarDuinoDroid wurde beendet.");
 		    }
 		});
 		Connection.addActionListener(new ActionListener() {
