@@ -18,7 +18,7 @@ public class Controller_Android
 	
 	int framerate;
 	
-	public Controller_Android(Context context, int soundresID) 
+	public Controller_Android(Context context) 
 	{
 		log = new LOG();
 		
@@ -28,7 +28,7 @@ public class Controller_Android
 		gps = new GPS(context,/* zu testzwecken. in der finalen version löschen */ this);
 		network = new Network(this);
 		record_sound = new Record_Sound();
-		sound = new Sound(context, soundresID);	
+		sound = new Sound(context);	
 	}
 	
 	public void SendData() 
