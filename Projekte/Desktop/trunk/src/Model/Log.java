@@ -19,7 +19,10 @@ public class Log {
 		SimpleDateFormat dateformat = new SimpleDateFormat( "yyyy_MM_dd_HH_mm_ss" );
 		String logfile = "Log_"+dateformat.format(date)+".txt";
 		
-		file = new File(logfile);
+		File path = new File("src/Logs/");
+		path.mkdirs();
+		file = new File("src/Logs/",logfile);
+
 		try {
 				file.createNewFile();
 			} catch (IOException e) { e.printStackTrace(); }
