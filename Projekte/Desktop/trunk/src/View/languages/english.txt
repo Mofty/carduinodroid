@@ -14,3 +14,4 @@ Connection
 IP-Configuration
 Enter ip-adress of objective system
 Signal
+Signaltone sent.

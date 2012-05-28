@@ -236,7 +236,7 @@ public class GUI_Computer extends JFrame{
 		//signal_button
 		signal_button.setBounds(30, 400, 165, 40);
 		panel_other.add(signal_button);
-		signal_button.addActionListener(new Signal_ActionListener(log));
+		signal_button.addActionListener(new Signal_ActionListener(log, Names.get(16)));
 		
 		//Live-Log screen
 		Live_Log.add(Live_Log_Scrollbar);
