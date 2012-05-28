@@ -45,7 +45,7 @@ public class CarDuinoDroidService extends Service
     public int onStartCommand(Intent intent, int flags, int startId) {
         // Diese Methode wird beim Starten aufgerufen!
 		
-		controller_Android = new Controller_Android(this);
+		controller_Android = new Controller_Android(this, R.raw.horn);
 		
 		// zu testzwecken. in der finalen version löschen
 		controller_Android.log.write("App und Service erfolgreich gestartet");
@@ -73,8 +73,7 @@ public class CarDuinoDroidService extends Service
         	controller_Android.log.write("WLAN nicht verfügbar.");
         
         controller_Android.log.write(controller_Android.connection.getLocalWLANIP());
- 
-		
+        
         return super.onStartCommand(intent, flags, startId);
     }
 		

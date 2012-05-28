@@ -9,10 +9,9 @@ public class Sound {
 	SoundPool soundpool;
 	int soundID;
 	
-	public Sound(Context context){
-		int resId = 0;
+	public Sound(Context context, int soundresID){
 		soundpool = new SoundPool (1, 3, 0);
-		soundID = soundpool.load(context, R.raw.horn, 1);
+		soundID = soundpool.load(context, soundresID, 1);
 		
 	}
 	public void horn (){
