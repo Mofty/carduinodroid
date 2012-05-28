@@ -1,6 +1,6 @@
 package swp.tuilmenau.carduinodroid;
 
-import swp.tuilmenau.carduinodroid.controller.Controller_Android;
+import swp.tuilmenau.carduinodroid.controller.Connection;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,7 @@ import android.widget.TextView;
 
 public class CarDuinoDroidAppActivity extends Activity 
 {	
-	
-	Controller_Android controller_Android;
+	Connection connection;
 	TextView IPBox;
 	
     /* Called when the activity is first created. */
@@ -22,12 +21,12 @@ public class CarDuinoDroidAppActivity extends Activity
         Intent carduinodroidservice = new Intent(this, CarDuinoDroidService.class);
         startService(carduinodroidservice);
         
-        controller_Android = new Controller_Android(this);
+        connection = new Connection(this);
         
         IPBox = new TextView(this); 
 
         IPBox = (TextView) findViewById(R.id.textView2); 
-        IPBox.setText(controller_Android.connection.getLocalWLANIP());
+        IPBox.setText(connection.getLocalWLANIP());
           
     }   
     

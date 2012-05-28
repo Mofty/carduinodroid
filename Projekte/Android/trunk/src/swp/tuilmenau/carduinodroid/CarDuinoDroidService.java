@@ -2,7 +2,6 @@ package swp.tuilmenau.carduinodroid;
 
 import android.app.Service;
 import android.content.Intent;
-import android.os.Binder;
 import android.os.IBinder;
 
 import swp.tuilmenau.carduinodroid.controller.Controller_Android;
@@ -17,14 +16,12 @@ public class CarDuinoDroidService extends Service
 		super();
 	}
 
-	
 	@Override
 	public IBinder onBind(Intent arg0) 
 	{
 		return null;
 	}
 		
-	
 	@Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         // Diese Methode wird beim Starten aufgerufen!
