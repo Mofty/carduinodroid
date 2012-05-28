@@ -7,14 +7,15 @@ import Model.Log;
 public class Signal_ActionListener implements ActionListener{
 	
 	Log log;
+	String Text;
 	
-	public Signal_ActionListener (Log LOG)
+	public Signal_ActionListener (Log LOG, String TEXT)
 	{
-		super();
 		log = LOG;
+		Text = TEXT;
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		log.writelogfile("Signalton gesendet.");
+		log.writelogfile(Text);
 	}
 }
