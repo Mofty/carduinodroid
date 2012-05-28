@@ -46,7 +46,7 @@ public class Log {
             System.err.println("Auslesen Log fehlgeschlagen");}   
 	}
 	
-	public static void writelogfile(String line){
+	public void writelogfile(String line){
 		try {
 			writer.write(line);
 			writer.newLine();

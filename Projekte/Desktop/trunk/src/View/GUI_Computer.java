@@ -36,10 +36,14 @@ import java.util.ArrayList;
 
 public class GUI_Computer extends JFrame{
 	
+	Log log;
+	
 	static BufferedReader language_reader;
 	
 	public GUI_Computer(){
 		this.getContentPane().setLayout(null);
+		
+		log = new Log();
 		
 		//create programwindow
 		this.initWindow();
@@ -51,11 +55,11 @@ public class GUI_Computer extends JFrame{
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosed(WindowEvent arg0) {
 				System.exit(0);
-				Log.writelogfile("windowCloesed funzt");
+				log.writelogfile("windowCloesed funzt");
 			}
 			public void windowClosing(WindowEvent arg0) {
 				System.exit(0);
-				Log.writelogfile("windowClosing funzt");
+				log.writelogfile("windowClosing funzt");
 			}
 		});
 	}
@@ -243,7 +247,7 @@ public class GUI_Computer extends JFrame{
 			language_reader = new BufferedReader (new FileReader("src/View/language.txt"));
 			Language = language_reader.readLine();
 		} catch (FileNotFoundException e){
-			Log.writelogfile("language.txt doesn't exist!");
+			log.writelogfile("language.txt doesn't exist!");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -261,7 +265,7 @@ public class GUI_Computer extends JFrame{
 			language_reader = new BufferedReader(new FileReader("src/View/languages/" + Language + ".txt"));
 			while((Line = language_reader.readLine()) != null) Name.add(Line);
 		} catch (FileNotFoundException e) {
-			Log.writelogfile(Language + ".txt doesn't exist!");
+			log.writelogfile(Language + ".txt doesn't exist!");
 			Name = Language_name("english");
 		} catch (IOException e) {
 			e.printStackTrace();
