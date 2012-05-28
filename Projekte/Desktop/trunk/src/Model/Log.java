@@ -27,7 +27,7 @@ public class Log {
 			} catch (IOException e) { e.printStackTrace(); }
 		file.canWrite();
 		file.canRead();
-		// erstellt den BufferedWriter zum schreiben von strings in die datei
+		
 		try {
 			writer = new BufferedWriter(new FileWriter(file));
 		} catch (IOException e) { e.printStackTrace(); }
