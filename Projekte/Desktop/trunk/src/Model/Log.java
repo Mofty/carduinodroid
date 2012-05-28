@@ -33,7 +33,7 @@ public class Log {
 		} catch (IOException e) { e.printStackTrace(); }
 	}
 	
-	public void readlogfile(){
+	/*public void readlogfile(){
 		String zeile = null; 
 		
 		try {
@@ -44,14 +44,13 @@ public class Log {
 		}
 		catch (IOException e) {
             System.err.println("Auslesen Log fehlgeschlagen");}   
-	}
+	}*/
 	
 	public void writelogfile(String line){
 		try {
-			writer.write(line);
-			writer.newLine();
-			writer.flush();
-			writer.close();
+			writer.write(line,0,line.length());;
+			writer.write(System.getProperty("line.separator"));
+			/*writer.flush();*/
 		} catch (IOException e) { e.printStackTrace(); }
 		
 		/*try {
@@ -62,6 +61,10 @@ public class Log {
 			writer.flush();
 		}catch (IOException e) {
 			System.err.println("Schreiben vom Log fehlgeschlagen");}*/
+	}
+	
+	public void savelogfile(){
+		
 	}
 
 }
