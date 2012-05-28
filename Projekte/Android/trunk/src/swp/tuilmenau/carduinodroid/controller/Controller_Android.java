@@ -22,7 +22,7 @@ public class Controller_Android
 	{
 		log = new LOG();
 		
-		arduino = new Arduino();
+		arduino = new Arduino(context,this);
 		camera = new Camera();
 		connection = new Connection(context);
 		gps = new GPS(context,/* zu testzwecken. in der finalen version löschen */ this);
