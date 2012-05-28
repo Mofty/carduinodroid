@@ -1,6 +1,6 @@
 package View;
 
-import Model.Log;
+import Model.*;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -43,7 +43,7 @@ public class GUI_Computer extends JFrame{
 	public GUI_Computer(){
 		this.getContentPane().setLayout(null);
 		
-		log = new Log();
+		
 		
 		//create programwindow
 		this.initWindow();
@@ -54,12 +54,12 @@ public class GUI_Computer extends JFrame{
 		//window listener for closing
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosed(WindowEvent arg0) {
-				System.exit(0);
 				log.writelogfile("CarDuinoDroid wurde beendet.");
+				System.exit(0);
 			}
 			public void windowClosing(WindowEvent arg0) {
-				System.exit(0);
 				log.writelogfile("CarDuinoDroid wurde beendet.");
+				System.exit(0);
 			}
 		});
 	}
@@ -173,8 +173,8 @@ public class GUI_Computer extends JFrame{
 		//menu "file"
 		Quit.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        System.exit(0);
 		        log.writelogfile("CarDuinoDroid wurde beendet.");
+		        System.exit(0);
 		    }
 		});
 		Connection.addActionListener(new ActionListener() {
