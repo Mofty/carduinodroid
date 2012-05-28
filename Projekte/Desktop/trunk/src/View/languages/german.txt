@@ -14,4 +14,3 @@ Verbindung
 IP-Konfiguration
 IP-Adresse des Zielgerätes eingeben
 Signalton
-Signalton wurde gesendet.
