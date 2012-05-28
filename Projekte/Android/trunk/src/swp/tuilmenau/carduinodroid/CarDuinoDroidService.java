@@ -2,6 +2,7 @@ package swp.tuilmenau.carduinodroid;
 
 import android.app.Service;
 import android.content.Intent;
+import android.media.SoundPool;
 import android.os.IBinder;
 
 import swp.tuilmenau.carduinodroid.controller.Controller_Android;
@@ -27,7 +28,7 @@ public class CarDuinoDroidService extends Service
     public int onStartCommand(Intent intent, int flags, int startId) {
         // Diese Methode wird beim Starten aufgerufen!
 		
-		controller_Android = new Controller_Android(this, R.raw.horn);
+		controller_Android = new Controller_Android(this);
 		
 		// zu testzwecken. in der finalen version löschen
 		controller_Android.log.write("App und Service erfolgreich gestartet");
