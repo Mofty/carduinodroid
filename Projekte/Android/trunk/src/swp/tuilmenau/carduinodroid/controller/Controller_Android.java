@@ -28,7 +28,7 @@ public class Controller_Android
 		gps = new GPS(context,/* zu testzwecken. in der finalen version löschen */ this);
 		network = new Network(this);
 		record_sound = new Record_Sound();
-		sound = new Sound();	
+		sound = new Sound(context);	
 	}
 	
 	public void SendData() 
