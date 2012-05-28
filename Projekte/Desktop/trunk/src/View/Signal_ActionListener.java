@@ -6,13 +6,15 @@ import Model.Log;
 
 public class Signal_ActionListener implements ActionListener{
 	
-	Log Signal_log = new Log();
+	Log log;
 	
-	public Signal_ActionListener (Log log){
-		Signal_log = log;
+	public Signal_ActionListener (Log LOG)
+	{
+		super();
+		log = LOG;
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		Signal_log.writelogfile("Signalton gesendet.");
+		log.writelogfile("Signalton gesendet.");
 	}
 }
