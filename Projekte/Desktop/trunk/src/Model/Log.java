@@ -1,9 +1,7 @@
 package Model;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
@@ -11,7 +9,6 @@ import java.text.*;
 
 public class Log {
 	BufferedWriter writer;
-	BufferedReader reader;
 	Date date;
 	SimpleDateFormat dateformat;
 	File file;
@@ -33,38 +30,22 @@ public class Log {
 		} catch (IOException e) { e.printStackTrace(); }
 	}
 	
-	/*public void readlogfile(){
-		String zeile = null; 
-		
-		try {
-            reader = new BufferedReader(new FileReader("C:\\Users\\MCBird\\Desktop\\testen.txt"));          
-            while ((zeile = reader.readLine()) != null) {
-    			System.out.println("Gelesene Zeile: " + zeile);
-    		}
-		}
-		catch (IOException e) {
-            System.err.println("Auslesen Log fehlgeschlagen");}   
-	}*/
-	
 	public void writelogfile(String line){
 		try {
-			writer.write(line,0,line.length());;
+			Date datum = new Date();
+			SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss" );
+			String eintrag = df.format(datum)+" "+line;
+			writer.write(eintrag,0,eintrag.length());;
 			writer.write(System.getProperty("line.separator"));
-			/*writer.flush();*/
-		} catch (IOException e) { e.printStackTrace(); }
-		
-		/*try {
-			writer = new FileWriter(logfile ,true);
-			writer.write(date+":"+line);
-			writer.write(System.getProperty("line.separator"));
-			writer.write(line);
 			writer.flush();
-		}catch (IOException e) {
-			System.err.println("Schreiben vom Log fehlgeschlagen");}*/
+		} catch (IOException e) { e.printStackTrace(); }
 	}
 	
 	public void savelogfile(){
-		
+		try {
+			writer.flush();
+			writer.close();
+		} catch (IOException e) { e.printStackTrace(); }
 	}
 
 }
