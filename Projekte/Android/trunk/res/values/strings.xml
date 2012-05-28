@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Hello World, CarDuinoDroidAppActivity!</string>
     <string name="app_name">CarDuinoDroid App</string>
-
+    <string name="LocalIP">none</string>
+    <string name="IP_title">IP Adresse</string>
+    
 </resources>
