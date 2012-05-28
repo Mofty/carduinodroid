@@ -1,4 +1,6 @@
 package swp.tuilmenau.carduinodroid.controller;
+
+import android.R;
 import android.content.Context;
 import android.media.SoundPool;
 
@@ -10,7 +12,7 @@ public class Sound {
 	public Sound(Context context){
 		int resId = 0;
 		soundpool = new SoundPool (1, 3, 0);
-		soundID = soundpool.load(context, resId, 1);
+		soundID = soundpool.load(context, R.raw.horn, 1);
 		
 	}
 	public void horn (){
