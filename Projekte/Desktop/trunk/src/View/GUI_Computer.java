@@ -46,6 +46,7 @@ public class GUI_Computer extends JFrame{
 		this.initWindow();
 				
 		this.setExtendedState(this.MAXIMIZED_BOTH);
+		this.setMinimumSize(new Dimension(800,600));
 		this.setTitle("CarDuinoDroid");
 		
 		//window listener for closing
@@ -138,9 +139,9 @@ public class GUI_Computer extends JFrame{
 		this.getContentPane().add(panel_other, BorderLayout.EAST);
 		this.getContentPane().add(Live_Log, BorderLayout.SOUTH);
 		panel_video.setBackground(Color.lightGray);
-		panel_other.setPreferredSize(new Dimension(200,600));
+		panel_other.setPreferredSize(new Dimension(200,500));
 		panel_other.setLayout(null);
-		Live_Log.setPreferredSize(new Dimension(1024,100));
+		Live_Log.setPreferredSize(new Dimension(800,100));
 		
 		//ip_configuration
 		ip_configuration.setTitle(Names.get(13));
@@ -203,33 +204,33 @@ public class GUI_Computer extends JFrame{
 		panel_other.add(resolution_change);
 		
 		//gps_coordinates
-		gps_coordinates_text.setBounds(5, 100, 80, 20);
+		gps_coordinates_text.setBounds(5, 30, 80, 20);
 		panel_other.add(gps_coordinates_text);
 		
 		//connection_type
-		connection_type_text.setBounds(5, 160, 80, 20);
+		connection_type_text.setBounds(5, 90, 80, 20);
 		panel_other.add(connection_type_text);
 		
 		//key feedback
-		up.setBounds(130, 530, 30, 30);
-		down.setBounds(130, 565, 30, 30);
-		left.setBounds(95, 565, 30, 30);
-		right.setBounds(165, 565, 30, 30);
+		up.setBounds(130, 370, 30, 30);
+		down.setBounds(130, 405, 30, 30);
+		left.setBounds(95, 405, 30, 30);
+		right.setBounds(165, 405, 30, 30);
 		panel_other.add(up);
 		panel_other.add(down);
 		panel_other.add(left);
 		panel_other.add(right);
 		
 		//light_button
-		light_button.setBounds(30,470,80,20);
+		light_button.setBounds(30,345,80,20);
 		panel_other.add(light_button);
 		
 		//map_button
-		map_button.setBounds(115,470,80,20);
+		map_button.setBounds(115,345,80,20);
 		panel_other.add(map_button);
 		
 		//signal_button
-		signal_button.setBounds(30, 400, 165, 40);
+		signal_button.setBounds(30, 275, 165, 40);
 		panel_other.add(signal_button);
 		signal_button.addActionListener(new Signal_ActionListener(log));
 		
