@@ -36,7 +36,7 @@ import java.util.ArrayList;
 
 public class GUI_Computer extends JFrame{
 	
-	Log log;
+	Log log = new Log ();
 	
 	static BufferedReader language_reader;
 	
