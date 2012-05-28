@@ -98,7 +98,7 @@ public class Arduino {
         try{
             if (mFileDescriptor != null){
                 mFileDescriptor.close();
-            }
+            } 
         }
         catch (IOException e) {
  
@@ -131,5 +131,5 @@ public class Arduino {
         }      
     }
     
-
+    
 }
