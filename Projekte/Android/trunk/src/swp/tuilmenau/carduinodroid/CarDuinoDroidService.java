@@ -19,7 +19,7 @@ public class CarDuinoDroidService extends Service
 	@Override
 	public IBinder onBind(Intent arg0) 
 	{
-		return /* ServiceBinder */ null;
+		return null;
 	}
 		
 	
