@@ -8,6 +8,7 @@ public class Sound {
 	int soundID;
 	
 	public Sound(Context context){
+		int resId = 0;
 		soundpool = new SoundPool (1, 3, 0);
 		soundID = soundpool.load(context, resId, 1);
 		
