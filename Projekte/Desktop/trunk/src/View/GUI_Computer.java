@@ -51,11 +51,11 @@ public class GUI_Computer extends JFrame{
 		//window listener for closing
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosed(WindowEvent arg0) {
-				log.writelogfile("CarDuinoDroid wurde beendet.");
+				log.writelogfile("CarDuinoDroid closed.");
 				System.exit(0);
 			}
 			public void windowClosing(WindowEvent arg0) {
-				log.writelogfile("CarDuinoDroid wurde beendet.");
+				log.writelogfile("CarDuinoDroid closed.");
 				System.exit(0);
 			}
 		});
@@ -169,12 +169,7 @@ public class GUI_Computer extends JFrame{
 		});
 			
 		//menu "file"
-		Quit.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        log.writelogfile("CarDuinoDroid wurde beendet.");
-		        System.exit(0);
-		    }
-		});
+		Quit.addActionListener(new Quit_ActionListener(log));
 		Connection.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    	ip_configuration.setVisible(true);
@@ -236,7 +231,7 @@ public class GUI_Computer extends JFrame{
 		//signal_button
 		signal_button.setBounds(30, 400, 165, 40);
 		panel_other.add(signal_button);
-		signal_button.addActionListener(new Signal_ActionListener(log, Names.get(16)));
+		signal_button.addActionListener(new Signal_ActionListener(log));
 		
 		//Live-Log screen
 		Live_Log.add(Live_Log_Scrollbar);
