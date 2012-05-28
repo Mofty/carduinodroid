@@ -6,9 +6,13 @@ import Model.Log;
 
 public class Signal_ActionListener implements ActionListener{
 	
-	Log log = new Log();
+	Log Signal_log = new Log();
+	
+	public Signal_ActionListener (Log log){
+		Signal_log = log;
+	}
 	
 	public void actionPerformed(ActionEvent e) {
-		log.writelogfile("Signalton gesendet.");
+		Signal_log.writelogfile("Signalton gesendet.");
 	}
 }
