@@ -10,18 +10,7 @@ import swp.tuilmenau.carduinodroid.controller.Controller_Android;
 
 public class CarDuinoDroidService extends Service 
 {
-	private final IBinder ServiceBinder = new LocalBinder();
-	
 	Controller_Android controller_Android;
-	
-	class LocalBinder extends Binder
-	{
-		CarDuinoDroidService getService()
-		{
-			return CarDuinoDroidService.this;
-		}
-	}
-	
 	
 	public CarDuinoDroidService()
 	{
@@ -31,15 +20,9 @@ public class CarDuinoDroidService extends Service
 	@Override
 	public IBinder onBind(Intent arg0) 
 	{
-		return ServiceBinder;
+		return /* ServiceBinder */ null;
 	}
-	
-	public String outputLocalWLANIP()
-	{
-		return controller_Android.connection.getLocalWLANIP();
-	}
-	
-	
+		
 	
 	@Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -74,8 +57,9 @@ public class CarDuinoDroidService extends Service
         
         controller_Android.log.write(controller_Android.connection.getLocalWLANIP());
         
+        controller_Android.sound.horn();
+        
         return super.onStartCommand(intent, flags, startId);
     }
 		
-	
 }
