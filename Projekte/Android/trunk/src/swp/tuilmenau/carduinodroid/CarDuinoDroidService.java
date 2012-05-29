@@ -61,9 +61,8 @@ public class CarDuinoDroidService extends Service
 	}
 		
 	@Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        // Diese Methode wird beim Starten aufgerufen!
-        
+    public int onStartCommand(Intent intent, int flags, int startId) 
+	{    
         return START_STICKY;
     }
 	
