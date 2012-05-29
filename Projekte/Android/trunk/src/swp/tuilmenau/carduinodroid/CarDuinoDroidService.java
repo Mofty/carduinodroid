@@ -63,7 +63,7 @@ public class CarDuinoDroidService extends Service
         
         controller_Android.sound.horn();
         
-        return super.onStartCommand(intent, flags, startId);
+        return START_STICKY;
     }
 	
 	@Override
