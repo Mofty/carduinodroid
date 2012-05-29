@@ -21,17 +21,7 @@ public class CarDuinoDroidService extends Service
 	{
 		super.onCreate();
 		controller_Android = new Controller_Android(this);
-	}
-
-	@Override
-	public IBinder onBind(Intent arg0) 
-	{
-		return null;
-	}
 		
-	@Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        // Diese Methode wird beim Starten aufgerufen!
 		
 		
 		// zu testzwecken. in der finalen version löschen
@@ -62,6 +52,17 @@ public class CarDuinoDroidService extends Service
         controller_Android.log.write(controller_Android.connection.getLocalWLANIP());
         
         controller_Android.sound.horn();
+	}
+
+	@Override
+	public IBinder onBind(Intent arg0) 
+	{
+		return null;
+	}
+		
+	@Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        // Diese Methode wird beim Starten aufgerufen!
         
         return START_STICKY;
     }
