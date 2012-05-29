@@ -28,7 +28,7 @@ public class Record_Sound
 		{
 			// the soundfile
 			File storageDir = new File(Environment.getExternalStorageDirectory(), "/carduinodroid/Recording");
-			storageDir.mkdir();
+			storageDir.mkdirs();
 			outfile = File.createTempFile("Sound", ".3gp", storageDir);
  
 			// init recorder
