@@ -131,7 +131,5 @@ public class Arduino {
                 log.write("Senden fehlgeschlagen.");
             }
         }      
-    }
-    
-    
+    }   
 }
