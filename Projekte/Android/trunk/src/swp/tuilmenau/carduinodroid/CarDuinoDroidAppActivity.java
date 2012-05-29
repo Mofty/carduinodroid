@@ -32,11 +32,14 @@ public class CarDuinoDroidAppActivity extends Activity
         IPBox = (TextView) findViewById(R.id.textView2); 
         IPBox.setText(connection.getLocalWLANIP());
         
+        
+        // notification etas einschrumpfen
         // Get a reference to the NotificationManager 
         String ns = Context.NOTIFICATION_SERVICE;
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(ns);
         
         //Instantiate the Notification
+        // notifocation.builder verwenden
         int icon = R.drawable.ic_launcher;
         CharSequence tickerText = "CarduinoDroid running";
         long when = System.currentTimeMillis();
