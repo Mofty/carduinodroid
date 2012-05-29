@@ -3,14 +3,13 @@ package swp.tuilmenau.carduinodroid.controller;
 import java.io.File;
 import java.io.IOException;
 
-import android.app.Activity;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Environment;
 
  
-public class Record_Sound extends Activity {
+public class Record_Sound {
 	private MediaRecorder recorder = new MediaRecorder();
 	private MediaPlayer player = new MediaPlayer();
  
@@ -18,9 +17,7 @@ public class Record_Sound extends Activity {
 	private boolean playing = false;
 	private File outfile = null;
  
-	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
  
 		try {
 			// the soundfile
