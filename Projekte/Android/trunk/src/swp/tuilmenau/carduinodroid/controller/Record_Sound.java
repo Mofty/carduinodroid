@@ -43,6 +43,7 @@ public class Record_Sound
 			player.setDataSource(outfile.getAbsolutePath());
 		} 
 		catch (IOException e) {
+			log.write("");
 		} 
 		catch (IllegalArgumentException e) {} 
 		catch (IllegalStateException e) {}
@@ -54,7 +55,7 @@ public class Record_Sound
 		try 
 		{
 			outfile = File.createTempFile("Sound_"+time.month+time.monthDay+"_"+time.hour+time.minute+time.second, ".3gp", storageDir);
-		} catch (IOException e1) {}
+		} catch (IOException e) {}
 		recorder.setOutputFile(outfile.getAbsolutePath());
 		try 
 		{
