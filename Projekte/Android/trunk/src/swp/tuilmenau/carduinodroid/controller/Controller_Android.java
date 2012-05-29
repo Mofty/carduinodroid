@@ -2,7 +2,6 @@ package swp.tuilmenau.carduinodroid.controller;
 
 import android.content.Context;
 import swp.tuilmenau.carduinodroid.model.*;
-import swp.tuilmenau.carduinodroid.view.*;
 
 public class Controller_Android 
 {
