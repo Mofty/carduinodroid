@@ -5,20 +5,25 @@ import java.io.IOException;
 
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
-import android.os.Bundle;
 import android.os.Environment;
 
+import swp.tuilmenau.carduinodroid.model.LOG;
+
  
-public class Record_Sound {
+public class Record_Sound 
+{
 	private MediaRecorder recorder = new MediaRecorder();
 	private MediaPlayer player = new MediaPlayer();
  
 	private boolean recording = false;
 	private boolean playing = false;
 	private File outfile = null;
+	
+	LOG log;
  
-	public void onCreate(Bundle savedInstanceState) {
- 
+	public Record_Sound(LOG Log) 
+	{
+		log = Log;
 		try {
 			// the soundfile
 			File storageDir = new File(Environment.getExternalStorageDirectory(), "swp.tuilmenau.carduinodroid.controller");
@@ -42,24 +47,22 @@ public class Record_Sound {
 		}
  
 	} 
-	private void startRecord() {
+	public void startRecord() {
 		try {
 			recorder.prepare();
 			recorder.start();
 			recording = true;
-		} catch (IllegalStateException e) {
-				;
-		} catch (IOException e) {
-		}
+		} catch (IllegalStateException e) {} catch (IOException e) {}
 	}
  
-	private void stopRecord() {
+	public void stopRecord() {
 		recorder.stop();
 		recorder.reset();
 		recorder.release();
 		recording = false;
 	}
  
+	// zu testzwecken
 	private void startPlay() {
 		try {
 			playing = true;
