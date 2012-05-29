@@ -15,6 +15,13 @@ public class CarDuinoDroidService extends Service
 	{
 		super();
 	}
+	
+	@Override
+	public void onCreate()
+	{
+		super.onCreate();
+		controller_Android = new Controller_Android(this);
+	}
 
 	@Override
 	public IBinder onBind(Intent arg0) 
@@ -26,7 +33,6 @@ public class CarDuinoDroidService extends Service
     public int onStartCommand(Intent intent, int flags, int startId) {
         // Diese Methode wird beim Starten aufgerufen!
 		
-		controller_Android = new Controller_Android(this);
 		
 		// zu testzwecken. in der finalen version löschen
 		controller_Android.log.write("App und Service erfolgreich gestartet");

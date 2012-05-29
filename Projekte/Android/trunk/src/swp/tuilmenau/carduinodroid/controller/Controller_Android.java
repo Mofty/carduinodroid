@@ -22,10 +22,10 @@ public class Controller_Android
 	{
 		log = new LOG();
 		
-		arduino = new Arduino(context,this);
+		arduino = new Arduino(context,log);
 		camera = new Camera();
 		connection = new Connection(context);
-		gps = new GPS(context,/* zu testzwecken. in der finalen version löschen */ this);
+		gps = new GPS(context,/* zu testzwecken. in der finalen version löschen */ log);
 		network = new Network(this);
 		record_sound = new Record_Sound();
 		sound = new Sound(context);	

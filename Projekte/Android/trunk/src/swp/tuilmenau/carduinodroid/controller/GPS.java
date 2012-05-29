@@ -1,10 +1,9 @@
 package swp.tuilmenau.carduinodroid.controller;
 
 import android.content.Context;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
+import android.location.*;
 import android.os.Bundle;
+import swp.tuilmenau.carduinodroid.model.LOG;
 
 public class GPS {
 	LocationManager locationManager;
@@ -13,7 +12,7 @@ public class GPS {
 	double longitude, latitude;
 	boolean newerFixAvailable;
 	
-	public GPS(Context context,/* zu testzwecken. in der finalen version löschen */ final Controller_Android controller_Android) 
+	public GPS(Context context,/* zu testzwecken. in der finalen version löschen */ final LOG log) 
 	{
 		newerFixAvailable = false;
 		// ruft eine Instanz des LocationManagers ab
@@ -30,8 +29,7 @@ public class GPS {
 		    	latitude = location.getLatitude();
 		    	longitude = location.getLongitude();
 		    	// zu testzwecken. in der finalen version löschen
-		    	controller_Android.log.write(controller_Android.gps.getGPS());
-		    	controller_Android.log.save();
+		    	log.write(getGPS());
 		    }
 
 		    public void onStatusChanged(String provider, int status, Bundle extras) {}

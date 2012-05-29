@@ -5,6 +5,8 @@ import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
+import swp.tuilmenau.carduinodroid.model.LOG;
 import android.app.Activity;//hold ADK Intent, because it is not always connected
 import android.app.PendingIntent;//snipped for brevity this is precisely what USB-manager expose
 import android.content.BroadcastReceiver;
@@ -16,7 +18,7 @@ import com.android.future.usb.UsbAccessory;
 
 public class Arduino {
 	
-	private Controller_Android controller_Android;
+	private LOG log;
 	// UsbManager to check if ADK is connected
     private UsbManager mUsbManager;
     // To read permission from ADK
@@ -33,8 +35,8 @@ public class Arduino {
     UsbAccessory mUsbAccessory;
     private final BroadcastReceiver mUsbReceiver;
 	
-	public Arduino(Context context,Controller_Android controller_android){
-		controller_Android = controller_android;
+	public Arduino(Context context, LOG Log){
+		log = Log;
 		
 		mUsbReceiver = new BroadcastReceiver(){
 			 
@@ -54,7 +56,7 @@ public class Arduino {
 	                    }
 	                    else {
 	                        // oops
-	                    	controller_Android.log.write("Permission Denied For Accessory"+ accessory);
+	                    	log.write("Permission Denied For Accessory"+ accessory);
 	                    }
 	                    mPermissionRequestPending = false;
 	                }
@@ -86,11 +88,11 @@ public class Arduino {
      
             //Thread thread = new Thread(null,this,"ADKTestProject");
             //thread.start();
-            controller_Android.log.write("Accessory Opened");
+            log.write("Accessory Opened");
      
         }
         else {
-        	controller_Android.log.write("Accessory Open Fail");
+        	log.write("Accessory Open Fail");
         }
     }
     
@@ -123,10 +125,10 @@ public class Arduino {
             try{
                 // write it
                 mFileOutputStream.write(buffer);
-                controller_Android.log.write("Geschwindigkeit: "+speed+" und Richtung: "+dir+" gesendet.");
+                log.write("Geschwindigkeit: "+speed+" und Richtung: "+dir+" gesendet.");
             }
             catch (IOException e){
-                controller_Android.log.write("Senden fehlgeschlagen.");
+                log.write("Senden fehlgeschlagen.");
             }
         }      
     }
