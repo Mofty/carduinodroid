@@ -102,6 +102,7 @@ public class GUI_Computer extends JFrame{
 		
 		//initiate ToggleButtons
 		JToggleButton light_button = new JToggleButton(Names.get(5), false);
+		JToggleButton soundrecord_button = new JToggleButton(Names.get(16), false);
 		JToggleButton up = new JToggleButton(new ImageIcon ("src/View/Icons/Icon_up.gif"));
 		JToggleButton down = new JToggleButton(new ImageIcon ("src/View/Icons/Icon_down.gif"));
 		JToggleButton left = new JToggleButton(new ImageIcon ("src/View/Icons/Icon_left.gif"));
@@ -233,6 +234,10 @@ public class GUI_Computer extends JFrame{
 		signal_button.setBounds(30, 275, 165, 40);
 		panel_other.add(signal_button);
 		signal_button.addActionListener(new Signal_ActionListener(log));
+		
+		//soundrecord_button
+		soundrecord_button.setBounds(30, 320, 165, 20);
+		panel_other.add(soundrecord_button);
 		
 		//Live-Log screen
 		Live_Log.add(Live_Log_Scrollbar);
