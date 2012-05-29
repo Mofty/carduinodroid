@@ -33,6 +33,15 @@ public class Controller_Android
 	
 	public void SendData() 
 	{
+		String data;
+		if (connection.getMobileAvailable())data=""+1+";";else data=""+0+";";
+		if (connection.getWLANAvailable())data=data+1+";";else data=data+0+";";	
+		if (connection.getMobile())data=data+1+";";else data=data+0+";";
+		if (connection.getWLAN())data=data+1+";";else data=data+0+";";
+		
+		data=data+gps.getGPS()+";";
+		
+		//kammera information anhängen + string schicken!
 		
 	}
 	
