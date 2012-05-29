@@ -27,7 +27,7 @@ public class Record_Sound
 		try 
 		{
 			// the soundfile
-			File storageDir = new File(Environment.getExternalStorageDirectory(), "swp.tuilmenau.carduinodroid.controller");
+			File storageDir = new File(Environment.getExternalStorageDirectory(), "/carduinodroid/Recording");
 			storageDir.mkdir();
 			outfile = File.createTempFile("Sound", ".3gp", storageDir);
  
@@ -40,7 +40,8 @@ public class Record_Sound
 			// init player
 			player.setDataSource(outfile.getAbsolutePath());
 		} 
-		catch (IOException e) {} 
+		catch (IOException e) {
+		} 
 		catch (IllegalArgumentException e) {} 
 		catch (IllegalStateException e) {}
 	} 
