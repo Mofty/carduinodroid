@@ -14,3 +14,4 @@ Verbindung
 IP-Konfiguration
 IP-Adresse des Zielgerätes eingeben
 Signalton
+Tonaufnahme
