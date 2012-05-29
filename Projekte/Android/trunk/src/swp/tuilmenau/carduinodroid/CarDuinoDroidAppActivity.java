@@ -1,5 +1,9 @@
 package swp.tuilmenau.carduinodroid;
 
+/* beim umdrehendes handys wird jedes mal die hupe abgespielt. untersuchen warum...
+ * vermutlich irgendwo im service UND/ODER in der activity ...
+ */
+
 import swp.tuilmenau.carduinodroid.controller.Connection;
 import android.app.*;
 import android.content.*;
