@@ -24,7 +24,8 @@ public class Record_Sound
 	public Record_Sound(LOG Log) 
 	{
 		log = Log;
-		try {
+		try 
+		{
 			// the soundfile
 			File storageDir = new File(Environment.getExternalStorageDirectory(), "swp.tuilmenau.carduinodroid.controller");
 			storageDir.mkdir();
@@ -38,24 +39,26 @@ public class Record_Sound
  
 			// init player
 			player.setDataSource(outfile.getAbsolutePath());
-		} catch (IOException e) {
-
-		} catch (IllegalArgumentException e) {
-
-		} catch (IllegalStateException e) {
-			
-		}
- 
+		} 
+		catch (IOException e) {} 
+		catch (IllegalArgumentException e) {} 
+		catch (IllegalStateException e) {}
 	} 
-	public void startRecord() {
-		try {
+	
+	public void startRecord() 
+	{
+		try 
+		{
 			recorder.prepare();
 			recorder.start();
 			recording = true;
-		} catch (IllegalStateException e) {} catch (IOException e) {}
+		} 
+		catch (IllegalStateException e) {} 
+		catch (IOException e) {}
 	}
  
-	public void stopRecord() {
+	public void stopRecord() 
+	{
 		recorder.stop();
 		recorder.reset();
 		recorder.release();
@@ -63,19 +66,20 @@ public class Record_Sound
 	}
  
 	// zu testzwecken
-	private void startPlay() {
-		try {
+	private void startPlay() 
+	{
+		try 
+		{
 			playing = true;
 			player.prepare();
 			player.start();
-		} catch (IllegalStateException e) {
-			
-		} catch (IOException e) {
-			
-		}
+		} 
+		catch (IllegalStateException e) {} 
+		catch (IOException e) {}
 	}
  
-	private void stopPlay() {
+	private void stopPlay() 
+	{
 		player.stop();
 		player.reset();
 		player.release();
