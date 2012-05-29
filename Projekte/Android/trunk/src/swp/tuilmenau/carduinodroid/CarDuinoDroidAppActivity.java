@@ -10,6 +10,7 @@ public class CarDuinoDroidAppActivity extends Activity
 {	
 	Connection connection;
 	TextView IPBox;
+	Intent carduinodroidservice;
 	
     /* Called when the activity is first created. */
     @Override
@@ -18,8 +19,7 @@ public class CarDuinoDroidAppActivity extends Activity
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        Intent carduinodroidservice = new Intent(this, CarDuinoDroidService.class);
-        startService(carduinodroidservice);
+        
         
         connection = new Connection(this);
         
@@ -51,6 +51,14 @@ public class CarDuinoDroidAppActivity extends Activity
         mNotificationManager.notify(ACTIVE_ID, notification);
           
     }   
+    
+    @Override
+    public void onStart()
+    {
+    	super.onStart();
+    	carduinodroidservice = new Intent(this, CarDuinoDroidService.class);
+        startService(carduinodroidservice);
+    }
     
 
 
