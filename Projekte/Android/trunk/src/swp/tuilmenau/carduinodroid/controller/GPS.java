@@ -48,7 +48,7 @@ public class GPS {
 	public String getGPS()
 	{	
 		newerFixAvailable = false;
-		return longitude+";"+latitude;
+		return longitude+","+latitude;
 	}
 	
 	public boolean newerFixAvailable()
