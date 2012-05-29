@@ -1,10 +1,8 @@
 package swp.tuilmenau.carduinodroid;
 
 import swp.tuilmenau.carduinodroid.controller.Connection;
-import android.app.Activity;
 import android.app.*;
-import android.content.Context;
-import android.content.Intent;
+import android.content.*;
 import android.os.Bundle;
 import android.widget.TextView;
 
