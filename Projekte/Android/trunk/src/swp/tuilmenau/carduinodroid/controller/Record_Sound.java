@@ -6,6 +6,7 @@ import java.io.IOException;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Environment;
+import android.text.format.Time;
 
 import swp.tuilmenau.carduinodroid.model.LOG;
 
@@ -18,6 +19,8 @@ public class Record_Sound
 	private boolean recording = false;
 	private boolean playing = false;
 	private File outfile = null;
+	Time time;
+	File storageDir;
 	
 	LOG log;
  
@@ -27,16 +30,15 @@ public class Record_Sound
 		try 
 		{
 			// the soundfile
-			File storageDir = new File(Environment.getExternalStorageDirectory(), "/carduinodroid/Recording");
+			storageDir = new File(Environment.getExternalStorageDirectory(), "/carduinodroid/Recording");
 			storageDir.mkdirs();
-			outfile = File.createTempFile("Sound", ".3gp", storageDir);
- 
+			time = new Time();
+			
 			// init recorder
 			recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
 			recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
 			recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-			recorder.setOutputFile(outfile.getAbsolutePath());
- 
+			
 			// init player
 			player.setDataSource(outfile.getAbsolutePath());
 		} 
@@ -46,8 +48,14 @@ public class Record_Sound
 		catch (IllegalStateException e) {}
 	} 
 	
-	public void startRecord() 
+	public void startRecord()
 	{
+		time.setToNow();
+		try 
+		{
+			outfile = File.createTempFile("Sound_"+time.month+time.monthDay+"_"+time.hour+time.minute+time.second, ".3gp", storageDir);
+		} catch (IOException e1) {}
+		recorder.setOutputFile(outfile.getAbsolutePath());
 		try 
 		{
 			recorder.prepare();
