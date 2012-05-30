@@ -1,7 +1,8 @@
 package View;
 
-import Model.*;
 import Controller.*;
+import Model.*;
+
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -37,11 +38,13 @@ import java.util.ArrayList;
 public class GUI_Computer extends JFrame{
 	
 	static BufferedReader language_reader;
-	Log log = new Log();
+	Log log;
+	Controller_Computer controller_Computer;
 	
 	public GUI_Computer(){
 		this.getContentPane().setLayout(null);
-		
+		log  = new Log();
+		controller_Computer = new Controller_Computer(log);
 		//create programwindow
 		this.initWindow();
 				
