@@ -12,6 +12,7 @@ public class Controller_Computer {
 	public GPS_Map gps_map;
 	public Soundrecording soundrecording;
 	public Network network;
+	
 	public Controller_Computer(Log LOG) {
 		log = LOG;
 		camera_picture=new Camera_Picture();
