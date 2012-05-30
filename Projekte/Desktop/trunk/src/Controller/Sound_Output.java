@@ -1,7 +1,5 @@
 package Controller;
 
-import Model.Log;
-
 public class Sound_Output {
 	Controller_Computer controller_computer;
 	
