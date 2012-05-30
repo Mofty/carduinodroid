@@ -3,15 +3,15 @@ package Controller;
 import Model.Log;
 
 public class Controller_Computer {
-	Log log;
-	Sound_Output sound_output;
-	Camera_Settings camera_settings;
-	Camera_Picture camera_picture;
-	Car_Controller car_controller;
-	Packagedata packagedata;
-	GPS_Map gps_map;
-	Soundrecording soundrecording;
-	Network network;
+	public Log log;
+	public Sound_Output sound_output;
+	public Camera_Settings camera_settings;
+	public Camera_Picture camera_picture;
+	public Car_Controller car_controller;
+	public Packagedata packagedata;
+	public GPS_Map gps_map;
+	public Soundrecording soundrecording;
+	public Network network;
 	public Controller_Computer(Log LOG) {
 		log = LOG;
 		camera_picture=new Camera_Picture();
