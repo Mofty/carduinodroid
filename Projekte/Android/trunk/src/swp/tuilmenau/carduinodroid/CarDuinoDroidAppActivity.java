@@ -6,55 +6,46 @@ import android.content.*;
 import android.os.Bundle;
 import android.widget.TextView;
 
+
 public class CarDuinoDroidAppActivity extends Activity 
 {	
 	Connection connection;
 	TextView IPBox;
 	Intent carduinodroidservice;
+	NotificationManager notificationManager;
+	Notification notification;
+	Intent notificationIntent;
+	PendingIntent contentIntent;
 	
 	
     /* Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) 
     {
+    	// call onCreate of superclass
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        
-        
+        // initialize fields
         connection = new Connection(this);
-        
         IPBox = new TextView(this); 
-
+        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notification = new Notification(R.drawable.ic_launcher, "CarduinoDroid running", System.currentTimeMillis());
+        notificationIntent = new Intent(this, CarDuinoDroidAppActivity.class);
+        contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+        
+        
+        // write local ip into textbox
         IPBox = (TextView) findViewById(R.id.textView2); 
         IPBox.setText(connection.getLocalWLANIP());
         
-        
-        // notification etwas einschrumpfen
-        //notification.builder verwenden statt new Notification
-        // Get a reference to the NotificationManager 
-        String ns = Context.NOTIFICATION_SERVICE;
-        NotificationManager mNotificationManager = (NotificationManager) getSystemService(ns);
-        
-        //Instantiate the Notification
-        // notifocation.builder verwenden
-        int icon = R.drawable.ic_launcher;
-        CharSequence tickerText = "CarduinoDroid running";
-        long when = System.currentTimeMillis();
-        Notification notification = new Notification(icon, tickerText, when);
-        
+        //define flags for persistent notification
+        //cause Notification.Builder isn't implemented in API lvl 10
+        notification.flags = notification.flags | Notification.FLAG_NO_CLEAR;
         //Define the notification's message and PendingIntent
-        Context context = getApplicationContext();
-        CharSequence contentTitle = "CarduinoDroid";
-        CharSequence contentText = "Active";
-        Intent notificationIntent = new Intent(this, CarDuinoDroidAppActivity.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
-        notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
-        
+        notification.setLatestEventInfo(getApplicationContext(), "CarduinoDroid", "Active", contentIntent);
         //Pass the Notification to the NotificationManager
-        final int ACTIVE_ID = 1;
-        mNotificationManager.notify(ACTIVE_ID, notification);
-          
+        notificationManager.notify(1, notification); 
     }   
     
     @Override
