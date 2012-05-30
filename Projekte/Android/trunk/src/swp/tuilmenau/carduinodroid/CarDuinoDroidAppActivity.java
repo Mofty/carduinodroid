@@ -16,6 +16,7 @@ public class CarDuinoDroidAppActivity extends Activity
 	TextView IPBox;
 	Intent carduinodroidservice;
 	
+	
     /* Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) 
