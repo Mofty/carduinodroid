@@ -3,8 +3,10 @@ package swp.tuilmenau.carduinodroid;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.os.Looper;
 
 import swp.tuilmenau.carduinodroid.controller.Controller_Android;
+import swp.tuilmenau.carduinodroid.controller.Network;
 
 
 public class CarDuinoDroidService extends Service 
@@ -22,6 +24,14 @@ public class CarDuinoDroidService extends Service
 	{
 		super.onCreate();
 		controller_Android = new Controller_Android(this);
+		
+//		new Thread(new Runnable()
+//        {
+//            public void run() {
+//                Looper.prepare();
+//             Network network = new Network(controller_Android);
+//                }
+//          }).start();
 		
 		
 		
