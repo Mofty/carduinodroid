@@ -14,6 +14,8 @@ public class NetworkTestActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         controller_Android = new Controller_Android(this);
+        
+        // in service onCreate ewinfügen
         new Thread(new Runnable() {
             public void run() {
                 Looper.prepare();

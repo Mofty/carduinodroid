@@ -37,7 +37,7 @@ public class LOG
 			} catch (IOException e) { e.printStackTrace(); }
 	}
 	
-	public void write(String line) 
+	public synchronized void write(String line) 
 	{
 		String timestr;
 		time.setToNow(); // aktualisiert die in "time" gespeicherte zeit
