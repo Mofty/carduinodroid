@@ -36,8 +36,12 @@ public class Record_Sound
 			recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 			
 			}
-		catch (IllegalArgumentException e) {} 
-		catch (IllegalStateException e) {}
+		catch (IllegalArgumentException e) {
+			log.write("Illegal argument");
+		} 
+		catch (IllegalStateException e) {
+			log.write("Illegal state");
+		}
 	} 
 	
 	public void startRecord()
@@ -47,20 +51,27 @@ public class Record_Sound
 		{
 			outfile = File.createTempFile("Sound_"+time.month+time.monthDay+"_"+time.hour+time.minute+time.second, ".3gp", storageDir);
 		} catch (IOException e) {}
-		recorder.setOutputFile(outfile.getAbsolutePath());
+			recorder.setOutputFile(outfile.getAbsolutePath());
+			log.write("Could not create file");
 		try 
 		{
 			recorder.prepare();
 			recorder.start();
+			log.write("Start recording");
 		} 
-		catch (IllegalStateException e) {} 
-		catch (IOException e) {}
+		catch (IllegalStateException e) {
+			log.write("Invalid recorder state");
+		} 
+		catch (IOException e) {
+			log.write("Could not write into file");
+		}
 	}
  
 	public void stopRecord() 
 	{
 		recorder.stop();
 		recorder.reset();
+		log.write("Stop recording");
 	}
 
 }
