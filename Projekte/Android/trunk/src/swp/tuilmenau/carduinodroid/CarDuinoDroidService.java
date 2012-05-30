@@ -5,8 +5,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.os.Looper;
 
-import swp.tuilmenau.carduinodroid.controller.Controller_Android;
-import swp.tuilmenau.carduinodroid.controller.Network;
+import swp.tuilmenau.carduinodroid.controller.*;
 
 
 public class CarDuinoDroidService extends Service 
