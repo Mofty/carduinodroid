@@ -2,16 +2,14 @@ package View;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import Model.Log;
+import Controller.Controller_Computer;
 
 public class Signal_ActionListener implements ActionListener{
 	
-	Log log;
+	Sound_Output test;
 	
-	public Signal_ActionListener (Log LOG)
-	{
-		log = LOG;
-	}
+	public Signal_ActionListener ()
+	{}
 	
 	public void actionPerformed(ActionEvent e) {
 		log.writelogfile("Signaltone sent.");
