@@ -7,22 +7,50 @@
  * 
  */
 package swp.tuilmenau.carduinodroid.controller;
-import java.net.*;
-import java.io.*;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 
-public class Network {
+public class Network{
 	
 	Socket_Package socket_package;
 	Socket_Controller socket_controller;
-	Thread t1;
-	Thread t2;
 	Controller_Android controller;
+	Handler handler;
+	Handler handlerpackage;
+	Thread t1;
 		
 	public Network(Controller_Android n_controller)
 	{
-		socket_package = new Socket_Package();
-		socket_controller = new Socket_Controller(this);
+		//socket_package = new Socket_Package(n_handler);
+		
 		controller = n_controller;
+		handler = new Handler(){
+			public void handleMessage(Message msg){
+				switch(msg.arg1)
+				{
+				case 0:
+					Log.v("hauptporg","message received"+ msg.obj);
+					receive_controll((String) msg.obj);
+					break;
+				case 1:
+					handlerpackage = (Handler) msg.obj;
+					break;
+				case 2:
+					Log.v("hauptporg","controllerfehler"+ msg.obj);
+
+					controller.log.write("Controllerfehler" + (String)msg.obj);
+					break;
+				case 3:
+					controller.log.write("Packagefehler" + (String)msg.obj);
+
+				}
+			}
+		};
+		socket_controller = new Socket_Controller(handler);
+		Log.v("hauptporg","t1 wird gestartet");
+		t1 = new Thread(socket_controller, "socketcontroll"); 
+		t1.start();
 	}
 	
 	/*
@@ -40,11 +68,6 @@ public class Network {
 		controller.receiveSteuerdaten(message);
 	}
 
-
-	public void start(){
-		socket_package.accept();
-		socket_controller.accept();
-	}
 	
 	
 }
