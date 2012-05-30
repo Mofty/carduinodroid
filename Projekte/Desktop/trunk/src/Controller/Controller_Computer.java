@@ -1,6 +1,9 @@
 package Controller;
 
+import Model.Log;
+
 public class Controller_Computer {
+	Log log;
 	Sound_Output sound_output;
 	Camera_Settings camera_settings;
 	Camera_Picture camera_picture;
@@ -9,7 +12,8 @@ public class Controller_Computer {
 	GPS_Map gps_map;
 	Soundrecording soundrecording;
 	Network network;
-	public Controller_Computer() {
+	public Controller_Computer(Log LOG) {
+		log = LOG;
 		camera_picture=new Camera_Picture();
 		packagedata=new Packagedata();
 		gps_map=new GPS_Map();
