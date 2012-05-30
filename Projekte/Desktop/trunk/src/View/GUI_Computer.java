@@ -1,7 +1,7 @@
 package View;
 
 import Model.*;
-
+import Controller.*;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
