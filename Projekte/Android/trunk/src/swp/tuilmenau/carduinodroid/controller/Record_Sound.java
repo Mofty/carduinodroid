@@ -14,10 +14,7 @@ import swp.tuilmenau.carduinodroid.model.LOG;
 public class Record_Sound 
 {
 	private MediaRecorder recorder = new MediaRecorder();
-	private MediaPlayer player = new MediaPlayer();
  
-	private boolean recording = false;
-	private boolean playing = false;
 	private File outfile = null;
 	Time time;
 	File storageDir;
@@ -39,12 +36,7 @@ public class Record_Sound
 			recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
 			recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 			
-			// init player
-			player.setDataSource(outfile.getAbsolutePath());
-		} 
-		catch (IOException e) {
-			log.write("");
-		} 
+			}
 		catch (IllegalArgumentException e) {} 
 		catch (IllegalStateException e) {}
 	} 
@@ -61,7 +53,6 @@ public class Record_Sound
 		{
 			recorder.prepare();
 			recorder.start();
-			recording = true;
 		} 
 		catch (IllegalStateException e) {} 
 		catch (IOException e) {}
@@ -71,28 +62,6 @@ public class Record_Sound
 	{
 		recorder.stop();
 		recorder.reset();
-		recorder.release();
-		recording = false;
 	}
- 
-	// zu testzwecken
-	private void startPlay() 
-	{
-		try 
-		{
-			playing = true;
-			player.prepare();
-			player.start();
-		} 
-		catch (IllegalStateException e) {} 
-		catch (IOException e) {}
-	}
- 
-	private void stopPlay() 
-	{
-		player.stop();
-		player.reset();
-		player.release();
-		playing = false;
-	}
+
 }
