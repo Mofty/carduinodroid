@@ -10,7 +10,7 @@ public class Sound_Output {
 		network = S_network;
 	}
 	
-	void send_output_soundsignal(String SoundID){
+	public void send_output_soundsignal(String SoundID){
 		if (network.send_sound("1"))
 		{log.writelogfile("Signal was sent");}
 		else{log.writelogfile("Signal wasn't sent");}
