@@ -11,7 +11,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-public class Network{
+public class Network extends Controller_Android{
 	
 	Socket_Package socket_package;
 	Socket_Controller socket_controller;
@@ -20,7 +20,7 @@ public class Network{
 	Handler handlerpackage;
 	Thread t1;
 		
-	public Network(Controller_Android n_controller)
+	public Network()
 	{
 		//socket_package = new Socket_Package(n_handler);
 		
