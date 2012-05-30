@@ -61,6 +61,12 @@ public class CarDuinoDroidService extends Service
         controller_Android.log.write(controller_Android.connection.getLocalWLANIP());
         
         controller_Android.sound.horn();
+        
+        controller_Android.cam.enableFlash();
+        try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) { }
+        controller_Android.cam.disableFlash();
 	}
 
 	@Override

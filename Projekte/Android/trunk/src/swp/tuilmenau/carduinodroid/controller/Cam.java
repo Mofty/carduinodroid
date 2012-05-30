@@ -31,7 +31,7 @@ public class Cam
 	{
 		parameters.setFlashMode(Parameters.FLASH_MODE_TORCH);
 		camera.setParameters(parameters);
-		camera.startPreview(); // evtl unnötig
+		// camera.startPreview(); // evtl unnötig
 	}
 	
 	public void disableFlash()
