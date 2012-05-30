@@ -12,8 +12,11 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-    <permission android:name="android.permission.FLASHLIGHT"/>
-    
+    <permission android:name="android.permission.FLASHLIGHT"
+             android:permissionGroup="android.permission-group.HARDWARE_CONTROLS"
+             android:protectionLevel="normal"
+             />
+
     <uses-feature android:required="true" android:name="android.hardware.usb.accessory"/>
     
     <application
