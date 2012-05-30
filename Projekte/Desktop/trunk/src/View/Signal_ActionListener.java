@@ -6,12 +6,12 @@ import Controller.*;
 
 public class Signal_ActionListener implements ActionListener{
 	
-	Sound_Output SoundOutput;
+	Sound_Output sound_output;
 	
-	public Signal_ActionListener ()
-	{}
+	public Signal_ActionListener (Sound_Output SoundOutput)
+	{sound_output = SoundOutput;}
 	
 	public void actionPerformed(ActionEvent e) {
-		SoundOutput.send_output_soundsignal("1");
+		sound_output.send_output_soundsignal("1");
 	}
 }
