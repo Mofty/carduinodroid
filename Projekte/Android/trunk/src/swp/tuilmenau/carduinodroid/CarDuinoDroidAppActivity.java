@@ -1,9 +1,5 @@
 package swp.tuilmenau.carduinodroid;
 
-/* beim umdrehendes handys wird jedes mal die hupe abgespielt. untersuchen warum...
- * vermutlich irgendwo im service UND/ODER in der activity ...
- */
-
 import swp.tuilmenau.carduinodroid.controller.Connection;
 import android.app.*;
 import android.content.*;
@@ -34,7 +30,8 @@ public class CarDuinoDroidAppActivity extends Activity
         IPBox.setText(connection.getLocalWLANIP());
         
         
-        // notification etas einschrumpfen
+        // notification etwas einschrumpfen
+        //notification.builder verwenden statt new Notification
         // Get a reference to the NotificationManager 
         String ns = Context.NOTIFICATION_SERVICE;
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(ns);
