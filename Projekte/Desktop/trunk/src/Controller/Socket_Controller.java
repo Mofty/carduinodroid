@@ -1,13 +1,18 @@
 package Controller;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
 public class Socket_Controller {
 	
-	OutputStream controll;
+	BufferedWriter controll;
 	Socket socket_controll;
 	String mobilephone_ip;
 
@@ -25,14 +30,13 @@ public class Socket_Controller {
 			/*
 			 * noch überlegen
 			 */
-			e.printStackTrace();
+			System.out.println("fehler beim connecten");
 		}
 		
 		try {
-			controll = socket_controll.getOutputStream();
+			controll = new BufferedWriter(new OutputStreamWriter(socket_controll.getOutputStream()));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("fehler beim outputstream");
 		}
 		
 		
@@ -44,15 +48,14 @@ public class Socket_Controller {
 	{
 		if(socket_controll.isConnected())
 		{
-			String bufferdirection = "1," + direction;
-			byte[] buffer = bufferdirection.getBytes();
+			String bufferdirection = "1;" + direction;
 			try {
-				controll.write(buffer);
+				controll.write(bufferdirection);
+				controll.newLine();
 				controll.flush();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return false;
+				System.out.println("fail");
 			}
 			return true;
 		}
@@ -66,15 +69,14 @@ public class Socket_Controller {
 	{
 		if(socket_controll.isConnected())
 		{
-			String buffersettings = "2," + settings;
-			byte[] buffer = buffersettings.getBytes();
+			String buffersettings = "2;" + settings;
 			try {
-				controll.write(buffer);
+				controll.write(buffersettings);
+				controll.newLine();
 				controll.flush();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return false;
+				System.out.println("fail");
 			}
 			return true;
 		}
@@ -88,15 +90,14 @@ public class Socket_Controller {
 	{
 		if(socket_controll.isConnected())
 		{
-			String buffersound_id = "3," + sound_id;
-			byte[] buffer = buffersound_id.getBytes();
+			String buffersound_id = "3;" + sound_id;
 			try {
-				controll.write(buffer);
+				controll.write(buffersound_id);
+				controll.newLine();
 				controll.flush();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return false;
+				System.out.println("fail");
 			}
 			return true;
 		}
