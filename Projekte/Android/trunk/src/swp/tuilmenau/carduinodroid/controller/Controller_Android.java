@@ -25,7 +25,7 @@ public class Controller_Android
 		camera = new Camera();
 		connection = new Connection(context);
 		gps = new GPS(context,/* zu testzwecken. in der finalen version löschen */ log);
-		network = new Network();
+		network = new Network(this);
 		record_sound = new Record_Sound(log);
 		sound = new Sound(context);	
 	}
