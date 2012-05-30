@@ -12,6 +12,6 @@ public class Signal_ActionListener implements ActionListener{
 	{}
 	
 	public void actionPerformed(ActionEvent e) {
-		log.writelogfile("Signaltone sent.");
+		test.send_output_soundsignal("1");
 	}
 }
