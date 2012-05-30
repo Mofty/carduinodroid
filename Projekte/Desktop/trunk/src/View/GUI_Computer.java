@@ -233,7 +233,7 @@ public class GUI_Computer extends JFrame{
 		//signal_button
 		signal_button.setBounds(30, 275, 165, 40);
 		panel_other.add(signal_button);
-		signal_button.addActionListener(new Signal_ActionListener(log));
+		signal_button.addActionListener(new Signal_ActionListener());
 		
 		//soundrecord_button
 		soundrecord_button.setBounds(30, 320, 165, 20);
