@@ -6,9 +6,8 @@ public class Sound_Output {
 	Network network;
 	Log log;
 	
-	public Sound_Output(Network S_network,Log LOG){
+	public Sound_Output(Network S_network){
 		network = S_network;
-		log = LOG;
 	}
 	
 	void send_output_soundsignal(String SoundID){
