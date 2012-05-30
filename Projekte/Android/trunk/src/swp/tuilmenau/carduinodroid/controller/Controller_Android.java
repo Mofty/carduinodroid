@@ -8,7 +8,7 @@ public class Controller_Android
 	public LOG log;
 	
 	public Arduino arduino;
-	public Camera camera;
+	public CameraControl cameraControl;
 	public Connection connection;
 	public GPS gps;
 	public Network network;
@@ -22,7 +22,7 @@ public class Controller_Android
 		log = new LOG();
 		
 		arduino = new Arduino(context,log);
-		camera = new Camera();
+		cameraControl = new CameraControl(context);
 		connection = new Connection(context);
 		gps = new GPS(context,/* zu testzwecken. in der finalen version löschen */ log);
 		// network = new Network(this);
