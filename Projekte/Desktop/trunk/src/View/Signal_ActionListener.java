@@ -2,7 +2,7 @@ package View;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import Controller.Controller_Computer;
+import Controller.*;
 
 public class Signal_ActionListener implements ActionListener{
 	
