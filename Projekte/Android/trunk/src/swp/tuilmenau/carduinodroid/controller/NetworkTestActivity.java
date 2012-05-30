@@ -16,7 +16,8 @@ public class NetworkTestActivity extends Activity {
         controller_Android = new Controller_Android(this);
         
         // in service onCreate ewinfügen
-        new Thread(new Runnable() {
+        new Thread(new Runnable()
+        {
             public void run() {
                 Looper.prepare();
              Network network = new Network(controller_Android);

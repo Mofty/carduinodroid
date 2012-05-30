@@ -25,7 +25,7 @@ public class Network extends Controller_Android{
 		//socket_package = new Socket_Package(n_handler);
 		
 		controller = n_controller;
-		handler = new Handler(){
+		handler = new Handler() {
 			public void handleMessage(Message msg){
 				switch(msg.arg1)
 				{
