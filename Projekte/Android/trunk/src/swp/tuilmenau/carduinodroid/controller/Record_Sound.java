@@ -52,7 +52,7 @@ public class Record_Sound
 			outfile = File.createTempFile("Sound_"+time.month+time.monthDay+"_"+time.hour+time.minute+time.second, ".3gp", storageDir);
 		} catch (IOException e) {}
 			recorder.setOutputFile(outfile.getAbsolutePath());
-			log.write("Could not create file");
+			log.write("Could not create soundfile");
 		try 
 		{
 			recorder.prepare();
@@ -63,7 +63,7 @@ public class Record_Sound
 			log.write("Invalid recorder state");
 		} 
 		catch (IOException e) {
-			log.write("Could not write into file");
+			log.write("Could not create soundfile");
 		}
 	}
  
