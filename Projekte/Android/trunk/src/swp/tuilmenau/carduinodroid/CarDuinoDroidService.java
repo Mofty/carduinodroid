@@ -22,6 +22,7 @@ public class CarDuinoDroidService extends Service
 	public void onCreate()
 	{
 		super.onCreate();
+		
 		controller_Android = new Controller_Android(this);
 		
 //		new Thread(new Runnable()
@@ -31,9 +32,7 @@ public class CarDuinoDroidService extends Service
 //             Network network = new Network(controller_Android);
 //                }
 //          }).start();
-		
-		
-		
+
 		// zu testzwecken. in der finalen version löschen
 		controller_Android.log.write("App und Service erfolgreich gestartet");
         
