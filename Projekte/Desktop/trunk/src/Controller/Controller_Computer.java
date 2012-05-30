@@ -17,7 +17,7 @@ public class Controller_Computer {
 		camera_picture=new Camera_Picture();
 		packagedata=new Packagedata();
 		gps_map=new GPS_Map();
-		network=new Network(camera_picture,packagedata);
+		network=new Network("",packagedata,camera_picture);
 		sound_output=new Sound_Output(this);
 		camera_settings=new Camera_Settings(network);
 		car_controller=new Car_Controller(network);
