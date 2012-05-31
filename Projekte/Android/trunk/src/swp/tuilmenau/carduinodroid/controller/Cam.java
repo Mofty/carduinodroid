@@ -14,17 +14,10 @@ public class Cam
 	LOG log;
 	
 	public Cam(Context context, LOG Log)
-	{
-		boolean flashAvailable;
-		
+	{	
 		camera = Camera.open();
 		parameters = camera.getParameters();
-		/*flashAvailable = context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
-		if (flashAvailable)
-			log.write("Flashlight available");
-		else log.write("Flashlight not available");*/
 		camera.startPreview();
-
 	}
 	
 	public void enableFlash()
