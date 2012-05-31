@@ -39,7 +39,7 @@ public class Controller_Android
         }).start();
 	}
 	
-	public void SendData() 
+	public String packData() 
 	{
 		String data;
 		data = "";
@@ -55,6 +55,8 @@ public class Controller_Android
 		data = data + gps.getGPS() + ";";
 		
 		//kammera information anhängen + string schicken!
+		
+		return data;
 		
 	}
 	
