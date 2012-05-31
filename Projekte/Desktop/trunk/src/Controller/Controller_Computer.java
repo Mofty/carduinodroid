@@ -20,7 +20,7 @@ public class Controller_Computer {
 		gps_map=new GPS_Map();
 		network=new Network("",packagedata,camera_picture);
 		sound_output=new Sound_Output(this);
-		camera_settings=new Camera_Settings(network);
+		camera_settings=new Camera_Settings(this);
 		car_controller=new Car_Controller(this);
 		soundrecording=new Soundrecording(this);
 		
