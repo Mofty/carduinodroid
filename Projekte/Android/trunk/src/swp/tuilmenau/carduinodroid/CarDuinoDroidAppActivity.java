@@ -34,7 +34,7 @@ public class CarDuinoDroidAppActivity extends Activity
         controller_Android = new Controller_Android(this);
     
         powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        wakelock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, "CarduinoDriod_Full_Wake_Lock");
+        wakelock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, "CarduinoDroid_Full_Wake_Lock");
         IPBox = new TextView(this); 
         
         // initialize fields for status bar notification
