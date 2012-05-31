@@ -4,6 +4,7 @@ import swp.tuilmenau.carduinodroid.controller.*;
 import android.app.*;
 import android.content.*;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.widget.TextView;
 
 
@@ -17,6 +18,8 @@ public class CarDuinoDroidAppActivity extends Activity
 	Notification notification;
 	Intent notificationIntent;
 	PendingIntent contentIntent;
+	PowerManager powerManager;
+	PowerManager.WakeLock wakelock;
 	
 	
     /* Called when the activity is first created. */
@@ -27,8 +30,10 @@ public class CarDuinoDroidAppActivity extends Activity
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        // initialize fields
+        // initialize controller and wake lock
         controller_Android = new Controller_Android(this);
+        powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        wakelock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, "CarduinoDriod_Full_Wake_Lock");
         
         // create status bar notification
         IPBox = new TextView(this); 
@@ -49,8 +54,7 @@ public class CarDuinoDroidAppActivity extends Activity
         notification.setLatestEventInfo(getApplicationContext(), "CarduinoDroid", "Active", contentIntent);
         //Pass the Notification to the NotificationManager
         notificationManager.notify(1, notification);
-        
-        // test/debug code
+    
       //new Thread(new Runnable()
       //{
 //          public void run() {
@@ -59,50 +63,56 @@ public class CarDuinoDroidAppActivity extends Activity
 //              }
       //  }).start();
 
-      // zu testzwecken. in der finalen version löschen
-      controller_Android.log.write("App und Service erfolgreich gestartet");
-
-      controller_Android.log.write(controller_Android.gps.getGPS());
-
-      if (controller_Android.connection.getMobileAvailable()){
-      	controller_Android.log.write("Mobiles Internet verfügbar.");
-      		if (controller_Android.connection.getMobile())
-      			controller_Android.log.write("Mobiles Internet verbunden.");
-      		else 
-      			controller_Android.log.write("Mobiles Internet nicht verbunden."); 
-      }
-      else
-      	controller_Android.log.write("Mobiles Internet nicht verfügbar.");
-
-      if (controller_Android.connection.getWLANAvailable()){
-      	controller_Android.log.write("WLAN verfügbar.");
-      	if (controller_Android.connection.getWLAN())
-      		controller_Android.log.write("WLAN verbunden.");
-      	else
-      		controller_Android.log.write("WLAN nicht verbunden.");
-      }
-      else 
-      	controller_Android.log.write("WLAN nicht verfügbar.");
-
-      controller_Android.log.write(controller_Android.connection.getLocalWLANIP());
-
-      controller_Android.sound.horn();
-
-      controller_Android.cam.enableFlash();
-      try {
-      		Thread.sleep(2000);
-      	} catch (InterruptedException e) { }
-      controller_Android.cam.disableFlash();
     }   
     
-//    @Override
-//    public void onStart()
-//    {
-//    	super.onStart();
-//        cam = new Cam(this, log);
-//        cam.enableFlash();
-//    }
-//    	
+    @Override
+    public void onStart()
+    {
+    	// start full wake_lock
+    	wakelock.acquire();
+    	// zu testzwecken. in der finalen version löschen
+        controller_Android.log.write("App und Service erfolgreich gestartet");
+
+        controller_Android.log.write(controller_Android.gps.getGPS());
+
+        if (controller_Android.connection.getMobileAvailable()){
+        	controller_Android.log.write("Mobiles Internet verfügbar.");
+        		if (controller_Android.connection.getMobile())
+        			controller_Android.log.write("Mobiles Internet verbunden.");
+        		else 
+        			controller_Android.log.write("Mobiles Internet nicht verbunden."); 
+        }
+        else
+        	controller_Android.log.write("Mobiles Internet nicht verfügbar.");
+
+        if (controller_Android.connection.getWLANAvailable()){
+        	controller_Android.log.write("WLAN verfügbar.");
+        	if (controller_Android.connection.getWLAN())
+        		controller_Android.log.write("WLAN verbunden.");
+        	else
+        		controller_Android.log.write("WLAN nicht verbunden.");
+        }
+        else 
+        	controller_Android.log.write("WLAN nicht verfügbar.");
+
+        controller_Android.log.write(controller_Android.connection.getLocalWLANIP());
+
+        controller_Android.sound.horn();
+
+        controller_Android.cam.enableFlash();
+        try {
+        		Thread.sleep(2000);
+        	} catch (InterruptedException e) { }
+        controller_Android.cam.disableFlash();
+    }
+    
+    @Override
+    public void onDestroy()
+    {
+    	super.onDestroy();
+    	wakelock.release();
+    }
+    	
 }
 
 
