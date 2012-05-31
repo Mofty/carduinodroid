@@ -1,7 +1,6 @@
 package swp.tuilmenau.carduinodroid;
 
 import swp.tuilmenau.carduinodroid.controller.*;
-import swp.tuilmenau.carduinodroid.model.LOG;
 import android.app.*;
 import android.content.*;
 import android.os.Bundle;
