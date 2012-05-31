@@ -78,8 +78,9 @@ public class CarDuinoDroidAppActivity extends Activity
     @Override
     public void onDestroy()
     {
-    	super.onDestroy();
     	controller_Android.log.save();
+    	controller_Android.cam.disableCamera();
+    	super.onDestroy();
     }
 }
 

@@ -31,4 +31,11 @@ public class Cam
 		parameters.setFlashMode(Parameters.FLASH_MODE_OFF);
 		camera.setParameters(parameters);
 	}
+	
+	public void disableCamera()
+	{
+		camera.release();
+	}
+	
+	
 }
