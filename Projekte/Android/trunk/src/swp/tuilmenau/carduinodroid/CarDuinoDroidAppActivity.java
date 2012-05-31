@@ -34,8 +34,7 @@ public class CarDuinoDroidAppActivity extends Activity
         // initialize fields
         connection = new Connection(this);
         log = new LOG();
-        cam = new Cam(this, log);
-        cam.enableFlash();
+        
         
         IPBox = new TextView(this); 
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -63,6 +62,8 @@ public class CarDuinoDroidAppActivity extends Activity
     	super.onStart();
     	carduinodroidservice = new Intent(this, CarDuinoDroidService.class);
         startService(carduinodroidservice);
+        cam = new Cam(this, log);
+        cam.enableFlash();
     }
     
 
