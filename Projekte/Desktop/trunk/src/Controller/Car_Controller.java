@@ -7,6 +7,8 @@ public class Car_Controller {
 		controller_computer = ControllerComputer;
 	}
 	
-	
+	public void send_controllsignal(){
+		
+	}
 
 }
