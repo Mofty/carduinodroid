@@ -2,26 +2,19 @@ package swp.tuilmenau.carduinodroid.controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 
 public class Socket_Controller implements Runnable {
 	
 
 
-	Thread t;
-	Handler handler;
+	Controller_Android controller_Android;
 
-	public Socket_Controller(Handler n_handler) {
-		handler = n_handler;
+	public Socket_Controller(Controller_Android n_controller_Android) {
+		controller_Android = n_controller_Android;
 		Log.v("hauptthread","controller erstellt");
 	}
 
@@ -29,7 +22,6 @@ public class Socket_Controller implements Runnable {
 		ServerSocket socket_controller = null;
 		Socket client = null;
 		BufferedReader stream = null;
-		Message msg = new Message();
 		Log.v("thread controller","thread controller gestartet");
 
 		boolean fail = true;
@@ -68,6 +60,7 @@ public class Socket_Controller implements Runnable {
 
 				message = (String) stream.readLine();
 				Log.v("thread controller", message);
+				controller_Android.log.write(message);
 			}
 				
 				else
