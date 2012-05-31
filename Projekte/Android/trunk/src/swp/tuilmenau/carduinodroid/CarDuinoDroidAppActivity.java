@@ -42,19 +42,6 @@ public class CarDuinoDroidAppActivity extends Activity
         notificationIntent = new Intent(this, CarDuinoDroidAppActivity.class);
         contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
         
-        
-        // write local ip into textbox
-        IPBox = (TextView) findViewById(R.id.textView2); 
-        IPBox.setText(controller_Android.connection.getLocalWLANIP());
-        
-        //define flags for persistent notification by hand
-        //cause Notification.Builder isn't implemented in API lvl 10
-        notification.flags = notification.flags | Notification.FLAG_NO_CLEAR;
-        //Define the notification's message and PendingIntent
-        notification.setLatestEventInfo(getApplicationContext(), "CarduinoDroid", "Active", contentIntent);
-        //Pass the Notification to the NotificationManager
-        notificationManager.notify(1, notification);
-    
       //new Thread(new Runnable()
       //{
 //          public void run() {
@@ -66,10 +53,25 @@ public class CarDuinoDroidAppActivity extends Activity
     }   
     
     @Override
-    public void onStart()
+    public void onResume()
     {
+    	super.onResume();
+    	
     	// start full wake_lock
     	wakelock.acquire();
+    	
+    	// write local ip into textbox
+        IPBox = (TextView) findViewById(R.id.textView2); 
+        IPBox.setText(controller_Android.connection.getLocalWLANIP());
+        
+        //define flags for persistent notification by hand
+        //cause Notification.Builder isn't implemented in API lvl 10
+        notification.flags = notification.flags | Notification.FLAG_NO_CLEAR;
+        //Define the notification's message and PendingIntent
+        notification.setLatestEventInfo(getApplicationContext(), "CarduinoDroid", "Active", contentIntent);
+        //Pass the Notification to the NotificationManager
+        notificationManager.notify(1, notification);
+        
     	// zu testzwecken. in der finalen version löschen
         controller_Android.log.write("App und Service erfolgreich gestartet");
 
@@ -107,10 +109,10 @@ public class CarDuinoDroidAppActivity extends Activity
     }
     
     @Override
-    public void onDestroy()
+    public void onPause()
     {
-    	super.onDestroy();
     	wakelock.release();
+    	super.onPause();
     }
     	
 }
