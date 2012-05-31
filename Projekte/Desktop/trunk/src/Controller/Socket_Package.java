@@ -1,25 +1,50 @@
 package Controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.InputStreamReader;
 import java.net.*;
+
+import Model.Log;
 
 public class Socket_Package implements Runnable{
 	
 	Socket socket_package;
 	Network network;
-	ObjectInputStream packagestream;
+	BufferedReader packagereader;
 	InetSocketAddress port_package;
+	Log log;
 	
 	Socket_Package(Network n_network)
 	{
 		socket_package = new Socket();
 		network = n_network;
+		log = new Log();
 	}
 
-	public void connect(InetSocketAddress n_port_package){
-		port_package = n_port_package;
-	
+	public void connect(InetSocketAddress nport_package)
+	{
+		port_package = nport_package;
+		try {
+			socket_package.connect(port_package);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			/*
+			 * noch überlegen
+			 */
+			System.out.println("fehler beim connecten");
+		}
+		
+		try {
+			packagereader = new BufferedReader(new InputStreamReader(socket_package.getInputStream()));
+		} catch (IOException e) {
+			System.out.println("fehler beim inputstream");
+		}
+		System.out.println("ist connected");
+	}
+		
+
+	public void connect(){
 		try {
 			socket_package.connect(port_package);
 		} catch (IOException e) {
@@ -28,28 +53,10 @@ public class Socket_Package implements Runnable{
 			 * noch überlegen
 			 */
 			e.printStackTrace();
-		}
-		
-		try {
-			packagestream = (ObjectInputStream) socket_package.getInputStream();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}}
-		
-		public void connect(){
-			try {
-				socket_package.connect(port_package);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				/*
-				 * noch überlegen
-				 */
-				e.printStackTrace();
 			}
 			
 			try {
-				packagestream = (ObjectInputStream) socket_package.getInputStream();
+				packagereader = new BufferedReader(new InputStreamReader(socket_package.getInputStream()));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -59,45 +66,28 @@ public class Socket_Package implements Runnable{
 	
 	@Override
 	public void run() {
-		int n = 0;
 		String message;
 		while(socket_package.isConnected())
 		{
 			try {
-				n = packagestream.available();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			if(n>0)
-			{
-				try {
-					message = (String)packagestream.readObject();
-					network.receive_package(message);
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				if(packagereader.ready()){
+				System.out.println("was da zum lesen");
+				message = (String) packagereader.readLine();
+				System.out.println(message);
+				}
+					
+					else
+					{
+						try {
+							Thread.sleep(25);
+						} catch (InterruptedException e) {
+							System.out.println("fehler beim schlafen");
+						}
+					}
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.println("fehler beim lesen");
 				}
 			}
-			else
-			{
-				try {
-					Thread.sleep(25);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
+			log.savelogfile();
 		}
-		connect();
-		network.start_package_thread();
-	}
-
-	public boolean isConnected() {
-		return socket_package.isConnected();
-	}
-
 }
