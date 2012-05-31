@@ -18,6 +18,8 @@
              />
 
     <uses-feature android:required="true" android:name="android.hardware.usb.accessory"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
     
     <application
         android:icon="@drawable/ic_launcher"
