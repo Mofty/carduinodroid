@@ -29,11 +29,12 @@ public class Controller_Android
 		record_sound = new Record_Sound(log);
 		sound = new Sound(context);	
 		
+		final Controller_Android temp = this;
 		new Thread(new Runnable()
         {
         	public void run() 
         	{
-        		Network network = new Network(this);
+        		Network network = new Network(temp);
         	}
         }).start();
 	}
