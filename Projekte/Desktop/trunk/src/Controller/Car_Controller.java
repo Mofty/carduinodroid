@@ -1,9 +1,12 @@
 package Controller;
 
 public class Car_Controller {
-
-	public Car_Controller(Network network) {
-		// TODO Auto-generated constructor stub
+	Controller_Computer controller_computer;
+	
+	public Car_Controller(Controller_Computer ControllerComputer) {
+		controller_computer = ControllerComputer;
 	}
+	
+	
 
 }

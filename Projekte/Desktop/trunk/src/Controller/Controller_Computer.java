@@ -21,8 +21,8 @@ public class Controller_Computer {
 		network=new Network("",packagedata,camera_picture);
 		sound_output=new Sound_Output(this);
 		camera_settings=new Camera_Settings(network);
-		car_controller=new Car_Controller(network);
-		soundrecording=new Soundrecording(network);
+		car_controller=new Car_Controller(this);
+		soundrecording=new Soundrecording(this);
 		
 	}
 
