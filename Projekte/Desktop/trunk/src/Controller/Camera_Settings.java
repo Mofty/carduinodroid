@@ -15,8 +15,8 @@ public class Camera_Settings {
 	}
 	
 	public void send_change_resolution(){
-		String height=null,width=null;
-		if (controller_computer.network.send_camera_settings("2;"+height+";"+width))
+		String setting=null;
+		if (controller_computer.network.send_camera_settings("2;"+setting))
 		{controller_computer.log.writelogfile("Camera settings were sent");}
 		else{controller_computer.log.writelogfile("Camera settings weren't sent");}
 	}
