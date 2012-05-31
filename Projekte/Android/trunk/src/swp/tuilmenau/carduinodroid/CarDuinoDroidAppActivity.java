@@ -30,13 +30,14 @@ public class CarDuinoDroidAppActivity extends Activity
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        // initialize controller and wake lock
+        // initialize fields
         controller_Android = new Controller_Android(this);
+    
         powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         wakelock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, "CarduinoDriod_Full_Wake_Lock");
-        
-        // create status bar notification
         IPBox = new TextView(this); 
+        
+        // initialize fields for status bar notification
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notification = new Notification(R.drawable.ic_launcher, "CarduinoDroid running", System.currentTimeMillis());
         notificationIntent = new Intent(this, CarDuinoDroidAppActivity.class);
