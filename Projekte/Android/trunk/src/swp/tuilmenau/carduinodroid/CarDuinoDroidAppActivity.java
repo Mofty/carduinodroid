@@ -30,11 +30,12 @@ public class CarDuinoDroidAppActivity extends Activity
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        // initialize fields
+        // initialize controller field hosting all other sub classes
         controller_Android = new Controller_Android(this);
-    
+        // initialize fields for wake_lock
         powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         wakelock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, "CarduinoDroid_Full_Wake_Lock");
+        // initialize field for the IP BOX
         IPBox = new TextView(this); 
         
         // initialize fields for status bar notification
