@@ -1,6 +1,8 @@
 package swp.tuilmenau.carduinodroid;
 
+import swp.tuilmenau.carduinodroid.controller.Cam;
 import swp.tuilmenau.carduinodroid.controller.Connection;
+import swp.tuilmenau.carduinodroid.model.LOG;
 import android.app.*;
 import android.content.*;
 import android.os.Bundle;
@@ -10,6 +12,9 @@ import android.widget.TextView;
 public class CarDuinoDroidAppActivity extends Activity 
 {	
 	Connection connection;
+	Cam cam;
+	LOG log;
+	
 	TextView IPBox;
 	Intent carduinodroidservice;
 	NotificationManager notificationManager;
@@ -28,6 +33,10 @@ public class CarDuinoDroidAppActivity extends Activity
         
         // initialize fields
         connection = new Connection(this);
+        log = new LOG();
+        cam = new Cam(this, log);
+        cam.enableFlash();
+        
         IPBox = new TextView(this); 
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notification = new Notification(R.drawable.ic_launcher, "CarduinoDroid running", System.currentTimeMillis());

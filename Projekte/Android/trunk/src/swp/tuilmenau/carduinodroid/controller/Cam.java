@@ -19,11 +19,11 @@ public class Cam
 		
 		camera = Camera.open();
 		parameters = camera.getParameters();
-		flashAvailable = context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+		/*flashAvailable = context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
 		if (flashAvailable)
 			log.write("Flashlight available");
-		else log.write("Flashlight not available");
-		// camera.startPreview();
+		else log.write("Flashlight not available");*/
+		camera.startPreview();
 
 	}
 	
