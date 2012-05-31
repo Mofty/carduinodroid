@@ -28,6 +28,14 @@ public class Controller_Android
 		// network = new Network(this);
 		record_sound = new Record_Sound(log);
 		sound = new Sound(context);	
+		
+		new Thread(new Runnable()
+        {
+        	public void run() 
+        	{
+        		Network network = new Network(this);
+        	}
+        }).start();
 	}
 	
 	public void SendData() 

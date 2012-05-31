@@ -43,15 +43,7 @@ public class CarDuinoDroidAppActivity extends Activity
         notification = new Notification(R.drawable.ic_launcher, "CarduinoDroid running", System.currentTimeMillis());
         notificationIntent = new Intent(this, CarDuinoDroidAppActivity.class);
         contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
-        
-      //new Thread(new Runnable()
-      //{
-//          public void run() {
-//              Looper.prepare();
-//           Network network = new Network(controller_Android);
-//              }
-      //  }).start();
-
+       
     }   
     
     @Override
