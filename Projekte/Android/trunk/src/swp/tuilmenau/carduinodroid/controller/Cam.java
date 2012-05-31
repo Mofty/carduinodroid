@@ -10,20 +10,20 @@ public class Cam
 {
 	Camera camera;
 	Parameters parameters;
-	Context context;
 	
 	LOG log;
 	
-	public Cam(Context CONTEXT, LOG Log)
+	public Cam(Context context, LOG Log)
 	{
 		boolean flashAvailable;
-		context = CONTEXT;
-		camera = Camera.open();     
+		
+		camera = Camera.open();
 		parameters = camera.getParameters();
 		flashAvailable = context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
 		if (flashAvailable)
 			log.write("Flashlight available");
 		else log.write("Flashlight not available");
+		// camera.startPreview();
 
 	}
 	
@@ -31,7 +31,6 @@ public class Cam
 	{
 		parameters.setFlashMode(Parameters.FLASH_MODE_TORCH);
 		camera.setParameters(parameters);
-		// camera.startPreview(); // evtl unnötig
 	}
 	
 	public void disableFlash()
