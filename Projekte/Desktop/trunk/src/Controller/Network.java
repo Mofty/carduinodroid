@@ -26,7 +26,7 @@ public class Network {
 	public Network(String ip, Packagedata n_packagedata, Camera_Picture n_camera_picture)
 	{
 		//socket_picture = new Socket_Picture(this);
-		//socket_package = new Socket_Package(this);
+		socket_package = new Socket_Package(this);
 		socket_controller = new Socket_Controller();
 		camera_picture = n_camera_picture;
 		packagedata = n_packagedata;
@@ -36,7 +36,7 @@ public class Network {
 	public Network(String ip)
 	{
 		//socket_picture = new Socket_Picture(this);
-		//socket_package = new Socket_Package(this);
+		socket_package = new Socket_Package(this);
 		socket_controller = new Socket_Controller();
 		mobilephone_ip = ip;
 	}
@@ -50,13 +50,14 @@ public class Network {
 		try {
 			ip = InetAddress.getByName(mobilephone_ip);
 			InetSocketAddress port_controll = new InetSocketAddress(ip, 12345);
-			//InetSocketAddress port_package = new InetSocketAddress(ip, 12346);
+			InetSocketAddress port_package = new InetSocketAddress(ip, 12346);
 			//InetSocketAddress port_picture = new InetSocketAddress(ip, 12347);
 			socket_controller.connect(port_controll);
 			//socket_picture.connect(port_picture);
-			//socket_package.connect(port_package);
-			t1 = new Thread(socket_picture);
+			socket_package.connect(port_package);
+			//t1 = new Thread(socket_picture);
 			t2 = new Thread(socket_package);
+			t2.start();
 		} catch (UnknownHostException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -92,16 +93,6 @@ public class Network {
 		camera_picture.receive_package(image);
 	}
 
-	public void start_package_thread() {
-		if(socket_package.isConnected())
-		t1 = new Thread(socket_package);
-		else
-		{
-			socket_package.connect();
-			t1 = new Thread(socket_package);
-
-		}
-	}
 
 	public void start_picture_thread() {
 		// TODO Auto-generated method stub
