@@ -24,9 +24,14 @@ public class Controller_Android
 		arduino = new Arduino(context,log);
 		cam = new Cam(context, log);
 		connection = new Connection(context);
-		gps = new GPS(context,/* zu testzwecken. in der finalen version löschen */ log);
+		gps = new GPS(context);
 		record_sound = new Record_Sound(log);
 		sound = new Sound(context);	
+		
+		boolean Mobile;
+		boolean MobileConnected;
+		boolean WLAN;
+		boolean WLANConnected;
 		
 		final Controller_Android temp = this;
 		new Thread(new Runnable()
@@ -36,6 +41,8 @@ public class Controller_Android
         		Network network = new Network(temp);
         	}
         }).start();
+		
+		
 	}
 	
 	public String packData() 
@@ -53,7 +60,7 @@ public class Controller_Android
 		
 		data = data + gps.getGPS() + ";";
 		
-		//kammera information anhängen + string schicken!
+		log.write(data)
 		
 		return data;
 		
