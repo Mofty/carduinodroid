@@ -60,7 +60,7 @@ public class Connection
 		wifiManager = (WifiManager) n_context.getSystemService(Context.WIFI_SERVICE);	
 		context = n_context;
 		connectionLogger = new ConnectionLogger();
-		connectionFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
+		connectionFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
 		context.registerReceiver(connectionLogger, connectionFilter);
 	}
 	
