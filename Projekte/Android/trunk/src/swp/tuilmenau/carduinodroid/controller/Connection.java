@@ -1,5 +1,6 @@
 package swp.tuilmenau.carduinodroid.controller;
 
+import swp.tuilmenau.carduinodroid.model.LOG;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -9,50 +10,33 @@ import android.text.format.Formatter;
 
 public class Connection 
 {
+	LOG log;
+	
 	public class ConnectionLogger extends BroadcastReceiver
 	{
         @Override
         public void onReceive(Context context, Intent intent) 
         {
-        	if (mobile != connection.getMobileAvailable())
-    		{
-    			mobile = connection.getMobileAvailable();
-    			if (mobile)
-    				log.write("Mobile Internet is available");
-    			else 
-    				log.write("Mobile Internet is not available");
-    		}
-    		
-    		if (mobileConnected != connection.getMobile())
-    		{
-    			mobileConnected = connection.getMobile();
-    			if (mobileConnected)
-    				log.write("Mobile Internet is connected");
-    			else 
-    				log.write("Mobile Internet is not connected");
-    		}
-    		
-    		if (wlan != connection.getWLANAvailable())
-    		{
-    			wlan = connection.getWLANAvailable();
-    			if (wlan)
-    				log.write("WLAN is available");
-    			else 
-    				log.write("WLAN is not available");
-    		}
-    		
-    		if (wlanConnected != connection.getWLAN())
-    		{
-    			wlanConnected = connection.getWLAN();
-    			if (wlanConnected)
-    				log.write("WLAN is connected");
-    			else 
-    				log.write("WLAN is not connected");
-    		}
-    	
-        	
-        }
+        	if (getMobileAvailable())
+        		log.write("Mobile Internet is available");
+        	else 
+        		log.write("Mobile Internet is not available");
 
+        	if (getMobile())
+        		log.write("Mobile Internet is connected");
+        	else 
+        		log.write("Mobile Internet is not connected");
+
+        	if (getWLANAvailable())
+        		log.write("WLAN is available");
+        	else 
+        		log.write("WLAN is not available");
+
+        	if (getWLAN())
+        		log.write("WLAN is connected");
+        	else 
+        		log.write("WLAN is not connected");	
+        }
 	}
 	
 	ConnectivityManager connectivityManager;
@@ -60,11 +44,13 @@ public class Connection
  	NetworkInfo mobileInfo;
  	NetworkInfo WLANInfo;
  	WifiInfo wifiInfo;
+ 	Context context;
 	
-	public Connection (Context context)
+	public Connection (Context n_context)
 	{
-		connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-		wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);	
+		connectivityManager = (ConnectivityManager) n_context.getSystemService(Context.CONNECTIVITY_SERVICE);
+		wifiManager = (WifiManager) n_context.getSystemService(Context.WIFI_SERVICE);	
+		context = n_context;
 	}
 	
 	public boolean getMobileAvailable()
