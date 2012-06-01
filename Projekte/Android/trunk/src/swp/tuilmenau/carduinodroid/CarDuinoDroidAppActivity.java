@@ -20,6 +20,7 @@ public class CarDuinoDroidAppActivity extends Activity
 	PendingIntent contentIntent;
 	PowerManager powerManager;
 	PowerManager.WakeLock wakelock;
+	ProgressDialog loadingDialog;
 	
 	
     /* Called when the activity is first created. */
@@ -30,6 +31,7 @@ public class CarDuinoDroidAppActivity extends Activity
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
+        loadingDialog = ProgressDialog.show(this, "Loading", "Please wait...", true);
         // initialize controller field hosting all other sub classes
         controller_Android = new Controller_Android(this);
         // initialize fields for wake_lock
@@ -43,6 +45,8 @@ public class CarDuinoDroidAppActivity extends Activity
         notification = new Notification(R.drawable.ic_launcher, "CarduinoDroid running", System.currentTimeMillis());
         notificationIntent = new Intent(this, CarDuinoDroidAppActivity.class);
         contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+        
+        loadingDialog.dismiss();
        
     }   
     
@@ -62,9 +66,9 @@ public class CarDuinoDroidAppActivity extends Activity
         //cause Notification.Builder isn't implemented in API lvl 10
         notification.flags = notification.flags | Notification.FLAG_NO_CLEAR;
         //Define the notification's message and PendingIntent
-        notification.setLatestEventInfo(getApplicationContext(), "CarduinoDroid", "Active", contentIntent);
+        notification.setLatestEventInfo(getApplicationContext(), "CarduinoDroid", "Pressing Home-Button will close the App !", contentIntent);
         //Pass the Notification to the NotificationManager
-        notificationManager.notify(1, notification);
+        notificationManager.notify(1337, notification);
         
     }
     
@@ -73,6 +77,7 @@ public class CarDuinoDroidAppActivity extends Activity
     {
     	wakelock.release();
     	controller_Android.cam.disableCamera();
+    	finish();
     	super.onPause();
     }
     
@@ -80,6 +85,7 @@ public class CarDuinoDroidAppActivity extends Activity
     public void onDestroy()
     {
     	controller_Android.log.save();
+    	notificationManager.cancel(1337);
     	super.onDestroy();
     }
 }
