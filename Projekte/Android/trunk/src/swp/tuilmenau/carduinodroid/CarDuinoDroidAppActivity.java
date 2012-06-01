@@ -72,6 +72,7 @@ public class CarDuinoDroidAppActivity extends Activity
     public void onPause()
     {
     	wakelock.release();
+    	controller_Android.cam.disableCamera();
     	super.onPause();
     }
     
@@ -79,7 +80,6 @@ public class CarDuinoDroidAppActivity extends Activity
     public void onDestroy()
     {
     	controller_Android.log.save();
-    	controller_Android.cam.disableCamera();
     	super.onDestroy();
     }
 }
