@@ -14,11 +14,7 @@ public class Connection
         @Override
         public void onReceive(Context context, Intent intent) 
         {
-        	// fehler verursachender log teil siehe oben !
-    		// unötig da listener v erendet werden in gps und connection
-    		
-    		
-    		if (mobile != connection.getMobileAvailable())
+        	if (mobile != connection.getMobileAvailable())
     		{
     			mobile = connection.getMobileAvailable();
     			if (mobile)
