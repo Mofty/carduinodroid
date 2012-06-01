@@ -33,14 +33,15 @@ public class Controller_Android
 		record_sound = new Record_Sound(log);
 		sound = new Sound(context);	
 				
-		final Controller_Android temp = this;
-		new Thread(new Runnable()
-        {
+		final Controller_Android temp = this; // <- app schmiert ab wenn log - teil
+		new Thread(new Runnable()			  //    unten einkommentiert wird
+        {									  //    liegt vermutlich an dem final
         	public void run() 
         	{
         		Network network = new Network(temp);
         	}
         }).start();
+		
 		 mobile = connection.getMobileAvailable();
 		 mobileConnected = connection.getMobile();
 		 wlan = connection.getWLANAvailable();
@@ -63,42 +64,44 @@ public class Controller_Android
 		
 		data = data + gps.getGPS() + ";";
 		
-		if (mobile != connection.getMobileAvailable())
-		{
-			mobile = connection.getMobileAvailable();
-			if (mobile)
-				log.write("Mobileinternet is available");
-			else 
-				log.write("Mobileinternet is not available");
-		}
+		// fehler verursachender log teil siehe oben !
 		
-		if (mobileConnected != connection.getMobile())
-		{
-			mobileConnected = connection.getMobile();
-			if (mobileConnected)
-				log.write("Mobileinternet is connected");
-			else 
-				log.write("Mobileinternet is not connected");
-		}
-		
-		if (wlan != connection.getWLANAvailable())
-		{
-			wlan = connection.getWLANAvailable();
-			if (wlan)
-				log.write("WLAN is available");
-			else 
-				log.write("WLAN is not available");
-		}
-		
-		if (wlanConnected != connection.getWLAN())
-		{
-			wlanConnected = connection.getWLAN();
-			if (wlanConnected)
-				log.write("WLAN is connected");
-			else 
-				log.write("WLAN is not connected");
-		}
-		
+//		if (mobile != connection.getMobileAvailable())
+//		{
+//			mobile = connection.getMobileAvailable();
+//			if (mobile)
+//				log.write("Mobile Internet is available");
+//			else 
+//				log.write("Mobile Internet is not available");
+//		}
+//		
+//		if (mobileConnected != connection.getMobile())
+//		{
+//			mobileConnected = connection.getMobile();
+//			if (mobileConnected)
+//				log.write("Mobile Internet is connected");
+//			else 
+//				log.write("Mobile Internet is not connected");
+//		}
+//		
+//		if (wlan != connection.getWLANAvailable())
+//		{
+//			wlan = connection.getWLANAvailable();
+//			if (wlan)
+//				log.write("WLAN is available");
+//			else 
+//				log.write("WLAN is not available");
+//		}
+//		
+//		if (wlanConnected != connection.getWLAN())
+//		{
+//			wlanConnected = connection.getWLAN();
+//			if (wlanConnected)
+//				log.write("WLAN is connected");
+//			else 
+//				log.write("WLAN is not connected");
+//		}
+//		
 		return data;
 		
 	}
