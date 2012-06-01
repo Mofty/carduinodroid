@@ -11,7 +11,7 @@ public class GPS {
 	LocationListener locationListener;
 	double longitude, latitude;
 	
-	public GPS(Context context,/* zu testzwecken. in der finalen version löschen */ final LOG log) 
+	public GPS(Context context) 
 	{
 		// ruft eine Instanz des LocationManagers ab
 		locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
@@ -25,8 +25,6 @@ public class GPS {
 		      // Called when a new location is found by the network location provider.
 		    	latitude = location.getLatitude();
 		    	longitude = location.getLongitude();
-		    	// zu testzwecken. in der finalen version löschen
-		    	log.write(getGPS());
 		    }
 
 		    public void onStatusChanged(String provider, int status, Bundle extras) {}
