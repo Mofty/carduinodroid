@@ -3,6 +3,7 @@ package swp.tuilmenau.carduinodroid.controller;
 import android.content.Context;
 import android.location.*;
 import android.os.Bundle;
+import android.text.format.Time;
 import swp.tuilmenau.carduinodroid.model.LOG;
 
 /* in connection klasse einen connection listener erstellen 
@@ -25,30 +26,34 @@ public class GPS
 		// ruft eine Instanz des LocationManagers ab
 		locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 		
-		// erstellt einen LocationListener der auf ÔøΩnderung der GPS Position reagiert
+		// erstellt einen LocationListener der auf ‰nderung der GPS Position reagiert
 		locationListener = new LocationListener() 
 		{
 		    public void onLocationChanged(Location location) 
 		    {
+		    	Time time;
+		    	time = new Time();
+		    	
 		    	latitude = location.getLatitude();
 		    	longitude = location.getLongitude();
-				log.write("INFO ----- GPS - Erster GPS Fix gefunden um" + location.getTime());
-				//mathemathische √§nderungen an den gps koordinaten wie zu auto steht wenn speed = 0 und/oder long und lat gleich ins lpg schreiben gps info
+		    	time.set(location.getTime());
+				log.write("INFO ----- GPS - GPS Fix gefunden um" + time.hour + time.minute + time.second);
+				//evtl mathemathische ‰nderungen an den gps koordinaten wie zu auto steht wenn speed = 0 und/oder long und lat gleich ins lpg schreiben gps info
 		    }
 
 		    public void onStatusChanged(String provider, int status, Bundle extras) 
 			{
-				// √§nderung der gps daten die status den fahrzeugs beeinflussen ins log schreiben
+				// ‰nderung des gps-status die den status des fahrzeugs beeinflussen ins log schreiben
 			}
 
 		    public void onProviderEnabled(String provider) 
 			{
-				log.write("WARNUNG -- GPS - GPS Empf√§nger wurde deaktiviert");
+				log.write("WARNUNG -- GPS - GPS Empf‰nger wurde aktiviert");
 			}
 
 		    public void onProviderDisabled(String provider) 
 			{
-				log.write("INFO ----- GPS - GPS Empf√§nger wurde aktiviert");	
+				log.write("INFO ----- GPS - GPS Empf‰nger wurde aktiviert");	
 			}
 				
 		};	
