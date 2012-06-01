@@ -29,7 +29,7 @@ public class Controller_Android
 		arduino = new Arduino(context,log);
 		cam = new Cam(context, log);
 		connection = new Connection(context);
-		gps = new GPS(context);
+		gps = new GPS(context, log);
 		record_sound = new Record_Sound(log);
 		sound = new Sound(context);	
 				
@@ -65,6 +65,8 @@ public class Controller_Android
 		data = data + gps.getGPS() + ";";
 		
 		// fehler verursachender log teil siehe oben !
+		// unötig da listener v erendet werden in gps und connection
+		
 		/*
 		if (mobile != connection.getMobileAvailable())
 		{
