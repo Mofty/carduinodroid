@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.*;
 import android.net.wifi.*;
 import android.text.format.Formatter;
+import android.content.IntentFilter;
 
 public class Connection 
 {
@@ -14,6 +15,11 @@ public class Connection
 	
 	public class ConnectionLogger extends BroadcastReceiver
 	{
+		public ConnectionLogger()
+		{
+			super();
+		}
+		
         @Override
         public void onReceive(Context context, Intent intent) 
         {
@@ -45,12 +51,17 @@ public class Connection
  	NetworkInfo WLANInfo;
  	WifiInfo wifiInfo;
  	Context context;
+ 	ConnectionLogger connectionLogger;
+ 	IntentFilter connectionFilter;
 	
 	public Connection (Context n_context)
 	{
 		connectivityManager = (ConnectivityManager) n_context.getSystemService(Context.CONNECTIVITY_SERVICE);
 		wifiManager = (WifiManager) n_context.getSystemService(Context.WIFI_SERVICE);	
 		context = n_context;
+		connectionLogger = new ConnectionLogger();
+		connectionFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
+		context.registerReceiver(connectionLogger, connectionFilter);
 	}
 	
 	public boolean getMobileAvailable()
