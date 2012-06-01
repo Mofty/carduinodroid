@@ -15,10 +15,10 @@ public class Controller_Android
 	public Record_Sound record_sound;
 	public Sound sound;
 	
-	boolean Mobile;
-	boolean MobileConnected;
-	boolean WLAN;
-	boolean WLANConnected;
+	boolean mobile;
+	boolean mobileConnected;
+	boolean wlan;
+	boolean wlanConnected;
 	
 	int framerate;
 	
@@ -41,10 +41,10 @@ public class Controller_Android
         		Network network = new Network(temp);
         	}
         }).start();
-		 Mobile = connection.getMobileAvailable();
-		 MobileConnected = connection.getMobile();
-		 WLAN = connection.getWLANAvailable();
-		 WLANConnected = connection.getWLAN();
+		 mobile = connection.getMobileAvailable();
+		 mobileConnected = connection.getMobile();
+		 wlan = connection.getWLANAvailable();
+		 wlanConnected = connection.getWLAN();
 		
 	}
 	
@@ -63,33 +63,37 @@ public class Controller_Android
 		
 		data = data + gps.getGPS() + ";";
 		
-		if (Mobile != connection.getMobileAvailable()){
-			Mobile = connection.getMobileAvailable();
-			if (Mobile)
+		if (mobile != connection.getMobileAvailable())
+		{
+			mobile = connection.getMobileAvailable();
+			if (mobile)
 				log.write("Mobileinternet is available");
 			else 
 				log.write("Mobileinternet is not available");
 		}
 		
-		if (MobileConnected != connection.getMobile()){
-			MobileConnected = connection.getMobile();
-			if (MobileConnected)
+		if (mobileConnected != connection.getMobile())
+		{
+			mobileConnected = connection.getMobile();
+			if (mobileConnected)
 				log.write("Mobileinternet is connected");
 			else 
 				log.write("Mobileinternet is not connected");
 		}
 		
-		if (WLAN != connection.getWLANAvailable()){
-			WLAN = connection.getWLANAvailable();
-			if (WLAN)
+		if (wlan != connection.getWLANAvailable())
+		{
+			wlan = connection.getWLANAvailable();
+			if (wlan)
 				log.write("WLAN is available");
 			else 
 				log.write("WLAN is not available");
 		}
 		
-		if (WLANConnected != connection.getWLAN()){
-			WLANConnected = connection.getWLAN();
-			if (WLANConnected)
+		if (wlanConnected != connection.getWLAN())
+		{
+			wlanConnected = connection.getWLAN();
+			if (wlanConnected)
 				log.write("WLAN is connected");
 			else 
 				log.write("WLAN is not connected");
