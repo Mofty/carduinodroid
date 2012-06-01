@@ -6,12 +6,6 @@ import android.os.Bundle;
 import android.text.format.Time;
 import swp.tuilmenau.carduinodroid.model.LOG;
 
-/* in connection klasse einen connection listener erstellen 
- *,der ins log infos und warnungen schreibt, und registrieren
- * ähnlich zu diesem
- * ergo log-teil in controller_Android.packdata() rausnehmen
- */
-
 public class GPS 
 {
 	LOG log;
