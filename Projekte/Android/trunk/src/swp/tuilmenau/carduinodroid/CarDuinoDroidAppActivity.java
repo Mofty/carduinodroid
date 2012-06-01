@@ -20,7 +20,6 @@ public class CarDuinoDroidAppActivity extends Activity
 	PendingIntent contentIntent;
 	PowerManager powerManager;
 	PowerManager.WakeLock wakelock;
-	ProgressDialog loadingDialog;
 	
 	
     /* Called when the activity is first created. */
@@ -31,7 +30,6 @@ public class CarDuinoDroidAppActivity extends Activity
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        loadingDialog = ProgressDialog.show(this, "Loading", "Please wait...", true);
         // initialize controller field hosting all other sub classes
         controller_Android = new Controller_Android(this);
         // initialize fields for wake_lock
@@ -44,10 +42,7 @@ public class CarDuinoDroidAppActivity extends Activity
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notification = new Notification(R.drawable.ic_launcher, "CarduinoDroid running", System.currentTimeMillis());
         notificationIntent = new Intent(this, CarDuinoDroidAppActivity.class);
-        contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
-        
-        loadingDialog.dismiss();
-       
+        contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0); 
     }   
     
     @Override
