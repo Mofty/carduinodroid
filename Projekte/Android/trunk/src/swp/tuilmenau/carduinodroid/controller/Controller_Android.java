@@ -15,6 +15,11 @@ public class Controller_Android
 	public Record_Sound record_sound;
 	public Sound sound;
 	
+	boolean Mobile;
+	boolean MobileConnected;
+	boolean WLAN;
+	boolean WLANConnected;
+	
 	int framerate;
 	
 	public Controller_Android(Context context) 
@@ -27,12 +32,7 @@ public class Controller_Android
 		gps = new GPS(context);
 		record_sound = new Record_Sound(log);
 		sound = new Sound(context);	
-		
-		boolean Mobile;
-		boolean MobileConnected;
-		boolean WLAN;
-		boolean WLANConnected;
-		
+				
 		final Controller_Android temp = this;
 		new Thread(new Runnable()
         {
@@ -41,7 +41,10 @@ public class Controller_Android
         		Network network = new Network(temp);
         	}
         }).start();
-		
+		 Mobile = connection.getMobileAvailable();
+		 MobileConnected = connection.getMobile();
+		 WLAN = connection.getWLANAvailable();
+		 WLANConnected = connection.getWLAN();
 		
 	}
 	
@@ -60,7 +63,7 @@ public class Controller_Android
 		
 		data = data + gps.getGPS() + ";";
 		
-		log.write(data)
+		
 		
 		return data;
 		
