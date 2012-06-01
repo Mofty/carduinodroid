@@ -63,7 +63,37 @@ public class Controller_Android
 		
 		data = data + gps.getGPS() + ";";
 		
+		if (Mobile != connection.getMobileAvailable()){
+			Mobile = connection.getMobileAvailable();
+			if (Mobile)
+				log.write("Mobileinternet is available");
+			else 
+				log.write("Mobileinternet is not available");
+		}
 		
+		if (MobileConnected != connection.getMobile()){
+			MobileConnected = connection.getMobile();
+			if (MobileConnected)
+				log.write("Mobileinternet is connected");
+			else 
+				log.write("Mobileinternet is not connected");
+		}
+		
+		if (WLAN != connection.getWLANAvailable()){
+			WLAN = connection.getWLANAvailable();
+			if (WLAN)
+				log.write("WLAN is available");
+			else 
+				log.write("WLAN is not available");
+		}
+		
+		if (WLANConnected != connection.getWLAN()){
+			WLANConnected = connection.getWLAN();
+			if (WLANConnected)
+				log.write("WLAN is connected");
+			else 
+				log.write("WLAN is not connected");
+		}
 		
 		return data;
 		
