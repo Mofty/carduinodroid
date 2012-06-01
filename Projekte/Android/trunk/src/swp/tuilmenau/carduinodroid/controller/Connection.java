@@ -1,12 +1,25 @@
 package swp.tuilmenau.carduinodroid.controller;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
 import android.net.*;
 import android.net.wifi.*;
 import android.text.format.Formatter;
 
 public class Connection 
 {
+	public class ConnectionLogger extends BroadcastReceiver
+	{
+        @Override
+        public void onReceive(Context context, Intent intent) 
+        {
+            
+        }
+
+	}
+
+	
 	ConnectivityManager connectivityManager;
 	WifiManager wifiManager;
  	NetworkInfo mobileInfo;
