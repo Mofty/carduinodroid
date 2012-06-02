@@ -19,6 +19,11 @@ public class Connection
 	
 	public class ConnectionLogger extends BroadcastReceiver
 	{
+		public ConnectionLogger()
+		{
+			super();
+		}
+		
 		@Override
         public void onReceive(Context context, Intent intent) 
         {

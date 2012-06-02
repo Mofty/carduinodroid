@@ -3,6 +3,7 @@ package swp.tuilmenau.carduinodroid;
 import swp.tuilmenau.carduinodroid.controller.*;
 import android.app.*;
 import android.content.*;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.widget.TextView;
@@ -20,6 +21,8 @@ public class CarDuinoDroidAppActivity extends Activity
 	PendingIntent contentIntent;
 	PowerManager powerManager;
 	PowerManager.WakeLock wakelock;
+	Connection.ConnectionLogger connectionLogger;
+	IntentFilter connectivityFilter;
 	
 	
     /* Called when the activity is first created. */
@@ -43,6 +46,10 @@ public class CarDuinoDroidAppActivity extends Activity
         notification = new Notification(R.drawable.ic_launcher, "CarduinoDroid running", System.currentTimeMillis());
         notificationIntent = new Intent(this, CarDuinoDroidAppActivity.class);
         contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0); 
+        
+        // craete the connectionlogger
+        connectionLogger = controller_Android.connection.new ConnectionLogger();
+        connectivityFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
     }   
     
     @Override
@@ -64,6 +71,9 @@ public class CarDuinoDroidAppActivity extends Activity
         notification.setLatestEventInfo(getApplicationContext(), "CarduinoDroid", "Pressing Home-Button will close the App !", contentIntent);
         //Pass the Notification to the NotificationManager
         notificationManager.notify(1337, notification);
+        
+        //register the connectionlogger
+        registerReceiver(connectionLogger, connectivityFilter);
         
     }
     
