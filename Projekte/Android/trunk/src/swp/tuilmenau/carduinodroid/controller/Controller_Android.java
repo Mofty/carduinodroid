@@ -42,10 +42,10 @@ public class Controller_Android
         	}
         }).start();
 		
-		 mobile = connection.getMobileAvailable();
+		 /* mobile = connection.getMobileAvailable();
 		 mobileConnected = connection.getMobile();
 		 wlan = connection.getWLANAvailable();
-		 wlanConnected = connection.getWLAN();
+		 wlanConnected = connection.getWLAN(); */
 		
 	}
 	
