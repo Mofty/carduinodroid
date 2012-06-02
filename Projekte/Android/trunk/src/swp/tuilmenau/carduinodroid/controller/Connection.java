@@ -1,5 +1,9 @@
 package swp.tuilmenau.carduinodroid.controller;
 
+/* momentan nicht lauffähig
+ * irgendwas ist mit dem connectionlogger kaputt...
+ */
+
 import swp.tuilmenau.carduinodroid.model.LOG;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -60,8 +64,6 @@ public class Connection
 		wifiManager = (WifiManager) n_context.getSystemService(Context.WIFI_SERVICE);	
 		context = n_context;
 		connectionLogger = new ConnectionLogger();
-		connectionFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-		context.registerReceiver(connectionLogger, connectionFilter);
 	}
 	
 	public boolean getMobileAvailable()
