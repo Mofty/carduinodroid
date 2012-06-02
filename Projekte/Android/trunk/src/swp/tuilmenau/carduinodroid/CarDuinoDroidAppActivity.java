@@ -3,7 +3,6 @@ package swp.tuilmenau.carduinodroid;
 import swp.tuilmenau.carduinodroid.controller.*;
 import android.app.*;
 import android.content.*;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.widget.TextView;
