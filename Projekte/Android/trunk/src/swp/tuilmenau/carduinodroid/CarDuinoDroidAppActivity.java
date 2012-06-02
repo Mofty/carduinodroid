@@ -20,9 +20,6 @@ public class CarDuinoDroidAppActivity extends Activity
 	PendingIntent contentIntent;
 	PowerManager powerManager;
 	PowerManager.WakeLock wakelock;
-	Connection.ConnectionLogger connectionLogger;
-	IntentFilter connectivityFilter;
-	
 	
     /* Called when the activity is first created. */
     @Override
