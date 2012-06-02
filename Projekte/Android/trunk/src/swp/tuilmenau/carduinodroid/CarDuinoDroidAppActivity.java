@@ -51,10 +51,6 @@ public class CarDuinoDroidAppActivity extends Activity
     	// start full wake_lock
     	wakelock.acquire();
     	
-    	// write local ip into textbox
-        IPBox = (TextView) findViewById(R.id.textView2); 
-        IPBox.setText(controller_Android.connection.getLocalWLANIP());
-        
         //define flags for persistent notification by hand
         //cause Notification.Builder isn't implemented in API lvl 10
         notification.flags = notification.flags | Notification.FLAG_NO_CLEAR;
