@@ -1,6 +1,6 @@
 /*
  * beim wechsel in landscape mode (handy quer) beendet sich die app
- * liegt iwo inon resume der fehler evtl das beenden durch finish()
+ * liegt iwo in onResume der fehler evtl das beenden durch finish()
  * in onPause schmeissen 
  */
 
