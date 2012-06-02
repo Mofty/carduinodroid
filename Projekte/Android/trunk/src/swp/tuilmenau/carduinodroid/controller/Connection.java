@@ -4,11 +4,14 @@ package swp.tuilmenau.carduinodroid.controller;
  * irgendwas ist mit dem connectionlogger kaputt...
  */
 
+import swp.tuilmenau.carduinodroid.R;
 import swp.tuilmenau.carduinodroid.model.LOG;
+import android.app.Activity;
 import android.content.*;
 import android.net.*;
 import android.net.wifi.*;
 import android.text.format.Formatter;
+import android.widget.TextView;
 
 public class Connection 
 {
@@ -16,9 +19,14 @@ public class Connection
 	
 	public class ConnectionLogger extends BroadcastReceiver
 	{
-		public ConnectionLogger()
+		
+		private TextView IPBox;
+		Activity activity;
+
+		public ConnectionLogger(Activity n_activity)
 		{
 			super();
+			activity = n_activity;	
 		}
 		
 		@Override
@@ -42,7 +50,12 @@ public class Connection
 					log.write("WLAN is not available");
 
 				if (getWLAN())
+				{
 					log.write("WLAN is connected");
+					IPBox = (TextView) activity.findViewById(R.id.textView2); 
+			        IPBox.setText(getLocalWLANIP());
+			        
+				}
 				else 
 					log.write("WLAN is not connected");
 			}
@@ -57,15 +70,15 @@ public class Connection
  	ConnectionLogger connectionLogger;
  	IntentFilter connectivityFilter;
 	
-	public Connection (Context context, LOG n_log)
+	public Connection (Activity activity, LOG n_log)
 	{
-		connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-		wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);	
+		connectivityManager = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
+		wifiManager = (WifiManager) activity.getSystemService(Context.WIFI_SERVICE);	
 		log = n_log;
 		//create and register the connectionLogger
-		connectionLogger = new ConnectionLogger();
+		connectionLogger = new ConnectionLogger(activity);
 		connectivityFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-		context.registerReceiver(connectionLogger, connectivityFilter);
+		activity.registerReceiver(connectionLogger, connectivityFilter);
 	}
 	
 	public boolean getMobileAvailable()

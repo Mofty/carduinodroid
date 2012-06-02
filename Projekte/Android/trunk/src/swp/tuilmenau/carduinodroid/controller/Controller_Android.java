@@ -1,5 +1,6 @@
 package swp.tuilmenau.carduinodroid.controller;
 
+import android.app.Activity;
 import android.content.Context;
 import swp.tuilmenau.carduinodroid.model.*;
 
@@ -22,16 +23,16 @@ public class Controller_Android
 	
 	int framerate;
 	
-	public Controller_Android(Context context) 
+	public Controller_Android(Activity activity) 
 	{
 		log = new LOG();
 		
-		arduino = new Arduino(context,log);
-		cam = new Cam(context, log);
-		connection = new Connection(context, log);
-		gps = new GPS(context, log);
+		arduino = new Arduino(activity, log);
+		cam = new Cam(activity, log);
+		connection = new Connection(activity, log);
+		gps = new GPS(activity, log);
 		record_sound = new Record_Sound(log);
-		sound = new Sound(context);	
+		sound = new Sound(activity);	
 				
 		final Controller_Android temp = this; // <- app schmiert ab wenn log - teil
 		new Thread(new Runnable()			  //    unten einkommentiert wird
