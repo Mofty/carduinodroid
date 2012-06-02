@@ -34,7 +34,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
+<!-- kann raus glaub ich
             <receiver
                 android:name="swp.tuilmenau.carduinodroid.Connection.ConnectionLogger"
                 android:label="ConnectionLogger" >
@@ -42,7 +42,7 @@
                     <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
                 </intent-filter>
             </receiver>
-            
+  -->          
         </activity>
 	</application>
 

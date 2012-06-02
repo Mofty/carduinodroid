@@ -46,10 +46,6 @@ public class CarDuinoDroidAppActivity extends Activity
         notification = new Notification(R.drawable.ic_launcher, "CarduinoDroid running", System.currentTimeMillis());
         notificationIntent = new Intent(this, CarDuinoDroidAppActivity.class);
         contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0); 
-        
-        // craete the connectionlogger
-        connectionLogger = controller_Android.connection.new ConnectionLogger();
-        connectivityFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
     }   
     
     @Override
@@ -71,10 +67,6 @@ public class CarDuinoDroidAppActivity extends Activity
         notification.setLatestEventInfo(getApplicationContext(), "CarduinoDroid", "Pressing Home-Button will close the App !", contentIntent);
         //Pass the Notification to the NotificationManager
         notificationManager.notify(1337, notification);
-        
-        //register the connectionlogger
-        registerReceiver(connectionLogger, connectivityFilter);
-        
     }
     
     @Override

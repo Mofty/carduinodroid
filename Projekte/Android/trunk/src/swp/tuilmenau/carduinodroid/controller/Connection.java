@@ -5,13 +5,10 @@ package swp.tuilmenau.carduinodroid.controller;
  */
 
 import swp.tuilmenau.carduinodroid.model.LOG;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
+import android.content.*;
 import android.net.*;
 import android.net.wifi.*;
 import android.text.format.Formatter;
-import android.content.IntentFilter;
 
 public class Connection 
 {
@@ -58,13 +55,17 @@ public class Connection
  	NetworkInfo WLANInfo;
  	WifiInfo wifiInfo;
  	ConnectionLogger connectionLogger;
- 	IntentFilter connectionFilter;
+ 	IntentFilter connectivityFilter;
 	
 	public Connection (Context context, LOG n_log)
 	{
 		connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 		wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);	
 		log = n_log;
+		//create and register the connectionLogger
+		connectionLogger = new ConnectionLogger();
+		connectivityFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+		context.registerReceiver(connectionLogger, connectivityFilter);
 	}
 	
 	public boolean getMobileAvailable()
