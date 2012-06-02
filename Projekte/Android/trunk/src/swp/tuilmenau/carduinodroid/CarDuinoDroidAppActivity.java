@@ -77,8 +77,8 @@ public class CarDuinoDroidAppActivity extends Activity
     @Override
     public void onStop()
     {
-    	super.onStop();
     	finish();
+    	super.onStop();
     }
     
     @Override
