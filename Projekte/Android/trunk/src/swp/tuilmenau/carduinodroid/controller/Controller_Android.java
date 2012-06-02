@@ -1,7 +1,6 @@
 package swp.tuilmenau.carduinodroid.controller;
 
 import android.app.Activity;
-import android.content.Context;
 import swp.tuilmenau.carduinodroid.model.*;
 
 public class Controller_Android 
@@ -34,12 +33,13 @@ public class Controller_Android
 		record_sound = new Record_Sound(log);
 		sound = new Sound(activity);	
 				
-		final Controller_Android temp = this; // <- app schmiert ab wenn log - teil
-		new Thread(new Runnable()			  //    unten einkommentiert wird
-        {									  //    liegt vermutlich an dem final
+		final Controller_Android temp = this;
+		new Thread(new Runnable()
+        {
         	public void run() 
         	{
-        		Network network = new Network(temp);
+        		@SuppressWarnings("unused")
+				Network network = new Network(temp);
         	}
         }).start();
 	}
