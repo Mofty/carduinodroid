@@ -1,3 +1,9 @@
+/*
+ * beim wechsel in landscape mode (handy quer) beendet sich die app
+ * liegt iwo inon resume der fehler evtl das beenden durch finish()
+ * in onPause schmeissen 
+ */
+
 package swp.tuilmenau.carduinodroid;
 
 import swp.tuilmenau.carduinodroid.controller.*;
@@ -65,8 +71,14 @@ public class CarDuinoDroidAppActivity extends Activity
     {
     	wakelock.release();
     	controller_Android.cam.disableCamera();
-    	finish();
     	super.onPause();
+    }
+
+    @Override
+    public void onStop()
+    {
+    	super.onPause();
+    	finish();
     }
     
     @Override
