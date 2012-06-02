@@ -28,13 +28,15 @@ public class LOG
 		file = new File(logpath,"LOG_"+time.month+time.monthDay+"_"+time.hour+time.minute+time.second+".txt");
 		try {
 				file.createNewFile();
-			} catch (IOException e) { e.printStackTrace(); }
+			} catch (IOException e) { }
 		file.canWrite();
 		file.canRead();
 		// erstellt den BufferedWriter zum schreiben von strings in die datei
 		try {
 				buffwrite = new BufferedWriter(new FileWriter(file));
-			} catch (IOException e) { e.printStackTrace(); }
+			} catch (IOException e) { }
+		
+		write("App gestartet");
 	}
 	
 	public synchronized void write(String line) 
@@ -49,14 +51,16 @@ public class LOG
 				buffwrite.write(line,0,line.length());
 				buffwrite.newLine();
 				buffwrite.flush();
-			} catch (IOException e) { e.printStackTrace(); }
+			} catch (IOException e) { }
 	}
 	
-	public void save() {
+	public void save() 
+	{
+		write("App beendet");
 		// speichert und schliesst die datei
 		try {
 				buffwrite.flush();
 				buffwrite.close();
-			} catch (IOException e) { e.printStackTrace(); }	
+			} catch (IOException e) { }	
 	}
 }

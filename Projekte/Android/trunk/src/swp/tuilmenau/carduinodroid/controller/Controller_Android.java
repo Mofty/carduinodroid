@@ -41,12 +41,6 @@ public class Controller_Android
         		Network network = new Network(temp);
         	}
         }).start();
-		
-		 /* mobile = connection.getMobileAvailable();
-		 mobileConnected = connection.getMobile();
-		 wlan = connection.getWLANAvailable();
-		 wlanConnected = connection.getWLAN(); */
-		
 	}
 	
 	public String packData() 
@@ -63,47 +57,7 @@ public class Controller_Android
 							 			else data = data + 0 + ";";
 		
 		data = data + gps.getGPS() + ";";
-		
-		// fehler verursachender log teil siehe oben !
-		// unötig da listener v erendet werden in gps und connection
-		
-		/*
-		if (mobile != connection.getMobileAvailable())
-		{
-			mobile = connection.getMobileAvailable();
-			if (mobile)
-				log.write("Mobile Internet is available");
-			else 
-				log.write("Mobile Internet is not available");
-		}
-		
-		if (mobileConnected != connection.getMobile())
-		{
-			mobileConnected = connection.getMobile();
-			if (mobileConnected)
-				log.write("Mobile Internet is connected");
-			else 
-				log.write("Mobile Internet is not connected");
-		}
-		
-		if (wlan != connection.getWLANAvailable())
-		{
-			wlan = connection.getWLANAvailable();
-			if (wlan)
-				log.write("WLAN is available");
-			else 
-				log.write("WLAN is not available");
-		}
-		
-		if (wlanConnected != connection.getWLAN())
-		{
-			wlanConnected = connection.getWLAN();
-			if (wlanConnected)
-				log.write("WLAN is connected");
-			else 
-				log.write("WLAN is not connected");
-		} */
-		
+			
 		return data;
 		
 	}
