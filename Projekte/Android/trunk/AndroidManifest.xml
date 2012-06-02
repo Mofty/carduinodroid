@@ -34,6 +34,15 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <receiver
+                android:name="swp.tuilmenau.carduinodroid.Connection.ConnectionLogger"
+                android:label="ConnectionLogger" >
+                <intent-filter>
+                    <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                </intent-filter>
+            </receiver>
+            
         </activity>
 	</application>
 

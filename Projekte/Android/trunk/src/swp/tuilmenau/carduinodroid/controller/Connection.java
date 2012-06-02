@@ -15,37 +15,35 @@ import android.content.IntentFilter;
 
 public class Connection 
 {
-	LOG log;
+	LOG log = null;
 	
 	public class ConnectionLogger extends BroadcastReceiver
 	{
-		public ConnectionLogger()
-		{
-			super();
-		}
-		
-        @Override
+		@Override
         public void onReceive(Context context, Intent intent) 
         {
-        	if (getMobileAvailable())
-        		log.write("Mobile Internet is available");
-        	else 
-        		log.write("Mobile Internet is not available");
+			if (log != null)
+			{	
+				if (getMobileAvailable())
+					log.write("Mobile Internet is available");
+				else 
+					log.write("Mobile Internet is not available");
 
-        	if (getMobile())
-        		log.write("Mobile Internet is connected");
-        	else 
-        		log.write("Mobile Internet is not connected");
+				if (getMobile())
+					log.write("Mobile Internet is connected");
+				else 
+					log.write("Mobile Internet is not connected");
 
-        	if (getWLANAvailable())
-        		log.write("WLAN is available");
-        	else 
-        		log.write("WLAN is not available");
+				if (getWLANAvailable())
+					log.write("WLAN is available");
+				else 
+					log.write("WLAN is not available");
 
-        	if (getWLAN())
-        		log.write("WLAN is connected");
-        	else 
-        		log.write("WLAN is not connected");	
+				if (getWLAN())
+					log.write("WLAN is connected");
+				else 
+					log.write("WLAN is not connected");
+			}
         }
 	}
 	
@@ -54,16 +52,14 @@ public class Connection
  	NetworkInfo mobileInfo;
  	NetworkInfo WLANInfo;
  	WifiInfo wifiInfo;
- 	Context context;
  	ConnectionLogger connectionLogger;
  	IntentFilter connectionFilter;
 	
-	public Connection (Context n_context)
+	public Connection (Context context, LOG n_log)
 	{
-		connectivityManager = (ConnectivityManager) n_context.getSystemService(Context.CONNECTIVITY_SERVICE);
-		wifiManager = (WifiManager) n_context.getSystemService(Context.WIFI_SERVICE);	
-		context = n_context;
-		connectionLogger = new ConnectionLogger();
+		connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+		wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);	
+		log = n_log;
 	}
 	
 	public boolean getMobileAvailable()
