@@ -25,7 +25,7 @@ public class LOG
 		// erstellt datei mit schreibrechten
 		path = new File(logpath);
 		path.mkdirs();
-		file = new File(logpath,"LOG_"+time.month+time.monthDay+"_"+time.hour+time.minute+time.second+".txt");
+		file = new File(logpath,"LOG_"+(time.month+1)+time.monthDay+"_"+time.hour+time.minute+time.second+".txt");
 		try {
 				file.createNewFile();
 			} catch (IOException e) { }
