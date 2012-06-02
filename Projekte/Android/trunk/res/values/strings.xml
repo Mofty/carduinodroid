@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">CarDuinoDroid App</string>
-    <string name="LocalIP">none</string>
+    <string name="LocalIP">no local IP available</string>
     <string name="IP_title">IP Adresse</string>
     
 </resources>
