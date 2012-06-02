@@ -28,7 +28,7 @@ public class Controller_Android
 		
 		arduino = new Arduino(context,log);
 		cam = new Cam(context, log);
-		connection = new Connection(context);
+		connection = new Connection(context, log);
 		gps = new GPS(context, log);
 		record_sound = new Record_Sound(log);
 		sound = new Sound(context);	
