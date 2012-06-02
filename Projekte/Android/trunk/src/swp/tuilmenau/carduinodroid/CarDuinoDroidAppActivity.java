@@ -13,7 +13,6 @@ public class CarDuinoDroidAppActivity extends Activity
 	Controller_Android controller_Android;
 	
 	TextView IPBox;
-	Intent carduinodroidservice;
 	NotificationManager notificationManager;
 	Notification notification;
 	Intent notificationIntent;
