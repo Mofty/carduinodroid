@@ -1,9 +1,5 @@
 package swp.tuilmenau.carduinodroid.controller;
 
-/* momentan nicht lauffähig
- * irgendwas ist mit dem connectionlogger kaputt...
- */
-
 import swp.tuilmenau.carduinodroid.R;
 import swp.tuilmenau.carduinodroid.model.LOG;
 import android.app.Activity;
