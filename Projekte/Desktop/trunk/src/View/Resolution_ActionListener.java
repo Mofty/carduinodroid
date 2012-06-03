@@ -13,7 +13,7 @@ public class Resolution_ActionListener implements ActionListener{
 	{controller_Computer = controllercomputer;}
 	
 	public void actionPerformed(ActionEvent e) {
-		
+		//Itemindex übergeben durch GUI_Computer
 		controller_Computer.camera_settings.send_change_resolution("");
 		log.writelogfile("Resolution has been changed.");
 		

@@ -11,7 +11,7 @@ public class Map_ActionListener implements ActionListener{
 	{controller_Computer = controllercomputer;}
 	
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		//Noch fehlend durch Sven seinen Teil
 		
 	}
 
