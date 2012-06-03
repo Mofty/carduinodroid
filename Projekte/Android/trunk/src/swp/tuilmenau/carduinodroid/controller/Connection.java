@@ -15,14 +15,14 @@ public class Connection
 	
 	public class ConnectionLogger extends BroadcastReceiver
 	{
-		private TextView IPBox;
+		private TextView ipBox;
 		private Activity activity;
 
 		public ConnectionLogger(Activity n_activity)
 		{
 			super();
 			activity = n_activity;	
-			IPBox = new TextView(activity);
+			ipBox = new TextView(activity);
 		}
 		
 		@Override
@@ -42,8 +42,8 @@ public class Connection
 				if (getWLAN())
 				{
 					log.write("WLAN is connected");
-					IPBox = (TextView) activity.findViewById(R.id.textView2); 
-			        IPBox.setText(getLocalWLANIP());
+					ipBox = (TextView) activity.findViewById(R.id.textView2); 
+			        ipBox.setText(getLocalWLANIP());
 				}
 				else log.write("WLAN is not connected");
 			}
@@ -54,15 +54,14 @@ public class Connection
 	private WifiManager wifiManager;
 	private NetworkInfo mobileInfo;
 	private NetworkInfo WLANInfo;
-	private WifiInfo wifiInfo;
 	private ConnectionLogger connectionLogger;
 	private IntentFilter connectivityFilter;
 	
 	public Connection (Activity activity, LOG n_log)
 	{
+		log = n_log;
 		connectivityManager = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
 		wifiManager = (WifiManager) activity.getSystemService(Context.WIFI_SERVICE);	
-		log = n_log;
 		//create and register the connectionLogger
 		connectionLogger = new ConnectionLogger(activity);
 		connectivityFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
@@ -95,10 +94,13 @@ public class Connection
 	
 	public String getLocalWLANIP()
 	{
+		int ipAddress;
+		WifiInfo wifiInfo;
+		
 		if (getWLANAvailable())
 		{	
 			wifiInfo = wifiManager.getConnectionInfo();
-			int ipAddress = wifiInfo.getIpAddress(); 
+			ipAddress = wifiInfo.getIpAddress(); 
 			return Formatter.formatIpAddress(ipAddress);
 		} else return null;
 			

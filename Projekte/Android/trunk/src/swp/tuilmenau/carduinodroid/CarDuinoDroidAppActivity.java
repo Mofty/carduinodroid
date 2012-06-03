@@ -9,6 +9,7 @@ package swp.tuilmenau.carduinodroid;
 import swp.tuilmenau.carduinodroid.controller.*;
 import android.app.*;
 import android.content.*;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.PowerManager;
 
@@ -31,6 +32,8 @@ public class CarDuinoDroidAppActivity extends Activity
     	// call onCreate of superclass
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         
         // initialize controller field hosting all other sub classes
         controller_Android = new Controller_Android(this);
