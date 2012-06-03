@@ -15,11 +15,6 @@ public class Controller_Android
 	public Record_Sound record_sound;
 	public Sound sound;
 	
-	boolean mobile;
-	boolean mobileConnected;
-	boolean wlan;
-	boolean wlanConnected;
-	
 	int framerate;
 	
 	public Controller_Android(Activity activity) 
@@ -55,12 +50,10 @@ public class Controller_Android
 		if (connection.getMobile())			 data = data + 1 + ";"; 
 							   			else data = data + 0 + ";";
 		if (connection.getWLAN()) 			 data = data + 1 + ";"; 
-							 			else data = data + 0 + ";";
-		
+							 			else data = data + 0 + ";";	
 		data = data + gps.getGPS() + ";";
 			
 		return data;
-		
 	}
 	
 	public void receiveSteuerdaten(String Steuerdaten) 
