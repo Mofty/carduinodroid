@@ -11,13 +11,12 @@ import android.widget.TextView;
 
 public class Connection 
 {
-	LOG log = null;
+	private LOG log = null;
 	
 	public class ConnectionLogger extends BroadcastReceiver
 	{
-		
 		private TextView IPBox;
-		Activity activity;
+		private Activity activity;
 
 		public ConnectionLogger(Activity n_activity)
 		{
@@ -58,13 +57,13 @@ public class Connection
         }
 	}
 	
-	ConnectivityManager connectivityManager;
-	WifiManager wifiManager;
- 	NetworkInfo mobileInfo;
- 	NetworkInfo WLANInfo;
- 	WifiInfo wifiInfo;
- 	ConnectionLogger connectionLogger;
- 	IntentFilter connectivityFilter;
+	private ConnectivityManager connectivityManager;
+	private WifiManager wifiManager;
+	private NetworkInfo mobileInfo;
+	private NetworkInfo WLANInfo;
+	private WifiInfo wifiInfo;
+	private ConnectionLogger connectionLogger;
+	private IntentFilter connectivityFilter;
 	
 	public Connection (Activity activity, LOG n_log)
 	{

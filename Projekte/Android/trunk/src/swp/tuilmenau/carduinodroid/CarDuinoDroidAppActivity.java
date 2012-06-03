@@ -11,20 +11,18 @@ import android.app.*;
 import android.content.*;
 import android.os.Bundle;
 import android.os.PowerManager;
-import android.widget.TextView;
 
 
 public class CarDuinoDroidAppActivity extends Activity 
 {	
-	Controller_Android controller_Android;
+	private Controller_Android controller_Android;
 	
-	TextView IPBox;
-	NotificationManager notificationManager;
-	Notification notification;
-	Intent notificationIntent;
-	PendingIntent contentIntent;
-	PowerManager powerManager;
-	PowerManager.WakeLock wakelock;
+	private NotificationManager notificationManager;
+	private Notification notification;
+	private Intent notificationIntent;
+	private PendingIntent contentIntent;
+	private PowerManager powerManager;
+	private PowerManager.WakeLock wakelock;
 	
     /* Called when the activity is first created. */
     @Override
@@ -39,8 +37,6 @@ public class CarDuinoDroidAppActivity extends Activity
         // initialize fields for wake_lock
         powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         wakelock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, "CarduinoDroid_Full_Wake_Lock");
-        // initialize field for the IP BOX
-        IPBox = new TextView(this); 
         
         // initialize fields for status bar notification
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);

@@ -8,11 +8,11 @@ import swp.tuilmenau.carduinodroid.model.LOG;
 
 public class GPS 
 {
-	LOG log;
+	private LOG log;
 	
-	LocationManager locationManager;
-	LocationListener locationListener;
-	double longitude, latitude;
+	private LocationManager locationManager;
+	private LocationListener locationListener;
+	private double longitude, latitude;
 	
 	public GPS(Context context, LOG n_log) 
 	{
