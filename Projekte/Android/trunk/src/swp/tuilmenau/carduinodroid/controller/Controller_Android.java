@@ -15,7 +15,7 @@ public class Controller_Android
 	public Record_Sound record_sound;
 	public Sound sound;
 	
-	int framerate;
+	public int framerate;
 	
 	public Controller_Android(Activity activity) 
 	{
