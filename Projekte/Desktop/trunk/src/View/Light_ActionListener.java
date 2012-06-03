@@ -13,7 +13,7 @@ public class Light_ActionListener implements ActionListener{
 	{controller_Computer = controllercomputer;}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		//If Else durch Stand vom Light Button oder eben durch Menüpunkt
 		controller_Computer.camera_settings.send_switch_light("1");
 		log.writelogfile("Light was switched on.");
 		
