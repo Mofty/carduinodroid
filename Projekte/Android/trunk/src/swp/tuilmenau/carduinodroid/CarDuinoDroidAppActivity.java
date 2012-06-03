@@ -71,13 +71,9 @@ public class CarDuinoDroidAppActivity extends Activity
     	wakelock.release();
     	controller_Android.cam.disableCamera();
     	super.onPause();
+    	finish();
     }
 
-    @Override
-    public void onStop()
-    {
-    	super.onStop();
-    }
     
     @Override
     public void onDestroy()
