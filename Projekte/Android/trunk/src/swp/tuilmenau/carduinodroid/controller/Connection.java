@@ -22,6 +22,7 @@ public class Connection
 		{
 			super();
 			activity = n_activity;	
+			IPBox = new TextView(activity);
 		}
 		
 		@Override
@@ -29,30 +30,22 @@ public class Connection
         {
 			if (log != null)
 			{	
-				if (getMobileAvailable())
-					log.write("Mobile Internet is available");
-				else 
-					log.write("Mobile Internet is not available");
+				if (getMobileAvailable()) log.write("Mobile Internet is available");
+				else log.write("Mobile Internet is not available");
 
-				if (getMobile())
-					log.write("Mobile Internet is connected");
-				else 
-					log.write("Mobile Internet is not connected");
+				if (getMobile()) log.write("Mobile Internet is connected");
+				else log.write("Mobile Internet is not connected");
 
-				if (getWLANAvailable())
-					log.write("WLAN is available");
-				else 
-					log.write("WLAN is not available");
+				if (getWLANAvailable()) log.write("WLAN is available");
+				else log.write("WLAN is not available");
 
 				if (getWLAN())
 				{
 					log.write("WLAN is connected");
 					IPBox = (TextView) activity.findViewById(R.id.textView2); 
 			        IPBox.setText(getLocalWLANIP());
-			        
 				}
-				else 
-					log.write("WLAN is not connected");
+				else log.write("WLAN is not connected");
 			}
         }
 	}
