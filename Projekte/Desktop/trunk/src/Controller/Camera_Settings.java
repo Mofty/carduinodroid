@@ -17,16 +17,15 @@ public class Camera_Settings {
 
 	public void send_change_resolution(String setting) {
 		if (controller_computer.network.send_camera_settings("2;" + setting)) {
-			controller_computer.log.writelogfile("Camera settings were sent");
+			controller_computer.log.writelogfile("Resolution settings were sent");
 		} else {
-			controller_computer.log
-					.writelogfile("Camera settings weren't sent");
+			controller_computer.log.writelogfile("Resolution settings weren't sent");
 		}
 	}
 
 	public void send_switch_light(String cameralight) {
 		if (controller_computer.network.send_camera_settings("3;" + cameralight)) {
-			controller_computer.log.writelogfile("Camera light switched");
+			controller_computer.log.writelogfile("Camera light was switched");
 		} else {
 			controller_computer.log.writelogfile("Camera light wasn't switched");
 		}
