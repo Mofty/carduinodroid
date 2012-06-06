@@ -202,6 +202,7 @@ public class GUI_Computer extends JFrame{
 		resolution_list_text.setBounds(5, 5, 80, 20);
 		panel_other.add(resolution_list_text);
 		panel_other.add(resolution_change);
+		resolution_change.addActionListener(new Resolution_ActionListener(controller_Computer, log, resolution_change));
 		
 		//gps_coordinates
 		gps_coordinates_text.setBounds(5, 30, 80, 20);
