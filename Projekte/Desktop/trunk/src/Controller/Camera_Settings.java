@@ -21,7 +21,7 @@ public class Camera_Settings {
 	
 	public void send_switch_light(String cameralight){
 		if (controller_computer.network.send_camera_settings("3;"+cameralight))
-		{controller_computer.log.writelogfile("Camera light was switched");}
+		{controller_computer.log.writelogfile("Camera light switched");}
 		else{controller_computer.log.writelogfile("Camera light wasn't switched");}
 	}
 
