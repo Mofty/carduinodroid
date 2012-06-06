@@ -9,7 +9,7 @@ public class Sound_Output {
 	
 	public void send_output_soundsignal(String SoundID){
 		if (controller_computer.network.send_sound("1;"+SoundID))
-		{controller_computer.log.writelogfile("Signal was sent");}
-		else{controller_computer.log.writelogfile("Signal wasn't sent");}
+		{controller_computer.log.writelogfile("Sound signal was sent");}
+		else{controller_computer.log.writelogfile("Sound signal wasn't sent");}
 	}
 }

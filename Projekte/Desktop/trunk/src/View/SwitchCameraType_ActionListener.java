@@ -10,8 +10,11 @@ public class SwitchCameraType_ActionListener implements ActionListener{
 	Controller_Computer controller_Computer;
 	Log log;
 	
-	public SwitchCameraType_ActionListener (Controller_Computer controllercomputer)
-	{controller_Computer = controllercomputer;}
+	public SwitchCameraType_ActionListener (Controller_Computer controllercomputer, Log LOG)
+	{
+		controller_Computer = controllercomputer;
+		log = LOG;
+		}
 	
 	public void actionPerformed(ActionEvent e) {
 		//If Else mit Bedingung auf die ausgewählte Fläche
