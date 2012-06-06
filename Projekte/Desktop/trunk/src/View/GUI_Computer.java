@@ -45,6 +45,7 @@ public class GUI_Computer extends JFrame{
 		this.getContentPane().setLayout(null);
 		log  = new Log();
 		controller_Computer = new Controller_Computer(log);
+		
 		//create programwindow
 		this.initWindow();
 				
