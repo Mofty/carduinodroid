@@ -58,7 +58,7 @@ public class GPS
 	
 	public String getGPS()
 	{	
-		return longitude+","+latitude;
+		return longitude+";"+latitude;
 	}
 	
 }
