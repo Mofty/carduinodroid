@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JSeparator;
@@ -88,10 +87,7 @@ public class GUI_Computer extends JFrame{
 		JMenuItem Quit = new JMenuItem(Names.get(1));
 		JMenuItem Connection = new JMenuItem(Names.get(2));
 		JMenuItem About = new JMenuItem(Names.get(3));
-		
-		//initiate CheckBoxMenuItems
-		JCheckBoxMenuItem Light = new JCheckBoxMenuItem(Names.get(5));
-		
+	
 		//initiate RadioButtonMenuItems
 		JRadioButtonMenuItem Frontcamera = new JRadioButtonMenuItem(Names.get(7),true);
 		JRadioButtonMenuItem Backcamera = new JRadioButtonMenuItem(Names.get(8));
@@ -193,7 +189,6 @@ public class GUI_Computer extends JFrame{
 		Camera.add(Frontcamera);
 		Camera.add(Backcamera);
 		Preferences.add(Camera);
-		Preferences.add(Light);
 		
 		//menus allocate to menubar
 		Menubar.add(File);
@@ -229,6 +224,7 @@ public class GUI_Computer extends JFrame{
 		//light_button
 		light_button.setBounds(30,345,80,20);
 		panel_other.add(light_button);
+		light_button.addActionListener(new Light_ActionListener(controller_Computer, log, light_button));
 		
 		//map_button
 		map_button.setBounds(115,345,80,20);
@@ -242,6 +238,7 @@ public class GUI_Computer extends JFrame{
 		//soundrecord_button
 		soundrecord_button.setBounds(30, 320, 165, 20);
 		panel_other.add(soundrecord_button);
+		soundrecord_button.addActionListener(new Record_ActionListener(controller_Computer, log, soundrecord_button));
 		
 		//Live-Log screen
 		Live_Log.add(Live_Log_Scrollbar);
