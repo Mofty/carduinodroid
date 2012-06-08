@@ -28,10 +28,12 @@ public class GPS_Map extends JFrame implements ActionListener {
         this.setVisible(true);
         
     }
-
+    public void open_map(double longitude, double latitude){
+    	generatelink(longitude, latitude);
+    	openLink();
+    }
+    
     private void generatelink(double longitude, double latitude){
-//    	link = "http://maps.google.com/maps/api/staticmap?center=" + longitude + "," + latitude + "&zoom=14&size=400x400" +
-//    			"&markers=color:blue|label:L|" + longitude + "," + latitude + "&sensor=true";
     	link = "http://maps.google.com/maps?q=loc:" + longitude + "," + latitude;
     }
     
