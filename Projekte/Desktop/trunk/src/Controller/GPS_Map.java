@@ -15,7 +15,8 @@ public class GPS_Map extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
     JButton iNetButt;
-
+    String link;
+    
     public GPS_Map() {
         iNetButt = new JButton("Inet");
         iNetButt.addActionListener(this);
@@ -25,8 +26,15 @@ public class GPS_Map extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
         this.setVisible(true);
+        
     }
 
+    private void generatelink(double longitude, double latitude){
+//    	link = "http://maps.google.com/maps/api/staticmap?center=" + longitude + "," + latitude + "&zoom=14&size=400x400" +
+//    			"&markers=color:blue|label:L|" + longitude + "," + latitude + "&sensor=true";
+    	link = "http://maps.google.com/maps?q=loc:" + longitude + "," + latitude;
+    }
+    
     private void ladeINet(String seite) {
         try {
             Desktop.getDesktop().browse(new URI(seite));
@@ -36,13 +44,11 @@ public class GPS_Map extends JFrame implements ActionListener {
             e.printStackTrace();
         }
     }
-
-    
+   
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == iNetButt)
-            ladeINet("http://goo.gl/01V2O"); 
-        //http://maps.google.com/maps/api/staticmap?center=50.679423,10.861477&zoom=14&size=400x400&markers=color:blue|label:S|50.679423,10.861477&sensor=true
-        //orginal link aber zu lang für testprog
+            generatelink(50.679423, 10.861477);
+        	ladeINet(link); 
     }
     //main nur zu testzecken
     public static void main(String[] args) {
