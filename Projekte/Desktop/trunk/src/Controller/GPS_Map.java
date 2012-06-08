@@ -35,9 +35,9 @@ public class GPS_Map extends JFrame implements ActionListener {
     	link = "http://maps.google.com/maps?q=loc:" + longitude + "," + latitude;
     }
     
-    private void ladeINet(String seite) {
+    private void openLink() {
         try {
-            Desktop.getDesktop().browse(new URI(seite));
+            Desktop.getDesktop().browse(new URI(link));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (URISyntaxException e) {
@@ -48,7 +48,7 @@ public class GPS_Map extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == iNetButt)
             generatelink(50.679423, 10.861477);
-        	ladeINet(link); 
+        	openLink(); 
     }
     //main nur zu testzecken
     public static void main(String[] args) {
