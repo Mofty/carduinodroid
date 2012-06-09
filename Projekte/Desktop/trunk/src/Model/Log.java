@@ -58,6 +58,7 @@ public class Log {
 	}
 	
 	public void write_Live_Log(String Text){
+		if(gui_computer.Live_Log != null)
 		gui_computer.Live_Log.setText(gui_computer.Live_Log.getText()+"\n"+Text);
 	}
 
