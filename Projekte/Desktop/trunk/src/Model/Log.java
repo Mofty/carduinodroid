@@ -40,9 +40,9 @@ public class Log {
 	
 	public void writelogfile(String line){
 		try {
-			Date datum = new Date();
+			Date data = new Date();
 			SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss" );
-			String entry = df.format(datum)+" "+line;
+			String entry = df.format(data)+" "+line;
 			writer.write(entry,0,entry.length());
 			writer.write(System.getProperty("line.separator"));
 			writer.flush();
