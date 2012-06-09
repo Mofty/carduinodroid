@@ -42,11 +42,11 @@ public class Log {
 		try {
 			Date datum = new Date();
 			SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss" );
-			String eintrag = df.format(datum)+" "+line;
-			writer.write(eintrag,0,eintrag.length());
+			String entry = df.format(datum)+" "+line;
+			writer.write(entry,0,entry.length());
 			writer.write(System.getProperty("line.separator"));
 			writer.flush();
-			write_Live_Log(eintrag);
+			write_Live_Log(entry);
 		} catch (IOException e) { e.printStackTrace(); }
 	}
 	

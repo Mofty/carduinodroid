@@ -282,7 +282,6 @@ public class GUI_Computer extends JFrame{
 		
 		//Live-Log screen
 		Live_Log.setEditable(false);
-		//Live_Log.add(Live_Log_Scrollbar);		
 	}
 	
 	//method for read language.txt
