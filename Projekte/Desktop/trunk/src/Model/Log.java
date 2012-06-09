@@ -7,14 +7,18 @@ import java.io.IOException;
 import java.util.*;
 import java.text.*;
 
+import View.GUI_Computer;
+
 public class Log {
+	GUI_Computer gui_computer;
 	BufferedWriter writer;
-	Date date;
 	SimpleDateFormat dateformat;
+	Date date;
 	File file;
 	File path;
 	
-	public Log(){
+	public Log(GUI_Computer GUI_computer){
+		gui_computer = GUI_computer;
 		Date date = new Date();
 		SimpleDateFormat dateformat = new SimpleDateFormat( "yyyy_MM_dd_HH_mm_ss" );
 		String logfile = "Log_"+dateformat.format(date)+".txt";
@@ -42,6 +46,7 @@ public class Log {
 			writer.write(eintrag,0,eintrag.length());
 			writer.write(System.getProperty("line.separator"));
 			writer.flush();
+			write_Live_Log(eintrag);
 		} catch (IOException e) { e.printStackTrace(); }
 	}
 	
@@ -50,6 +55,10 @@ public class Log {
 			writer.flush();
 			writer.close();
 		} catch (IOException e) { e.printStackTrace(); }
+	}
+	
+	public void write_Live_Log(String Text){
+		gui_computer.Live_Log.setText(gui_computer.Live_Log.getText()+"\n"+Text);
 	}
 
 }
