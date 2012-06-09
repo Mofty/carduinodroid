@@ -154,11 +154,11 @@ public class GUI_Computer extends JFrame{
 		this.setLayout(new BorderLayout());
 		this.getContentPane().add(panel_video, BorderLayout.CENTER);
 		this.getContentPane().add(panel_other, BorderLayout.EAST);
-		this.getContentPane().add(Live_Log, BorderLayout.SOUTH);
+		this.getContentPane().add(Live_Log_Scrollbar, BorderLayout.SOUTH);
 		panel_video.setBackground(Color.lightGray);
 		panel_other.setPreferredSize(new Dimension(200,500));
 		panel_other.setLayout(null);
-		Live_Log.setPreferredSize(new Dimension(800,100));
+		Live_Log_Scrollbar.setPreferredSize(new Dimension(800,100));
 		
 		//ip_configuration
 		ip_configuration.setTitle(Names.get(13));
@@ -282,7 +282,7 @@ public class GUI_Computer extends JFrame{
 		
 		//Live-Log screen
 		Live_Log.setEditable(false);
-		Live_Log.add(Live_Log_Scrollbar);		
+		//Live_Log.add(Live_Log_Scrollbar);		
 	}
 	
 	//method for read language.txt
