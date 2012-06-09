@@ -4,7 +4,7 @@ public class Packagedata {
 	
 	
 	
-	public void receive() 
+	public void receive_package(String data) 
 	{		int i = 0;
 		String [] tokens = data.split(";",-1);
 		// um mit den beiden arrays ausserhalb der methode recieve was anfangen zu können
