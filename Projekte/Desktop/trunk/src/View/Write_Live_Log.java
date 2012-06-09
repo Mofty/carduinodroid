@@ -1,10 +1,10 @@
 package View;
 
-import javax.swing.JTextArea;
+import View.GUI_Computer;
 
 public class Write_Live_Log {
 
-	JTextArea Live_log;
+	GUI_Computer gui_computer;
 	
 	public Write_Live_Log(){
 		
