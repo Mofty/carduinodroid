@@ -19,7 +19,7 @@ public class Socket_Package implements Runnable{
 	{
 		socket_package = new Socket();
 		network = n_network;
-		log = new Log();
+		//log = new Log();
 	}
 
 	public void connect(InetSocketAddress nport_package)
