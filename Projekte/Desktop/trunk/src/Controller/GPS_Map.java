@@ -29,6 +29,7 @@ public class GPS_Map
     {
         try {
             	Desktop.getDesktop().browse(new URI(link));
+            	controller_computer.log.writelogfile("Google Maps im Standardbrowser aufgerufen");
             } 
         catch (IOException e) {e.printStackTrace();} 
         catch (URISyntaxException e) {e.printStackTrace();}
