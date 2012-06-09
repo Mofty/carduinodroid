@@ -41,10 +41,11 @@ public class GUI_Computer extends JFrame{
 	static BufferedReader language_reader;
 	Log log;
 	Controller_Computer controller_Computer;
+	public JTextArea Live_Log;
 	
 	public GUI_Computer(){
 		this.getContentPane().setLayout(null);
-		log  = new Log();
+		log  = new Log(this);
 		controller_Computer = new Controller_Computer(log);
 		
 		//create programwindow
@@ -120,7 +121,7 @@ public class GUI_Computer extends JFrame{
 		final JTextField ip_adress_input = new JTextField();
 		
 		//initiate TextAreas
-		JTextArea Live_Log = new JTextArea();
+		Live_Log = new JTextArea();
 		
 		//initiate ScrollPanes
 		JScrollPane Live_Log_Scrollbar = new JScrollPane(Live_Log, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
