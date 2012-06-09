@@ -280,9 +280,10 @@ public class GUI_Computer extends JFrame{
 		panel_other.add(angle_label);
 		
 		//Live-Log screen
-		Live_Log.add(Live_Log_Scrollbar);
+		Live_Log.setEditable(false);
+		Live_Log.add(Live_Log_Scrollbar);		
 	}
-		
+	
 	//method for read language.txt
 	protected ArrayList<String> Language(){
 		ArrayList<String> Language_Name = new ArrayList<String>();
