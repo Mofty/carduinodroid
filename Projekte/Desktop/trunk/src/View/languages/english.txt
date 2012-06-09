@@ -15,3 +15,7 @@ IP-Configuration
 Enter ip-adress of objective system
 Signal
 Sound-record
+Speed
+Angle
+Latitude
+Longitude
