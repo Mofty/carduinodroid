@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JSeparator;
 import javax.swing.JScrollPane;
+import javax.swing.JSlider;
+import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JLabel;
 import javax.swing.ButtonGroup;
@@ -114,18 +116,31 @@ public class GUI_Computer extends JFrame{
 		//initiate ButtonGroups
 		ButtonGroup Camerachoice = new ButtonGroup(); 
 		
-		//initiate TextFilds
+		//initiate TextFields
 		final JTextField ip_adress_input = new JTextField();
-		JTextField Live_Log = new JTextField();
+		
+		//initiate TextAreas
+		JTextArea Live_Log = new JTextArea();
 		
 		//initiate ScrollPanes
 		JScrollPane Live_Log_Scrollbar = new JScrollPane(Live_Log, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		
+		//initiate JSliders
+		JSlider speed_slider = new JSlider();
+		JSlider angle_slider = new JSlider();
 		
 		//initiate JLabels
 		JLabel resolution_list_text = new JLabel(Names.get(10) + ": ");
 		JLabel gps_coordinates_text = new JLabel(Names.get(11) + ": ");
 		JLabel connection_type_text = new JLabel(Names.get(12) + ": ");
+		JLabel latitude_text = new JLabel(Names.get(19) + ": ");
+		JLabel longitude_text = new JLabel(Names.get(20) + ": ");
 		JLabel label_ip_config = new JLabel(Names.get(13) + ": ");
+		JLabel speed_label = new JLabel(Names.get(17) + ": ");
+		JLabel angle_label = new JLabel(Names.get(18) + ": ");
+		JLabel connection_type = new JLabel();
+		JLabel latitude = new JLabel("50.687222");
+		JLabel longitude = new JLabel("10.914167");
 		
 		//initiate JPanels
 		JPanel panel_video = new JPanel();
@@ -205,12 +220,22 @@ public class GUI_Computer extends JFrame{
 		resolution_change.addActionListener(new Resolution_ActionListener(controller_Computer, log, resolution_change));
 		
 		//gps_coordinates
-		gps_coordinates_text.setBounds(5, 30, 80, 20);
+		gps_coordinates_text.setBounds(5, 30, 180, 20);
+		latitude_text.setBounds(10, 55, 75, 20);
+		longitude_text.setBounds(10, 80, 75, 20);
+		latitude.setBounds(90, 55, 105, 20);
+		longitude.setBounds(90, 80, 105, 20);
 		panel_other.add(gps_coordinates_text);
+		panel_other.add(latitude_text);
+		panel_other.add(longitude_text);
+		panel_other.add(latitude);
+		panel_other.add(longitude);
 		
 		//connection_type
-		connection_type_text.setBounds(5, 90, 80, 20);
+		connection_type_text.setBounds(5, 105, 80, 20);
+		connection_type.setBounds(90, 105, 105, 20);
 		panel_other.add(connection_type_text);
+		panel_other.add(connection_type);
 		
 		//key feedback
 		up.setBounds(130, 370, 30, 30);
@@ -230,6 +255,7 @@ public class GUI_Computer extends JFrame{
 		//map_button
 		map_button.setBounds(115,345,80,20);
 		panel_other.add(map_button);
+		map_button.addActionListener(new Map_ActionListener(controller_Computer, latitude, longitude));
 		
 		//signal_button
 		signal_button.setBounds(30, 275, 165, 40);
@@ -240,6 +266,18 @@ public class GUI_Computer extends JFrame{
 		soundrecord_button.setBounds(30, 320, 165, 20);
 		panel_other.add(soundrecord_button);
 		soundrecord_button.addActionListener(new Record_ActionListener(controller_Computer, log, soundrecord_button));
+		
+		//speed_slider
+		speed_slider.setBounds(5, 200, 190, 20);
+		speed_label.setBounds(5, 175, 190, 20);
+		panel_other.add(speed_slider);
+		panel_other.add(speed_label);
+		
+		//angle_slider
+		angle_slider.setBounds(5, 250, 190, 20);
+		angle_label.setBounds(5, 225, 190, 20);
+		panel_other.add(angle_slider);
+		panel_other.add(angle_label);
 		
 		//Live-Log screen
 		Live_Log.add(Live_Log_Scrollbar);

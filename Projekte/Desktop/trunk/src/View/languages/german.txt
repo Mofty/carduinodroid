@@ -15,3 +15,7 @@ IP-Konfiguration
 IP-Adresse des Zielgerätes eingeben
 Signalton
 Tonaufnahme
+Geschwindigkeit
+Lenkwinkel
+Breite
+LŠnge
