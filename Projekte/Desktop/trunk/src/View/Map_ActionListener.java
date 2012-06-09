@@ -13,5 +13,4 @@ public class Map_ActionListener implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		controller_Computer.gps_map.open_map("15,2", "15,2");
 	}
-
 }
