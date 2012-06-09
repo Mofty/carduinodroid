@@ -7,15 +7,20 @@ import java.net.URISyntaxException;
 
 public class GPS_Map
 {
-    String link;
+	Controller_Computer controller_computer;
+	String link;
     
-    public void open_map(double longitude, double latitude)
+    public GPS_Map(Controller_Computer ControllerComputer) {
+		controller_computer = ControllerComputer;
+	}
+    
+    public void open_map(String longitude, String latitude)
     {
     	generatelink(longitude, latitude);
     	openLink();
     }
     
-    private void generatelink(double longitude, double latitude)
+    private void generatelink(String longitude, String latitude)
     {
     	link = "http://maps.google.com/maps?q=loc:" + longitude + "," + latitude;
     }

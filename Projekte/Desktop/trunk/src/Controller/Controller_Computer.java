@@ -17,7 +17,7 @@ public class Controller_Computer {
 		log = LOG;
 		camera_picture=new Camera_Picture();
 		packagedata=new Packagedata();
-		gps_map=new GPS_Map();
+		gps_map=new GPS_Map(this);
 		network=new Network("",packagedata,camera_picture);
 		sound_output=new Sound_Output(this);
 		camera_settings=new Camera_Settings(this);
