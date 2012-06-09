@@ -21,6 +21,7 @@ public class Packagedata {
 			tokens[i] = tokens[i].trim();
 			valuesDouble[i] = Double.parseDouble(tokens[i]);
 		}
+	updateInformationsbox();
 	}
 	
 	public void updateInformationsbox()
