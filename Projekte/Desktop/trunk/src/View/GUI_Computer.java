@@ -239,10 +239,10 @@ public class GUI_Computer extends JFrame{
 		panel_other.add(connection_type);
 		
 		//key feedback
-		up.setBounds(130, 370, 30, 30);
-		down.setBounds(130, 405, 30, 30);
-		left.setBounds(95, 405, 30, 30);
-		right.setBounds(165, 405, 30, 30);
+		up.setBounds(95, 370, 30, 30);
+		down.setBounds(95, 405, 30, 30);
+		left.setBounds(60, 405, 30, 30);
+		right.setBounds(130, 405, 30, 30);
 		panel_other.add(up);
 		panel_other.add(down);
 		panel_other.add(left);
