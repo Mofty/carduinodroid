@@ -2,9 +2,7 @@ package View;
 
 import Controller.*;
 import Model.*;
-
 import javax.swing.ImageIcon;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -18,7 +16,6 @@ import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JLabel;
 import javax.swing.ButtonGroup;
-import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -27,8 +24,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -76,7 +71,6 @@ public class GUI_Computer extends JFrame{
 		
 		//initiate Strings
 		String resolution_list[] = {"320x240", "640x480", "720x576", "800x600", "1024x768", "1280x720", "1920x1080"};
-		String Ip_adress;
 
 		//initiate Menubar
 		JMenuBar Menubar = new JMenuBar();
@@ -88,7 +82,7 @@ public class GUI_Computer extends JFrame{
 		
 		//initiate MenuItems
 		JMenuItem Quit = new JMenuItem(Names.get(1));
-		JMenuItem Connection = new JMenuItem(Names.get(2));
+		JMenuItem Connect = new JMenuItem(Names.get(20));
 		JMenuItem About = new JMenuItem(Names.get(3));
 	
 		//initiate RadioButtonMenuItems
@@ -100,12 +94,11 @@ public class GUI_Computer extends JFrame{
 	
 		//initiate Buttons
 		JButton map_button = new JButton(Names.get(9));
-		JButton signal_button = new JButton(Names.get(15));
-		JButton ip_config_ok_button = new JButton("Ok");
+		JButton signal_button = new JButton(Names.get(13));
 		
 		//initiate ToggleButtons
 		JToggleButton light_button = new JToggleButton(Names.get(5), false);
-		JToggleButton soundrecord_button = new JToggleButton(Names.get(16), false);
+		JToggleButton soundrecord_button = new JToggleButton(Names.get(14), false);
 		JToggleButton up = new JToggleButton(new ImageIcon ("src/View/Icons/Icon_up.gif"));
 		JToggleButton down = new JToggleButton(new ImageIcon ("src/View/Icons/Icon_down.gif"));
 		JToggleButton left = new JToggleButton(new ImageIcon ("src/View/Icons/Icon_left.gif"));
@@ -116,9 +109,6 @@ public class GUI_Computer extends JFrame{
 		
 		//initiate ButtonGroups
 		ButtonGroup Camerachoice = new ButtonGroup(); 
-		
-		//initiate TextFields
-		final JTextField ip_adress_input = new JTextField();
 		
 		//initiate TextAreas
 		Live_Log = new JTextArea();
@@ -133,22 +123,20 @@ public class GUI_Computer extends JFrame{
 		//initiate JLabels
 		JLabel resolution_list_text = new JLabel(Names.get(10) + ": ");
 		JLabel gps_coordinates_text = new JLabel(Names.get(11) + ": ");
-		JLabel connection_type_text = new JLabel(Names.get(12) + ": ");
-		JLabel latitude_text = new JLabel(Names.get(19) + ": ");
-		JLabel longitude_text = new JLabel(Names.get(20) + ": ");
-		JLabel label_ip_config = new JLabel(Names.get(13) + ": ");
-		JLabel speed_label = new JLabel(Names.get(17) + ": ");
-		JLabel angle_label = new JLabel(Names.get(18) + ": ");
-		JLabel connection_type = new JLabel();
+		JLabel connection_type_text = new JLabel(Names.get(2) + ": ");
+		JLabel latitude_text = new JLabel(Names.get(17) + ": ");
+		JLabel longitude_text = new JLabel(Names.get(18) + ": ");
+		JLabel speed_label = new JLabel(Names.get(15) + ": ");
+		JLabel angle_label = new JLabel(Names.get(16) + ": ");
+		JLabel connection_type = new JLabel("W-Lan");
 		JLabel latitude = new JLabel("50.687222");
 		JLabel longitude = new JLabel("10.914167");
+		JLabel present_ip_text = new JLabel(Names.get(19) + ": ");
+		JLabel ip_label = new JLabel();
 		
 		//initiate JPanels
 		JPanel panel_video = new JPanel();
 		JPanel panel_other = new JPanel();
-		
-		//initiate JDialoges
-		final JDialog ip_configuration = new JDialog();
 
 		//edit Layout
 		this.setLayout(new BorderLayout());
@@ -159,43 +147,12 @@ public class GUI_Computer extends JFrame{
 		panel_other.setPreferredSize(new Dimension(200,500));
 		panel_other.setLayout(null);
 		Live_Log_Scrollbar.setPreferredSize(new Dimension(800,100));
-		
-		//ip_configuration
-		ip_configuration.setTitle(Names.get(13));
-		ip_configuration.setSize(300, 200);
-		ip_configuration.setLocationRelativeTo(null);
-		ip_configuration.setLayout(null);
-		label_ip_config.setBounds(100, 20, 200, 20);
-		ip_adress_input.setBounds(20, 60 , 240, 20);
-		ip_config_ok_button.setBounds(110, 135, 80, 20);
-		ip_configuration.add(label_ip_config);
-		ip_configuration.add(ip_adress_input);
-		ip_configuration.add(ip_config_ok_button);
-		ip_config_ok_button.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		    	String Ip = ip_adress_input.getText();
-		    	System.out.println(Ip);
-		    	ip_configuration.setVisible(false);
-				ip_configuration.setModal(false);
-		    }
-		});
-		ip_configuration.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
-				ip_configuration.setVisible(false);
-				ip_configuration.setModal(false);
-			}
-		});
 			
 		//menu "file"
 		Quit.addActionListener(new Quit_ActionListener(log));
-		Connection.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		    	ip_configuration.setVisible(true);
-				ip_configuration.setModal(true);
-		    }
-		});
+		Connect.addActionListener(new Connect_ActionListener(Names.get(12), log, ip_label));
 		File.add(About);
-		File.add(Connection);
+		File.add(Connect);
 		File.add(Separator_File);
 		File.add(Quit);
 		
@@ -238,6 +195,12 @@ public class GUI_Computer extends JFrame{
 		panel_other.add(connection_type_text);
 		panel_other.add(connection_type);
 		
+		//present_ip
+		present_ip_text.setBounds(5, 130, 20, 20);
+		ip_label.setBounds(30, 130, 165, 20);
+		panel_other.add(present_ip_text);
+		panel_other.add(ip_label);
+		
 		//key feedback
 		up.setBounds(95, 370, 30, 30);
 		down.setBounds(95, 405, 30, 30);
@@ -247,7 +210,7 @@ public class GUI_Computer extends JFrame{
 		panel_other.add(down);
 		panel_other.add(left);
 		panel_other.add(right);
-		
+				
 		//light_button
 		light_button.setBounds(30,345,80,20);
 		panel_other.add(light_button);

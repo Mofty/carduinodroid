@@ -10,8 +10,6 @@ Backcamera
 Map
 Resolution
 Coordinates
-Connection
-IP-Configuration
 Enter ip-adress of objective system
 Signal
 Sound-record
@@ -19,3 +17,5 @@ Speed
 Angle
 Latitude
 Longitude
+IP
+Connect
