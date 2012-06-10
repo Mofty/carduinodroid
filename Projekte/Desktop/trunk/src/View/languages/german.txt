@@ -10,8 +10,6 @@ Rückkamera
 Karte
 Auflösung
 Koordinaten
-Verbindung
-IP-Konfiguration
 IP-Adresse des Zielgerätes eingeben
 Signalton
 Tonaufnahme
@@ -19,3 +17,5 @@ Geschwindigkeit
 Lenkwinkel
 Breite
 LŠnge
+IP
+Verbinden
