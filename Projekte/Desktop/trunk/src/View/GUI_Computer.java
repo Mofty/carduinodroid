@@ -64,7 +64,7 @@ public class GUI_Computer extends JFrame{
 	}
 	
 	//method: create window
-	protected void initWindow(){
+	private void initWindow(){
 		
 		//read in names of elements (dependently on languagefile)
 		ArrayList<String> Names = Language();
@@ -248,7 +248,7 @@ public class GUI_Computer extends JFrame{
 	}
 	
 	//method for read language.txt
-	protected ArrayList<String> Language(){
+	private ArrayList<String> Language(){
 		ArrayList<String> Language_Name = new ArrayList<String>();
 		String Language = null;
 		
@@ -267,7 +267,7 @@ public class GUI_Computer extends JFrame{
 	}
 	
 	//method for read in language (names of different elements)
-	protected ArrayList<String> Language_name (String Language){
+	private ArrayList<String> Language_name (String Language){
 		ArrayList<String> Name = new ArrayList<String>();
 		String Line = null;
 		
