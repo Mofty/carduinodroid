@@ -37,6 +37,8 @@ public class GUI_Computer extends JFrame{
 	Log log;
 	Controller_Computer controller_Computer;
 	public JTextArea Live_Log;
+	public JSlider speed_slider;
+	public JSlider angle_slider;
 	
 	public GUI_Computer(){
 		this.getContentPane().setLayout(null);
@@ -117,8 +119,8 @@ public class GUI_Computer extends JFrame{
 		JScrollPane Live_Log_Scrollbar = new JScrollPane(Live_Log, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
 		//initiate JSliders
-		JSlider speed_slider = new JSlider(1, 100, 20);
-		JSlider angle_slider = new JSlider(1, 100, 50);
+		speed_slider = new JSlider(1, 100, 20);
+		angle_slider = new JSlider(1, 100, 50);
 		
 		//initiate JLabels
 		JLabel resolution_list_text = new JLabel(Names.get(10) + ": ");
@@ -245,6 +247,8 @@ public class GUI_Computer extends JFrame{
 		
 		//Live-Log screen
 		Live_Log.setEditable(false);
+		
+		this.addKeyListener(new Speed_KeyListener());
 	}
 	
 	//method for read language.txt
