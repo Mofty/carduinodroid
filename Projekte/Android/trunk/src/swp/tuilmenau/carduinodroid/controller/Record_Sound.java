@@ -1,3 +1,15 @@
+/**
+     *
+     * Simple method.
+     *
+     * The method starts and stops recording the Sound. 
+     * After that, it will we saved at the smartphone.
+     * @param message String variable to be printed
+     * @see Record_Sound
+     * @deprecated
+     * @since version 1.00
+     */
+
 package swp.tuilmenau.carduinodroid.controller;
 
 import java.io.File;
