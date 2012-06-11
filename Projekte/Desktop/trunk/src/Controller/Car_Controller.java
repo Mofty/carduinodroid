@@ -22,8 +22,8 @@ public class Car_Controller {
 			if(delay==2){
 				if(!up){controller_computer.gui_computer.UnpressedBorderUp();}
 				if(!down){controller_computer.gui_computer.UnpressedBorderDown();}
-				if(!right){controller_computer.gui_computer.UnpressedBorderRight();}
-				if(!left){controller_computer.gui_computer.UnpressedBorderLeft();}
+				if(!right||!(up||down)){controller_computer.gui_computer.UnpressedBorderRight();}
+				if(!left||!(up||down)){controller_computer.gui_computer.UnpressedBorderLeft();}
 				delay=0;
 			}
 		}
