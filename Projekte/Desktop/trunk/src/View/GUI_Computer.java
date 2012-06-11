@@ -46,6 +46,10 @@ public class GUI_Computer extends JFrame{
 	public JLabel connection_type;
 	public JLabel latitude;
 	public JLabel longitude;
+	public JLabel up;
+	public JLabel down;
+	public JLabel left;
+	public JLabel right;
 	
 	public GUI_Computer(){
 		this.getContentPane().setLayout(null);
@@ -156,10 +160,10 @@ public class GUI_Computer extends JFrame{
 		longitude = new JLabel();
 		JLabel present_ip_text = new JLabel(Names.get(19) + ": ");
 		JLabel ip_label = new JLabel();
-		JLabel up = new JLabel(up_icon);
-		JLabel down = new JLabel(down_icon);
-		JLabel left = new JLabel(left_icon);
-		JLabel right = new JLabel(right_icon);
+		up = new JLabel(up_icon);
+		down = new JLabel(down_icon);
+		left = new JLabel(left_icon);
+		right = new JLabel(right_icon);
 		
 		//initiate JPanels
 		JPanel panel_video = new JPanel();
@@ -334,5 +338,29 @@ public class GUI_Computer extends JFrame{
 		}
 		
 		return Name;
+	}
+	
+	public void PressedBorderUp(){
+		Border pressed_border = BorderFactory.createLoweredBevelBorder();
+		up.setBorder(pressed_border);
+		up.setIcon(new ImageIcon("src/View/Icons/Icon_up_pressed.gif"));
+	}
+	
+	public void PressedBorderDown(){
+		Border pressed_border = BorderFactory.createLoweredBevelBorder();
+		down.setBorder(pressed_border);
+		down.setIcon(new ImageIcon("src/View/Icons/Icon_down_pressed.gif"));
+	}
+	
+	public void PressedBorderRight(){
+		Border pressed_border = BorderFactory.createLoweredBevelBorder();
+		right.setBorder(pressed_border);
+		right.setIcon(new ImageIcon("src/View/Icons/Icon_right_pressed.gif"));
+	}
+	
+	public void PressedBorderLeft(){
+		Border pressed_border = BorderFactory.createLoweredBevelBorder();
+		left.setBorder(pressed_border);
+		left.setIcon(new ImageIcon("src/View/Icons/Icon_left_pressed.gif"));
 	}
 }
