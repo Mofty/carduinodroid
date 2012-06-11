@@ -90,7 +90,7 @@ public class Network {
 	}
 	
 	public void receive_picture(Image image) {
-		camera_picture.receive_package(image);
+		//camera_picture.receive_package();
 	}
 
 

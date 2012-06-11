@@ -39,11 +39,14 @@ public class GUI_Computer extends JFrame{
 	public JTextArea Live_Log;
 	public JSlider speed_slider;
 	public JSlider angle_slider;
+	public JLabel connection_type;
+	public JLabel latitude;
+	public JLabel longitude;
 	
 	public GUI_Computer(){
 		this.getContentPane().setLayout(null);
 		log  = new Log(this);
-		controller_Computer = new Controller_Computer(log);
+		controller_Computer = new Controller_Computer(log, this);
 		
 		//create programwindow
 		this.initWindow();
@@ -133,9 +136,9 @@ public class GUI_Computer extends JFrame{
 		JLabel longitude_text = new JLabel(Names.get(18) + ": ");
 		JLabel speed_label = new JLabel(Names.get(15) + ": ");
 		JLabel angle_label = new JLabel(Names.get(16) + ": ");
-		JLabel connection_type = new JLabel("W-Lan");
-		JLabel latitude = new JLabel("50.687222");
-		JLabel longitude = new JLabel("10.914167");
+		connection_type = new JLabel("W-Lan");
+		latitude = new JLabel();
+		longitude = new JLabel();
 		JLabel present_ip_text = new JLabel(Names.get(19) + ": ");
 		JLabel ip_label = new JLabel();
 		
