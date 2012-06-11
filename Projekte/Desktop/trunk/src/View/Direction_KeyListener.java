@@ -14,10 +14,10 @@ public class Direction_KeyListener implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {	
 		int key = e.getKeyCode();
-		if (key == KeyEvent.VK_UP) {up=true;System.out.println(up+","+right+","+down+","+left);};
-		if (key == KeyEvent.VK_RIGHT) {right=true;System.out.println(up+","+right+","+down+","+left);};
-		if (key == KeyEvent.VK_LEFT) {left=true;System.out.println(up+","+right+","+down+","+left);};
-		if (key == KeyEvent.VK_DOWN) {down=true;System.out.println(up+","+right+","+down+","+left);};
+		if (key == KeyEvent.VK_UP) {up=true;};
+		if (key == KeyEvent.VK_RIGHT) {right=true;};
+		if (key == KeyEvent.VK_LEFT) {left=true;};
+		if (key == KeyEvent.VK_DOWN) {down=true;};
 	}
 
 	@Override
