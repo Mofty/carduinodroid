@@ -33,14 +33,19 @@ public class CarDuinoDroidAppActivity extends Activity
 	private RadioGroup logLevelSwitch;
 	private LogLevelSwitcherListener logLevelSwitcherListener;
 	
-
+	/**
+	 * creates the activity when the application starts
+	 */
+	
     @Override
     public void onCreate(Bundle savedInstanceState) 
     {
-    	// call onCreate of superclass
+    	/**
+    	 * call onCreate of superclass
+    	 */
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        // prevent the app from switching to landscape-mode
+        // prevent the application from switching to landscape-mode
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // initialize controller field hosting all other sub classes
         controller_Android = new Controller_Android(this);
