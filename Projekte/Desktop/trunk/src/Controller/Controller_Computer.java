@@ -19,7 +19,7 @@ public class Controller_Computer {
 		gui_computer = GUI_computer;
 		log = LOG;
 		camera_picture=new Camera_Picture();
-		packagedata=new Packagedata(gui_computer);
+		packagedata=new Packagedata(this);
 		gps_map=new GPS_Map(this);
 		network=new Network("",packagedata,camera_picture);
 		sound_output=new Sound_Output(this);
