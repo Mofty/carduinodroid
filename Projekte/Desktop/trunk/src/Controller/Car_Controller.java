@@ -10,27 +10,48 @@ import javax.swing.border.Border;
 public class Car_Controller {
 	Controller_Computer controller_computer;
 	
+	int delay=0;
 	boolean RunTimer = false, up = false, down = false, right = false, left = false;
 	Timer controlsignal = new Timer();
+	Timer resetButton = new Timer();
 	
 	TimerTask ControlTask = new TimerTask(){
-	  public void run() {
-		  if(RunTimer){
-			  int Speed = controller_computer.gui_computer.speed_slider.getValue();
-			  int Dir = controller_computer.gui_computer.angle_slider.getValue();
-			  send_controlsignal(SpeedCalculation(Speed),DirectionCalculation(Dir));}
-	  }
+		public void run() {
+			if(RunTimer){
+				int Speed = controller_computer.gui_computer.speed_slider.getValue();
+				int Dir = controller_computer.gui_computer.angle_slider.getValue();
+				send_controlsignal(SpeedCalculation(Speed),DirectionCalculation(Dir));	
+			}
+			delay++;
+			System.out.println(delay);
+			if(delay==2){
+				if(!up){controller_computer.gui_computer.UnpressedBorderUp();}
+				if(!down){controller_computer.gui_computer.UnpressedBorderDown();}
+				if(!right){controller_computer.gui_computer.UnpressedBorderRight();}
+				if(!left){controller_computer.gui_computer.UnpressedBorderLeft();}
+				delay=0;
+			}
+		}
+	};
+	
+	TimerTask ResetTask = new TimerTask(){
+		public void run() {
+			if(!up){controller_computer.gui_computer.UnpressedBorderUp();}
+			if(!down){controller_computer.gui_computer.UnpressedBorderDown();}
+			if(!right){controller_computer.gui_computer.UnpressedBorderRight();}
+			if(!left){controller_computer.gui_computer.UnpressedBorderLeft();}
+		}
 	};
 	
 	public Car_Controller(Controller_Computer ControllerComputer){
 		controller_computer = ControllerComputer;
-		controlsignal.schedule(ControlTask, 0, 100);
+		controlsignal.scheduleAtFixedRate(ControlTask, 0, 100);
 	}
 	
 	private void send_controlsignal(int speed,int dir){		
 		if (controller_computer.network.send_controllsignal(speed+";"+dir))
 		 feedback_output(speed,dir);
-		else{ feedback_output(speed,dir);controller_computer.log.writelogfile(speed+" und "+dir);}
+		else{ feedback_output(speed,dir);/*Testweise wegen fehlender Verbindung*/}
 	}
 	
 	private void feedback_output(int speed,int dir){
