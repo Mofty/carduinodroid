@@ -18,11 +18,11 @@ public class GPSTrack {
 	public GPSTrack(){
 		Date date = new Date();
 		SimpleDateFormat dateformat = new SimpleDateFormat( "yyyy_MM_dd_HH_mm_ss" );
-		String logfile = "Track_"+dateformat.format(date)+".gpx";
+		String trackfile = "Track_"+dateformat.format(date)+".gpx";
 		
 		File path = new File("src/gpx/");
 		path.mkdirs();
-		file = new File("src/gpx/",logfile);
+		file = new File("src/gpx/",trackfile);
 
 		try {
 				file.createNewFile();
