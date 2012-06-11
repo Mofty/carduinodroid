@@ -247,15 +247,6 @@ public class GUI_Computer extends JFrame{
 		panel_other.add(down);
 		panel_other.add(left);
 		panel_other.add(right);
-		/*up.setIcon(up_pressed_icon);
-		down.setIcon(down_pressed_icon);
-		left.setIcon(left_pressed_icon);
-		right.setIcon(right_pressed_icon);
-		up.setBorder(pressed_border);
-		down.setBorder(pressed_border);
-		left.setBorder(pressed_border);
-		right.setBorder(pressed_border);
-		*/
 				
 		//light_button
 		light_button.setBounds(30,345,80,20);
