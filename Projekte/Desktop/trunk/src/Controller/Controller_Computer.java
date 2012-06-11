@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Log;
+import View.GUI_Computer;
 
 public class Controller_Computer {
 	public Log log;
@@ -12,11 +13,13 @@ public class Controller_Computer {
 	public GPS_Map gps_map;
 	public Soundrecording soundrecording;
 	public Network network;
+	public GUI_Computer gui_computer;
 	
-	public Controller_Computer(Log LOG) {
+	public Controller_Computer(Log LOG, GUI_Computer GUI_computer) {
+		gui_computer = GUI_computer;
 		log = LOG;
 		camera_picture=new Camera_Picture();
-		packagedata=new Packagedata();
+		packagedata=new Packagedata(gui_computer);
 		gps_map=new GPS_Map(this);
 		network=new Network("",packagedata,camera_picture);
 		sound_output=new Sound_Output(this);
