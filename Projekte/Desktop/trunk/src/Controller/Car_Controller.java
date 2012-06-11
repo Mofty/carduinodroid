@@ -12,12 +12,11 @@ public class Car_Controller {
 	
 	TimerTask ControlTask = new TimerTask(){
 		public void run() {
-			if(RunTimer){
+			if((!up&&down)||(up&&!down)){
 				int Speed = controller_computer.gui_computer.speed_slider.getValue();
 				int Dir = controller_computer.gui_computer.angle_slider.getValue();
-				if((!up&&down)||(up&&!down)){
 				send_controlsignal(SpeedCalculation(Speed),DirectionCalculation(Dir));
-				controller_computer.log.writelogfile(up+","+down+","+right+","+left);}	
+				controller_computer.log.writelogfile(up+","+down+","+right+","+left);	
 			}
 			delay++;
 			if(delay==2){
@@ -46,16 +45,7 @@ public class Car_Controller {
 		if(down){controller_computer.gui_computer.PressedBorderDown();}
 		if(right){controller_computer.gui_computer.PressedBorderRight();}
 		if(left){controller_computer.gui_computer.PressedBorderLeft();}
-	}
-	
-	public void StartTimer(boolean Up, boolean Down, boolean Right, boolean Left){
-		up = Up; down = Down; right = Right; left = Left;
-		RunTimer = true;
-	}
-	
-	public void StopTimer(){
-		RunTimer = false;
-	}
+	}	
 	
 	public void UpdateVariables(boolean Up, boolean Down, boolean Right, boolean Left){
 		up = Up; down = Down; right = Right; left = Left;
