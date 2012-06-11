@@ -14,6 +14,6 @@ public class Signal_ActionListener implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {
 		controller_Computer.sound_output.send_output_soundsignal("1");
-		controller_Computer.packagedata.updateInformationbox();
+		controller_Computer.packagedata.receive_package("1;1;2;3;10.914167;50.687222"); // nur test !!!
 	}
 }
