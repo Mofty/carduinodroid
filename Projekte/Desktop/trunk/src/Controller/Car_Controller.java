@@ -3,27 +3,23 @@ package Controller;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.border.Border;
-
 public class Car_Controller {
 	Controller_Computer controller_computer;
 	
 	int delay=0;
 	boolean RunTimer = false, up = false, down = false, right = false, left = false;
 	Timer controlsignal = new Timer();
-	Timer resetButton = new Timer();
 	
 	TimerTask ControlTask = new TimerTask(){
 		public void run() {
 			if(RunTimer){
 				int Speed = controller_computer.gui_computer.speed_slider.getValue();
 				int Dir = controller_computer.gui_computer.angle_slider.getValue();
-				send_controlsignal(SpeedCalculation(Speed),DirectionCalculation(Dir));	
+				if((!up&&down)||(up&&!down)){
+				send_controlsignal(SpeedCalculation(Speed),DirectionCalculation(Dir));
+				controller_computer.log.writelogfile(up+","+down+","+right+","+left);}	
 			}
 			delay++;
-			System.out.println(delay);
 			if(delay==2){
 				if(!up){controller_computer.gui_computer.UnpressedBorderUp();}
 				if(!down){controller_computer.gui_computer.UnpressedBorderDown();}
@@ -66,9 +62,12 @@ public class Car_Controller {
 		RunTimer = true;
 	}
 	
-	public void StopTimer(boolean Up, boolean Down, boolean Right, boolean Left){
-		up = Up; down = Down; right = Right; left = Left;
+	public void StopTimer(){
 		RunTimer = false;
+	}
+	
+	public void UpdateVariables(boolean Up, boolean Down, boolean Right, boolean Left){
+		up = Up; down = Down; right = Right; left = Left;
 	}
 	
 	private int SpeedCalculation(int speed)
