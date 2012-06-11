@@ -248,7 +248,8 @@ public class GUI_Computer extends JFrame{
 		//Live-Log screen
 		Live_Log.setEditable(false);
 		
-		this.addKeyListener(new Speed_KeyListener());
+		this.addKeyListener(new Speed_KeyListener(this));
+		
 	}
 	
 	//method for read language.txt
