@@ -7,18 +7,15 @@ import java.io.IOException;
 import java.util.*;
 import java.text.*;
 
-import View.GUI_Computer;
-
 public class GPSTrack {
-	GUI_Computer gui_computer;
+	
 	BufferedWriter writer;
 	SimpleDateFormat dateformat;
 	Date date;
 	File file;
 	File path;
 	
-	public GPSTrack(GUI_Computer GUI_computer){
-		gui_computer = GUI_computer;
+	public GPSTrack(){
 		Date date = new Date();
 		SimpleDateFormat dateformat = new SimpleDateFormat( "yyyy_MM_dd_HH_mm_ss" );
 		String logfile = "Track_"+dateformat.format(date)+".gpx";
@@ -46,7 +43,7 @@ public class GPSTrack {
 			writer.write(entry,0,entry.length());
 			writer.write(System.getProperty("line.separator"));
 			writer.flush();
-			write_Live_Log(entry);
+			
 		} catch (IOException e) { e.printStackTrace(); }
 	}
 	
