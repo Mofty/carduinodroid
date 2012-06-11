@@ -14,7 +14,7 @@ public class Direction_KeyListener implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {	
 		int key = e.getKeyCode();
-		if (key == KeyEvent.VK_UP) {up=true;};
+		if (key == KeyEvent.VK_UP) {up=true;/*hier anstubsen vom Timer immer, wenn eines True wird!*/};
 		if (key == KeyEvent.VK_RIGHT) {right=true;};
 		if (key == KeyEvent.VK_LEFT) {left=true;};
 		if (key == KeyEvent.VK_DOWN) {down=true;};
