@@ -10,10 +10,14 @@ import android.text.format.Time;
 
 public class LOG
 {	
+	public final int LOG_ALL = 1;
+	public final int LOG_WARNINGS_ONLY = 2;
+	
 	Time time;
 	File path;
 	File file;
 	BufferedWriter buffwrite;
+	int logLevel;
 
 	String logpath = Environment.getExternalStorageDirectory().getPath()+"/carduinodroid/log";
 	
@@ -52,6 +56,11 @@ public class LOG
 				buffwrite.newLine();
 				buffwrite.flush();
 			} catch (IOException e) { }
+	}
+	
+	public void setLevel(int lvl)
+	{
+		
 	}
 	
 	public void save() 

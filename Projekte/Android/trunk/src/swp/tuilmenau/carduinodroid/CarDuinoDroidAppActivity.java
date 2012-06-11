@@ -6,6 +6,8 @@ import android.content.*;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.PowerManager;
+import android.view.View;
+import android.widget.*;
 
 public class CarDuinoDroidAppActivity extends Activity 
 {	
@@ -17,6 +19,20 @@ public class CarDuinoDroidAppActivity extends Activity
 	private PendingIntent contentIntent;
 	private PowerManager powerManager;
 	private PowerManager.WakeLock wakelock;
+
+	private RadioGroup logLevelSwitch;
+	private LogLevelSwitcherListener logLevelSwitcherListener;
+	
+	class LogLevelSwitcherListener implements RadioGroup.OnCheckedChangeListener
+	{
+
+		public void onCheckedChanged(RadioGroup group, int checkedId) 
+		{
+			if (checkedId == R.id.radio0) controller_Android.log.setLevel(controller_Android.log.LOG_ALL);
+			if (checkedId == R.id.radio1) controller_Android.log.setLevel(controller_Android.log.LOG_WARNINGS_ONLY);
+		}
+		
+	}
 	
     @Override
     public void onCreate(Bundle savedInstanceState) 
@@ -35,8 +51,18 @@ public class CarDuinoDroidAppActivity extends Activity
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notification = new Notification(R.drawable.ic_launcher, "CarduinoDroid running", System.currentTimeMillis());
         notificationIntent = new Intent(this, CarDuinoDroidAppActivity.class);
-        contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0); 
+        contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+        // Link LogSwitcher
+        // Close-Button is linked in main.xml
+        logLevelSwitch = (RadioGroup) findViewById(R.id.radioGroup1);
+        logLevelSwitch.setOnCheckedChangeListener(logLevelSwitcherListener); 
     }   
+    
+    public void close(View view)
+    //called when the close button is pressed;
+    {
+    	finish();
+    }
     
     @Override
     public void onResume()
@@ -59,7 +85,6 @@ public class CarDuinoDroidAppActivity extends Activity
     	wakelock.release();
     	controller_Android.cam.disableCamera();
     	super.onPause();
-    	finish();
     }
 
     @Override
