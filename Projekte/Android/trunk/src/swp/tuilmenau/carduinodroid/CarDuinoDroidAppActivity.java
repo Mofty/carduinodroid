@@ -10,7 +10,17 @@ import android.view.View;
 import android.widget.*;
 
 public class CarDuinoDroidAppActivity extends Activity 
-{	
+{
+	class LogLevelSwitcherListener implements RadioGroup.OnCheckedChangeListener
+	{
+		public void onCheckedChanged(RadioGroup group, int checkedId) 
+		{
+			if (checkedId == R.id.radio0) controller_Android.log.setLevel(controller_Android.log.LOG_ALL);
+			if (checkedId == R.id.radio1) controller_Android.log.setLevel(controller_Android.log.LOG_WARNINGS_ONLY);
+		}
+		
+	}
+	
 	private Controller_Android controller_Android;
 	
 	private NotificationManager notificationManager;
@@ -23,17 +33,7 @@ public class CarDuinoDroidAppActivity extends Activity
 	private RadioGroup logLevelSwitch;
 	private LogLevelSwitcherListener logLevelSwitcherListener;
 	
-	class LogLevelSwitcherListener implements RadioGroup.OnCheckedChangeListener
-	{
 
-		public void onCheckedChanged(RadioGroup group, int checkedId) 
-		{
-			if (checkedId == R.id.radio0) controller_Android.log.setLevel(controller_Android.log.LOG_ALL);
-			if (checkedId == R.id.radio1) controller_Android.log.setLevel(controller_Android.log.LOG_WARNINGS_ONLY);
-		}
-		
-	}
-	
     @Override
     public void onCreate(Bundle savedInstanceState) 
     {
