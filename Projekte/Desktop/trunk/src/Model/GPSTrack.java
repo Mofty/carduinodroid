@@ -1,103 +1,67 @@
 package Model;
 
-import java.util.Date;
-//xml writer import
-import java.io.FileOutputStream;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
+import java.text.*;
 
-import javax.xml.stream.XMLEventFactory;
-import javax.xml.stream.XMLEventWriter;
-import javax.xml.stream.XMLOutputFactory;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.events.Characters;
-import javax.xml.stream.events.EndElement;
-import javax.xml.stream.events.StartDocument;
-import javax.xml.stream.events.StartElement;
-import javax.xml.stream.events.XMLEvent;
+import View.GUI_Computer;
 
 public class GPSTrack {
-	Date time;
-	String logpath = "/Desktop/CarDuinoDroid";
-	private String configFile;
+//	GUI_Computer gui_computer;
+	BufferedWriter writer;
+	SimpleDateFormat dateformat;
+	Date date;
+	File file;
+	File path;
+	
+	public GPSTrack(GUI_Computer GUI_computer){
+//		gui_computer = GUI_computer;
+		Date date = new Date();
+		SimpleDateFormat dateformat = new SimpleDateFormat( "yyyy_MM_dd_HH_mm_ss" );
+		String logfile = "Track_"+dateformat.format(date)+".gpx";
+		
+		File path = new File("src/gpx/");
+		path.mkdirs();
+		file = new File("src/gpx/",logfile);
 
-	@SuppressWarnings("deprecation")
-
-
-	public GPSTrack(){
-		// ruft datum und zeit ab	
-		time = new Date();
-		// erstellt datei mit schreibrechten
-
-		StaxWriter configFile = new StaxWriter();
-		configFile.setFile("Track_"+(time.getMonth()+1)+time.getDay()+"_"+time.getHours()+time.getMinutes()+time.getSeconds()+".gpx");
 		try {
-			configFile.saveConfig();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		//xml schema
-
-
+				file.createNewFile();
+			} catch (IOException e) { e.printStackTrace(); }
+		file.canWrite();
+		file.canRead();
+		
+		try {
+			writer = new BufferedWriter(new FileWriter(file));
+		} catch (IOException e) { e.printStackTrace(); }
 	}
 	
-	public void setFile(String configFile) {
-		this.configFile = configFile;
+	public void writelogfile(String line){
+		try {
+			Date data = new Date();
+			SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss" );
+			String entry = df.format(data)+" "+line;
+			writer.write(entry,0,entry.length());
+			writer.write(System.getProperty("line.separator"));
+			writer.flush();
+			write_Live_Log(entry);
+		} catch (IOException e) { e.printStackTrace(); }
 	}
 	
-	private void createNode(XMLEventWriter eventWriter, String name,
-			String value) throws XMLStreamException {
-
-		XMLEventFactory eventFactory = XMLEventFactory.newInstance();
-		XMLEvent end = eventFactory.createDTD("\n");
-		XMLEvent tab = eventFactory.createDTD("\t");
-		// Create Start node
-		StartElement sElement = eventFactory.createStartElement("", "", name);
-		eventWriter.add(tab);
-		eventWriter.add(sElement);
-		// Create Content
-		Characters characters = eventFactory.createCharacters(value);
-		eventWriter.add(characters);
-		// Create End node
-		EndElement eElement = eventFactory.createEndElement("", "", name);
-		eventWriter.add(eElement);
-		eventWriter.add(end);
-
-	}		
-
-
-	public void addPoint(double longitude ,double legitude){
-
+	public void savelogfile(){
+		try {
+			writer.flush();
+			writer.close();
+		} catch (IOException e) { e.printStackTrace(); }
+	}
+	
+	private void write_Live_Log(String Text){
+		if(gui_computer.Live_Log != null)
+		gui_computer.Live_Log.setText(gui_computer.Live_Log.getText()+"\n"+Text);
 	}
 
-	public void saveConfig() throws Exception {
-		// Create a XMLOutputFactory
-		XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
-		// Create XMLEventWriter
-		XMLEventWriter eventWriter = outputFactory
-		.createXMLEventWriter(new FileOutputStream(configFile));
-		// Create a EventFactory
-		XMLEventFactory eventFactory = XMLEventFactory.newInstance();
-		XMLEvent end = eventFactory.createDTD("\n");
-		// Create and write Start Tag
-		StartDocument startDocument = eventFactory.createStartDocument();
-		eventWriter.add(startDocument);
-
-		// Create config open tag
-		StartElement configStartElement = eventFactory.createStartElement("",
-				"", "config");
-		eventWriter.add(configStartElement);
-		eventWriter.add(end);
-		// Write the different nodes
-		createNode(eventWriter, "mode", "1");
-		createNode(eventWriter, "unit", "901");
-		createNode(eventWriter, "current", "0");
-		createNode(eventWriter, "interactive", "0");
-
-		eventWriter.add(eventFactory.createEndElement("", "", "config"));
-		eventWriter.add(end);
-		eventWriter.add(eventFactory.createEndDocument());
-		eventWriter.close();
-
-
-	}
 }
+
 
