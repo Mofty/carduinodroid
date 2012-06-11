@@ -23,14 +23,14 @@ public class Direction_KeyListener implements KeyListener{
 	@Override
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
-		if (key == KeyEvent.VK_UP) {up=false;if(!up&!down&!right&!left)
-			gui_computer.controller_Computer.car_controller.StopTimer(up,down,right,left);};
-		if (key == KeyEvent.VK_RIGHT) {right=false;if(!up&!down&!right&!left)
-			gui_computer.controller_Computer.car_controller.StopTimer(up,down,right,left);};
-		if (key == KeyEvent.VK_LEFT) {left=false;if(!up&!down&!right&!left)
-			gui_computer.controller_Computer.car_controller.StopTimer(up,down,right,left);};
-		if (key == KeyEvent.VK_DOWN) {down=false;if(!up&!down&!right&!left)
-			gui_computer.controller_Computer.car_controller.StopTimer(up,down,right,left);};
+		if (key == KeyEvent.VK_UP) {up=false;gui_computer.controller_Computer.car_controller.UpdateVariables(up, down, right, left);if(!up&!down&!right&!left)
+			gui_computer.controller_Computer.car_controller.StopTimer();};
+		if (key == KeyEvent.VK_RIGHT) {right=false;gui_computer.controller_Computer.car_controller.UpdateVariables(up, down, right, left);if(!up&!down&!right&!left)
+			gui_computer.controller_Computer.car_controller.StopTimer();};
+		if (key == KeyEvent.VK_LEFT) {left=false;gui_computer.controller_Computer.car_controller.UpdateVariables(up, down, right, left);if(!up&!down&!right&!left)
+			gui_computer.controller_Computer.car_controller.StopTimer();};
+		if (key == KeyEvent.VK_DOWN) {down=false;gui_computer.controller_Computer.car_controller.UpdateVariables(up, down, right, left);if(!up&!down&!right&!left)
+			gui_computer.controller_Computer.car_controller.StopTimer();};
 		if (key == KeyEvent.VK_1) {gui_computer.speed_slider.setValue(20);}
 		if (key == KeyEvent.VK_2) {gui_computer.speed_slider.setValue(40);}
 		if (key == KeyEvent.VK_3) {gui_computer.speed_slider.setValue(60);}
