@@ -1,9 +1,5 @@
 package Model;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Date;
 //xml writer import
 import java.io.FileOutputStream;
@@ -19,9 +15,7 @@ import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 
 public class GPSTrack {
-	File file;
 	Date time;
-	private File path;
 	String logpath = "/Desktop/CarDuinoDroid";
 	private String configFile;
 
@@ -32,19 +26,14 @@ public class GPSTrack {
 		// ruft datum und zeit ab	
 		time = new Date();
 		// erstellt datei mit schreibrechten
-		path = new File(logpath);
-		path.mkdirs();
-		file = new File(logpath,"Track_"+(time.getMonth()+1)+time.getDay()+"_"+time.getHours()+time.getMinutes()+time.getSeconds()+".gpx");
-		try {
-			file.createNewFile();
-		} catch (IOException e) { }
-		file.canWrite();
-		file.canRead();
-		// erstellt den BufferedWriter zum schreiben von strings in die datei
-		try {
-			buffwrite = new BufferedWriter(new FileWriter(file));
-		} catch (IOException e) { }
 
+		StaxWriter configFile = new StaxWriter();
+		configFile.setFile("Track_"+(time.getMonth()+1)+time.getDay()+"_"+time.getHours()+time.getMinutes()+time.getSeconds()+".gpx");
+		try {
+			configFile.saveConfig();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		//xml schema
 
 
