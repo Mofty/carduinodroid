@@ -3,6 +3,10 @@ package Controller;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.border.Border;
+
 public class Car_Controller {
 	Controller_Computer controller_computer;
 	
@@ -26,10 +30,14 @@ public class Car_Controller {
 	private void send_controlsignal(int speed,int dir){		
 		if (controller_computer.network.send_controllsignal(speed+";"+dir))
 		 feedback_output(speed,dir);
+		else{ feedback_output(speed,dir);controller_computer.log.writelogfile(speed+" und "+dir);}
 	}
 	
 	private void feedback_output(int speed,int dir){
-		//Hier fehlt text	
+		if(up){controller_computer.gui_computer.PressedBorderUp();}
+		if(down){controller_computer.gui_computer.PressedBorderDown();}
+		if(right){controller_computer.gui_computer.PressedBorderRight();}
+		if(left){controller_computer.gui_computer.PressedBorderLeft();}
 	}
 	
 	public void StartTimer(boolean Up, boolean Down, boolean Right, boolean Left){
