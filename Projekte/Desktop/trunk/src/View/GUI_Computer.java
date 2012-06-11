@@ -63,6 +63,9 @@ public class GUI_Computer extends JFrame{
 				System.exit(0);
 			}
 		});
+		
+		//KeyListener
+		this.addKeyListener(new Speed_KeyListener(this));		
 	}
 	
 	//method: create window
@@ -149,6 +152,8 @@ public class GUI_Computer extends JFrame{
 		panel_other.setPreferredSize(new Dimension(200,500));
 		panel_other.setLayout(null);
 		Live_Log_Scrollbar.setPreferredSize(new Dimension(800,100));
+		panel_other.setFocusable(false);
+		panel_video.setFocusable(false);
 			
 		//menu "file"
 		Quit.addActionListener(new Quit_ActionListener(log));
@@ -157,6 +162,7 @@ public class GUI_Computer extends JFrame{
 		File.add(Connect);
 		File.add(Separator_File);
 		File.add(Quit);
+		File.setFocusable(false);
 		
 		//menu "Preferences" including submenus
 		Camerachoice.add(Frontcamera);
@@ -178,6 +184,7 @@ public class GUI_Computer extends JFrame{
 		panel_other.add(resolution_list_text);
 		panel_other.add(resolution_change);
 		resolution_change.addActionListener(new Resolution_ActionListener(controller_Computer, log, resolution_change));
+		resolution_change.setFocusable(false);
 		
 		//gps_coordinates
 		gps_coordinates_text.setBounds(5, 30, 180, 20);
@@ -212,44 +219,53 @@ public class GUI_Computer extends JFrame{
 		panel_other.add(down);
 		panel_other.add(left);
 		panel_other.add(right);
+		up.setSelectedIcon(new ImageIcon ("src/View/Icons/Icon_up.gif"));
+		up.setEnabled(false);
+		down.setEnabled(false);
+		left.setEnabled(false);
+		right.setEnabled(false);
 				
 		//light_button
 		light_button.setBounds(30,345,80,20);
 		panel_other.add(light_button);
 		light_button.addActionListener(new Light_ActionListener(controller_Computer, log, light_button));
+		light_button.setFocusable(false);
 		
 		//map_button
 		map_button.setBounds(115,345,80,20);
 		panel_other.add(map_button);
 		map_button.addActionListener(new Map_ActionListener(controller_Computer, latitude, longitude));
+		map_button.setFocusable(false);
 		
 		//signal_button
 		signal_button.setBounds(30, 275, 165, 40);
 		panel_other.add(signal_button);
 		signal_button.addActionListener(new Signal_ActionListener(controller_Computer));
+		signal_button.setFocusable(false);
 		
 		//soundrecord_button
 		soundrecord_button.setBounds(30, 320, 165, 20);
 		panel_other.add(soundrecord_button);
 		soundrecord_button.addActionListener(new Record_ActionListener(controller_Computer, log, soundrecord_button));
+		soundrecord_button.setFocusable(false);
 		
 		//speed_slider
 		speed_slider.setBounds(5, 200, 190, 20);
 		speed_label.setBounds(5, 175, 190, 20);
 		panel_other.add(speed_slider);
 		panel_other.add(speed_label);
+		speed_slider.setFocusable(false);
 		
 		//angle_slider
 		angle_slider.setBounds(5, 250, 190, 20);
 		angle_label.setBounds(5, 225, 190, 20);
 		panel_other.add(angle_slider);
 		panel_other.add(angle_label);
+		angle_slider.setFocusable(false);
 		
 		//Live-Log screen
 		Live_Log.setEditable(false);
-		
-		this.addKeyListener(new Speed_KeyListener(this));
-		
+		Live_Log.setFocusable(false);
 	}
 	
 	//method for read language.txt
