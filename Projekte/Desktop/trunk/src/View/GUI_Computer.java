@@ -363,4 +363,28 @@ public class GUI_Computer extends JFrame{
 		left.setBorder(pressed_border);
 		left.setIcon(new ImageIcon("src/View/Icons/Icon_left_pressed.gif"));
 	}
+	
+	public void UnpressedBorderUp(){
+		Border unpressed_border = BorderFactory.createRaisedBevelBorder();
+		up.setBorder(unpressed_border);
+		up.setIcon(new ImageIcon("src/View/Icons/Icon_up.gif"));
+	}
+	
+	public void UnpressedBorderDown(){
+		Border unpressed_border = BorderFactory.createRaisedBevelBorder();
+		down.setBorder(unpressed_border);
+		down.setIcon(new ImageIcon("src/View/Icons/Icon_down.gif"));
+	}
+	
+	public void UnpressedBorderRight(){
+		Border unpressed_border = BorderFactory.createRaisedBevelBorder();
+		right.setBorder(unpressed_border);
+		right.setIcon(new ImageIcon("src/View/Icons/Icon_right.gif"));
+	}
+	
+	public void UnpressedBorderLeft(){
+		Border unpressed_border = BorderFactory.createRaisedBevelBorder();
+		left.setBorder(unpressed_border);
+		left.setIcon(new ImageIcon("src/View/Icons/Icon_left.gif"));
+	}
 }
