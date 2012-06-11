@@ -61,14 +61,31 @@ public class Controller_Android
 		String[] parts = new String[(data.length()/2)];
 	
 		int type;
-		byte[] buffer = new byte[1];
-		
+		int camtype;
 		parts = data.split(";");
 		type = Integer.parseInt(parts[0]);
 		switch (type)
 		{
-			case 1:	{
-					 	//change camera settings
+			case 1: {
+					 	camtype = Integer.parseInt(parts[1]);
+					 	switch (camtype)
+					 	{
+					 		case 1: {
+					 					cam.switchCam(Integer.parseInt(parts[2]));
+					 				}
+					 				break;
+					 		case 2: {
+					 					cam.changeRes(Integer.parseInt(parts[2]), Integer.parseInt(parts[3]));
+					 				}
+					 				break;
+					 		case 3: {
+					 					if (parts[2] == "1") cam.enableFlash();
+					 					if (parts[2] == "0") cam.disableFlash();
+					 				}
+					 				break;
+					 		default: log.write("Unknown camera command from PC");
+					 				 break;
+					 	}
 					};
 					break;
 			case 2: {

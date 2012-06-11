@@ -31,6 +31,16 @@ public class Cam
 		camera.setParameters(parameters);
 	}
 	
+	public void switchCam(int id)
+	{
+		
+	}
+	
+	public void changeRes(int width, int height)
+	{
+		
+	}
+	
 	public void disableCamera()
 	{
 		camera.release();
