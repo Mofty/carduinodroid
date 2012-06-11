@@ -4,5 +4,10 @@
     <string name="app_name">CarDuinoDroid App</string>
     <string name="LocalIP">no local IP available</string>
     <string name="IP_title">IP Adresse</string>
+    <string name="CloseButton">Close</string>
+    <string name="LOG_All">Log Info and Warnings</string>
+    <string name="empty"> </string>
+    <string name="LOG_WarningsOnly">Log only critical Warnings</string>
+    <string name="LOG_Level_title">Log-Level</string>
     
 </resources>
