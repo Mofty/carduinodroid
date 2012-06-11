@@ -3,8 +3,6 @@ package Controller;
 public class Packagedata {
 	
 	Controller_Computer controller_computer;
-	int[] valuesInt;
-	double[] valuesDouble;
 	String [] tokens;
 	
 	public Packagedata(Controller_Computer ControllerComputer){
@@ -14,7 +12,7 @@ public class Packagedata {
 	public void receive_package(String data) 
 	{
 		tokens = data.split(";",-1);
-		for (int i = 0; i < 6; i++) tokens[i] = tokens[i].trim(); //Leerzeichen weg vorn und hinten
+		for (int i = 0; i < tokens.length; i++) tokens[i] = tokens[i].trim(); //Leerzeichen weg vorn und hinten
 		updateInformationbox();
 	}
 	
