@@ -20,9 +20,9 @@ public class Packagedata {
 	
 	public void updateInformationbox()
 	{
-		//gui_computer.connection_type.setText();
 		controller_computer.gui_computer.longitude.setText(tokens[4]);
 		controller_computer.gui_computer.latitude.setText(tokens[5]);
+		//gui_computer.connection_type.setText();
 		//MobileAvailable tokens[0]; 
 		//WLANAvailable tokens[1];
 		//Mobile tokens[2];
