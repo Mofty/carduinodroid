@@ -1,16 +1,14 @@
 package Controller;
 
-import View.GUI_Computer;
-
 public class Packagedata {
 	
-	GUI_Computer gui_computer;
+	Controller_Computer controller_computer;
 	int[] valuesInt;
 	double[] valuesDouble;
 	String [] tokens;
 	
-	public Packagedata(GUI_Computer gui_Computer){
-		gui_computer = gui_Computer;
+	public Packagedata(Controller_Computer ControllerComputer){
+		controller_computer = ControllerComputer;
 	}
 	
 	public void receive_package(String data) 
@@ -25,8 +23,7 @@ public class Packagedata {
 		tokens[5]="50.687222";
 		tokens[4]="10.914167";
 		//gui_computer.connection_type.setText();
-		gui_computer.latitude.setText(tokens[5]);
-		gui_computer.longitude.setText(tokens[4]);
+		controller_computer.gui_computer.latitude.setText("test");
 		//MobileAvailable tokens[0]; 
 		//WLANAvailable tokens[1];
 		//Mobile tokens[2];
