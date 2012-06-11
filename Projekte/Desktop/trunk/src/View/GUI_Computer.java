@@ -77,10 +77,12 @@ public class GUI_Computer extends JFrame{
 		//window listener for closing
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosed(WindowEvent arg0) {
+				gpstrack.savegpxfile();
 				log.writelogfile("CarDuinoDroid closed.");
 				System.exit(0);
 			}
 			public void windowClosing(WindowEvent arg0) {
+				gpstrack.savegpxfile();
 				log.writelogfile("CarDuinoDroid closed.");
 				System.exit(0);
 			}
@@ -183,7 +185,7 @@ public class GUI_Computer extends JFrame{
 		panel_video.setFocusable(false);
 			
 		//menu "file"
-		Quit.addActionListener(new Quit_ActionListener(log));
+		Quit.addActionListener(new Quit_ActionListener(log,gpstrack));
 		Connect.addActionListener(new Connect_ActionListener(Names.get(12), log, ip_label, this));
 		File.add(About);
 		File.add(Connect);
