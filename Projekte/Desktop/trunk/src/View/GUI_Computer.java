@@ -2,6 +2,7 @@ package View;
 
 import Controller.*;
 import Model.*;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
@@ -19,6 +20,9 @@ import javax.swing.ButtonGroup;
 import javax.swing.JToggleButton;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -107,10 +111,6 @@ public class GUI_Computer extends JFrame{
 		//initiate ToggleButtons
 		JToggleButton light_button = new JToggleButton(Names.get(5), false);
 		JToggleButton soundrecord_button = new JToggleButton(Names.get(14), false);
-		JToggleButton up = new JToggleButton(new ImageIcon ("src/View/Icons/Icon_up.gif"));
-		JToggleButton down = new JToggleButton(new ImageIcon ("src/View/Icons/Icon_down.gif"));
-		JToggleButton left = new JToggleButton(new ImageIcon ("src/View/Icons/Icon_left.gif"));
-		JToggleButton right = new JToggleButton(new ImageIcon ("src/View/Icons/Icon_right.gif"));
 		
 		//initiate ComboBoxes
 		JComboBox resolution_change = new JComboBox(resolution_list);
@@ -128,6 +128,21 @@ public class GUI_Computer extends JFrame{
 		speed_slider = new JSlider(1, 100, 20);
 		angle_slider = new JSlider(1, 100, 50);
 		
+		//initiate icons
+		ImageIcon up_icon = new ImageIcon("src/View/Icons/Icon_up.gif");
+		ImageIcon down_icon = new ImageIcon("src/View/Icons/Icon_down.gif");
+		ImageIcon left_icon = new ImageIcon("src/View/Icons/Icon_left.gif");
+		ImageIcon right_icon = new ImageIcon("src/View/Icons/Icon_right.gif");
+		ImageIcon up_pressed_icon = new ImageIcon("src/View/Icons/Icon_up_pressed.gif");
+		ImageIcon down_pressed_icon = new ImageIcon("src/View/Icons/Icon_down_pressed.gif");
+		ImageIcon left_pressed_icon = new ImageIcon("src/View/Icons/Icon_left_pressed.gif");
+		ImageIcon right_pressed_icon = new ImageIcon("src/View/Icons/Icon_right_pressed.gif");
+		
+		//initiate BevelBorders
+		Border unpressed_border = BorderFactory.createRaisedBevelBorder();
+		Border pressed_border = BorderFactory.createLoweredBevelBorder();
+		Border live_log_border = BorderFactory.createTitledBorder("Log:");
+		
 		//initiate JLabels
 		JLabel resolution_list_text = new JLabel(Names.get(10) + ": ");
 		JLabel gps_coordinates_text = new JLabel(Names.get(11) + ": ");
@@ -141,6 +156,10 @@ public class GUI_Computer extends JFrame{
 		longitude = new JLabel();
 		JLabel present_ip_text = new JLabel(Names.get(19) + ": ");
 		JLabel ip_label = new JLabel();
+		JLabel up = new JLabel(up_icon);
+		JLabel down = new JLabel(down_icon);
+		JLabel left = new JLabel(left_icon);
+		JLabel right = new JLabel(right_icon);
 		
 		//initiate JPanels
 		JPanel panel_video = new JPanel();
@@ -218,18 +237,23 @@ public class GUI_Computer extends JFrame{
 		down.setBounds(95, 405, 30, 30);
 		left.setBounds(60, 405, 30, 30);
 		right.setBounds(130, 405, 30, 30);
+		up.setBorder(unpressed_border);
+		down.setBorder(unpressed_border);
+		left.setBorder(unpressed_border);
+		right.setBorder(unpressed_border);
 		panel_other.add(up);
 		panel_other.add(down);
 		panel_other.add(left);
 		panel_other.add(right);
-		up.setSelectedIcon(new ImageIcon ("src/View/Icons/Icon_up_pressed.gif"));
-		down.setSelectedIcon(new ImageIcon ("src/View/Icons/Icon_down_pressed.gif"));
-		left.setSelectedIcon(new ImageIcon ("src/View/Icons/Icon_left_pressed.gif"));
-		right.setSelectedIcon(new ImageIcon ("src/View/Icons/Icon_right_pressed.gif"));
-		up.setEnabled(false);
-		down.setEnabled(false);
-		left.setEnabled(false);
-		right.setEnabled(false);
+		/*up.setIcon(up_pressed_icon);
+		down.setIcon(down_pressed_icon);
+		left.setIcon(left_pressed_icon);
+		right.setIcon(right_pressed_icon);
+		up.setBorder(pressed_border);
+		down.setBorder(pressed_border);
+		left.setBorder(pressed_border);
+		right.setBorder(pressed_border);
+		*/
 				
 		//light_button
 		light_button.setBounds(30,345,80,20);
@@ -272,6 +296,7 @@ public class GUI_Computer extends JFrame{
 		//Live-Log screen
 		Live_Log.setEditable(false);
 		Live_Log.setFocusable(false);
+		Live_Log_Scrollbar.setBorder(live_log_border);
 	}
 	
 	//method for read language.txt
