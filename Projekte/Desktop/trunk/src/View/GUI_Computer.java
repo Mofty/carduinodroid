@@ -72,7 +72,7 @@ public class GUI_Computer extends JFrame{
 		});
 		
 		//KeyListener
-		this.addKeyListener(new Speed_KeyListener(this));		
+		this.addKeyListener(new Direction_KeyListener(this));		
 	}
 	
 	//method: create window
