@@ -56,9 +56,33 @@ public class Controller_Android
 		return data;
 	}
 	
-	public void receiveSteuerdaten(String Steuerdaten) 
+	public void receiveData(String data) 
 	{
+		String[] parts = new String[(data.length()/2)];
+	
+		int type;
+		byte[] buffer = new byte[1];
 		
+		parts = data.split(";");
+		type = Integer.parseInt(parts[0]);
+		switch (type)
+		{
+			case 1:	{
+					 	//change camera settings
+					};
+					break;
+			case 2: {
+					 	arduino.SendCommand(Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
+					};
+					break;
+			case 3: {
+					 	sound.horn();
+					};
+					break;
+					
+			default: log.write("unknown command from PC");
+					 break;
+		}
 	}
 	
 	public void camerPicture() 

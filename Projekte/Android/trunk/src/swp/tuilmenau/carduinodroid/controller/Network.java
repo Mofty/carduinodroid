@@ -42,7 +42,7 @@ public class Network
 
 	public void receive_controll(String message) {
 		// TODO Auto-generated method stub
-		controller.receiveSteuerdaten(message);
+		controller.receiveData(message);
 	}
 
 	
