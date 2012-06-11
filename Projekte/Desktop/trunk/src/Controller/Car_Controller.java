@@ -30,15 +30,6 @@ public class Car_Controller {
 		}
 	};
 	
-	TimerTask ResetTask = new TimerTask(){
-		public void run() {
-			if(!up){controller_computer.gui_computer.UnpressedBorderUp();}
-			if(!down){controller_computer.gui_computer.UnpressedBorderDown();}
-			if(!right){controller_computer.gui_computer.UnpressedBorderRight();}
-			if(!left){controller_computer.gui_computer.UnpressedBorderLeft();}
-		}
-	};
-	
 	public Car_Controller(Controller_Computer ControllerComputer){
 		controller_computer = ControllerComputer;
 		controlsignal.scheduleAtFixedRate(ControlTask, 0, 100);
