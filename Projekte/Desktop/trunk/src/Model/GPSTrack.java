@@ -10,7 +10,7 @@ import java.text.*;
 import View.GUI_Computer;
 
 public class GPSTrack {
-//	GUI_Computer gui_computer;
+	GUI_Computer gui_computer;
 	BufferedWriter writer;
 	SimpleDateFormat dateformat;
 	Date date;
@@ -18,7 +18,7 @@ public class GPSTrack {
 	File path;
 	
 	public GPSTrack(GUI_Computer GUI_computer){
-//		gui_computer = GUI_computer;
+		gui_computer = GUI_computer;
 		Date date = new Date();
 		SimpleDateFormat dateformat = new SimpleDateFormat( "yyyy_MM_dd_HH_mm_ss" );
 		String logfile = "Track_"+dateformat.format(date)+".gpx";
@@ -52,14 +52,10 @@ public class GPSTrack {
 	
 	public void savelogfile(){
 		try {
+			//5tags die dann noch fehlen
 			writer.flush();
 			writer.close();
 		} catch (IOException e) { e.printStackTrace(); }
-	}
-	
-	private void write_Live_Log(String Text){
-		if(gui_computer.Live_Log != null)
-		gui_computer.Live_Log.setText(gui_computer.Live_Log.getText()+"\n"+Text);
 	}
 
 }
