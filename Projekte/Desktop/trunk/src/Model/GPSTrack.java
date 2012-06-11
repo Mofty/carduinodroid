@@ -19,6 +19,7 @@ public class GPSTrack {
 		Date date = new Date();
 		SimpleDateFormat dateformat = new SimpleDateFormat( "yyyy_MM_dd_HH_mm_ss" );
 		String trackfile = "Track_"+dateformat.format(date)+".gpx";
+		SimpleDateFormat gpx = new SimpleDateFormat("dd MMM yyyy HH:mm");
 		
 		File path = new File("src/gpx/");
 		path.mkdirs();
@@ -36,11 +37,8 @@ public class GPSTrack {
 		
 		try {
 			writer.write("\u003C"+"?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?"+"\u003E");writer.write(System.getProperty("line.separator"));
-			writer.write("\t\u003C"+"gpx version=\"1.1\" creator=\"CarDuinoDroid\""+"\u003E");writer.write(System.getProperty("line.separator"));
-			writer.write("\t\u003C"+"trk"+"\u003E"+"\u003C"+"name"+"\u003E"+"Aktueller Track: 11 JUN 2012 18:28"+"\u003C"+"/name"+"\u003E"+"\n\t\t\u003C"+"trkseg"+"\u003E");writer.write(System.getProperty("line.separator"));
-			
-			writer.write("\t\t\t\u003C"+"trkpt lat=\"15.341\" lon=\"34.342\""+"\u003E");writer.write(System.getProperty("line.separator"));
-			writer.write("\t\t\u003C/trkseg\u003E\n\t\u003C/trk\u003E\n\u003C/gpx\u003E");
+			writer.write("\t\u003C"+"gpx version=\"1.1\" creator=\"CarDuinoDroid\" "+"xmlns=\"http://www.topografix.com/GPX/1/1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd\""+"\u003E");writer.write(System.getProperty("line.separator"));				
+			writer.write("\t\t\u003C"+"trk"+"\u003E"+"\u003C"+"name"+"\u003E"+"Aktueller Track: "+gpx.format(date)+"\u003C"+"/name"+"\u003E"+"\n\t\t\u003C"+"trkseg"+"\u003E");writer.write(System.getProperty("line.separator"));
 			writer.flush();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -48,21 +46,23 @@ public class GPSTrack {
 		}
 	}
 	
-	public void writelogfile(String line){
+	public void writegpxfile(String Long, String Lat){
 		try {
 			Date data = new Date();
-			SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss" );
-			String entry = df.format(data)+" "+line;
-			writer.write(entry,0,entry.length());
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-DDTHH:mm:ssZ" );
+			String time = df.format(data);
+			writer.write("\t\t\t\u003Ctrkpt lat=\""+Lat+"\" lon=\""+Long+"\"\u003E");
 			writer.write(System.getProperty("line.separator"));
-			writer.flush();
-			
+			writer.write("\t\t\t\t\u003Ctime\u003E"+time+"\t\t\t\t\u003C/time\u003E");
+			writer.write(System.getProperty("line.separator"));
+			writer.flush();	
 		} catch (IOException e) { e.printStackTrace(); }
 	}
 	
-	public void savelogfile(){
+	public void savegpxfile(){
 		try {
-			//5tags die dann noch fehlen
+			writegpxfile("15","15");
+			writer.write("\t\t\u003C/trkseg\u003E\n\t\u003C/trk\u003E\n\u003C/gpx\u003E");
 			writer.flush();
 			writer.close();
 		} catch (IOException e) { e.printStackTrace(); }
