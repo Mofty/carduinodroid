@@ -28,8 +28,12 @@ public class Packagedata {
 	
 	public void updateInformationsbox()
 	{
-		
-	
+		//MobileAvailable tokens[0]; 
+		//WLANAvailable tokens[1];
+		//Mobile tokens[2];
+		//WLAN tokens[3];
+		//GPS longitude tokens[4];
+		//GPS latitude tokens[5];
 		
 	}
 }
