@@ -153,7 +153,7 @@ public class GUI_Computer extends JFrame{
 		JLabel longitude_text = new JLabel(Names.get(18) + ": ");
 		JLabel speed_label = new JLabel(Names.get(15) + ": ");
 		JLabel angle_label = new JLabel(Names.get(16) + ": ");
-		connection_type = new JLabel("W-Lan");
+		connection_type = new JLabel();
 		latitude = new JLabel();
 		longitude = new JLabel();
 		JLabel present_ip_text = new JLabel(Names.get(19) + ": ");
