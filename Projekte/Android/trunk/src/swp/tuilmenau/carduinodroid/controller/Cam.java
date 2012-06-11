@@ -2,7 +2,6 @@ package swp.tuilmenau.carduinodroid.controller;
 
 import swp.tuilmenau.carduinodroid.model.LOG;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
 
