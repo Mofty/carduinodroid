@@ -2,6 +2,7 @@ package View;
 
 import Controller.*;
 import Model.*;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -37,6 +38,7 @@ public class GUI_Computer extends JFrame{
 	
 	static BufferedReader language_reader;
 	Log log;
+	GPSTrack gpstrack;
 	Controller_Computer controller_Computer;
 	public JTextArea Live_Log;
 	public JSlider speed_slider;
@@ -62,6 +64,7 @@ public class GUI_Computer extends JFrame{
 	public GUI_Computer(){
 		this.getContentPane().setLayout(null);
 		log  = new Log(this);
+		gpstrack = new GPSTrack();
 		controller_Computer = new Controller_Computer(log, this);
 		
 		//create programwindow

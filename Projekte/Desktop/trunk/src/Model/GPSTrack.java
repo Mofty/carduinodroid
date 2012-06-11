@@ -33,6 +33,19 @@ public class GPSTrack {
 		try {
 			writer = new BufferedWriter(new FileWriter(file));
 		} catch (IOException e) { e.printStackTrace(); }
+		
+		try {
+			writer.write("\u003C"+"?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?"+"\u003E");writer.write(System.getProperty("line.separator"));
+			writer.write("\t\u003C"+"gpx version=\"1.1\" creator=\"CarDuinoDroid\""+"\u003E");writer.write(System.getProperty("line.separator"));
+			writer.write("\t\u003C"+"trk"+"\u003E"+"\u003C"+"name"+"\u003E"+"Aktueller Track: 11 JUN 2012 18:28"+"\u003C"+"/name"+"\u003E"+"\n\t\t\u003C"+"trkseg"+"\u003E");writer.write(System.getProperty("line.separator"));
+			
+			writer.write("\t\t\t\u003C"+"trkpt lat=\"15.341\" lon=\"34.342\""+"\u003E");writer.write(System.getProperty("line.separator"));
+			writer.write("\t\t\u003C/trkseg\u003E\n\t\u003C/trk\u003E\n\u003C/gpx\u003E");
+			writer.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void writelogfile(String line){
