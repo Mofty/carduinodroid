@@ -222,7 +222,10 @@ public class GUI_Computer extends JFrame{
 		panel_other.add(down);
 		panel_other.add(left);
 		panel_other.add(right);
-		up.setSelectedIcon(new ImageIcon ("src/View/Icons/Icon_up.gif"));
+		up.setSelectedIcon(new ImageIcon ("src/View/Icons/Icon_up_pressed.gif"));
+		down.setSelectedIcon(new ImageIcon ("src/View/Icons/Icon_down_pressed.gif"));
+		left.setSelectedIcon(new ImageIcon ("src/View/Icons/Icon_left_pressed.gif"));
+		right.setSelectedIcon(new ImageIcon ("src/View/Icons/Icon_right_pressed.gif"));
 		up.setEnabled(false);
 		down.setEnabled(false);
 		left.setEnabled(false);
