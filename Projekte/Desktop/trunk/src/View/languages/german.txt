@@ -16,6 +16,6 @@ Tonaufnahme
 Geschwindigkeit
 Lenkwinkel
 Breite
-LŠnge
+Länge
 IP
 Verbinden
