@@ -21,8 +21,6 @@ import javax.swing.JToggleButton;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -50,6 +48,16 @@ public class GUI_Computer extends JFrame{
 	public JLabel down;
 	public JLabel left;
 	public JLabel right;
+	
+	//initiate icons
+	ImageIcon up_icon = new ImageIcon("src/View/Icons/Icon_up.gif");
+	ImageIcon down_icon = new ImageIcon("src/View/Icons/Icon_down.gif");
+	ImageIcon left_icon = new ImageIcon("src/View/Icons/Icon_left.gif");
+	ImageIcon right_icon = new ImageIcon("src/View/Icons/Icon_right.gif");
+	ImageIcon up_pressed_icon = new ImageIcon("src/View/Icons/Icon_up_pressed.gif");
+	ImageIcon down_pressed_icon = new ImageIcon("src/View/Icons/Icon_down_pressed.gif");
+	ImageIcon left_pressed_icon = new ImageIcon("src/View/Icons/Icon_left_pressed.gif");
+	ImageIcon right_pressed_icon = new ImageIcon("src/View/Icons/Icon_right_pressed.gif");
 	
 	public GUI_Computer(){
 		this.getContentPane().setLayout(null);
@@ -131,17 +139,7 @@ public class GUI_Computer extends JFrame{
 		//initiate JSliders
 		speed_slider = new JSlider(1, 100, 20);
 		angle_slider = new JSlider(1, 100, 50);
-		
-		//initiate icons
-		ImageIcon up_icon = new ImageIcon("src/View/Icons/Icon_up.gif");
-		ImageIcon down_icon = new ImageIcon("src/View/Icons/Icon_down.gif");
-		ImageIcon left_icon = new ImageIcon("src/View/Icons/Icon_left.gif");
-		ImageIcon right_icon = new ImageIcon("src/View/Icons/Icon_right.gif");
-		ImageIcon up_pressed_icon = new ImageIcon("src/View/Icons/Icon_up_pressed.gif");
-		ImageIcon down_pressed_icon = new ImageIcon("src/View/Icons/Icon_down_pressed.gif");
-		ImageIcon left_pressed_icon = new ImageIcon("src/View/Icons/Icon_left_pressed.gif");
-		ImageIcon right_pressed_icon = new ImageIcon("src/View/Icons/Icon_right_pressed.gif");
-		
+				
 		//initiate BevelBorders
 		Border unpressed_border = BorderFactory.createRaisedBevelBorder();
 		Border pressed_border = BorderFactory.createLoweredBevelBorder();
@@ -183,7 +181,7 @@ public class GUI_Computer extends JFrame{
 			
 		//menu "file"
 		Quit.addActionListener(new Quit_ActionListener(log));
-		Connect.addActionListener(new Connect_ActionListener(Names.get(12), log, ip_label));
+		Connect.addActionListener(new Connect_ActionListener(Names.get(12), log, ip_label, this));
 		File.add(About);
 		File.add(Connect);
 		File.add(Separator_File);
@@ -343,48 +341,48 @@ public class GUI_Computer extends JFrame{
 	public void PressedBorderUp(){
 		Border pressed_border = BorderFactory.createLoweredBevelBorder();
 		up.setBorder(pressed_border);
-		up.setIcon(new ImageIcon("src/View/Icons/Icon_up_pressed.gif"));
+		up.setIcon(up_pressed_icon);
 	}
 	
 	public void PressedBorderDown(){
 		Border pressed_border = BorderFactory.createLoweredBevelBorder();
 		down.setBorder(pressed_border);
-		down.setIcon(new ImageIcon("src/View/Icons/Icon_down_pressed.gif"));
+		down.setIcon(down_pressed_icon);
 	}
 	
 	public void PressedBorderRight(){
 		Border pressed_border = BorderFactory.createLoweredBevelBorder();
 		right.setBorder(pressed_border);
-		right.setIcon(new ImageIcon("src/View/Icons/Icon_right_pressed.gif"));
+		right.setIcon(right_pressed_icon);
 	}
 	
 	public void PressedBorderLeft(){
 		Border pressed_border = BorderFactory.createLoweredBevelBorder();
 		left.setBorder(pressed_border);
-		left.setIcon(new ImageIcon("src/View/Icons/Icon_left_pressed.gif"));
+		left.setIcon(left_pressed_icon);
 	}
 	
 	public void UnpressedBorderUp(){
 		Border unpressed_border = BorderFactory.createRaisedBevelBorder();
 		up.setBorder(unpressed_border);
-		up.setIcon(new ImageIcon("src/View/Icons/Icon_up.gif"));
+		up.setIcon(up_icon);
 	}
 	
 	public void UnpressedBorderDown(){
 		Border unpressed_border = BorderFactory.createRaisedBevelBorder();
 		down.setBorder(unpressed_border);
-		down.setIcon(new ImageIcon("src/View/Icons/Icon_down.gif"));
+		down.setIcon(down_icon);
 	}
 	
 	public void UnpressedBorderRight(){
 		Border unpressed_border = BorderFactory.createRaisedBevelBorder();
 		right.setBorder(unpressed_border);
-		right.setIcon(new ImageIcon("src/View/Icons/Icon_right.gif"));
+		right.setIcon(right_icon);
 	}
 	
 	public void UnpressedBorderLeft(){
 		Border unpressed_border = BorderFactory.createRaisedBevelBorder();
 		left.setBorder(unpressed_border);
-		left.setIcon(new ImageIcon("src/View/Icons/Icon_left.gif"));
+		left.setIcon(left_icon);
 	}
 }
