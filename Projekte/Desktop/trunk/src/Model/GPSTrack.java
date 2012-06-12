@@ -36,9 +36,17 @@ public class GPSTrack {
 		} catch (IOException e) { e.printStackTrace(); }
 		
 		try {
-			writer.write("\u003C"+"?xml version=\"1.0\" encoding=\"UTF-8\" ?"+"\u003E");writer.write(System.getProperty("line.separator"));
-			writer.write("\u003C"+"gpx version=\"1.1\" creator=\"CarDuinoDroid\" "+"xmlns=\"http://www.topografix.com/GPX/1/1\" \n\txmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" \n\txsi:schemaLocation=\"http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd\""+"\u003E");writer.write(System.getProperty("line.separator"));				
-			writer.write("\t\u003C"+"trk"+"\u003E"+"\u003C"+"name"+"\u003E"+"Aktueller Track: "+gpx.format(date)+"\u003C"+"/name"+"\u003E"+"\n\t\t\u003C"+"trkseg"+"\u003E");writer.write(System.getProperty("line.separator"));
+			writer.write("\u003C"+"?xml version=\"1.0\" encoding=\"UTF-8\" ?"+"\u003E");
+			writer.write(System.getProperty("line.separator"));
+			writer.write("\u003C"+"gpx version=\"1.1\" creator=\"CarDuinoDroid\" "+"xmlns=\"http://www.topografix.com/GPX/1/1\"");
+			writer.write(System.getProperty("line.separator"));
+			writer.write("\txmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"");
+			writer.write(System.getProperty("line.separator"));
+			writer.write("\txsi:schemaLocation=\"http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd\""+"\u003E");writer.write(System.getProperty("line.separator"));				
+			writer.write("\t\u003C"+"trk"+"\u003E"+"\u003C"+"name"+"\u003E"+"Aktueller Track: "+gpx.format(date)+"\u003C"+"/name"+"\u003E");
+			writer.write(System.getProperty("line.separator"));
+			writer.write("\t\t\u003C"+"trkseg"+"\u003E");
+			writer.write(System.getProperty("line.separator"));
 			writer.flush();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -65,8 +73,10 @@ public class GPSTrack {
 	
 	public void savegpxfile(){
 		try {
-			writegpxfile("15","15");
-			writer.write("\t\t\u003C/trkseg\u003E\n\t\u003C/trk\u003E\n\u003C/gpx\u003E");
+			writegpxfile("10.9199","50.6912");
+			writer.write("\t\t\u003C/trkseg\u003E");writer.write(System.getProperty("line.separator"));
+			writer.write("\t\u003C/trk\u003E");writer.write(System.getProperty("line.separator"));
+			writer.write("\u003C/gpx\u003E");writer.write(System.getProperty("line.separator"));
 			writer.flush();
 			writer.close();
 		} catch (IOException e) { e.printStackTrace(); }
