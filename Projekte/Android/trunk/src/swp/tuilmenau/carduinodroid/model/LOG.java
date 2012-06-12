@@ -41,7 +41,7 @@ public class LOG
 			buffwrite = new BufferedWriter(new FileWriter(file));
 		} catch (IOException e) { }
 
-		write("App gestartet");
+		write(LOG.INFO, "App gestartet");
 	}
 
 	public synchronized void write(int type, String line) 
@@ -81,7 +81,7 @@ public class LOG
 
 	public void save() 
 	{
-		write("App beendet");
+		write(LOG.INFO, "App beendet");
 		// speichert und schliesst die datei
 		try {
 			buffwrite.flush();
