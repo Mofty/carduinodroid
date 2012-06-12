@@ -19,3 +19,6 @@ Breite
 Länge
 IP
 Verbinden
+CarDuinoDroid ist die Software zu Fernsteuerung einer Drohne welche auf einem Android-Smartphone basiert.
+Mehr Informationen unter
+https://carl-adam.theoinf.tu-ilmenau.de/trac/swp_s12_12
