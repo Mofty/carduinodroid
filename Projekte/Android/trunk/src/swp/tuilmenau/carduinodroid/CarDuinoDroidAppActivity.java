@@ -17,16 +17,7 @@ import android.widget.*;
  * @see Activity
  */
 public class CarDuinoDroidAppActivity extends Activity 
-{
-	class LogLevelSwitcherListener implements RadioGroup.OnCheckedChangeListener
-	{
-		public void onCheckedChanged(RadioGroup group, int checkedId) 
-		{
-			if (checkedId == R.id.radio0) controller_Android.log.setLevel(LOG.LOG_ALL);
-			if (checkedId == R.id.radio1) controller_Android.log.setLevel(LOG.LOG_WARNINGS_ONLY);
-		}
-	}
-	
+{	
 	private Controller_Android controller_Android;
 	
 	private NotificationManager notificationManager;
@@ -37,7 +28,7 @@ public class CarDuinoDroidAppActivity extends Activity
 	private PowerManager.WakeLock wakelock;
 
 	private RadioGroup logLevelSwitch;
-	private LogLevelSwitcherListener logLevelSwitcherListener;
+	private RadioGroup.OnCheckedChangeListener logLevelSwitcherListener;
 	
 	/**
 	 * Called when the activity is first created.
@@ -65,6 +56,15 @@ public class CarDuinoDroidAppActivity extends Activity
         // Link LogSwitcher
         // Close-Button is linked in main.xml
         logLevelSwitch = (RadioGroup) findViewById(R.id.radioGroup1);
+        logLevelSwitcherListener = new RadioGroup.OnCheckedChangeListener()
+        {
+			public void onCheckedChanged(RadioGroup group, int checkedId) 
+			{
+				controller_Android.log.write(LOG.WARNING, "selected button ID: " + checkedId);
+				if (checkedId == R.id.radio0) controller_Android.log.setLevel(LOG.LOG_ALL);
+				if (checkedId == R.id.radio1) controller_Android.log.setLevel(LOG.LOG_WARNINGS_ONLY);
+			}
+        };
         logLevelSwitch.setOnCheckedChangeListener(logLevelSwitcherListener); 
     }   
     
