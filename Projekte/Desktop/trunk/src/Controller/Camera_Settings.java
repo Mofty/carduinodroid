@@ -23,7 +23,7 @@ public class Camera_Settings {
 		}
 	}
 
-	public void send_switch_light(String cameralight) { // cameralight 1 = licht an 0 = licht aus ?
+	public void send_switch_light(String cameralight) { // cameralight 1 = licht an 0 = licht aus ? Lars: Lesen bevor fragen - Schau in Light_ActionListener!
 		if (controller_computer.network.send_camera_settings("3;" + cameralight)) {
 			controller_computer.log.writelogfile("Camera light was switched");
 		} else {
