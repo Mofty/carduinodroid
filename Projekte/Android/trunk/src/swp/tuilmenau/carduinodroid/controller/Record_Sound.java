@@ -49,10 +49,10 @@ public class Record_Sound
 			
 			}
 		catch (IllegalArgumentException e) {
-			log.write("Illegal argument");
+			log.write(LOG.WARNING, "Illegal sound argument");
 		} 
 		catch (IllegalStateException e) {
-			log.write("Illegal state");
+			log.write(LOG.WARNING, "Illegal sound state");
 		}
 	} 
 	
@@ -64,18 +64,18 @@ public class Record_Sound
 			outfile = File.createTempFile("Sound_"+time.month+time.monthDay+"_"+time.hour+time.minute+time.second, ".3gp", storageDir);
 		} catch (IOException e) {}
 			recorder.setOutputFile(outfile.getAbsolutePath());
-			log.write("Could not create soundfile");
+			log.write(LOG.WARNING, "Could not create soundfile");
 		try 
 		{
 			recorder.prepare();
 			recorder.start();
-			log.write("Start recording");
+			log.write(LOG.INFO, "Start recording");
 		} 
 		catch (IllegalStateException e) {
-			log.write("Invalid recorder state");
+			log.write(LOG.WARNING, "Invalid recorder state");
 		} 
 		catch (IOException e) {
-			log.write("Could not create soundfile");
+			log.write(LOG.WARNING, "Could not create soundfile");
 		}
 	}
  
@@ -83,7 +83,7 @@ public class Record_Sound
 	{
 		recorder.stop();
 		recorder.reset();
-		log.write("Stop recording");
+		log.write(LOG.INFO, "Stop recording");
 	}
 
 }
