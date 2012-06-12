@@ -10,17 +10,16 @@ import android.text.format.Time;
 
 public class LOG
 {	
-	public final int LOG_ALL = 1;
-	public final int LOG_WARNINGS_ONLY = 2;
+	public static final int LOG_ALL = 1;
+	public static final int LOG_WARNINGS_ONLY = 2;
+	private final String logpath = Environment.getExternalStorageDirectory().getPath()+"/carduinodroid/log";
 	
-	Time time;
-	File path;
-	File file;
-	BufferedWriter buffwrite;
-	int logLevel;
+	private Time time;
+	private File path;
+	private File file;
+	private BufferedWriter buffwrite;
+	private int logLevel;
 
-	String logpath = Environment.getExternalStorageDirectory().getPath()+"/carduinodroid/log";
-	
 	public LOG() 
 	{
 		// ruft datum und zeit ab	
@@ -60,7 +59,7 @@ public class LOG
 	
 	public void setLevel(int lvl)
 	{
-		
+		logLevel = lvl;
 	}
 	
 	public void save() 
