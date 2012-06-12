@@ -8,7 +8,7 @@
  */
 package Controller;
 import java.net.*;
-import java.awt.Image;
+import java.awt.image.BufferedImage;
 
 public class Network {
 	
@@ -44,19 +44,20 @@ public class Network {
 	 * ports = ???????
 	 */
 	
-	public void connect()
+	public void connect(String ipstring)
 	{
 		InetAddress ip;
 		try {
-			ip = InetAddress.getByName(mobilephone_ip);
+			ip = InetAddress.getByName(ipstring);
 			InetSocketAddress port_controll = new InetSocketAddress(ip, 12345);
 			InetSocketAddress port_package = new InetSocketAddress(ip, 12346);
-			//InetSocketAddress port_picture = new InetSocketAddress(ip, 12347);
+			InetSocketAddress port_picture = new InetSocketAddress(ip, 12347);
 			socket_controller.connect(port_controll);
-			//socket_picture.connect(port_picture);
+			socket_picture.connect(port_picture);
 			socket_package.connect(port_package);
-			//t1 = new Thread(socket_picture);
+			t1 = new Thread(socket_picture);
 			t2 = new Thread(socket_package);
+			t1.start();
 			t2.start();
 		} catch (UnknownHostException e1) {
 			// TODO Auto-generated catch block
@@ -89,21 +90,8 @@ public class Network {
 		packagedata.receive_package(message);
 	}
 	
-	public void receive_picture(Image image) {
-		//camera_picture.receive_package();
-	}
-
-
-	public void start_picture_thread() {
-		// TODO Auto-generated method stub
-		if(socket_picture.isConnected())
-		t1 = new Thread(socket_picture);
-		else
-		{
-			socket_picture.connect();
-			t1 = new Thread(socket_picture);
-
-		}
+	public void receive_picture(BufferedImage image) {
+		camera_picture.receive_picture(image);
 	}
 	
 	

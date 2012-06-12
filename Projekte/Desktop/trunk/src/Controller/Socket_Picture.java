@@ -1,26 +1,52 @@
 package Controller;
 
-import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.InputStream;
 import java.net.*;
+
+import javax.imageio.ImageIO;
+
+import Model.Log;
 
 public class Socket_Picture implements Runnable{
 	
 	Socket socket_picture;
 	Network network;
-	ObjectInputStream picturestream;
 	InetSocketAddress port_picture;
+	Log log;
+	private InputStream picturestream;
 	
 	Socket_Picture(Network n_network)
 	{
 		socket_picture = new Socket();
 		network = n_network;
+		//log = new Log();
 	}
 
-	public void connect(InetSocketAddress n_port_package){
-		port_picture = n_port_package;
-	
+	public void connect(InetSocketAddress nport_picture)
+	{
+		port_picture = nport_picture;
+		try {
+			socket_picture.connect(port_picture);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			/*
+			 * noch überlegen
+			 */
+			System.out.println("fehler beim connecten");
+		}
+		
+		try {
+			picturestream = socket_picture.getInputStream();
+		} catch (IOException e) {
+			System.out.println("fehler beim inputstream");
+		}
+		System.out.println("ist connected");
+	}
+		
+
+	public void connect(){
 		try {
 			socket_picture.connect(port_picture);
 		} catch (IOException e) {
@@ -29,77 +55,41 @@ public class Socket_Picture implements Runnable{
 			 * noch überlegen
 			 */
 			e.printStackTrace();
-		}
-		
-		try {
-			picturestream = (ObjectInputStream) socket_picture.getInputStream();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}}
-		
-		public void connect(){
-			try {
-				socket_picture.connect(port_picture);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				/*
-				 * noch überlegen
-				 */
-				e.printStackTrace();
 			}
 			
 			try {
-				picturestream = (ObjectInputStream) socket_picture.getInputStream();
+				picturestream = socket_picture.getInputStream();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		
-
-	}
+		}
 	
 	@Override
 	public void run() {
-		int n = 0;
-		Image image;
+		BufferedImage buffer;
 		while(socket_picture.isConnected())
 		{
 			try {
-				n = picturestream.available();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			if(n>0)
-			{
-				try {
-					image = (Image)picturestream.readObject();
-					network.receive_picture(image);
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				if(picturestream.available() > 0){
+				System.out.println("was da zum lesen");
+				buffer = ImageIO.read(picturestream);
+				System.out.println(buffer.getHeight() +" "+ buffer.getWidth());
+				network.receive_picture(buffer);
 				}
-			}
-			else
-			{
-				try {
-					Thread.sleep(25);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					
+					else
+					{
+						try {
+							Thread.sleep(25);
+						} catch (InterruptedException e) {
+							System.out.println("fehler beim schlafen");
+						}
+					}
+				} catch (IOException e) {
+					System.out.println("fehler beim lesen");
 				}
 			}
 		}
-		connect();
-		network.start_picture_thread();
-	}
-
-	public boolean isConnected() {
-		return socket_picture.isConnected();
-	}
-
 }
