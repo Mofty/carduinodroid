@@ -39,7 +39,7 @@ public class CarDuinoDroidAppActivity extends Activity
 	private LogLevelSwitcherListener logLevelSwitcherListener;
 	
 	/**
-	 * Called when the activity is first created
+	 * Called when the activity is first created.
 	 * 
 	 * @see Activity#onCreate()
 	 */
@@ -67,8 +67,13 @@ public class CarDuinoDroidAppActivity extends Activity
         logLevelSwitch.setOnCheckedChangeListener(logLevelSwitcherListener); 
     }   
     
+    /**
+     * Called when the close button is pressed;
+     * 
+     * @param view The {@link View} of the button that has been pressed.
+     * @see Activity#finish()
+     */
     public void close(View view)
-    //called when the close button is pressed;
     {
     	finish();
     }
