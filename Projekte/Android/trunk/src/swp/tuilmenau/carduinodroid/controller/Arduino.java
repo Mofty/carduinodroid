@@ -128,7 +128,7 @@ public class Arduino {
                 log.write(LOG.INFO, "Speed: "+speed+" and direction: "+dir+" sent to Arduino.");
             }
             catch (IOException e){
-                log.write(LOG.WARNING, "Fail to send commands to Arduino.");
+                log.write(LOG.WARNING, "Failed to send commands to Arduino.");
             }
         }      
     }   
