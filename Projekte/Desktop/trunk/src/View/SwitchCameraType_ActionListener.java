@@ -9,19 +9,23 @@ import Model.Log;
 public class SwitchCameraType_ActionListener implements ActionListener{
 	Controller_Computer controller_Computer;
 	Log log;
+	boolean camera;
 	
-	public SwitchCameraType_ActionListener (Controller_Computer controllercomputer, Log LOG)
+	public SwitchCameraType_ActionListener (Controller_Computer controllercomputer, Log LOG, boolean CAMERA)
 	{
 		controller_Computer = controllercomputer;
 		log = LOG;
+		camera = CAMERA;
 		}
 	
 	public void actionPerformed(ActionEvent e) {
-		//If Else mit Bedingung auf die ausgewählte Fläche
-		controller_Computer.camera_settings.send_change_camera("0");
-		log.writelogfile("Front camera has been enabled.");
-		
-		controller_Computer.camera_settings.send_change_camera("1");
-		log.writelogfile("Back camera has been enabled.");
+		if (camera) {
+			log.writelogfile("Sent: Enable frontcamera.");
+			controller_Computer.camera_settings.send_change_camera("0");
+		}
+		else {
+			log.writelogfile("Sent: Enable backcamera.");
+			controller_Computer.camera_settings.send_change_camera("1");
+		}
 	}
 }

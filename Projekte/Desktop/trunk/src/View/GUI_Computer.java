@@ -198,6 +198,8 @@ public class GUI_Computer extends JFrame{
 		Camerachoice.add(Backcamera);
 		Camera.add(Frontcamera);
 		Camera.add(Backcamera);
+		Frontcamera.addActionListener(new SwitchCameraType_ActionListener(controller_Computer, log, true));
+		Backcamera.addActionListener(new SwitchCameraType_ActionListener(controller_Computer, log, false));
 		Preferences.add(Camera);
 		
 		//menus allocate to menubar
