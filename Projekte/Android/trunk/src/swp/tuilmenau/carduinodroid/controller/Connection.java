@@ -28,22 +28,22 @@ public class Connection
         {
 			if (log != null)
 			{	
-				if (getMobileAvailable()) log.write("Mobile Internet is available");
-				else log.write("Mobile Internet is not available");
+				if (getMobileAvailable()) log.write(LOG.INFO, "Mobile Internet is available");
+				else log.write(LOG.WARNING, "Mobile Internet is not available");
 
-				if (getMobile()) log.write("Mobile Internet is connected");
-				else log.write("Mobile Internet is not connected");
+				if (getMobile()) log.write(LOG.INFO, "Mobile Internet is connected");
+				else log.write(LOG.WARNING, "Mobile Internet is not connected");
 
-				if (getWLANAvailable()) log.write("WLAN is available");
-				else log.write("WLAN is not available");
+				if (getWLANAvailable()) log.write(LOG.INFO, "WLAN is available");
+				else log.write(LOG.WARNING, "WLAN is not available");
 
 				if (getWLAN())
 				{
-					log.write("WLAN is connected");
+					log.write(LOG.INFO, "WLAN is connected");
 					ipBox = (TextView) activity.findViewById(R.id.textView2); 
 			        ipBox.setText(getLocalWLANIP());
 				}
-				else log.write("WLAN is not connected");
+				else log.write(LOG.WARNING, "WLAN is not connected");
 			}
         }
 	}
