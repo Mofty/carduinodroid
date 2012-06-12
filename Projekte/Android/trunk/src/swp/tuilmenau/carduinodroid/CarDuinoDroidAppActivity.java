@@ -1,6 +1,7 @@
 package swp.tuilmenau.carduinodroid;
 
 import swp.tuilmenau.carduinodroid.controller.*;
+import swp.tuilmenau.carduinodroid.model.LOG;
 import android.app.*;
 import android.content.*;
 import android.content.pm.ActivityInfo;
@@ -12,7 +13,7 @@ import android.widget.*;
 /**
  * 
  * @author Paul Thorwirth
- * @version 1.1
+ * @version 1.0
  * @see Activity
  */
 public class CarDuinoDroidAppActivity extends Activity 
@@ -21,8 +22,8 @@ public class CarDuinoDroidAppActivity extends Activity
 	{
 		public void onCheckedChanged(RadioGroup group, int checkedId) 
 		{
-			if (checkedId == R.id.radio0) controller_Android.log.setLevel(controller_Android.log.LOG_ALL);
-			if (checkedId == R.id.radio1) controller_Android.log.setLevel(controller_Android.log.LOG_WARNINGS_ONLY);
+			if (checkedId == R.id.radio0) controller_Android.log.setLevel(LOG.LOG_ALL);
+			if (checkedId == R.id.radio1) controller_Android.log.setLevel(LOG.LOG_WARNINGS_ONLY);
 		}
 	}
 	
