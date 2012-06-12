@@ -16,10 +16,10 @@ public class Connection
 		private TextView ipBox;
 		private Activity activity;
 
-		public ConnectionLogger(Activity n_activity)
+		public ConnectionLogger(Activity activity)
 		{
 			super();
-			activity = n_activity;	
+			this.activity = activity;	
 			ipBox = new TextView(activity);
 		}
 		
