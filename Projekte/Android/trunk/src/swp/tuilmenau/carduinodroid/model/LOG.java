@@ -46,6 +46,8 @@ public class LOG
 
 	public synchronized void write(int type, String line) 
 	{
+		final String INFO_STR = "[INFO] ";
+		final String WARNING_STR = "[WARNING] ";
 		String timestr;
 		time.setToNow(); // aktualisiert die in "time" gespeicherte zeit
 		timestr = time.hour+":"+time.minute+":"+time.second+" ";
@@ -57,7 +59,7 @@ public class LOG
 				if (logLevel == LOG_ALL)
 				{
 					buffwrite.write(timestr,0,timestr.length());
-					buffwrite.write("[INFO] ",0,7);
+					buffwrite.write(INFO_STR,0,INFO_STR.length());
 					buffwrite.write(line,0,line.length());
 					buffwrite.newLine();
 					buffwrite.flush();
@@ -65,8 +67,8 @@ public class LOG
 			}
 			if (type == WARNING)
 			{	
-				buffwrite.write(timestr,0,timestr.length());
-				buffwrite.write("[WARNING] ",0,10);
+				buffwrite.write(timestr, 0, timestr.length());
+				buffwrite.write(WARNING_STR, 0, WARNING_STR.length());
 				buffwrite.write(line,0,line.length());
 				buffwrite.newLine();
 				buffwrite.flush();
