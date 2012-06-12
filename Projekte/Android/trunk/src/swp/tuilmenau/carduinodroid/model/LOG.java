@@ -12,8 +12,10 @@ public class LOG
 {	
 	public static final int LOG_ALL = 1;
 	public static final int LOG_WARNINGS_ONLY = 2;
+	public static final int INFO = 3;
+	public static final int WARNING = 4;
 	private final String logpath = Environment.getExternalStorageDirectory().getPath()+"/carduinodroid/log";
-	
+
 	private Time time;
 	private File path;
 	private File file;
@@ -30,45 +32,60 @@ public class LOG
 		path.mkdirs();
 		file = new File(logpath,"LOG_"+(time.month+1)+time.monthDay+"_"+time.hour+time.minute+time.second+".txt");
 		try {
-				file.createNewFile();
-			} catch (IOException e) { }
+			file.createNewFile();
+		} catch (IOException e) { }
 		file.canWrite();
 		file.canRead();
 		// erstellt den BufferedWriter zum schreiben von strings in die datei
 		try {
-				buffwrite = new BufferedWriter(new FileWriter(file));
-			} catch (IOException e) { }
-		
+			buffwrite = new BufferedWriter(new FileWriter(file));
+		} catch (IOException e) { }
+
 		write("App gestartet");
 	}
-	
-	public synchronized void write(String line) 
+
+	public synchronized void write(int type, String line) 
 	{
 		String timestr;
 		time.setToNow(); // aktualisiert die in "time" gespeicherte zeit
 		timestr = time.hour+":"+time.minute+":"+time.second+" ";
-		
+
 		// schreibt die zeit gefolgt vom übergebenen String "line" in die datei und springt zu nächsten zeile Leerzeile.
 		try {
+			if (type == INFO)
+			{
+				if (logLevel == LOG_ALL)
+				{
+					buffwrite.write(timestr,0,timestr.length());
+					buffwrite.write("[INFO] ",0,7);
+					buffwrite.write(line,0,line.length());
+					buffwrite.newLine();
+					buffwrite.flush();
+				}
+			}
+			if (type == WARNING)
+			{	
 				buffwrite.write(timestr,0,timestr.length());
+				buffwrite.write("[INFO] ",0,7);
 				buffwrite.write(line,0,line.length());
 				buffwrite.newLine();
 				buffwrite.flush();
-			} catch (IOException e) { }
+			}
+		} catch (IOException e) { }
 	}
-	
+
 	public void setLevel(int lvl)
 	{
 		logLevel = lvl;
 	}
-	
+
 	public void save() 
 	{
 		write("App beendet");
 		// speichert und schliesst die datei
 		try {
-				buffwrite.flush();
-				buffwrite.close();
-			} catch (IOException e) { }	
+			buffwrite.flush();
+			buffwrite.close();
+		} catch (IOException e) { }	
 	}
 }
