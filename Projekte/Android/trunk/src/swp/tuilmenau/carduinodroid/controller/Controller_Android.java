@@ -1,6 +1,7 @@
 package swp.tuilmenau.carduinodroid.controller;
 
 import android.app.Activity;
+import android.view.SurfaceView;
 import swp.tuilmenau.carduinodroid.model.*;
 
 public class Controller_Android 
@@ -17,12 +18,12 @@ public class Controller_Android
 	
 	public int framerate;
 	
-	public Controller_Android(Activity activity) 
+	public Controller_Android(Activity activity, SurfaceView preview) 
 	{
 		log = new LOG();
 		
 		arduino = new Arduino(activity, log);
-		cam = new Cam(activity, log);
+		cam = new Cam(preview, this);
 		connection = new Connection(activity, log);
 		gps = new GPS(activity, log);
 		record_sound = new Record_Sound(log);
