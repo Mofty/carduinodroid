@@ -66,7 +66,7 @@ public class LOG
 			if (type == WARNING)
 			{	
 				buffwrite.write(timestr,0,timestr.length());
-				buffwrite.write("[INFO] ",0,7);
+				buffwrite.write("[WARNING] ",0,10);
 				buffwrite.write(line,0,line.length());
 				buffwrite.newLine();
 				buffwrite.flush();
