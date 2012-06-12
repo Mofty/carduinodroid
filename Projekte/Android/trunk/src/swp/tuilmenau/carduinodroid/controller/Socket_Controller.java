@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+
+import swp.tuilmenau.carduinodroid.model.LOG;
 import android.util.Log;
 
 public class Socket_Controller implements Runnable {
@@ -60,7 +62,7 @@ public class Socket_Controller implements Runnable {
 
 				message = (String) stream.readLine();
 				Log.v("thread controller", message);
-				controller_Android.log.write(message);
+				controller_Android.log.write(LOG.INFO, message);
 			}
 				
 				else
