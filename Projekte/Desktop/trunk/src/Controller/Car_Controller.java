@@ -15,8 +15,7 @@ public class Car_Controller {
 			if((!up&&down)||(up&&!down)){
 				int Speed = controller_computer.gui_computer.speed_slider.getValue();
 				int Dir = controller_computer.gui_computer.angle_slider.getValue();
-				send_controlsignal(SpeedCalculation(Speed),DirectionCalculation(Dir));
-				controller_computer.log.writelogfile(up+","+down+","+right+","+left);	
+				send_controlsignal(SpeedCalculation(Speed),DirectionCalculation(Dir));	
 			}
 			delay++;
 			if(delay==2){
