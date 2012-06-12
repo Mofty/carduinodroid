@@ -11,8 +11,6 @@ import android.widget.TextView;
 
 public class Connection 
 {
-	private LOG log = null;
-	
 	public class ConnectionLogger extends BroadcastReceiver
 	{
 		private TextView ipBox;
@@ -49,7 +47,8 @@ public class Connection
 			}
         }
 	}
-	
+
+	private LOG log = null;
 	private ConnectivityManager connectivityManager;
 	private WifiManager wifiManager;
 	private NetworkInfo mobileInfo;
