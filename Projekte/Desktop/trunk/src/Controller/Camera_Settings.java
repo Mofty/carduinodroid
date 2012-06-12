@@ -1,12 +1,23 @@
+/**
+* methods for sending camera changes
+* @author Lars Vogel
+* @version 12.06.2012
+*/
+
 package Controller;
 
 public class Camera_Settings {
 	Controller_Computer controller_computer;
-
+	
 	public Camera_Settings(Controller_Computer ControllerComputer) {
 		controller_computer = ControllerComputer;
 	}
-
+	// ***** Camera Type ***************************************
+	/** 
+	 * With this method you will be able to change the camera type
+	 * between front and back. 
+	 * 
+	 */
 	public void send_change_camera(String cameratype) {
 		if (controller_computer.network.send_camera_settings("1;" + cameratype)) {
 			controller_computer.log.writelogfile("Camera was switched");
