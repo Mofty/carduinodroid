@@ -48,6 +48,7 @@ public class LOG
 	{
 		final String INFO_STR = "[INFO] ";
 		final String WARNING_STR = "[WARNING] ";
+		
 		String timestr;
 		time.setToNow(); // aktualisiert die in "time" gespeicherte zeit
 		timestr = time.hour+":"+time.minute+":"+time.second+" ";
