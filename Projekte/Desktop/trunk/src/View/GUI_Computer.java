@@ -187,6 +187,7 @@ public class GUI_Computer extends JFrame{
 		//menu "file"
 		Quit.addActionListener(new Quit_ActionListener(log,gpstrack));
 		Connect.addActionListener(new Connect_ActionListener(Names.get(12), log, ip_label, this));
+		About.addActionListener(new About_ActionListener(Names.get(3), Names.get(21), Names.get(22), Names.get(23)));
 		File.add(About);
 		File.add(Connect);
 		File.add(Separator_File);

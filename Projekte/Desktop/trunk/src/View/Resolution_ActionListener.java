@@ -21,8 +21,7 @@ public class Resolution_ActionListener implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {
 		String resolution = String.valueOf(status.getSelectedIndex());
-		
-		log.writelogfile("Sent: Change resolution.");
+		log.writelogfile("Sent: Change resolution to " + status.getSelectedItem() + ".");
 		controller_Computer.camera_settings.send_change_resolution(resolution);
 	}
 
