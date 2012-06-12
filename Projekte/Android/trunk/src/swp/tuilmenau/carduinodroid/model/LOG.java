@@ -24,6 +24,7 @@ public class LOG
 
 	public LOG() 
 	{
+		logLevel = LOG_ALL; 
 		// ruft datum und zeit ab	
 		time = new Time();
 		time.setToNow();
