@@ -56,7 +56,7 @@ public class Arduino {
 	                    }
 	                    else {
 	                        // oops
-	                    	log.write("Permission Denied For Accessory"+ accessory);
+	                    	log.write(LOG.WARNING, "Permission Denied For Accessory"+ accessory);
 	                    }
 	                    mPermissionRequestPending = false;
 	                }
@@ -88,11 +88,11 @@ public class Arduino {
      
             //Thread thread = new Thread(null,this,"ADKTestProject");
             //thread.start();
-            log.write("Accessory Opened");
+            log.write(LOG.INFO, "Accessory Opened");
      
         }
         else {
-        	log.write("Accessory Open Fail");
+        	log.write(LOG.WARNING, "Accessory Open Fail");
         }
     }
     
@@ -125,10 +125,10 @@ public class Arduino {
             try{
                 // write it
                 mFileOutputStream.write(buffer);
-                log.write("Geschwindigkeit: "+speed+" und Richtung: "+dir+" gesendet.");
+                log.write(LOG.INFO, "Speed: "+speed+" and direction: "+dir+" sent to Arduino.");
             }
             catch (IOException e){
-                log.write("Senden fehlgeschlagen.");
+                log.write(LOG.WARNING, "Fail to send commands to Arduino.");
             }
         }      
     }   
