@@ -60,7 +60,6 @@ public class CarDuinoDroidAppActivity extends Activity
         {
 			public void onCheckedChanged(RadioGroup group, int checkedId) 
 			{
-				controller_Android.log.write(LOG.WARNING, "selected button ID: " + checkedId);
 				if (checkedId == R.id.radio0) controller_Android.log.setLevel(LOG.LOG_ALL);
 				if (checkedId == R.id.radio1) controller_Android.log.setLevel(LOG.LOG_WARNINGS_ONLY);
 			}
@@ -76,6 +75,8 @@ public class CarDuinoDroidAppActivity extends Activity
      */
     public void close(View view)
     {
+    	controller_Android.log.save();
+    	notificationManager.cancel(1337);
     	finish();
     }
     
@@ -100,13 +101,5 @@ public class CarDuinoDroidAppActivity extends Activity
     	wakelock.release();
     	controller_Android.cam.disableCamera();
     	super.onPause();
-    }
-
-    @Override
-    public void onDestroy()
-    {
-    	controller_Android.log.save();
-    	notificationManager.cancel(1337);
-    	super.onDestroy();
     }
 }
