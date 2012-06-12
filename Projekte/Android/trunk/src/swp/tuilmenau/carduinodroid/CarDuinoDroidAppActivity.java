@@ -9,6 +9,12 @@ import android.os.PowerManager;
 import android.view.View;
 import android.widget.*;
 
+/**
+ * 
+ * @author Paul Thorwirth
+ * @version 1.1
+ * @see Activity
+ */
 public class CarDuinoDroidAppActivity extends Activity 
 {
 	class LogLevelSwitcherListener implements RadioGroup.OnCheckedChangeListener
@@ -18,7 +24,6 @@ public class CarDuinoDroidAppActivity extends Activity
 			if (checkedId == R.id.radio0) controller_Android.log.setLevel(controller_Android.log.LOG_ALL);
 			if (checkedId == R.id.radio1) controller_Android.log.setLevel(controller_Android.log.LOG_WARNINGS_ONLY);
 		}
-		
 	}
 	
 	private Controller_Android controller_Android;
@@ -34,15 +39,14 @@ public class CarDuinoDroidAppActivity extends Activity
 	private LogLevelSwitcherListener logLevelSwitcherListener;
 	
 	/**
-	 * creates the activity when the application starts
+	 * Called when the activity is first created
+	 * 
+	 * @see Activity#onCreate()
 	 */
-	
     @Override
     public void onCreate(Bundle savedInstanceState) 
     {
-    	/**
-    	 * call onCreate of superclass
-    	 */
+    	// call onCreate of superclass
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         // prevent the application from switching to landscape-mode
