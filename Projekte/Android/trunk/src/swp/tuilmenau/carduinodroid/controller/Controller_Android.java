@@ -83,7 +83,7 @@ public class Controller_Android
 					 					if (parts[2] == "0") cam.disableFlash();
 					 				}
 					 				break;
-					 		default: log.write("Unknown camera command from PC");
+					 		default: log.write(LOG.WARNING, "Unknown camera command from PC");
 					 				 break;
 					 	}
 					};
@@ -97,7 +97,7 @@ public class Controller_Android
 					};
 					break;
 					
-			default: log.write("unknown command from PC");
+			default: log.write(LOG.WARNING, "unknown command from PC");
 					 break;
 		}
 	}

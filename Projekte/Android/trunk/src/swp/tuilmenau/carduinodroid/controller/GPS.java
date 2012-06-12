@@ -31,7 +31,7 @@ public class GPS
 		    	latitude = location.getLatitude();
 		    	longitude = location.getLongitude();
 		    	time.set(location.getTime());
-				log.write("INFO ----- GPS - GPS Fix gefunden um" + time.hour + time.minute + time.second);
+				log.write(LOG.INFO, "GPS Fix found at" + time.hour + time.minute + time.second);
 				//evtl mathemathische änderungen an den gps koordinaten wie zu auto steht wenn speed = 0 und/oder long und lat gleich ins lpg schreiben gps info
 		    }
 
@@ -42,12 +42,12 @@ public class GPS
 
 		    public void onProviderEnabled(String provider) 
 			{
-				log.write("WARNUNG -- GPS - GPS Empfänger wurde aktiviert");
+				log.write(LOG.INFO, "GPS reciever activated");
 			}
 
 		    public void onProviderDisabled(String provider) 
 			{
-				log.write("INFO ----- GPS - GPS Empfänger wurde aktiviert");	
+				log.write(LOG.WARNING, "GPS reciever disabled");	
 			}
 				
 		};	
