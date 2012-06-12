@@ -77,6 +77,7 @@ public class LOG
 	public void setLevel(int lvl)
 	{
 		logLevel = lvl;
+		
 	}
 
 	public void save() 
