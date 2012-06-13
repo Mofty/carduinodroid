@@ -8,5 +8,4 @@ public class Main {
 		programwindow.setVisible(true);
 		programwindow.setFocusable(true);
 	}
-
 }
