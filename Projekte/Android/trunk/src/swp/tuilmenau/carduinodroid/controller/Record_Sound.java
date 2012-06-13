@@ -1,16 +1,10 @@
-/**
-     *
-     * Simple method.
-     *
-     * The method starts and stops recording the Sound. 
-     * After that, it will we saved at the smartphone.
-     * @param message String variable to be printed
-     * @see Record_Sound
-     * @deprecated
-     * @since version 1.00
-     */
-
 package swp.tuilmenau.carduinodroid.controller;
+
+/**
+* The method starts and stops recording the Sound. 
+* After that, it will we saved at the smartphone.
+* @since version 1.00
+*/
 
 import java.io.File;
 import java.io.IOException;
@@ -21,6 +15,11 @@ import android.text.format.Time;
 
 import swp.tuilmenau.carduinodroid.model.LOG;
 
+/**
+ * 
+ * @author Christian
+ *
+ */
  
 public class Record_Sound 
 {
@@ -56,6 +55,10 @@ public class Record_Sound
 		}
 	} 
 	
+	/**
+	 * 
+	 */
+	
 	public void startRecord()
 	{
 		time.setToNow();
@@ -79,6 +82,10 @@ public class Record_Sound
 		}
 	}
  
+	/**
+	 * 
+	 */
+	
 	public void stopRecord() 
 	{
 		recorder.stop();
