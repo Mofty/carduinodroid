@@ -1,5 +1,11 @@
 package Controller;
 
+/**
+ * Method Packagedata receive the data strings from the Android.. 
+ * @since version 1.00
+ * @author Christian Schulze
+ */
+
 public class Packagedata {
 	
 	Controller_Computer controller_computer;
@@ -9,12 +15,22 @@ public class Packagedata {
 		controller_computer = ControllerComputer;
 	}
 	
+	/**
+	 * This method gets the String and split it into an array.
+	 
+	 * @param data is the received String from the Android.
+	 */
+	
 	public void receive_package(String data) 
 	{
 		tokens = data.split(";",-1);
 		for (int i = 0; i < tokens.length; i++) tokens[i] = tokens[i].trim(); //Leerzeichen weg vorn und hinten
 		updateInformationbox();
 	}
+	
+	/**
+	 * This method send the separate information to the GUI. 
+	 */
 	
 	public void updateInformationbox()
 	{
