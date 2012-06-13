@@ -362,26 +362,34 @@ public class GUI_Computer extends JFrame{
 	}
 	
 	public void UnpressedBorderUp(){
-		Border unpressed_border = BorderFactory.createRaisedBevelBorder();
-		up.setBorder(unpressed_border);
-		up.setIcon(up_icon);
+		if (up != null){
+			Border unpressed_border = BorderFactory.createRaisedBevelBorder();
+			up.setBorder(unpressed_border);
+			up.setIcon(up_icon);
+		}
 	}
 	
 	public void UnpressedBorderDown(){
-		Border unpressed_border = BorderFactory.createRaisedBevelBorder();
-		down.setBorder(unpressed_border);
-		down.setIcon(down_icon);
+		if (down != null){
+			Border unpressed_border = BorderFactory.createRaisedBevelBorder();
+			down.setBorder(unpressed_border);
+			down.setIcon(down_icon);
+		}
 	}
 	
 	public void UnpressedBorderRight(){
-		Border unpressed_border = BorderFactory.createRaisedBevelBorder();
-		right.setBorder(unpressed_border);
-		right.setIcon(right_icon);
+		if (right != null){
+			Border unpressed_border = BorderFactory.createRaisedBevelBorder();
+			right.setBorder(unpressed_border);
+			right.setIcon(right_icon);
+		}
 	}
 	
 	public void UnpressedBorderLeft(){
-		Border unpressed_border = BorderFactory.createRaisedBevelBorder();
-		left.setBorder(unpressed_border);
-		left.setIcon(left_icon);
+		if (left != null){
+			Border unpressed_border = BorderFactory.createRaisedBevelBorder();
+			left.setBorder(unpressed_border);
+			left.setIcon(left_icon);
+		}
 	}
 }
