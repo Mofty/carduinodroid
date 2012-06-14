@@ -1,0 +1,27 @@
+Datei
+Beenden
+Verbindung
+Über CarDuinoDroid
+Einstellungen
+Licht
+Kamera
+Frontkamera
+Rückkamera
+Karte
+Auflösung
+Koordinaten
+IP-Adresse des Zielgerätes eingeben
+Signalton
+Tonaufnahme
+Geschwindigkeit
+Lenkwinkel
+Breite
+Länge
+IP
+Verbinden
+CarDuinoDroid ist die Software zu Fernsteuerung einer Drohne welche auf einem Android-Smartphone basiert.
+Mehr Informationen unter
+https://carl-adam.theoinf.tu-ilmenau.de/trac/swp_s12_12
+Sprache
+OK
+Die Änderungen werden erst nach dem Neustart wirksam!

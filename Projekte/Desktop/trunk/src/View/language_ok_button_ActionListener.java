@@ -27,7 +27,6 @@ public class language_ok_button_ActionListener implements ActionListener{
 		
 		//overwrite  language.txt
 		Selected = (String)language_ComboBox.getSelectedItem();
-		System.out.println(Selected);
 		try{
 			languagefile_writer = new PrintWriter(new FileWriter("src/View/language.txt"));
             languagefile_writer.print(Selected);
