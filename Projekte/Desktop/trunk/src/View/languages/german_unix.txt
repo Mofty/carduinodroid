@@ -10,7 +10,7 @@ RŸckkamera
 Karte
 Auflšsung
 Koordinaten
-IP-Adresse des Zielgerätes eingeben
+IP-Adresse des ZielgerŠtes eingeben
 Signalton
 Tonaufnahme
 Geschwindigkeit
