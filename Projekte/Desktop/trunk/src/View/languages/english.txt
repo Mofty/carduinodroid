@@ -24,3 +24,4 @@ For more information visit
 https://carl-adam.theoinf.tu-ilmenau.de/trac/swp_s12_12
 Language
 OK
+Changes will not be visible until restarting the program.
