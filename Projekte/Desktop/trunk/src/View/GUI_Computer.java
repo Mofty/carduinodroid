@@ -106,6 +106,7 @@ public class GUI_Computer extends JFrame{
 		//initiate Strings
 		String resolution_list[] = {"320x240", "640x480", "720x576", "800x600", "1024x768", "1280x720", "1920x1080"};
 		String languages[] = language_file.list();
+		for (int i = 0; i <= languages.length-1; i++) languages[i] = languages[i].substring(0, languages[i].indexOf('.'));
 		
 		//initiate Menubar
 		JMenuBar Menubar = new JMenuBar();
@@ -139,6 +140,7 @@ public class GUI_Computer extends JFrame{
 		
 		//initiate ComboBoxes
 		JComboBox resolution_change = new JComboBox(resolution_list);
+		JComboBox language_ComboBox = new JComboBox(languages);
 		
 		//initiate ButtonGroups
 		ButtonGroup Camerachoice = new ButtonGroup(); 
@@ -212,7 +214,8 @@ public class GUI_Computer extends JFrame{
 		Camera.add(Backcamera);
 		Language.setMinimumSize(new Dimension(300,100));
 		Language.setLayout(null);
-		Language.addActionListener(new Language_ActionListener(language_dialog, languages, Names.get(24), language_ok_button));
+		Language.addActionListener(new Language_ActionListener(language_dialog, language_ComboBox, Names.get(24), Names.get(26), language_ok_button));
+		language_ok_button.addActionListener(new language_ok_button_ActionListener(language_dialog, language_ComboBox));
 		Frontcamera.addActionListener(new SwitchCameraType_ActionListener(controller_Computer, log, true));
 		Backcamera.addActionListener(new SwitchCameraType_ActionListener(controller_Computer, log, false));
 		Preferences.add(Camera);
