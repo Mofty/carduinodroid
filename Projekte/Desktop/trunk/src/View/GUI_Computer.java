@@ -5,6 +5,7 @@ import Model.*;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -28,6 +29,7 @@ import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -98,9 +100,13 @@ public class GUI_Computer extends JFrame{
 		//read in names of elements (dependently on languagefile)
 		ArrayList<String> Names = Language();
 		
+		//read in language filenames
+		File language_file = new File("src/View/languages/");
+		
 		//initiate Strings
 		String resolution_list[] = {"320x240", "640x480", "720x576", "800x600", "1024x768", "1280x720", "1920x1080"};
-
+		String languages[] = language_file.list();
+		
 		//initiate Menubar
 		JMenuBar Menubar = new JMenuBar();
 		
@@ -113,6 +119,7 @@ public class GUI_Computer extends JFrame{
 		JMenuItem Quit = new JMenuItem(Names.get(1));
 		JMenuItem Connect = new JMenuItem(Names.get(20));
 		JMenuItem About = new JMenuItem(Names.get(3));
+		JMenuItem Language = new JMenuItem(Names.get(24));
 	
 		//initiate RadioButtonMenuItems
 		JRadioButtonMenuItem Frontcamera = new JRadioButtonMenuItem(Names.get(7),true);
@@ -124,6 +131,7 @@ public class GUI_Computer extends JFrame{
 		//initiate Buttons
 		JButton map_button = new JButton(Names.get(9));
 		JButton signal_button = new JButton(Names.get(13));
+		JButton  language_ok_button = new JButton(Names.get(25));
 		
 		//initiate ToggleButtons
 		JToggleButton light_button = new JToggleButton(Names.get(5), false);
@@ -168,6 +176,9 @@ public class GUI_Computer extends JFrame{
 		left = new JLabel(left_icon);
 		right = new JLabel(right_icon);
 		
+		//initiate JDialoges
+		JDialog language_dialog = new JDialog();
+		
 		//initiate JPanels
 		JPanel panel_video = new JPanel();
 		JPanel panel_other = new JPanel();
@@ -199,9 +210,13 @@ public class GUI_Computer extends JFrame{
 		Camerachoice.add(Backcamera);
 		Camera.add(Frontcamera);
 		Camera.add(Backcamera);
+		Language.setMinimumSize(new Dimension(300,100));
+		Language.setLayout(null);
+		Language.addActionListener(new Language_ActionListener(language_dialog, languages, Names.get(24), language_ok_button));
 		Frontcamera.addActionListener(new SwitchCameraType_ActionListener(controller_Computer, log, true));
 		Backcamera.addActionListener(new SwitchCameraType_ActionListener(controller_Computer, log, false));
 		Preferences.add(Camera);
+		Preferences.add(Language);
 		
 		//menus allocate to menubar
 		Menubar.add(File);

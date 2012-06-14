@@ -22,3 +22,5 @@ Connect
 CarDuinoDroid is a software for controlling a drone which is based on an Android-Smartphone.
 For more information visit
 https://carl-adam.theoinf.tu-ilmenau.de/trac/swp_s12_12
+Language
+OK
