@@ -35,7 +35,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
+/** Description of GUI_Computer
+*
+* @author Benjamin L
+* @version 14.06.2012
+*/
 public class GUI_Computer extends JFrame{
 	
 	static BufferedReader language_reader;
@@ -63,8 +67,13 @@ public class GUI_Computer extends JFrame{
 	ImageIcon left_pressed_icon = new ImageIcon("src/View/Icons/Icon_left_pressed.gif");
 	ImageIcon right_pressed_icon = new ImageIcon("src/View/Icons/Icon_right_pressed.gif");
 	
+	/** Description of GUI_Computer()*/
 	public GUI_Computer(){
+		
+		//set layout
 		this.getContentPane().setLayout(null);
+		
+		//create objects of other classes
 		log  = new Log(this);
 		gpstrack = new GPSTrack();
 		controller_Computer = new Controller_Computer(log, this);
@@ -78,11 +87,23 @@ public class GUI_Computer extends JFrame{
 		
 		//window listener for closing
 		this.addWindowListener(new WindowAdapter() {
+			
+			/** Description of windowClosed(WindowEvent arg0)
+			 * 
+			 * @param arg0		argument when window was closed
+			 * @return			void
+			 */
 			public void windowClosed(WindowEvent arg0) {
 				gpstrack.savegpxfile();
 				log.writelogfile("CarDuinoDroid closed.");
 				System.exit(0);
 			}
+			
+			/** Description of windowClosed(WindowEvent arg0)
+			 * 
+			 * @param arg0		argument when pressing the closebutton of window
+			 * @return			void
+			 */
 			public void windowClosing(WindowEvent arg0) {
 				gpstrack.savegpxfile();
 				log.writelogfile("CarDuinoDroid closed.");
@@ -95,6 +116,11 @@ public class GUI_Computer extends JFrame{
 	}
 	
 	//method: create window
+	/** Description of intiWindow()
+	 * 
+	 *create window
+	 * @return			void
+	 */
 	private void initWindow(){
 		
 		//read in names of elements (dependently on languagefile)
@@ -319,6 +345,11 @@ public class GUI_Computer extends JFrame{
 	}
 	
 	//method for read language.txt
+	/** Description of Language()
+	 * 
+	 * method for read language.txt
+	 * @return			Names of elements of window.
+	 */
 	private ArrayList<String> Language(){
 		ArrayList<String> Language_Name = new ArrayList<String>();
 		String Language = null;
@@ -338,6 +369,12 @@ public class GUI_Computer extends JFrame{
 	}
 	
 	//method for read in language (names of different elements)
+	/** Description of Language_name(String Language)
+	 * 
+	 * method for read in language (names of different elements)
+	 * @param Language	Language which is written in the language.txt
+	 * @return			Names of elements of window.
+	 */
 	private ArrayList<String> Language_name (String Language){
 		ArrayList<String> Name = new ArrayList<String>();
 		String Line = null;
@@ -355,30 +392,45 @@ public class GUI_Computer extends JFrame{
 		return Name;
 	}
 	
+	/** Description of PressedBorderUp()
+	 * Method for feedback, when car drives forward.
+	 */
 	public void PressedBorderUp(){
 		Border pressed_border = BorderFactory.createLoweredBevelBorder();
 		up.setBorder(pressed_border);
 		up.setIcon(up_pressed_icon);
 	}
 	
+	/** Description of PressedBorderDown()
+	 * Method for feedback, when car drives back.
+	 */
 	public void PressedBorderDown(){
 		Border pressed_border = BorderFactory.createLoweredBevelBorder();
 		down.setBorder(pressed_border);
 		down.setIcon(down_pressed_icon);
 	}
 	
+	/** Description of PressedBorderRight()
+	 * Method for feedback, when car drives right.
+	 */
 	public void PressedBorderRight(){
 		Border pressed_border = BorderFactory.createLoweredBevelBorder();
 		right.setBorder(pressed_border);
 		right.setIcon(right_pressed_icon);
 	}
 	
+	/** Description of PressedBorderLeft()
+	 * Method for feedback, when car drives left.
+	 */
 	public void PressedBorderLeft(){
 		Border pressed_border = BorderFactory.createLoweredBevelBorder();
 		left.setBorder(pressed_border);
 		left.setIcon(left_pressed_icon);
 	}
 	
+	/** Description of UnpressedBorderUp()
+	 * Method for feedback, when car stops driving forward.
+	 */
 	public void UnpressedBorderUp(){
 		if (up != null){
 			Border unpressed_border = BorderFactory.createRaisedBevelBorder();
@@ -387,6 +439,9 @@ public class GUI_Computer extends JFrame{
 		}
 	}
 	
+	/** Description of UnpressedBorderDown()
+	 * Method for feedback, when car stops driving back.
+	 */
 	public void UnpressedBorderDown(){
 		if (down != null){
 			Border unpressed_border = BorderFactory.createRaisedBevelBorder();
@@ -395,6 +450,9 @@ public class GUI_Computer extends JFrame{
 		}
 	}
 	
+	/** Description of UnpressedBorderRight()
+	 * Method for feedback, when car stops driving right.
+	 */
 	public void UnpressedBorderRight(){
 		if (right != null){
 			Border unpressed_border = BorderFactory.createRaisedBevelBorder();
@@ -403,6 +461,9 @@ public class GUI_Computer extends JFrame{
 		}
 	}
 	
+	/** Description of UnpressedBorderLeft()
+	 * Method for feedback, when car stops driving left.
+	 */
 	public void UnpressedBorderLeft(){
 		if (left != null){
 			Border unpressed_border = BorderFactory.createRaisedBevelBorder();

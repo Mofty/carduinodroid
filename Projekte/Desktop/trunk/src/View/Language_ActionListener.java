@@ -8,6 +8,11 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 
+/** Description of Language_ActionListener
+*
+* @author Benjamin L
+* @version 14.06.2012.
+*/
 public class Language_ActionListener implements ActionListener{
 	
 	JDialog language_dialog;
@@ -15,7 +20,15 @@ public class Language_ActionListener implements ActionListener{
 	JLabel language_label, info_label;
 	String Title, Info, Selected;
 	JButton ok;
-	 
+	
+	/** Description of Language_ActionListener(JDialog LANGUAGE_DIALOG, JComboBox LANGUGAGES, String TITLE,String INFO, JButton OK) 
+	 * 
+	 * @param LANGUAGE_DIALOG		Dialog for language-selection.
+	 * @param LANGUAGES				Available languages.
+	 * @param TITLE					Title of language window.
+	 * @param INFO					Infotext of language window. 
+	 * @param OK					OK-button.
+	 */
 	public Language_ActionListener(JDialog LANGUAGE_DIALOG, JComboBox LANGUAGES, String TITLE, String INFO, JButton OK){
 		language_dialog = LANGUAGE_DIALOG;
 		Title = TITLE;
@@ -24,6 +37,9 @@ public class Language_ActionListener implements ActionListener{
 		language_ComboBox = LANGUAGES;
 	}
 	
+	/** Description of actionPreformed(ActionEvent e)
+	 * @param e			Event by pressing the language menuitem.
+	 */
 	public void actionPerformed(ActionEvent e){
 
 		//dialog settings
