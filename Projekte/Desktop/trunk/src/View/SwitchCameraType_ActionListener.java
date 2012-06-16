@@ -6,11 +6,22 @@ import java.awt.event.ActionListener;
 import Controller.Controller_Computer;
 import Model.Log;
 
+/** Description of SwitchCameraType_ActionListener
+*
+* @author Benjamin L
+* @version 12.06.2012.
+*/
 public class SwitchCameraType_ActionListener implements ActionListener{
 	Controller_Computer controller_Computer;
 	Log log;
 	boolean camera;
 	
+	/** Description of SwitchCameraType_ActionListener(Controller_Computer controllercomputer, Log LOG, boolean CAMERA) 
+	 * 
+	 * @param controllercomputer	Used instance of Controller_Computer.
+	 * @param LOG					Used log. 
+	 * @param CAMERA				Boolean which camera should be activated.
+	 */
 	public SwitchCameraType_ActionListener (Controller_Computer controllercomputer, Log LOG, boolean CAMERA)
 	{
 		controller_Computer = controllercomputer;
@@ -18,6 +29,9 @@ public class SwitchCameraType_ActionListener implements ActionListener{
 		camera = CAMERA;
 		}
 	
+	/** Description of actionPreformed(ActionEvent e)
+	 * @param e			Event by pressing the frontcamera or backcamera RadioButtonMenuItem.
+	 */
 	public void actionPerformed(ActionEvent e) {
 		if (camera) {
 			log.writelogfile("Sent: Enable frontcamera.");

@@ -8,6 +8,11 @@ import java.io.PrintWriter;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 
+/** Description of language_ok_button_ActionListener
+*
+* @author Benjamin L
+* @version 14.06.2012.
+*/
 public class language_ok_button_ActionListener implements ActionListener{
 	
 	JDialog language_dialog;
@@ -15,11 +20,19 @@ public class language_ok_button_ActionListener implements ActionListener{
 	String Selected;
 	PrintWriter languagefile_writer;
 
+	/** Description of language_ok_button_ActionListener(JDialog LANGUAGE_DIALOG, JComboBox LANGUGAGES) 
+	 * 
+	 * @param LANGUAGE_DIALOG		Dialog for language-selection.
+	 * @param LANGUAGES				Available languages.
+	 */
 	public language_ok_button_ActionListener(JDialog LANGUAGE_DIALOG, JComboBox LANGUAGES){
 		language_dialog = LANGUAGE_DIALOG;
 		language_ComboBox = LANGUAGES;
 	}
 	
+	/** Description of actionPreformed(ActionEvent e)
+	 * @param e			Event by pressing the ok button in language dialog.
+	 */
 	public void actionPerformed(ActionEvent e){
 		//visual options
 		language_dialog.setVisible(false);
