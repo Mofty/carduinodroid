@@ -56,6 +56,8 @@ public class GUI_Computer extends JFrame{
 	public JLabel down;
 	public JLabel left;
 	public JLabel right;
+	public JLabel image;
+
 	
 	//initiate icons
 	ImageIcon up_icon = new ImageIcon("src/View/Icons/Icon_up.gif");
@@ -208,20 +210,20 @@ public class GUI_Computer extends JFrame{
 		JDialog language_dialog = new JDialog();
 		
 		//initiate JPanels
-		JPanel panel_video = new JPanel();
+		image = new JLabel();
 		JPanel panel_other = new JPanel();
 
 		//edit Layout
 		this.setLayout(new BorderLayout());
-		this.getContentPane().add(panel_video, BorderLayout.CENTER);
+		this.getContentPane().add(image, BorderLayout.CENTER);
 		this.getContentPane().add(panel_other, BorderLayout.EAST);
 		this.getContentPane().add(Live_Log_Scrollbar, BorderLayout.SOUTH);
-		panel_video.setBackground(Color.lightGray);
+		image.setBackground(Color.lightGray);
 		panel_other.setPreferredSize(new Dimension(200,500));
 		panel_other.setLayout(null);
 		Live_Log_Scrollbar.setPreferredSize(new Dimension(800,100));
 		panel_other.setFocusable(false);
-		panel_video.setFocusable(false);
+		image.setFocusable(false);
 			
 		//menu "file"
 		Quit.addActionListener(new Quit_ActionListener(log,gpstrack));
