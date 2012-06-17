@@ -41,6 +41,6 @@ public class Connect_ActionListener implements ActionListener{
 		ip.setText(Ip_adress);
 		//gui_computer.controller_Computer.network.connect(Ip_adress);
 		log.writelogfile("Connect to: " + Ip_adress);
-		gui_computer.controller_Computer.network.connect("192.168.124.101");
+		gui_computer.controller_Computer.network.connect(Ip_adress);
 	}
 }
