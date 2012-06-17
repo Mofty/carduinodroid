@@ -20,12 +20,12 @@ public class Controller_Android
 	
 	public int framerate;
 	
-	public Controller_Android(Activity activity, FrameLayout frameLayout) 
+	public Controller_Android(Activity activity) 
 	{
 		log = new LOG();
 		
 		arduino = new Arduino(activity, log);
-		cam = new Cam(frameLayout, this, activity);
+		cam = new Cam(this, activity);
 		connection = new Connection(activity, log);
 		gps = new GPS(activity, log);
 		record_sound = new Record_Sound(log);
