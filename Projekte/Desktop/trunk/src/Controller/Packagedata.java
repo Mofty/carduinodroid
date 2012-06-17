@@ -36,13 +36,19 @@ public class Packagedata {
 	{
 		controller_computer.gui_computer.longitude.setText(tokens[4]);
 		controller_computer.gui_computer.latitude.setText(tokens[5]);
-		//gui_computer.connection_type.setText();
+		
+		if (tokens[3] == "1")
+			controller_computer.gui_computer.connection_type.setText("WLAN");
+		else
+			if (tokens[2] == "1")
+				controller_computer.gui_computer.connection_type.setText("Mobile Internet");
+			else
+				controller_computer.gui_computer.connection_type.setText("No Connection");
+		
 		//MobileAvailable tokens[0]; 
 		//WLANAvailable tokens[1];
 		//Mobile tokens[2];
 		//WLAN tokens[3];
-		//GPS longitude tokens[4];
-		//GPS latitude tokens[5];
 	}
 }
 	
