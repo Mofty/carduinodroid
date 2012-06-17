@@ -1,20 +1,21 @@
 package Controller;
 
+
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.*;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
-import Model.Log;
 
 public class Socket_Picture implements Runnable{
 	
 	Socket socket_picture;
 	Network network;
 	InetSocketAddress port_picture;
-	Log log;
 	private InputStream picturestream;
 	
 	Socket_Picture(Network n_network)
@@ -26,6 +27,7 @@ public class Socket_Picture implements Runnable{
 
 	public void connect(InetSocketAddress nport_picture)
 	{
+		System.out.println("cam connection gestartet");
 		port_picture = nport_picture;
 		try {
 			socket_picture.connect(port_picture);
@@ -46,19 +48,12 @@ public class Socket_Picture implements Runnable{
 	}
 		
 
+	
 	public void connect(){
 		try {
 			socket_picture.connect(port_picture);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			/*
-			 * noch überlegen
-			 */
-			e.printStackTrace();
-			}
-			
-			try {
-				picturestream = socket_picture.getInputStream();
+			picturestream = socket_picture.getInputStream();
+			run();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -66,17 +61,20 @@ public class Socket_Picture implements Runnable{
 		
 		}
 	
+
+	
+	
 	@Override
 	public void run() {
 		BufferedImage buffer;
+		int i = 0;
 		while(socket_picture.isConnected())
 		{
 			try {
-				if(picturestream.available() > 0){
-				System.out.println("was da zum lesen");
-				buffer = ImageIO.read(picturestream);
-				System.out.println(buffer.getHeight() +" "+ buffer.getWidth());
-				network.receive_picture(buffer);
+				i =picturestream.available();
+				if(i > 0){
+				network.receive_picture(readpicture());
+				System.out.println("was da zum lesen" + i);
 				}
 					
 					else
@@ -91,5 +89,28 @@ public class Socket_Picture implements Runnable{
 					System.out.println("fehler beim lesen");
 				}
 			}
+			connect();
 		}
+
+	private ImageIcon readpicture() {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		try {
+			int i = picturestream.available();	
+			while(i>0){
+				byte[] buffer = new byte[i];
+				picturestream.read(buffer);
+				baos.write(buffer);
+				i = picturestream.available();
+			}
+			byte[] image = baos.toByteArray();
+			ImageIcon picture = new ImageIcon(image);
+			System.out.println(picture.getIconHeight()+ ":" + picture.getIconWidth()+":::::"+ image.length);
+			return picture;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
+
