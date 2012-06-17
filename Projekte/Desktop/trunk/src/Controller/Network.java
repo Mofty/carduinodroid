@@ -10,6 +10,16 @@ package Controller;
 import java.net.*;
 import java.awt.image.BufferedImage;
 
+import javax.swing.ImageIcon;
+
+/**
+ * @author Robin
+ *
+ */
+/**
+ * @author Robin
+ *
+ */
 public class Network {
 	
 	Socket_Picture socket_picture;
@@ -23,23 +33,22 @@ public class Network {
 	
 	
 	
-	public Network(String ip, Packagedata n_packagedata, Camera_Picture n_camera_picture)
+	public Network(Packagedata n_packagedata, Camera_Picture n_camera_picture)
 	{
-		//socket_picture = new Socket_Picture(this);
+		socket_picture = new Socket_Picture(this);
 		socket_package = new Socket_Package(this);
 		socket_controller = new Socket_Controller();
 		camera_picture = n_camera_picture;
 		packagedata = n_packagedata;
-		mobilephone_ip = ip;
 	}
 	
-	public Network(String ip)
-	{
-		//socket_picture = new Socket_Picture(this);
-		socket_package = new Socket_Package(this);
-		socket_controller = new Socket_Controller();
-		mobilephone_ip = ip;
-	}
+//	public Network(String ip)
+//	{
+//		socket_picture = new Socket_Picture(this);
+//		socket_package = new Socket_Package(this);
+//		socket_controller = new Socket_Controller();
+//		mobilephone_ip = ip;
+//	}
 	/*
 	 * ports = ???????
 	 */
@@ -47,6 +56,7 @@ public class Network {
 	public void connect(String ipstring)
 	{
 		InetAddress ip;
+		mobilephone_ip = ipstring;
 		try {
 			ip = InetAddress.getByName(ipstring);
 			InetSocketAddress port_controll = new InetSocketAddress(ip, 12345);
@@ -90,8 +100,8 @@ public class Network {
 		packagedata.receive_package(message);
 	}
 	
-	public void receive_picture(BufferedImage image) {
-		camera_picture.receive_picture(image);
+	public void receive_picture(ImageIcon imageIcon) {
+		camera_picture.receive_picture(imageIcon);
 	}
 	
 	
