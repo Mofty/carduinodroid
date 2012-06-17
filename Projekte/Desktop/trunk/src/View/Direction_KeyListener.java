@@ -3,6 +3,12 @@ package View;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+* methods for working with KeyEvents and calculate direction/speed
+* @author Lars Vogel
+* @version 12.06.2012
+*/
+
 public class Direction_KeyListener implements KeyListener{
 	GUI_Computer gui_computer;
 	boolean up = false, left = false, right = false, down = false;
@@ -11,6 +17,12 @@ public class Direction_KeyListener implements KeyListener{
 		gui_computer = GUI_computer;
 	}
 	
+	// ***** KeyPressed Event ***************************************
+	/** 
+	 * When a key will be pressed, it is necessary to save the status
+	 * in a separate variable. To work with a variable is easier then 
+	 * with a keyCode or something like that
+	 */
 	@Override
 	public void keyPressed(KeyEvent e) {	
 		int key = e.getKeyCode();
@@ -19,7 +31,14 @@ public class Direction_KeyListener implements KeyListener{
 		if (key == KeyEvent.VK_LEFT) {left=true;gui_computer.controller_Computer.car_controller.UpdateVariables(up,down,right,left);};
 		if (key == KeyEvent.VK_DOWN) {down=true;gui_computer.controller_Computer.car_controller.UpdateVariables(up,down,right,left);};
 	}
-
+	
+	// ***** KeyRelease Event ***************************************
+	/** 
+	 *After a key is released, the variable will be set to false or sometime
+	 *an event will be started. The sliders will be controlled directly
+	 *by certain methods to change their values. It should feel like a real
+	 *gear.
+	 */
 	@Override
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();

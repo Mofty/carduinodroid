@@ -8,7 +8,7 @@ import java.util.*;
 import java.text.*;
 
 /**
-* methods for sending camera changes
+* methods for writing a *.gpx-file
 * @author Lars Vogel
 * @version 12.06.2012
 */

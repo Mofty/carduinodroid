@@ -33,6 +33,9 @@ public class Record_ActionListener implements ActionListener{
 	
 	/** Description of actionPreformed(ActionEvent e)
 	 * @param e			Event by pressing the record ToggleButton.
+	 * If you want to start or stop a record, you need to send the right
+	 * signal to your android device. With a toggle button u can decide
+	 * whether it has to stop or start.
 	 */
 	public void actionPerformed(ActionEvent e) {
 		if (status.isSelected()){

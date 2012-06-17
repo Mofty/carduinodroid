@@ -4,7 +4,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
-* methods for sending camera changes
+* methods for control signals
 * @author Lars Vogel
 * @version 12.06.2012
 */
