@@ -31,10 +31,11 @@ public class SwitchCameraType_ActionListener implements ActionListener{
 		}
 	
 	/** Description of actionPerformed(ActionEvent e)
-	 * @param e			Event by pressing the frontcamera or backcamera RadioButtonMenuItem.
 	 * 
 	 * It enables the chosen camera (front or back). Sometimes it could be
 	 * helpful to see what is behind you.
+	 * 
+	 * @param e			Event by pressing the frontcamera or backcamera RadioButtonMenuItem.
 	 */
 	public void actionPerformed(ActionEvent e) {
 		if (camera) {

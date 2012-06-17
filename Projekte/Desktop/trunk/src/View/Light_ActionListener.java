@@ -32,10 +32,11 @@ public class Light_ActionListener implements ActionListener{
 	}
 	
 	/** Description of actionPreformed(ActionEvent e)
-	 * @param e			Event by switching the status of ToggleButton for light.
 	 * 
 	 * After the button was pressed, the change Event shell start. 
 	 * The light will be switched off by a "0" or switched on by a "1"
+	 * 
+	 * @param e			Event by switching the status of ToggleButton for light.
 	 */
 	public void actionPerformed(ActionEvent e) {
 		

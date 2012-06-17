@@ -38,7 +38,9 @@ public class Language_ActionListener implements ActionListener{
 	}
 	
 	/** Description of actionPreformed(ActionEvent e)
+	 * 
 	 * Opens a window where you can select your preferred language in a combobox when pressing the menuitem.
+	 * 
 	 * @param e			Event by pressing the language menuitem.
 	 */
 	public void actionPerformed(ActionEvent e){
