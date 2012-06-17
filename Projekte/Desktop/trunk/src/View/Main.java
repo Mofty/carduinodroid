@@ -8,7 +8,7 @@ package View;
 public class Main {
 
 	/** Description of public static void main(String[] args)
-	 * mainmethod
+	 * The mainmethod is the method which runs after CarDuinoDroid was started. All other Methods will be opened directly or indirectly through mainmethod.
 	 * @param args			Elements referring to Strings which contains the arguments of command line which started the program.
 	 */
 	public static void main(String[] args) {
