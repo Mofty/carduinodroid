@@ -35,7 +35,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/** Description of GUI_Computer
+/** Class for graphical user interface with methods for creating the window.
 *
 * @author Benjamin L
 * @version 14.06.2012
@@ -69,8 +69,7 @@ public class GUI_Computer extends JFrame{
 	ImageIcon left_pressed_icon = new ImageIcon("src/View/Icons/Icon_left_pressed.gif");
 	ImageIcon right_pressed_icon = new ImageIcon("src/View/Icons/Icon_right_pressed.gif");
 	
-	/** Description of GUI_Computer()
-	 * Constructor which creates the graphical user interface.
+	/** Constructor which creates the graphical user interface.
 	 */
 	public GUI_Computer(){
 		
@@ -92,7 +91,7 @@ public class GUI_Computer extends JFrame{
 		//window listener for closing
 		this.addWindowListener(new WindowAdapter() {
 			
-			/** Description of windowClosed(WindowEvent arg0)
+			/** Describes what happens when window is closed.
 			 * 
 			 * @param arg0		argument when window was closed
 			 * @return			void
@@ -103,7 +102,7 @@ public class GUI_Computer extends JFrame{
 				System.exit(0);
 			}
 			
-			/** Description of windowClosed(WindowEvent arg0)
+			/** Describes what happens when window is closed by pressing the cross in window.
 			 * 
 			 * @param arg0		argument when pressing the closebutton of window
 			 * @return			void
@@ -120,9 +119,7 @@ public class GUI_Computer extends JFrame{
 	}
 	
 	//method: create window
-	/** Description of intiWindow()
-	 * 
-	 * Creates window with all elements.
+	/** Creates window with all elements.
 	 */
 	private void initWindow(){
 		
@@ -347,9 +344,7 @@ public class GUI_Computer extends JFrame{
 		Live_Log_Scrollbar.setBorder(live_log_border);
 	}
 	
-	/** Description of Language()
-	 * 
-	 * Method for read language.txt.
+	/** Method for read language.txt.
 	 * 
 	 * @return			Names of elements of window.
 	 */
@@ -371,9 +366,7 @@ public class GUI_Computer extends JFrame{
 		return Language_Name;
 	}
 	
-	/** Description of Language_name(String Language)
-	 * 
-	 * Method for read in language (names of different elements).
+	/** Method for read in language (names of different elements).
 	 * 
 	 * @param Language	Language which is written in the language.txt
 	 * @return			Names of elements of window.
@@ -395,9 +388,7 @@ public class GUI_Computer extends JFrame{
 		return Name;
 	}
 	
-	/** Description of PressedBorderUp()
-	 * 
-	 * Method for feedback, when car drives forward.
+	/** Method for feedback, when car drives forward.
 	 */
 	public void PressedBorderUp(){
 		Border pressed_border = BorderFactory.createLoweredBevelBorder();
@@ -405,9 +396,7 @@ public class GUI_Computer extends JFrame{
 		up.setIcon(up_pressed_icon);
 	}
 	
-	/** Description of PressedBorderDown()
-	 * 
-	 * Method for feedback, when car drives back.
+	/** Method for feedback, when car drives back.
 	 */
 	public void PressedBorderDown(){
 		Border pressed_border = BorderFactory.createLoweredBevelBorder();
@@ -415,9 +404,7 @@ public class GUI_Computer extends JFrame{
 		down.setIcon(down_pressed_icon);
 	}
 	
-	/** Description of PressedBorderRight()
-	 * 
-	 * Method for feedback, when car drives right.
+	/** Method for feedback, when car drives right.
 	 */
 	public void PressedBorderRight(){
 		Border pressed_border = BorderFactory.createLoweredBevelBorder();
@@ -425,9 +412,7 @@ public class GUI_Computer extends JFrame{
 		right.setIcon(right_pressed_icon);
 	}
 	
-	/** Description of PressedBorderLeft()
-	 * 
-	 * Method for feedback, when car drives left.
+	/** Method for feedback, when car drives left.
 	 */
 	public void PressedBorderLeft(){
 		Border pressed_border = BorderFactory.createLoweredBevelBorder();
@@ -435,9 +420,7 @@ public class GUI_Computer extends JFrame{
 		left.setIcon(left_pressed_icon);
 	}
 	
-	/** Description of UnpressedBorderUp()
-	 * 
-	 * Method for feedback, when car stops driving forward.
+	/** Method for feedback, when car stops driving forward.
 	 */
 	public void UnpressedBorderUp(){
 		if (up != null){
@@ -447,9 +430,7 @@ public class GUI_Computer extends JFrame{
 		}
 	}
 	
-	/** Description of UnpressedBorderDown()
-	 * 
-	 * Method for feedback, when car stops driving back.
+	/** Method for feedback, when car stops driving back.
 	 */
 	public void UnpressedBorderDown(){
 		if (down != null){
@@ -459,9 +440,7 @@ public class GUI_Computer extends JFrame{
 		}
 	}
 	
-	/** Description of UnpressedBorderRight()
-	 * 
-	 * Method for feedback, when car stops driving right.
+	/** Method for feedback, when car stops driving right.
 	 */
 	public void UnpressedBorderRight(){
 		if (right != null){
@@ -471,9 +450,7 @@ public class GUI_Computer extends JFrame{
 		}
 	}
 	
-	/** Description of UnpressedBorderLeft()
-	 * 
-	 * Method for feedback, when car stops driving left.
+	/** Method for feedback, when car stops driving left.
 	 */
 	public void UnpressedBorderLeft(){
 		if (left != null){

@@ -8,7 +8,7 @@ import javax.swing.JToggleButton;
 import Controller.*;
 import Model.Log;
 
-/** Description of Light_ActionListener
+/** Methods for working with the light toggle button.
 *
 * @author Benjamin L
 * @author Lars
@@ -19,7 +19,7 @@ public class Light_ActionListener implements ActionListener{
 	Log log;
 	JToggleButton status;
 	
-	/** Description of Light_ActionListener(Contoller_Computer controllercomputer, Log LOG, JToggleButton STATUS) 
+	/**  
 	 * @param controllercomputer	Used instance of Controller_Computer.
 	 * @param LOG					Used log.
 	 * @param STATUS					ToggleButton for switching light on/off.
@@ -31,9 +31,7 @@ public class Light_ActionListener implements ActionListener{
 		status = STATUS;
 	}
 	
-	/** Description of actionPreformed(ActionEvent e)
-	 * 
-	 * After the button was pressed, the change Event shell start. 
+	/** After the button was pressed, the change Event shell start. 
 	 * The light will be switched off by a "0" or switched on by a "1"
 	 * 
 	 * @param e			Event by switching the status of ToggleButton for light.

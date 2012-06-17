@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Controller.*;
 
-/** Description of Signal_ActionListener
+/** Methods for working with signal button.
 *
 * @author Benjamin L
 * @author Lars
@@ -14,8 +14,7 @@ public class Signal_ActionListener implements ActionListener{
 	
 	Controller_Computer controller_Computer;
 	
-	/** Description of Signal_ActionListener(Controller_Computer controllercomputer) 
-	 * 
+	/** 
 	 * @param controllercomputer	Used instance of Controller_Computer.
 	 */
 	public Signal_ActionListener (Controller_Computer controllercomputer)
@@ -23,8 +22,7 @@ public class Signal_ActionListener implements ActionListener{
 		controller_Computer = controllercomputer;
 	}
 	
-	/** Description of actionPreformed(ActionEvent e)
-	 * 
+	/** 
 	 * With the help of this event you would be able to signal someone
 	 * that your car is on the way or maybe pay attention to it. Later 
 	 * you could change the number of the sound and get something like 

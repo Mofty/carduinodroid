@@ -8,7 +8,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 
-/** Description of Language_ActionListener
+/** Methods for working with language menuitem.
 *
 * @author Benjamin L
 * @version 14.06.2012.
@@ -21,8 +21,7 @@ public class Language_ActionListener implements ActionListener{
 	String Title, Info, Selected;
 	JButton ok;
 	
-	/** Description of Language_ActionListener(JDialog LANGUAGE_DIALOG, JComboBox LANGUGAGES, String TITLE,String INFO, JButton OK) 
-	 * 
+	/** 
 	 * @param LANGUAGE_DIALOG		Dialog for language-selection.
 	 * @param LANGUAGES				Available languages.
 	 * @param TITLE					Title of language window.
@@ -37,8 +36,7 @@ public class Language_ActionListener implements ActionListener{
 		language_ComboBox = LANGUAGES;
 	}
 	
-	/** Description of actionPreformed(ActionEvent e)
-	 * 
+	/** 
 	 * Opens a window where you can select your preferred language in a combobox when pressing the language menuitem.
 	 * 
 	 * @param e			Event by pressing the language menuitem.

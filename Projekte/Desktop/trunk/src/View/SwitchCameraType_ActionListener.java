@@ -6,8 +6,7 @@ import java.awt.event.ActionListener;
 import Controller.Controller_Computer;
 import Model.Log;
 
-/** Description of SwitchCameraType_ActionListener
-*
+/** Methods for working with camera menuitems.
 * @author Benjamin L
 * @author Lars
 * @version 12.06.2012.
@@ -17,8 +16,7 @@ public class SwitchCameraType_ActionListener implements ActionListener{
 	Log log;
 	boolean camera;
 	
-	/** Description of SwitchCameraType_ActionListener(Controller_Computer controllercomputer, Log LOG, boolean CAMERA) 
-	 * 
+	/** 
 	 * @param controllercomputer	Used instance of Controller_Computer.
 	 * @param LOG					Used log. 
 	 * @param CAMERA				Boolean which camera should be activated.
@@ -30,8 +28,7 @@ public class SwitchCameraType_ActionListener implements ActionListener{
 		camera = CAMERA;
 		}
 	
-	/** Description of actionPerformed(ActionEvent e)
-	 * 
+	/** 
 	 * It enables the chosen camera (front or back). Sometimes it could be
 	 * helpful to see what is behind you.
 	 * 

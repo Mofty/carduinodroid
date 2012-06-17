@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 
-/** Description of language_ok_button_ActionListener
+/** Methods for working with the ok button of the language window.
 *
 * @author Benjamin L
 * @version 14.06.2012.
@@ -20,8 +20,7 @@ public class language_ok_button_ActionListener implements ActionListener{
 	String Selected;
 	PrintWriter languagefile_writer;
 
-	/** Description of language_ok_button_ActionListener(JDialog LANGUAGE_DIALOG, JComboBox LANGUGAGES) 
-	 * 
+	/**
 	 * @param LANGUAGE_DIALOG		Dialog for language-selection.
 	 * @param LANGUAGES				Available languages.
 	 */
@@ -30,8 +29,7 @@ public class language_ok_button_ActionListener implements ActionListener{
 		language_ComboBox = LANGUAGES;
 	}
 	
-	/** Description of actionPreformed(ActionEvent e)
-	 * 
+	/** 
 	 * Closes the window where you can select the language and writes the selected language in language.txt when pressing the ok button in language window.
 	 * After restarting CarDuinoDroid the language is changed. 
 	 * 
