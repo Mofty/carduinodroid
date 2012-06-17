@@ -7,6 +7,12 @@ import java.io.IOException;
 import java.util.*;
 import java.text.*;
 
+/**
+* methods for sending camera changes
+* @author Lars Vogel
+* @version 12.06.2012
+*/
+
 public class GPSTrack {
 	
 	BufferedWriter writer;
@@ -15,6 +21,15 @@ public class GPSTrack {
 	File file;
 	File path;
 	
+	// ***** GPSTrack Constructor ***************************************
+			/** 
+			 *@param date Reads the date of the used computer
+			 *@param dateformat Format for the date
+			 *@param trackfile Say how to save the *.gpx-file
+			 *
+			 *The constructor starts to write a *.gpx-file with all important
+			 *parts like date, directory and gpx-typical strings. 
+			 */
 	public GPSTrack(){
 		Date date = new Date();
 		SimpleDateFormat dateformat = new SimpleDateFormat( "yyyy_MM_dd_HH_mm_ss" );
@@ -54,6 +69,14 @@ public class GPSTrack {
 		}
 	}
 	
+	// ***** Write GPX File ***************************************
+			/** 
+			 *@param Long Contains the longitude value
+			 *@param Lat Contains the latitude value
+			 *
+			 *You need to have a typical format to save a all your values
+			 *in a +.gpx-file. This method provides it.
+			 */
 	public void writegpxfile(String Long, String Lat){
 		try {
 			Date data = new Date();
@@ -71,6 +94,11 @@ public class GPSTrack {
 		} catch (IOException e) { e.printStackTrace(); }
 	}
 	
+	// ***** Save GPX File ***************************************
+			/** 
+			 * At the end of a session u need to save your *.gpx-file
+			 * because it need to have a typical format to be closed
+			 */
 	public void savegpxfile(){
 		try {
 			writegpxfile("10.9199","50.6912"); //Test meiner FUnktion beim Schlieﬂen des Fensters Ilmenau-Koordinaten
