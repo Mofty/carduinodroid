@@ -7,7 +7,6 @@ import android.content.*;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.PowerManager;
-import android.view.SurfaceView;
 import android.view.View;
 import android.widget.*;
 
@@ -45,7 +44,7 @@ public class CarDuinoDroidAppActivity extends Activity
         // prevent the application from switching to landscape-mode
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // initialize controller field hosting all other sub classes
-        controller_Android = new Controller_Android(this,(SurfaceView)findViewById(R.id.preview));
+        controller_Android = new Controller_Android(this,(FrameLayout)findViewById(R.id.camera_preview));
         // initialize fields for wake_lock
         powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         wakelock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, "CarduinoDroid_Full_Wake_Lock");
