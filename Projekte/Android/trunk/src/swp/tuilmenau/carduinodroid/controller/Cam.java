@@ -20,7 +20,6 @@ import android.hardware.Camera.Size;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.FrameLayout;
 
 public class Cam implements CameraCallback
 {
