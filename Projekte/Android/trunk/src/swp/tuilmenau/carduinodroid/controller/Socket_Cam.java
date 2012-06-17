@@ -26,30 +26,30 @@ public class Socket_Cam implements Runnable {
 			ServerSocket socket_package = null;
 			client = null;
 			packagewriter = null;
-			Log.v("thread package","thread package gestartet");
+			Log.v("thread camera","thread camera gestartet");
 			try {
-				socket_package = new ServerSocket(12346);
+				socket_package = new ServerSocket(12347);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
-					Log.v("thread package","serversocket fehlgeschlagen");
+					Log.v("thread camera","serversocket fehlgeschlagen");
 
 				}
 				try {
 					client = socket_package.accept();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
-					Log.v("thread package","accept fehlgeschlagen");
+					Log.v("thread camera","accept fehlgeschlagen");
 				}
 				try {
 					controller_Android.cam.cameraPreview.setOutputstream(client.getOutputStream());
 					
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
-					Log.v("thread package","output bekommen fehlgeschlagen");
+					Log.v("thread camera","output bekommen fehlgeschlagen");
 				}
 				
 			if(client != null)
-				Log.v("thread package","javaprog gefunden" + client.getInetAddress().toString());
+				Log.v("thread camera","javaprog gefunden" + client.getInetAddress().toString());
 
 
 				//preview starten
