@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 
 /**
 * methods for working with KeyEvents and calculate direction/speed
+* 
 * @author Lars Vogel
 * @version 12.06.2012
 */

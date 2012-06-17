@@ -123,6 +123,7 @@ public class GUI_Computer extends JFrame{
 	/** Description of intiWindow()
 	 * 
 	 * Creates window with all elements.
+	 * 
 	 * @return			void
 	 */
 	private void initWindow(){
@@ -351,6 +352,7 @@ public class GUI_Computer extends JFrame{
 	/** Description of Language()
 	 * 
 	 * Method for read language.txt.
+	 * 
 	 * @return			Names of elements of window.
 	 */
 	private ArrayList<String> Language(){
@@ -374,6 +376,7 @@ public class GUI_Computer extends JFrame{
 	/** Description of Language_name(String Language)
 	 * 
 	 * Method for read in language (names of different elements).
+	 * 
 	 * @param Language	Language which is written in the language.txt
 	 * @return			Names of elements of window.
 	 */
@@ -395,6 +398,7 @@ public class GUI_Computer extends JFrame{
 	}
 	
 	/** Description of PressedBorderUp()
+	 * 
 	 * Method for feedback, when car drives forward.
 	 */
 	public void PressedBorderUp(){
@@ -404,6 +408,7 @@ public class GUI_Computer extends JFrame{
 	}
 	
 	/** Description of PressedBorderDown()
+	 * 
 	 * Method for feedback, when car drives back.
 	 */
 	public void PressedBorderDown(){
@@ -413,6 +418,7 @@ public class GUI_Computer extends JFrame{
 	}
 	
 	/** Description of PressedBorderRight()
+	 * 
 	 * Method for feedback, when car drives right.
 	 */
 	public void PressedBorderRight(){
@@ -422,6 +428,7 @@ public class GUI_Computer extends JFrame{
 	}
 	
 	/** Description of PressedBorderLeft()
+	 * 
 	 * Method for feedback, when car drives left.
 	 */
 	public void PressedBorderLeft(){
@@ -431,6 +438,7 @@ public class GUI_Computer extends JFrame{
 	}
 	
 	/** Description of UnpressedBorderUp()
+	 * 
 	 * Method for feedback, when car stops driving forward.
 	 */
 	public void UnpressedBorderUp(){
@@ -442,6 +450,7 @@ public class GUI_Computer extends JFrame{
 	}
 	
 	/** Description of UnpressedBorderDown()
+	 * 
 	 * Method for feedback, when car stops driving back.
 	 */
 	public void UnpressedBorderDown(){
@@ -453,6 +462,7 @@ public class GUI_Computer extends JFrame{
 	}
 	
 	/** Description of UnpressedBorderRight()
+	 * 
 	 * Method for feedback, when car stops driving right.
 	 */
 	public void UnpressedBorderRight(){
@@ -464,6 +474,7 @@ public class GUI_Computer extends JFrame{
 	}
 	
 	/** Description of UnpressedBorderLeft()
+	 * 
 	 * Method for feedback, when car stops driving left.
 	 */
 	public void UnpressedBorderLeft(){

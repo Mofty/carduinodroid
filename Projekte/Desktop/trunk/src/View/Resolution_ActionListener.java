@@ -32,10 +32,12 @@ public class Resolution_ActionListener implements ActionListener{
 	}
 	
 	/** Description of actionPreformed(ActionEvent e)
-	 * @param e			Event by changing a resolution.
+	 * 
 	 * With the index of a "JComboBox" you can change your resolution of the camera
 	 * to certain one. Sometimes it can be helpful to lower your resolution. Maybe
 	 * if your connection rate is limited
+	 * 
+	 * @param e			Event by changing a resolution.
 	 */
 	public void actionPerformed(ActionEvent e) {
 		String resolution = String.valueOf(status.getSelectedIndex());
