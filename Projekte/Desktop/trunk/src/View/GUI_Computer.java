@@ -123,8 +123,6 @@ public class GUI_Computer extends JFrame{
 	/** Description of intiWindow()
 	 * 
 	 * Creates window with all elements.
-	 * 
-	 * @return			void
 	 */
 	private void initWindow(){
 		
