@@ -18,15 +18,14 @@ public class Controller_Computer {
 	public Controller_Computer(Log LOG, GUI_Computer GUI_computer) {
 		gui_computer = GUI_computer;
 		log = LOG;
-		camera_picture=new Camera_Picture();
+		camera_picture=new Camera_Picture(this);
 		packagedata=new Packagedata(this);
 		gps_map=new GPS_Map(this);
-		network=new Network("",packagedata,camera_picture);
+		network=new Network(packagedata,camera_picture);
 		sound_output=new Sound_Output(this);
 		camera_settings=new Camera_Settings(this);
 		car_controller=new Car_Controller(this);
 		soundrecording=new Soundrecording(this);
-		
 	}
 
 }
