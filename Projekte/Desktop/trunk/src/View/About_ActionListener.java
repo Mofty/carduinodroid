@@ -29,7 +29,7 @@ public class About_ActionListener implements ActionListener{
 	
 	/** Description of actionPreformed(ActionEvent e)
 	 * 
-	 * Shows the information about this project in popup window when pressing the menuitem.
+	 * Shows the information about this project in popup window when pressing the about menuitem.
 	 * 
 	 * @param e			Event by pressing the About menuitem.
 	 */

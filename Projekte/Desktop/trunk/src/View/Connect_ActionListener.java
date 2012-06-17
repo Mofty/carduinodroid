@@ -35,7 +35,7 @@ public class Connect_ActionListener implements ActionListener{
 
 	/** Description of actionPreformed(ActionEvent e)
 	 * 
-	 * Opens a new window to enter the ip of the phone when pressing the menutitem.
+	 * Opens a new window to enter the ip of the phone when pressing the connect menutitem.
 	 * 
 	 * @param e			Event by pressing the connect menuitem.
 	 */
