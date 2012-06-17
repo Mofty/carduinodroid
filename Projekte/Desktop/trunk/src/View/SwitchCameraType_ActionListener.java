@@ -30,7 +30,7 @@ public class SwitchCameraType_ActionListener implements ActionListener{
 		camera = CAMERA;
 		}
 	
-	/** Description of actionPreformed(ActionEvent e)
+	/** Description of actionPerformed(ActionEvent e)
 	 * @param e			Event by pressing the frontcamera or backcamera RadioButtonMenuItem.
 	 * 
 	 * It enables the chosen camera (front or back). Sometimes it could be
