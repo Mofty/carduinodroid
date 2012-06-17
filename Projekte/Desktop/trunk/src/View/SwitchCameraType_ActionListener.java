@@ -9,6 +9,7 @@ import Model.Log;
 /** Description of SwitchCameraType_ActionListener
 *
 * @author Benjamin L
+* @author Lars
 * @version 12.06.2012.
 */
 public class SwitchCameraType_ActionListener implements ActionListener{
@@ -31,6 +32,9 @@ public class SwitchCameraType_ActionListener implements ActionListener{
 	
 	/** Description of actionPreformed(ActionEvent e)
 	 * @param e			Event by pressing the frontcamera or backcamera RadioButtonMenuItem.
+	 * 
+	 * It enables the chosen camera (front or back). Sometimes it could be
+	 * helpful to see what is behind you.
 	 */
 	public void actionPerformed(ActionEvent e) {
 		if (camera) {

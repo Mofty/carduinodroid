@@ -1,7 +1,7 @@
 package Controller;
 
 /**
-* methods for sending camera changes
+* methods for sending soundrecording signals
 * @author Lars Vogel
 * @version 12.06.2012
 */

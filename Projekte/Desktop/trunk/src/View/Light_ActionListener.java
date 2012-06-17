@@ -20,7 +20,6 @@ public class Light_ActionListener implements ActionListener{
 	JToggleButton status;
 	
 	/** Description of Light_ActionListener(Contoller_Computer controllercomputer, Log LOG, JToggleButton STATUS) 
-	 * 
 	 * @param controllercomputer	Used instance of Controller_Computer.
 	 * @param LOG					Used log.
 	 * @param STATUS					ToggleButton for switching light on/off.
@@ -34,6 +33,9 @@ public class Light_ActionListener implements ActionListener{
 	
 	/** Description of actionPreformed(ActionEvent e)
 	 * @param e			Event by switching the status of ToggleButton for light.
+	 * 
+	 * After the button was pressed, the change Event shell start. 
+	 * The light will be switched off by a "0" or switched on by a "1"
 	 */
 	public void actionPerformed(ActionEvent e) {
 		

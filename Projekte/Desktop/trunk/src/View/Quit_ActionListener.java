@@ -9,6 +9,7 @@ import Model.Log;
 /** Description of Quit_ActionListener
 *
 * @author Benjamin L
+* @author Lars
 * @version 12.06.2012.
 */
 public class Quit_ActionListener implements ActionListener {
@@ -28,6 +29,9 @@ public class Quit_ActionListener implements ActionListener {
 	
 	/** Description of actionPreformed(ActionEvent e)
 	 * @param e			Event by pressing the quit menuitem.
+	 * Before the whole programm is closed by "system.exit" it is 
+	 * important to save the log and *.gpx-file by their own method.
+	 * After this you can use the track file on certain platforms.
 	 */
 	public void actionPerformed(ActionEvent e) {
 		gpstrack.savegpxfile();

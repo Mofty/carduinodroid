@@ -10,6 +10,7 @@ import Controller.*;
 /** Description of Map_ActionListener
 *
 * @author Benjamin L
+* @author Lars
 * @version 09.06.2012.
 */
 public class Map_ActionListener implements ActionListener{
@@ -31,6 +32,8 @@ public class Map_ActionListener implements ActionListener{
 	
 	/** Description of actionPreformed(ActionEvent e)
 	 * @param e			Event by pressing the map button.
+	 * This method will open the default browser of your computer
+	 * and show the coordinates on google maps.
 	 */
 	public void actionPerformed(ActionEvent e) {
 		controller_Computer.gps_map.open_map(latitude.getText(), longitude.getText());
