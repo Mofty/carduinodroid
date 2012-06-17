@@ -31,6 +31,8 @@ public class language_ok_button_ActionListener implements ActionListener{
 	}
 	
 	/** Description of actionPreformed(ActionEvent e)
+	 * Closes the window where you can select the language and writes the selected language in language.txt when pressing the ok button in language window.
+	 * After restarting CarDuinoDroid the language is changed. 
 	 * @param e			Event by pressing the ok button in language dialog.
 	 */
 	public void actionPerformed(ActionEvent e){
