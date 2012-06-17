@@ -69,7 +69,9 @@ public class GUI_Computer extends JFrame{
 	ImageIcon left_pressed_icon = new ImageIcon("src/View/Icons/Icon_left_pressed.gif");
 	ImageIcon right_pressed_icon = new ImageIcon("src/View/Icons/Icon_right_pressed.gif");
 	
-	/** Description of GUI_Computer()*/
+	/** Description of GUI_Computer()
+	 * Constructor which creates the graphical user interface.
+	 */
 	public GUI_Computer(){
 		
 		//set layout
@@ -120,7 +122,7 @@ public class GUI_Computer extends JFrame{
 	//method: create window
 	/** Description of intiWindow()
 	 * 
-	 *create window
+	 * Creates window with all elements.
 	 * @return			void
 	 */
 	private void initWindow(){
@@ -346,10 +348,9 @@ public class GUI_Computer extends JFrame{
 		Live_Log_Scrollbar.setBorder(live_log_border);
 	}
 	
-	//method for read language.txt
 	/** Description of Language()
 	 * 
-	 * method for read language.txt
+	 * Method for read language.txt.
 	 * @return			Names of elements of window.
 	 */
 	private ArrayList<String> Language(){
@@ -370,10 +371,9 @@ public class GUI_Computer extends JFrame{
 		return Language_Name;
 	}
 	
-	//method for read in language (names of different elements)
 	/** Description of Language_name(String Language)
 	 * 
-	 * method for read in language (names of different elements)
+	 * Method for read in language (names of different elements).
 	 * @param Language	Language which is written in the language.txt
 	 * @return			Names of elements of window.
 	 */
