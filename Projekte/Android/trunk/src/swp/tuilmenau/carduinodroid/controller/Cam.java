@@ -1,17 +1,25 @@
 package swp.tuilmenau.carduinodroid.controller;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.List;
 
 import swp.tuilmenau.carduinodroid.model.LOG;
-import android.content.Context;
+import android.app.Activity;
+import android.graphics.Rect;
+import android.graphics.YuvImage;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
 import android.hardware.Camera.Size;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
+import android.util.Log;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.FrameLayout;
 
-public class Cam
+public class Cam implements CameraCallback
 {
 	Camera camera;
 	Parameters parameters;
@@ -24,35 +32,64 @@ public class Cam
 	private int width;
 	private String flashmode;
 	private int fps;
-	private SurfaceView preview;
-	private SurfaceHolder previewHolder;
+	private Activity activity;
+	private CameraSurface camerasurface;
+	private ViewGroup cameraholder;
+	private Socket client;
+	private OutputStream os;
+	private ServerSocket ss;
 
-	public Cam(SurfaceView preview, Controller_Android controller)
+	public Cam(FrameLayout frameLayout, Controller_Android controller, Activity activity)
 	{	
+		Log.v("cam", "cam erstellung gestartet");
+		this.activity = activity;
 		camera = Camera.open();
-		this.preview= preview;
-		previewHolder = preview.getHolder();
-		previewHolder.addCallback(surfaceCallback);
-		previewHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-		try {
-			camera.setPreviewDisplay(previewHolder);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		cameraholder = frameLayout;
 		parameters = camera.getParameters();
-		socket_Cam = new Socket_Cam(controller);
+		//socket_Cam = new Socket_Cam(controller);
 		cameraPreview = new CameraPreview();
 		camera.setPreviewCallback(cameraPreview);
 		this.controller = controller;
-		camera.startPreview();
 		height = parameters.getPreviewSize().height;
 		width = parameters.getPreviewSize().width;
 		fps = parameters.getPreviewFrameRate();
 		flashmode = parameters.getFlashMode();
-		Thread camthread = new Thread(socket_Cam);
-		camthread.start();
-
+		//Thread camthread = new Thread(socket_Cam, "cam thread");
+		//camthread.start();
+		Log.v("cam", "cam erstellung fertig");
+		camera.startPreview();
+		Log.v("cam", "preview gestartet");
+		setupPictureMode();
+		Thread t = new Thread(new Runnable(){
+			public void run() {
+    			ss = null;
+    			client = null;
+    			Log.e("thread camera","thread camera gestartet");
+    			try {
+    				ss = new ServerSocket(12347);
+    			} catch (IOException e1) {
+    				// TODO Auto-generated catch block
+    					Log.e("thread camera","serversocket fehlgeschlagen");
+    				}
+    				try {
+    					client = ss.accept();
+    				} catch (IOException e1) {
+    					// TODO Auto-generated catch block
+    					Log.e("thread camera","accept fehlgeschlagen");
+    				}
+    				try {
+    					os = client.getOutputStream();
+    					Log.e("thread camera","outputstream gesetzt");
+    				} catch (IOException e1) {
+    					// TODO Auto-generated catch block
+    					Log.e("thread camera","output bekommen fehlgeschlagen");
+    				}
+    				
+    			if(client != null)
+    				Log.e("thread camera","javaprog gefunden" + client.getInetAddress().toString());
+    		}
+        });
+        t.start();
 	}
 
 	public void enableFlash()
@@ -124,12 +161,6 @@ public class Cam
 		camera.release();
 	}
 
-	private void startPreview() {
-		if (camera!=null) {
-			camera.startPreview();
-		}
-	}
-
 	private Camera.Size getBestPreviewSize(int width, int height) {
 		Camera.Size result=null;
 		List<Size> supsize = parameters.getSupportedPreviewSizes();
@@ -152,41 +183,48 @@ public class Cam
 		return result;
 	}
 
-	private void initPreview(int width, int height) {
-		if (camera!=null && previewHolder.getSurface()!=null) {
-			try {
-				camera.setPreviewDisplay(previewHolder);
-			}
-			catch (Throwable t) {
-				//TODO
-			}
 
-			Camera.Parameters parameters=camera.getParameters();
-			Camera.Size size=getBestPreviewSize(width, height);
+    private void setupPictureMode(){
+        camerasurface = new CameraSurface(activity, camera);
+        
+        cameraholder.addView(camerasurface, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+        
+        camerasurface.setCallback(this);
+    }
+  
+        public void onJpegPictureTaken(byte[] data, Camera camera) {
+        }
 
-			if (size!=null) {
-				parameters.setPreviewSize(size.width, size.height);
-				camera.setParameters(parameters);
-			}
+        
+        public void onPreviewFrame(byte[] data, Camera camera) {
+        		if(os != null){
+    			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+				YuvImage temp = new YuvImage(data,camera.getParameters().getPreviewFormat(), camera.getParameters().getPreviewSize().width,  camera.getParameters().getPreviewSize().height, null);
+				Rect rect = new Rect(0,0,camera.getParameters().getPreviewSize().width,camera.getParameters().getPreviewSize().height);
+				Log.e("cam", temp.toString());
+				temp.compressToJpeg(rect, 30, baos);
+				byte[] image = baos.toByteArray();
+				Log.e("cam", image.length + " arraygröße");
+				try {
+					os.write(image);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+        		}else
+					Log.e("cam","outputstream null");
+        }
+
+        
+        public void onRawPictureTaken(byte[] data, Camera camera) {
+        }
+
+        
+        public void onShutter() {
+        }
+
+		public String onGetVideoFilename() {
+			// TODO Auto-generated method stub
+			return null;
 		}
-	}
-
-
-	SurfaceHolder.Callback surfaceCallback=new SurfaceHolder.Callback() {
-		public void surfaceCreated(SurfaceHolder holder) {
-			// no-op -- wait until surfaceChanged()
-		}
-
-		public void surfaceChanged(SurfaceHolder holder,
-				int format, int width,
-				int height) {
-			initPreview(width, height);
-			startPreview();
-		}
-
-		public void surfaceDestroyed(SurfaceHolder holder) {
-			// no-op
-		}
-	};
-
 }
