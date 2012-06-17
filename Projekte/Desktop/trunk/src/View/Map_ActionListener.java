@@ -7,8 +7,8 @@ import javax.swing.JLabel;
 
 import Controller.*;
 
-/** Description of Map_ActionListener
-*
+/** Class for showing position of the car. 
+* 
 * @author Benjamin L
 * @author Lars
 * @version 09.06.2012.
@@ -18,8 +18,7 @@ public class Map_ActionListener implements ActionListener{
 	JLabel latitude;
 	JLabel longitude;
 	
-	/** Description of Map_ActionListener(Contoller_Computer controllercomputer, JLabel LATITUDE, JLabel LONGITUDE) 
-	 * 
+	/** 
 	 * @param controllercomputer	Used instance of Controller_Computer.
 	 * @param LATITUDE				Latitude of actual position of the car.
 	 * @param LONGITUDE				LONGITUDE of actual position of the car. 
@@ -30,8 +29,7 @@ public class Map_ActionListener implements ActionListener{
 		longitude = LONGITUDE;
 	}
 	
-	/** Description of actionPreformed(ActionEvent e)
-	 * 
+	/** 
 	 * This method will open the default browser of your computer
 	 * and show the coordinates on google maps.
 	 * 

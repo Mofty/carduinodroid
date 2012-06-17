@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
-/** Description of About_ActionListener
+/** Methods for working with about menutitem.
 *
 * @author Benjamin L
 * @version 12.06.2012.
@@ -13,8 +13,7 @@ public class About_ActionListener implements ActionListener{
 	
 	String title, about_1, about_2, link;
 	
-	/** Description of About_ActionListener(String TITLE, String ABOUT_1, String ABOUT_2, String LINK) 
-	 * 
+	/** 
 	 * @param TITLE		Title of About-window.
 	 * @param ABOUT_1	Content of first part of information about the project.
 	 * @param ABOUT_2	Content of second part of information about the project.
@@ -27,9 +26,7 @@ public class About_ActionListener implements ActionListener{
 		title = TITLE;
 	}
 	
-	/** Description of actionPreformed(ActionEvent e)
-	 * 
-	 * Shows the information about this project in popup window when pressing the about menuitem.
+	/** Shows the information about this project in popup window when pressing the about menuitem.
 	 * 
 	 * @param e			Event by pressing the About menuitem.
 	 */

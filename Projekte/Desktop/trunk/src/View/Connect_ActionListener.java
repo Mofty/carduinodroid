@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import Model.Log;
 
-/** Description of Connect_ActionListener
+/** Methods for working with connect menuitem.
 *
 * @author Benjamin L
 * @version 11.06.2012.
@@ -19,8 +19,7 @@ public class Connect_ActionListener implements ActionListener{
 	Log log;
 	JLabel ip;
 	
-	/** Description of Connect_ActionListener(String QUESTION, Log LOG, JLabel IP, GUI_Computer gui_Computer) 
-	 * 
+	/** 
 	 * @param QUESTION		Questiontext by opening the connectwindow. 
 	 * @param LOG			Used log. 
 	 * @param IP			Label which should show the actual connected IP.
@@ -33,9 +32,7 @@ public class Connect_ActionListener implements ActionListener{
 		gui_computer = gui_Computer;
 	}
 
-	/** Description of actionPreformed(ActionEvent e)
-	 * 
-	 * Opens a new window to enter the ip of the phone when pressing the connect menutitem.
+	/** Opens a new window to enter the ip of the phone when pressing the connect menutitem.
 	 * 
 	 * @param e			Event by pressing the connect menuitem.
 	 */

@@ -8,8 +8,8 @@ import javax.swing.JToggleButton;
 import Controller.*;
 import Model.Log;
 
-/** Description of Record_ActionListener
-*
+/** Methods for working with the record toggle button.
+* 
 * @author Benjamin L
 * @author Lars
 * @version 06.06.2012.
@@ -19,8 +19,7 @@ public class Record_ActionListener implements ActionListener{
 	Log log;
 	JToggleButton status;
 	
-	/** Description of Record_ActionListener(Controller_Computer controllercomputer, Log LOG, JToggleButton STATUS) 
-	 * 
+	/** 
 	 * @param controllercomputer	used instance of Controller_Computer.
 	 * @param LOG					Used log. 
 	 * @param STATUS				Record ToggleButton. 
@@ -31,10 +30,8 @@ public class Record_ActionListener implements ActionListener{
 		status = STATUS;
 	}
 	
-	/** Description of actionPreformed(ActionEvent e)
-	 * 
-	 * If you want to start or stop a record, you need to send the right
-	 * signal to your android device. With a toggle button u can decide
+	/** If you want to start or stop a record, you need to send the right
+	 * signal to your Android device. With a toggle button u can decide
 	 * whether it has to stop or start.
 	 * 
 	 * @param e			Event by pressing the record ToggleButton.
