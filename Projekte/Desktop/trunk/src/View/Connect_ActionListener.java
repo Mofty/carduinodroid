@@ -42,7 +42,6 @@ public class Connect_ActionListener implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		Ip_adress = JOptionPane.showInputDialog(Question);
 		ip.setText(Ip_adress);
-		//gui_computer.controller_Computer.network.connect(Ip_adress);
 		log.writelogfile("Connect to: " + Ip_adress);
 		gui_computer.controller_Computer.network.connect(Ip_adress);
 	}
