@@ -65,7 +65,7 @@
         android:layout_gravity="center_horizontal"
         android:text="@string/CloseButton"
         android:onClick="close" />
-
+
     <FrameLayout
         android:id="@+id/preview"
         android:layout_width="1dp"

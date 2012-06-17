@@ -1,5 +1,7 @@
 package swp.tuilmenau.carduinodroid.controller;
 
+import swp.tuilmenau.carduinodroid.R;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -8,6 +10,7 @@ import java.net.Socket;
 import java.util.List;
 
 import swp.tuilmenau.carduinodroid.model.LOG;
+//import android.R;
 import android.app.Activity;
 import android.graphics.Rect;
 import android.graphics.YuvImage;
@@ -39,12 +42,12 @@ public class Cam implements CameraCallback
 	private OutputStream os;
 	private ServerSocket ss;
 
-	public Cam(FrameLayout frameLayout, Controller_Android controller, Activity activity)
+	public Cam(Controller_Android controller, Activity activity)
 	{	
 		Log.v("cam", "cam erstellung gestartet");
 		this.activity = activity;
 		camera = Camera.open();
-		cameraholder = frameLayout;
+		cameraholder = (ViewGroup) activity.findViewById(R.id.preview);
 		parameters = camera.getParameters();
 		//socket_Cam = new Socket_Cam(controller);
 		cameraPreview = new CameraPreview();
