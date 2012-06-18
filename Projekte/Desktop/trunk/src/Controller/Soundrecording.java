@@ -2,6 +2,7 @@ package Controller;
 
 /**
 * methods for sending soundrecording signals
+* 
 * @author Lars Vogel
 * @version 12.06.2012
 */
