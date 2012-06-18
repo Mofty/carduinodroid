@@ -22,7 +22,7 @@ public class Direction_KeyListener implements KeyListener{
 	/** 
 	 * When a key will be pressed, it is necessary to save the status
 	 * in a separate variable. To work with a variable is easier then 
-	 * with a keyCode or something like that
+	 * with a keyCode or something like that.
 	 */
 	@Override
 	public void keyPressed(KeyEvent e) {	
@@ -35,7 +35,7 @@ public class Direction_KeyListener implements KeyListener{
 	
 	// ***** KeyRelease Event ***************************************
 	/** 
-	 *After a key is released, the variable will be set to false or sometime
+	 *After a key is released, the variable will be set to false or sometimes
 	 *an event will be started. The sliders will be controlled directly
 	 *by certain methods to change their values. It should feel like a real
 	 *gear.
