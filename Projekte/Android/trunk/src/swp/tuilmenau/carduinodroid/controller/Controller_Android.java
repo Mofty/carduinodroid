@@ -48,7 +48,7 @@ public class Controller_Android
 	/**
 	 * Collects all Info and prepares the Info-Package to be sent to the PC-Client.
 	 *
-	 * @return A String containing the compressed Data.
+	 * @return A {@link String} containing the compressed Data.
 	 */
 	public String packData() 
 	{

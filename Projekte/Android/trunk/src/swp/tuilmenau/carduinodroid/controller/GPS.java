@@ -64,7 +64,7 @@ public class GPS
 	}
 
 	/**
-	 * Collects the GPS-Data and prepares in to bo sent by the Controller.
+	 * Collects the GPS-Data and prepares in to by sent by the Controller.
 	 *
 	 * @return {@link String} containing the GPS-Data.
 	 * @see Controller_Android
