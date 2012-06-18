@@ -11,6 +11,11 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 
+/**
+ * @author Robin
+ * @version 18.06.2012
+ * This class provides methods for receiving images from the Android-Application
+ */
 public class Socket_Picture implements Runnable{
 	
 	Socket socket_picture;
@@ -25,6 +30,10 @@ public class Socket_Picture implements Runnable{
 		//log = new Log();
 	}
 
+	/**
+	 * Connect the Socket to the Android-Application
+	 * @param nport_picture The Socketaddress
+	 */
 	public void connect(InetSocketAddress nport_picture)
 	{
 		System.out.println("cam connection gestartet");
@@ -49,6 +58,9 @@ public class Socket_Picture implements Runnable{
 		
 
 	
+	/**
+	 * Connect the Socket to the Android-Application
+	 */
 	public void connect(){
 		try {
 			socket_picture.connect(port_picture);
@@ -64,6 +76,9 @@ public class Socket_Picture implements Runnable{
 
 	
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
 	@Override
 	public void run() {
 		BufferedImage buffer;
@@ -92,6 +107,10 @@ public class Socket_Picture implements Runnable{
 			connect();
 		}
 
+	/**
+	 * reads the imagedata from the Socket
+	 * @return returns the Image
+	 */
 	private ImageIcon readpicture() {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		try {
@@ -104,11 +123,8 @@ public class Socket_Picture implements Runnable{
 			}
 			byte[] image = baos.toByteArray();
 			ImageIcon picture = new ImageIcon(image);
-			System.out.println(picture.getIconHeight()+ ":" + picture.getIconWidth()+":::::"+ image.length);
 			return picture;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		return null;
 	}

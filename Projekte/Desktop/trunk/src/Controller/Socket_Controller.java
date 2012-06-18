@@ -6,6 +6,12 @@ import java.io.OutputStreamWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
+/**
+ * @author Robin
+ * @version 18.06.2012
+ * This class is used to send Controllsignals to the Android-Application
+ */
+
 public class Socket_Controller {
 	
 	BufferedWriter controll;
@@ -13,10 +19,15 @@ public class Socket_Controller {
 	String mobilephone_ip;
 
 
+
 	Socket_Controller(){
 		socket_controll = new Socket();
 	}
 	
+	/**
+	 * Connect the Socket to the Android-Application
+	 * @param port_controll The Address from the Android-Application
+	 */
 	public void connect(InetSocketAddress port_controll)
 	{
 		try {
@@ -40,6 +51,11 @@ public class Socket_Controller {
 
 	}
 	
+	/**
+	 * Sends the Carcontrollsignal to the Android-Application
+	 * @param direction The Signal
+	 * @return True if successful
+	 */
 	public boolean send_controllsignal(String direction)
 	{
 		if(socket_controll.isConnected())
@@ -61,6 +77,11 @@ public class Socket_Controller {
 		}
 	}
 	
+	/**
+	 * Sends the Camerasettings to the Android-Application
+	 * @param settings The Camerasettings
+	 * @return True if successful
+	 */
 	public boolean send_camera_settings(String settings)
 	{
 		if(socket_controll.isConnected())
@@ -82,6 +103,11 @@ public class Socket_Controller {
 		}
 	}
 	
+	/**
+	 * Sends soundrecording or soundoutput signals to the Android-Application
+	 * @param sound_id
+	 * @return True if successful
+	 */
 	public boolean send_sound(String sound_id)
 	{
 		if(socket_controll.isConnected())

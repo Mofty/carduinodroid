@@ -7,6 +7,11 @@ import java.net.*;
 
 import Model.Log;
 
+/**
+ * @author Robin
+ * @version 18.06.2012
+ * This class is used to receive Information from the Android-Application
+ */
 public class Socket_Package implements Runnable{
 	
 	Socket socket_package;
@@ -22,6 +27,10 @@ public class Socket_Package implements Runnable{
 		//log = new Log();
 	}
 
+	/**
+	 * Connect the Socket to the Android-Application
+	 * @param nport_package The Socketaddress
+	 */
 	public void connect(InetSocketAddress nport_package)
 	{
 		port_package = nport_package;
@@ -44,6 +53,9 @@ public class Socket_Package implements Runnable{
 	}
 		
 
+	/**
+	 * Connect the Socket to the Android-Application
+	 */
 	public void connect(){
 		try {
 			socket_package.connect(port_package);
@@ -64,6 +76,9 @@ public class Socket_Package implements Runnable{
 		
 		}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
 	@Override
 	public void run() {
 		String message;
