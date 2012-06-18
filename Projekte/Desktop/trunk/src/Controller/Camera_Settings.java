@@ -14,13 +14,12 @@ public class Camera_Settings {
 	}
 	
 	// ***** Change Camera Type ***************************************
-	/** 
-	 * @param cameratype Knows if it is the front or back camera
-	 * 
-	 * With this method you will be able to change the camera type
+	/** With this method you will be able to change the camera type
 	 * between front and back. It is sending a typical signal to the
 	 * Android device which will start the "Change command".
-	 */
+	 * 
+	 * @param cameratype Knows if it is the front or back camera
+	 * 	 */
 	public void send_change_camera(String cameratype) {
 		if (controller_computer.network.send_camera_settings("1;" + cameratype)) {
 			controller_computer.log.writelogfile("Camera was switched");
@@ -30,13 +29,12 @@ public class Camera_Settings {
 	}
 	
 	// ***** Change Camera Resolution ***************************************
-		/** 
-		 * @param setting Save the chosen Resolution by itemindex
-		 * 
-		 * The second important part is to change the resolution of 
+		/** The second important part is to change the resolution of 
 		 * your camera. This is important for lowering your traffic and
 		 * maybe your built-in camera is not able to send in the chosen
 		 * resolution.
+		 * 
+		 * @param setting Save the chosen Resolution by itemindex
 		 */
 	public void send_change_resolution(String setting) {
 		if (controller_computer.network.send_camera_settings("2;" + setting)) {
@@ -47,12 +45,11 @@ public class Camera_Settings {
 	}
 	
 	// ***** Change Camera Light ***************************************
-			/** 
-			 * @param cameralight Variable for turning light on or off
-			 * 
-			 * At a dark night or twilight u need to switch on a light to 
+			/** At a dark night or twilight u need to switch on a light to 
 			 * see what is in front of your car. Sometimes it can be helpful
 			 * to have an enlightened place.
+			 * 
+			 * @param cameralight Variable for turning light on or off
 			 */
 	public void send_switch_light(String cameralight) { // cameralight 1 = licht an 0 = licht aus ? Lars: Lesen bevor fragen - Schau in Light_ActionListener!
 		if (controller_computer.network.send_camera_settings("3;" + cameralight)) {
