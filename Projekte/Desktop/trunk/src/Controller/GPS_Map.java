@@ -38,6 +38,8 @@ public class GPS_Map
 	
 	/**
 	 * this is a method which generates the link
+	 * @param longitude 
+	 * @param latitude  
 	 */
 
 	private void generatelink(String longitude, String latitude)
