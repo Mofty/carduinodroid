@@ -4,6 +4,7 @@ package swp.tuilmenau.carduinodroid.controller;
 * The method starts and stops recording the Sound. 
 * After that, it will we saved at the smartphone.
 * @since version 1.00
+* @author Christian Schulze
 */
 
 import java.io.File;
@@ -15,11 +16,6 @@ import android.text.format.Time;
 
 import swp.tuilmenau.carduinodroid.model.LOG;
 
-/**
- * 
- * @author Christian
- *
- */
  
 public class Record_Sound 
 {
@@ -31,6 +27,12 @@ public class Record_Sound
 	
 	LOG log;
  
+	/**
+	 * This method create the soundfile initialize the recorder. 
+	 * 
+	 * @param Log will be informed by every single change.
+	 */
+	
 	public Record_Sound(LOG Log) 
 	{
 		log = Log;
@@ -56,7 +58,7 @@ public class Record_Sound
 	} 
 	
 	/**
-	 * 
+	 * This method starts the recording.
 	 */
 	
 	public void startRecord()
@@ -83,7 +85,7 @@ public class Record_Sound
 	}
  
 	/**
-	 * 
+	 * This method stops recording.
 	 */
 	
 	public void stopRecord() 
