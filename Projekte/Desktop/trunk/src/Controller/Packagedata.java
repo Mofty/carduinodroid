@@ -1,8 +1,8 @@
 package Controller;
 
 /**
- * Method Packagedata receive the data strings from the Android.. 
- * @since version 1.00
+ * Methods receive the data strings from the Android and send them to the GUI.
+ * @version 18.06.2012
  * @author Christian Schulze
  */
 
@@ -16,8 +16,8 @@ public class Packagedata {
 	}
 	
 	/**
-	 * This method gets the String and split it into an array.
-	 
+	 * This method gets the data- String and split it into an array.
+	 * Then the informationbox will be updated.
 	 * @param data is the received String from the Android.
 	 */
 	
