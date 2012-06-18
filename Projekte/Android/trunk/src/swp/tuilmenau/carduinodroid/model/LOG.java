@@ -8,6 +8,15 @@ import java.io.IOException;
 import android.os.Environment;
 import android.text.format.Time;
 
+/**
+ * Provides the global LOG-functionality used by all other subclasses.
+ * 
+ * @author Paul Thorwirth
+ * @version 1.0
+ * @see File
+ * @see FileWriter
+ * @see BufferedWriter
+ */
 public class LOG
 {	
 	public static final int LOG_ALL = 1;
@@ -45,6 +54,13 @@ public class LOG
 		write(LOG.INFO, "App gestartet");
 	}
 
+	/**
+	 * Writes a new line to the LOG-File.
+	 *
+	 * @param type Tag the line to be either WARNING or INFO
+	 * @param line The String to be written to the LOG
+	 * @see setLevel()
+	 */
 	public synchronized void write(int type, String line) 
 	{
 		final String INFO_STR = "[INFO] ";
@@ -78,12 +94,21 @@ public class LOG
 		} catch (IOException e) { }
 	}
 
+	/**
+	 * Sets the LOG-Level to either <em>LOG_ALL</em> or <em>LOG_WARNINGS_ONLY</em> .
+	 *
+	 * @param lvl Contains the LOG-Level to be set
+	 */
 	public void setLevel(int lvl)
 	{
 		logLevel = lvl;
-		
 	}
-
+	
+	/**
+	 * Closes and saves the LOG-File.
+	 *
+	 * @param lvl Contains the LOG-Level to be set
+	 */
 	public void save() 
 	{
 		write(LOG.INFO, "App beendet");
