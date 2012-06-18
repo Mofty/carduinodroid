@@ -2,7 +2,10 @@ package Controller;
 
 import Model.Log;
 import View.GUI_Computer;
-
+/** Class to include the controller classes. 
+* @author Felix L
+* @version 17.06.2012.
+*/
 public class Controller_Computer {
 	public Log log;
 	public Sound_Output sound_output;
@@ -15,6 +18,10 @@ public class Controller_Computer {
 	public Network network;
 	public GUI_Computer gui_computer;
 	
+	/**
+	 * @param GUI_computer		includes an instance of GUI_computer
+	 * @param LOG 				includes an instance of LOG
+	 */
 	public Controller_Computer(Log LOG, GUI_Computer GUI_computer) {
 		gui_computer = GUI_computer;
 		log = LOG;
