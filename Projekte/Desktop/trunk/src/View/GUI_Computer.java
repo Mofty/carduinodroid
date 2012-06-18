@@ -203,12 +203,12 @@ public class GUI_Computer extends JFrame{
 		down = new JLabel(down_icon);
 		left = new JLabel(left_icon);
 		right = new JLabel(right_icon);
+		image = new JLabel();
 		
 		//initiate JDialoges
 		JDialog language_dialog = new JDialog();
 		
 		//initiate JPanels
-		image = new JLabel();
 		JPanel panel_other = new JPanel();
 
 		//edit Layout
