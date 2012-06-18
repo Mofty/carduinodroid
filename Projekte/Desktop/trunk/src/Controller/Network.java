@@ -12,14 +12,13 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+
 /**
  * @author Robin
- *
+ * @version 18.06.2012
+ * This Class is responsible for the communication with the android-application
  */
-/**
- * @author Robin
- *
- */
+
 public class Network {
 	
 	Socket_Picture socket_picture;
@@ -53,6 +52,10 @@ public class Network {
 	 * ports = ???????
 	 */
 	
+	/**
+	 * This method connects with the Android-Application
+	 * @param ipstring
+	 */
 	public void connect(String ipstring)
 	{
 		InetAddress ip;
@@ -80,26 +83,54 @@ public class Network {
 	 * 2 = settings
 	 * 3 = sound
 	 */
+	
+	
+	/**
+	 * @param direction
+	 * @return
+	 * @see Socket_Controller#send_controllsignal(String)
+	 */
 	public boolean send_controllsignal(String direction)
 	{
 		return socket_controller.send_controllsignal(direction);
 	}
 	
+	
+	/**
+	 * @param settings
+	 * @return
+	 * @see Socket_Controller#send_camera_settings(String)
+	 */
 	public boolean send_camera_settings(String settings)
 	{
 		return socket_controller.send_camera_settings(settings);
 	}
 	
+	/**
+	 * @param sound_id
+	 * @return
+	 * @see Socket_Controller#send_sound(String)
+	 */
 	public boolean send_sound(String sound_id)
 	{
 		return socket_controller.send_sound(sound_id);
 	}
 
+	/**
+	 * Transfer the message to the Packagedata
+	 * @param message
+	 * @see Packagedata#receive_package(String)
+	 */
 	public void receive_package(String message) {
 		// TODO Auto-generated method stub
 		packagedata.receive_package(message);
 	}
 	
+	/**
+	 * Transfer the image to the Camera_Picture
+	 * @param imageIcon
+	 * @see Camera_Picture#receive_picture(ImageIcon)
+	 */
 	public void receive_picture(ImageIcon imageIcon) {
 		camera_picture.receive_picture(imageIcon);
 	}
