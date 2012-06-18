@@ -18,7 +18,8 @@ public class Controller_Computer {
 	public Network network;
 	public GUI_Computer gui_computer;
 	
-	/**
+	/** The constructor is a very important part of the facade pattern.
+	 The facade is an object that provides a simplified interface to a larger body of code, such as a class library.
 	 * @param GUI_computer		includes an instance of GUI_computer
 	 * @param LOG 				includes an instance of LOG
 	 */
