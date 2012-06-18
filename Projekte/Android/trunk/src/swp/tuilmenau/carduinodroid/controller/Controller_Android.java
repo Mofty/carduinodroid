@@ -1,10 +1,24 @@
 package swp.tuilmenau.carduinodroid.controller;
 
+/**
+ * Methods generate the facade on the smartphone and pack all important informations
+ * into a data package or receive them.
+ * @version 18.06.2012
+ * @author Christian Schulze, Paul Thorwirth
+ */
+
 import android.app.Activity;
 import android.view.SurfaceView;
 import android.widget.FrameLayout;
 import swp.tuilmenau.carduinodroid.CarDuinoDroidAppActivity;
 import swp.tuilmenau.carduinodroid.model.*;
+
+/**
+ * A facade will be created with constructors.
+ * 
+ * @author Christian
+ *
+ */
 
 public class Controller_Android 
 {
@@ -41,6 +55,13 @@ public class Controller_Android
         	}
         }).start();
 	}
+	
+	/**
+	 * This method create a String with information. Which 
+	 * connection is available and which is used are packed.
+	 * 
+	 * @return data will be returned with all informations in one String.
+	 */
 	
 	public String packData() 
 	{
