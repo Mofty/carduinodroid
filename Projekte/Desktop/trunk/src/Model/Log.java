@@ -24,13 +24,12 @@ public class Log {
 	File path;
 	
 	// ***** GPSTrack Constructor ***************************************
-				/** 
+				/**	The constructor starts to write a *.txt-file with all important
+				 *information about the chosen functions as well as sent signals.  
+				 * 
 				 *@param date Reads the date of the used computer
 				 *@param dateformat Format for the date
 				 *@param logfile Say how to save the log file
-				 *
-				 *The constructor starts to write a *.txt-file with all important
-				 *information about the chosen functions as well as sent signals. 
 				 */
 	public Log(GUI_Computer GUI_computer){
 		gui_computer = GUI_computer;
@@ -54,12 +53,11 @@ public class Log {
 	}
 	
 	// ***** Write Log File ***************************************
-				/** 
-				 *@param line Contains the string which will be include
-				 *
-				 *All Log entries will be imported by the same format.
+				/** All Log entries will be imported by the same format.
 				 *First you will get an information about the date and time
 				 *and then a short explanation about the function.
+				 *
+				 *@param line Contains the string which will be include
 				 */
 	public void writelogfile(String line){
 		try {

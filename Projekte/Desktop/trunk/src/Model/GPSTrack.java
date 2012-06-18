@@ -22,13 +22,12 @@ public class GPSTrack {
 	File path;
 	
 	// ***** GPSTrack Constructor ***************************************
-			/** 
+			/** The constructor starts to write a *.gpx-file with all important
+			 *parts like date, directory and gpx-typical strings. 
+			 *
 			 *@param date Reads the date of the used computer
 			 *@param dateformat Format for the date
 			 *@param trackfile Say how to save the *.gpx-file
-			 *
-			 *The constructor starts to write a *.gpx-file with all important
-			 *parts like date, directory and gpx-typical strings. 
 			 */
 	public GPSTrack(){
 		Date date = new Date();
@@ -70,12 +69,11 @@ public class GPSTrack {
 	}
 	
 	// ***** Write GPX File ***************************************
-			/** 
+			/** You need to have a typical format to save a all your values
+			 *in a +.gpx-file. This method provides it.
+			 * 
 			 *@param Long Contains the longitude value
 			 *@param Lat Contains the latitude value
-			 *
-			 *You need to have a typical format to save a all your values
-			 *in a +.gpx-file. This method provides it.
 			 */
 	public void writegpxfile(String Long, String Lat){
 		try {
@@ -97,7 +95,7 @@ public class GPSTrack {
 	// ***** Save GPX File ***************************************
 			/** 
 			 * At the end of a session u need to save your *.gpx-file
-			 * because it need to have a typical format to be closed
+			 * because it need to have a typical format to be closed.
 			 */
 	public void savegpxfile(){
 		try {
