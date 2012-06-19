@@ -23,7 +23,6 @@ public class Cam implements CameraCallback
 
 	LOG log;
 	public CameraPreview cameraPreview;
-	public Socket_Cam socket_Cam;
 	private Controller_Android controller;
 	private int height;
 	private int width;
