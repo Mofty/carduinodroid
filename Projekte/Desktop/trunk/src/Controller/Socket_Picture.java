@@ -12,9 +12,9 @@ import javax.swing.ImageIcon;
 
 
 /**
+ * This class provides methods for receiving images from the Android-Application
  * @author Robin
  * @version 18.06.2012
- * This class provides methods for receiving images from the Android-Application
  */
 public class Socket_Picture implements Runnable{
 	

@@ -8,9 +8,9 @@ import java.net.*;
 import Model.Log;
 
 /**
+ * This class is used to receive Information from the Android-Application
  * @author Robin
  * @version 18.06.2012
- * This class is used to receive Information from the Android-Application
  */
 public class Socket_Package implements Runnable{
 	

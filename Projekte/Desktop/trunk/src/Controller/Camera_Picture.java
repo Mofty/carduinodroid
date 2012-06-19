@@ -8,8 +8,8 @@ import javax.swing.JLabel;
 
 
 /**
- * @author Robin
  * This class is used to update the Camera pictures on the GUI
+ * @author Robin
  * 
  */
 public class Camera_Picture {

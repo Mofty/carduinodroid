@@ -7,9 +7,9 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 
 /**
+ * This class is used to send Controllsignals to the Android-Application
  * @author Robin
  * @version 18.06.2012
- * This class is used to send Controllsignals to the Android-Application
  */
 
 public class Socket_Controller {
