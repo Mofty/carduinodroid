@@ -15,14 +15,17 @@ import android.hardware.Camera.*;
 import android.util.Log;
 import android.view.*;
 import android.view.ViewGroup.LayoutParams;
-
+/**
+ * The Cam Class is used to set the settings, initialized the cam, the socket and the preview.
+ * @author Robin
+ * @see android.hardware.Camera
+ */
 public class Cam implements CameraCallback
 {
 	Camera camera;
 	Parameters parameters;
 
 	LOG log;
-	public CameraPreview cameraPreview;
 	private Controller_Android controller;
 	private int height;
 	private int width;
@@ -34,27 +37,28 @@ public class Cam implements CameraCallback
 	private Socket client;
 	private OutputStream os;
 	private ServerSocket ss;
-
+/**
+ * This is the constructor of the Cam-Class. In this Method the Camera object and the Serversocket are created
+ * @param controller
+ * @param activity
+ */
 	public Cam(Controller_Android controller, Activity activity)
 	{	
-		Log.v("cam", "cam erstellung gestartet");
+		Log.e("cam", "cam erstellung gestartet");
 		this.activity = activity;
 		camera = Camera.open();
-		cameraholder = (ViewGroup) activity.findViewById(R.id.preview);
+		cameraholder = (ViewGroup) activity.findViewById(R.id.camera_preview);
 		parameters = camera.getParameters();
-		//socket_Cam = new Socket_Cam(controller);
-		cameraPreview = new CameraPreview();
-		camera.setPreviewCallback(cameraPreview);
 		this.controller = controller;
+		parameters.setRotation(270);
+		camera.setParameters(parameters);
 		height = parameters.getPreviewSize().height;
 		width = parameters.getPreviewSize().width;
 		fps = parameters.getPreviewFrameRate();
 		flashmode = parameters.getFlashMode();
-		//Thread camthread = new Thread(socket_Cam, "cam thread");
-		//camthread.start();
-		Log.v("cam", "cam erstellung fertig");
+		Log.e("cam", "cam erstellung fertig");
 		camera.startPreview();
-		Log.v("cam", "preview gestartet");
+		Log.e("cam", "preview gestartet");
 		setupPictureMode();
 		Thread t = new Thread(new Runnable(){
 			public void run() {
@@ -87,7 +91,9 @@ public class Cam implements CameraCallback
         });
         t.start();
 	}
-
+/**
+ * This Method enables the flashlight of the camera
+ */
 	public void enableFlash()
 	{
 		parameters = camera.getParameters();
@@ -95,7 +101,9 @@ public class Cam implements CameraCallback
 		camera.setParameters(parameters);
 		flashmode = Parameters.FLASH_MODE_TORCH;
 	}
-
+/**
+ * This Method disables the flashlight of the camera
+ */
 	public void disableFlash()
 	{
 		parameters = camera.getParameters();
@@ -103,8 +111,13 @@ public class Cam implements CameraCallback
 		camera.setParameters(parameters);
 		flashmode = Parameters.FLASH_MODE_OFF;
 	}
-
-	@SuppressWarnings("static-access")
+/**
+ * This Method release the current Camera and starts the camera with the ID
+ * 
+ * @param id of the camera to access
+ * 
+ * @see android.hardware.Camera#open(int)
+ */
 	public void switchCam(int id)
 	{
 		camera.stopPreview();
@@ -116,7 +129,11 @@ public class Cam implements CameraCallback
 		parameters.setFlashMode(flashmode);
 		camera.startPreview();
 	}
-
+/**
+ * Change the Resolution of the preview pictures
+ * @param width the width of the pictures, in pixels
+ * @param height the height of the pictures, in pixels
+ */
 	public void changeRes(int width, int height)
 	{
 		List<Size> temp = parameters.getSupportedPreviewSizes();
@@ -137,7 +154,10 @@ public class Cam implements CameraCallback
 			}
 		}
 	}
-
+/**
+ * Set the preview frame rate
+ * @param fps the frame rate
+ */
 	public void changeFPS(int fps)
 	{
 		List<Integer> temp = parameters.getSupportedPreviewFrameRates();
@@ -151,7 +171,9 @@ public class Cam implements CameraCallback
 			controller.log.write(LOG.WARNING, fps + " fps not supported");
 		}
 	}
-
+/**
+ * Releases the camera
+ */
 	public void disableCamera()
 	{
 		camera.release();
@@ -179,7 +201,9 @@ public class Cam implements CameraCallback
 		return result;
 	}
 
-
+/**
+ * Sets the Surface and the Callback
+ */
     private void setupPictureMode(){
         camerasurface = new CameraSurface(activity, camera);
         
@@ -187,38 +211,45 @@ public class Cam implements CameraCallback
         
         camerasurface.setCallback(this);
     }
-  
+ /**
+  * not used
+  */
         public void onJpegPictureTaken(byte[] data, Camera camera) {
         }
 
-        
+ /**
+  *   Called as preview frames are displayed. Compress the data too a jpeg-file and send it to the java-program
+  */
         public void onPreviewFrame(byte[] data, Camera camera) {
         		if(os != null){
     			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 				YuvImage temp = new YuvImage(data,camera.getParameters().getPreviewFormat(), camera.getParameters().getPreviewSize().width,  camera.getParameters().getPreviewSize().height, null);
 				Rect rect = new Rect(0,0,camera.getParameters().getPreviewSize().width,camera.getParameters().getPreviewSize().height);
-				Log.e("cam", temp.toString());
 				temp.compressToJpeg(rect, 30, baos);
 				byte[] image = baos.toByteArray();
-				Log.e("cam", image.length + " arraygröße");
 				try {
 					os.write(image);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Log.e("cam", "fehler beim schreiben des previewimage");
 				}
-        		}else
-					Log.e("cam","outputstream null");
+        		}
         }
 
-        
+/**
+ *   	not used      
+ */
         public void onRawPictureTaken(byte[] data, Camera camera) {
         }
 
-        
+/**
+ *    	not used    
+ */
         public void onShutter() {
         }
-
+/**
+ *    	not used
+ */
 		public String onGetVideoFilename() {
 			// TODO Auto-generated method stub
 			return null;
