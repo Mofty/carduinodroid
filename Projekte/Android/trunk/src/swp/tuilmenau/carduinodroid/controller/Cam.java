@@ -1,24 +1,19 @@
 package swp.tuilmenau.carduinodroid.controller;
 
+import swp.tuilmenau.carduinodroid.model.LOG;
 import swp.tuilmenau.carduinodroid.R;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.io.*;
+import java.net.*;
 import java.util.List;
 
-import swp.tuilmenau.carduinodroid.model.LOG;
-//import android.R;
 import android.app.Activity;
 import android.graphics.Rect;
 import android.graphics.YuvImage;
 import android.hardware.Camera;
-import android.hardware.Camera.Parameters;
-import android.hardware.Camera.Size;
+import android.hardware.Camera.*;
 import android.util.Log;
-import android.view.ViewGroup;
+import android.view.*;
 import android.view.ViewGroup.LayoutParams;
 
 public class Cam implements CameraCallback

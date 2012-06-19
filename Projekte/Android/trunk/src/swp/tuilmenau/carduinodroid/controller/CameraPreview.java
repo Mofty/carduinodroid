@@ -5,27 +5,23 @@ import java.io.OutputStream;
 import android.graphics.Rect;
 import android.graphics.YuvImage;
 import android.hardware.Camera;
-import android.hardware.Camera.PreviewCallback;
-import android.hardware.Camera.Size;
+import android.hardware.Camera.*;
 import android.util.Log;
 
-public class CameraPreview implements PreviewCallback{
-
+public class CameraPreview implements PreviewCallback
+{
 	private OutputStream outputStream;
 	private YuvImage buffer;
 	
-	public CameraPreview() {
+	public CameraPreview() 
+	{
 		Log.v("previewframe", "erstellt");
-
 	}
-
 
 	public void setOutputstream(OutputStream noutputStream) {
 		outputStream = noutputStream;
 		Log.v("previewframe", "outputstream erstellt" + outputStream.toString());
-
 	}
-
 
 	public void onPreviewFrame(byte[] data, Camera camera) {
 		Log.v("previewframe", data[12]+ "previewframe");
@@ -35,7 +31,4 @@ public class CameraPreview implements PreviewCallback{
 		if(outputStream != null)
 		buffer.compressToJpeg(rect, 50, outputStream);
 	}
-
-
-    
 }
