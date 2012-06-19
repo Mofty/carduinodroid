@@ -9,8 +9,8 @@ import java.net.Socket;
 import android.util.Log;
 
 /**
- * @author Robin
  * This class is used to send information to the PC
+ * @author Robin
  */
 public class Socket_Package implements Runnable {
 	
