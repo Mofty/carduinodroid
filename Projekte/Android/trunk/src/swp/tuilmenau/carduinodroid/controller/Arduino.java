@@ -12,9 +12,18 @@ import android.app.PendingIntent;//snipped for brevity this is precisely what US
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaRecorder;
 import android.os.ParcelFileDescriptor;//snipped for brevity what we needed to read from ADK, use future because I only have a android 2.3.7 OS with me
 import com.android.future.usb.UsbManager;
 import com.android.future.usb.UsbAccessory;
+
+/**
+ * This method is about the control of our arduino controller.
+ * But it is still untested.
+ * 
+ * @version 12.06.12
+ * @author Lars
+ */ 
 
 public class Arduino {
 	
@@ -74,6 +83,11 @@ public class Arduino {
 	    };
 	}
     
+	// ***** Open Accessory ***************************************
+	/** 
+	 * It opens the accessory to be able to send commands with your usb
+	 * port. 
+	 */
     private void openAccessory(UsbAccessory accessory){
         // the interface is a file file descriptor
         mFileDescriptor = mUsbManager.openAccessory(accessory);
@@ -96,6 +110,10 @@ public class Arduino {
         }
     }
     
+	// ***** Close Accessory ***************************************
+	/** 
+	 * It closes the accessory on your usb port. If u don't need it.
+	 */
     private void closeAccessory(){
         try{
             if (mFileDescriptor != null){
@@ -111,6 +129,11 @@ public class Arduino {
         }
     }
 	
+	// ***** Send Command ***************************************
+	/** 
+	 * With this command you would be able to send the direction and
+	 * speed to your arduino.
+	 */
     public void SendCommand(int speed, int dir){
     	byte[] buffer = new byte[2]; //Erstellen eines Array der zu übergebenden Daten
     	//Verifizieren der Größe
