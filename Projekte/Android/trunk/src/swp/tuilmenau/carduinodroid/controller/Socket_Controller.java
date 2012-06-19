@@ -10,8 +10,8 @@ import swp.tuilmenau.carduinodroid.model.LOG;
 import android.util.Log;
 
 /**
- * @author Robin
  * This class is used for receiving data from the pc to control the application
+ * @author Robin
  */
 public class Socket_Controller implements Runnable {
 	
