@@ -14,9 +14,9 @@ import javax.swing.ImageIcon;
 
 
 /**
+ * This Class is responsible for the communication with the android-application
  * @author Robin
  * @version 18.06.2012
- * This Class is responsible for the communication with the android-application
  */
 
 public class Network {
