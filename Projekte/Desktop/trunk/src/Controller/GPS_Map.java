@@ -6,7 +6,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 /** 
- * methods to creates a link with the coordinates which can be opened in the browser
+ * Creates a google-maps link with the gps coordinates
+ * 
  * @author Sven Haueisen
  * @version 18.06.2012
  */
@@ -27,7 +28,10 @@ public class GPS_Map
 	}
 	
 	/**
-	 * the method opne_map opens the link with the longitudes and latitudes coordinates
+	 * Opens the link with the longitudes and latitudes coordinates
+	 * 
+	 * @param longitude
+	 * @param latitude
 	 */
 	
 	public void open_map(String longitude, String latitude)
@@ -37,7 +41,8 @@ public class GPS_Map
 	}
 	
 	/**
-	 * this is a method which generates the link
+	 * Generates the link
+	 * 
 	 * @param longitude 
 	 * @param latitude  
 	 */
@@ -47,14 +52,11 @@ public class GPS_Map
 		 //creates a google link with the longitudes and latitudes coordinates of the current position
 		link = "http://maps.google.com/maps?q=loc:" + longitude + "," + latitude;
 	}
-	
 	/**
-	 * returnes "Google Maps opening in browser"
+	 * Opens the link in the browser
 	 * 
-	 *  @return {@link String} containing the link to the GPS-Data.
-	 *  
+	 * @see Desktop
 	 */
-	
 	private void openLink()
 	{
 	
