@@ -36,7 +36,6 @@ public class Packagedata {
 	
 	private void updateInformationbox()
 	{
-		
 		double longi= ((double)Math.round(Double.parseDouble(tokens[4]) * 100000)) / 100000;
 		double lat= ((double)Math.round(Double.parseDouble(tokens[5]) * 100000)) / 100000;
 		controller_computer.gui_computer.longitude.setText(String.valueOf(longi));
