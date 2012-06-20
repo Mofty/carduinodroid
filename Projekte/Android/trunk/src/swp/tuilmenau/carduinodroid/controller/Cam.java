@@ -47,7 +47,7 @@ public class Cam implements CameraCallback
 		Log.e("cam", "cam erstellung gestartet");
 		this.activity = activity;
 		camera = Camera.open();
-		cameraholder = (ViewGroup) activity.findViewById(R.id.camera_preview);
+		cameraholder = (ViewGroup) activity.findViewById(R.id.preview);
 		parameters = camera.getParameters();
 		this.controller = controller;
 		parameters.setRotation(270);
@@ -122,7 +122,7 @@ public class Cam implements CameraCallback
 	{
 		camera.stopPreview();
 		camera.release();
-		camera.open(id);
+		camera = Camera.open(id);
 		parameters = camera.getParameters();
 		parameters.setPreviewFrameRate(fps);
 		parameters.setPreviewSize(width, height);
@@ -176,6 +176,8 @@ public class Cam implements CameraCallback
  */
 	public void disableCamera()
 	{
+		disableFlash();
+		camera.stopPreview();
 		camera.release();
 	}
 
