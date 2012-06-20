@@ -78,6 +78,8 @@ public class CarDuinoDroidAppActivity extends Activity
 	{
 		controller_Android.log.save();
 		notificationManager.cancel(1337);
+		wakelock.release();
+		controller_Android.cam.disableCamera();
 		finish();
 	}
 
@@ -101,16 +103,4 @@ public class CarDuinoDroidAppActivity extends Activity
 		notificationManager.notify(1337, notification);
 	}
 
-	/**
-	 * Called when the activity is minimized.
-	 * 
-	 * @see Activity#onPause()
-	 */
-	@Override
-	public void onPause()
-	{
-		wakelock.release();
-		controller_Android.cam.disableCamera();
-		super.onPause();
-	}
 }
