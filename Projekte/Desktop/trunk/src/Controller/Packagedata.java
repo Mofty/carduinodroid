@@ -1,5 +1,7 @@
 package Controller;
 
+import java.text.DecimalFormat;
+
 /**
  * Methods receive the data strings from the Android and send them to the GUI.
  * @version 18.06.2012
@@ -32,24 +34,28 @@ public class Packagedata {
 	 * This method send the separate information to the GUI. 
 	 */
 	
-	public void updateInformationbox()
+	private void updateInformationbox()
 	{
-		controller_computer.gui_computer.longitude.setText(tokens[4]);
-		controller_computer.gui_computer.latitude.setText(tokens[5]);
 		
-		if (tokens[3] == "1")
+		double longi= ((double)Math.round(Double.parseDouble(tokens[4]) * 100000)) / 100000;
+		double lat= ((double)Math.round(Double.parseDouble(tokens[5]) * 100000)) / 100000;
+		controller_computer.gui_computer.longitude.setText(String.valueOf(longi));
+		controller_computer.gui_computer.latitude.setText(String.valueOf(lat));
+		
+		if (tokens[3].equals("1"))
 			controller_computer.gui_computer.connection_type.setText("WLAN");
-		else
-			if (tokens[2] == "1")
-				controller_computer.gui_computer.connection_type.setText("Mobile Internet");
+		if (tokens[2].equals("1"))
+			controller_computer.gui_computer.connection_type.setText("Mobile Internet");
+		/*
 			else
-				controller_computer.gui_computer.connection_type.setText("No Connection");
+				controller_computer.gui_computer.connection_type.setText("No Connection");*/
 		
 		//MobileAvailable tokens[0]; 
 		//WLANAvailable tokens[1];
 		//Mobile tokens[2];
 		//WLAN tokens[3];
 	}
+	
 }
 	
 
