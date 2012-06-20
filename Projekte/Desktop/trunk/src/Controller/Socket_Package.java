@@ -88,7 +88,7 @@ public class Socket_Package implements Runnable{
 				if(packagereader.ready()){
 				System.out.println("was da zum lesen");
 				message = (String) packagereader.readLine();
-				System.out.println(message);
+				network.receive_package(message);
 				}
 					
 					else
