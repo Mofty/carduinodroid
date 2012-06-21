@@ -77,42 +77,31 @@ public class Controller_Android
 	{
 		String[] parts = data.split(";",-1);
 		
-
-		int type;
-		int camtype;
-		type = Integer.parseInt(parts[0]);
-		switch (type)
+		switch (Integer.parseInt(parts[0]))
 		{
 		case 1: {
-			camtype = Integer.parseInt(parts[1]);
-			switch (camtype)
+			switch (Integer.parseInt(parts[1]))
 			{
 			case 1: {
 				cam.switchCam(Integer.parseInt(parts[2]));
-			}
-			break;
+					}break;
 			case 2: {
 				cam.changeRes(Integer.parseInt(parts[2]), Integer.parseInt(parts[3]));
-			}
-			break;
+					}break;
 			case 3: {
 				if (parts[2] == "1") cam.enableFlash();
 				if (parts[2] == "0") cam.disableFlash();
-			}
-			break;
+					}break;
 			default: log.write(LOG.WARNING, "Unknown camera command from PC");
-			break;
+					 break;
 			}
-		};
-		break;
+		}break;
 		case 2: {
 			arduino.SendCommand(Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
-		};
-		break;
+		}break;
 		case 3: {
 			sound.horn();
-		};
-		break;
+		}break;
 
 		default: log.write(LOG.WARNING, "unknown command from PC");
 		break;
