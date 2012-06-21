@@ -25,8 +25,11 @@ public class Car_Controller {
 			//If someone pushes the up or down key, the Controlsignal will be send
 			if((!up&&down)||(up&&!down)){
 				int Speed = controller_computer.gui_computer.speed_slider.getValue();
-				int Dir = controller_computer.gui_computer.angle_slider.getValue();
-				send_controlsignal(SpeedCalculation(Speed),DirectionCalculation(Dir));	
+				int angle = controller_computer.gui_computer.angle_slider.getValue();
+				if(!right&&!left)
+					send_controlsignal(SpeedCalculation(Speed),DirectionCalculation(0));
+				else
+					send_controlsignal(SpeedCalculation(Speed),DirectionCalculation(angle));
 			}
 			//With a 200ms period the Buttons will be released, if they are not any longer pushed.
 			delay++;
@@ -56,10 +59,10 @@ public class Car_Controller {
 	 * variables which are already calculated and provides a feedback if 
 	 * the sending was successful.
 	 */
-	private void send_controlsignal(int speed,int dir){		
-		if (controller_computer.network.send_controllsignal(speed+";"+dir))
-		 feedback_output(speed,dir);
-		else{ feedback_output(speed,dir);/*Testweise wegen fehlender Verbindung*/}
+	private void send_controlsignal(int speed,int angle){		
+		if (controller_computer.network.send_controllsignal(up+";"+speed+";"+right+";"+angle))
+		 feedback_output();
+		else feedback_output();
 	}
 	
 	// ***** Feedback Output ***************************************
@@ -68,7 +71,7 @@ public class Car_Controller {
 				 * The feedback works with the timer to check all 200ms
 				 * if the button is still pressed.
 				 */
-	private void feedback_output(int speed,int dir){
+	private void feedback_output(){
 		if(up){controller_computer.gui_computer.PressedBorderUp();}
 		if(down){controller_computer.gui_computer.PressedBorderDown();}
 		if(right){controller_computer.gui_computer.PressedBorderRight();}
@@ -82,7 +85,9 @@ public class Car_Controller {
 			 * is still pressed or not.
 			 */
 	public void UpdateVariables(boolean Up, boolean Down, boolean Right, boolean Left){
-		up = Up; down = Down; right = Right; left = Left;
+		up = Up; down = Down; 
+		if(!left)right = Right; 
+		if(!right)left = Left;
 	}
 	
 	// ***** Speed Calculation ***************************************
@@ -92,8 +97,8 @@ public class Car_Controller {
 		 * of voltage.
 		 */
 	private int SpeedCalculation(int speed)
-	{	//Hier fehlt noch die Anpassung an die Übergabewerte zu Arduino
-		return speed;
+	{	
+		return (int) ((speed/9.09)+1);
 	}
 	
 	// ***** Direction Calculation ***************************************
@@ -103,8 +108,8 @@ public class Car_Controller {
 			 * of voltage.
 			 */
 	private int DirectionCalculation(int dir)
-	{	//Hier fehlt noch die Anpassung an die Übergabewerte zu Arduino
-		return dir;
+	{	
+		return (int) ((dir/14.28)+1);
 	}
 	
 }
