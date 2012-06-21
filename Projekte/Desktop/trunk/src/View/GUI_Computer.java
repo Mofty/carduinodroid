@@ -69,12 +69,13 @@ public class GUI_Computer extends JFrame{
 	ImageIcon left_pressed_icon = new ImageIcon("src/View/Icons/Icon_left_pressed.gif");
 	ImageIcon right_pressed_icon = new ImageIcon("src/View/Icons/Icon_right_pressed.gif");
 	
+	//initiate borders
+	Border unpressed_border = BorderFactory.createRaisedBevelBorder();
+	Border pressed_border = BorderFactory.createLoweredBevelBorder();
+	
 	/** Constructor which creates the graphical user interface.
 	 */
 	public GUI_Computer(){
-		
-		//set layout
-		this.getContentPane().setLayout(null);
 		
 		//create objects of other classes
 		log  = new Log(this);
@@ -84,7 +85,7 @@ public class GUI_Computer extends JFrame{
 		//create programwindow
 		this.initWindow();
 				
-		this.setExtendedState(this.MAXIMIZED_BOTH);
+		this.setExtendedState(GUI_Computer.MAXIMIZED_BOTH);
 		this.setMinimumSize(new Dimension(800,600));
 		this.setTitle("CarDuinoDroid");
 		
@@ -181,9 +182,7 @@ public class GUI_Computer extends JFrame{
 		speed_slider = new JSlider(1, 100, 20);
 		angle_slider = new JSlider(1, 100, 50);
 				
-		//initiate BevelBorders
-		Border unpressed_border = BorderFactory.createRaisedBevelBorder();
-		Border pressed_border = BorderFactory.createLoweredBevelBorder();
+		//initiate Borders
 		Border live_log_border = BorderFactory.createTitledBorder("Log:");
 		
 		//initiate JLabels
@@ -391,7 +390,6 @@ public class GUI_Computer extends JFrame{
 	/** Method for feedback, when car drives forward.
 	 */
 	public void PressedBorderUp(){
-		Border pressed_border = BorderFactory.createLoweredBevelBorder();
 		up.setBorder(pressed_border);
 		up.setIcon(up_pressed_icon);
 	}
@@ -399,7 +397,6 @@ public class GUI_Computer extends JFrame{
 	/** Method for feedback, when car drives back.
 	 */
 	public void PressedBorderDown(){
-		Border pressed_border = BorderFactory.createLoweredBevelBorder();
 		down.setBorder(pressed_border);
 		down.setIcon(down_pressed_icon);
 	}
@@ -407,7 +404,6 @@ public class GUI_Computer extends JFrame{
 	/** Method for feedback, when car drives right.
 	 */
 	public void PressedBorderRight(){
-		Border pressed_border = BorderFactory.createLoweredBevelBorder();
 		right.setBorder(pressed_border);
 		right.setIcon(right_pressed_icon);
 	}
@@ -415,7 +411,6 @@ public class GUI_Computer extends JFrame{
 	/** Method for feedback, when car drives left.
 	 */
 	public void PressedBorderLeft(){
-		Border pressed_border = BorderFactory.createLoweredBevelBorder();
 		left.setBorder(pressed_border);
 		left.setIcon(left_pressed_icon);
 	}
@@ -424,7 +419,6 @@ public class GUI_Computer extends JFrame{
 	 */
 	public void UnpressedBorderUp(){
 		if (up != null){
-			Border unpressed_border = BorderFactory.createRaisedBevelBorder();
 			up.setBorder(unpressed_border);
 			up.setIcon(up_icon);
 		}
@@ -434,7 +428,6 @@ public class GUI_Computer extends JFrame{
 	 */
 	public void UnpressedBorderDown(){
 		if (down != null){
-			Border unpressed_border = BorderFactory.createRaisedBevelBorder();
 			down.setBorder(unpressed_border);
 			down.setIcon(down_icon);
 		}
@@ -444,7 +437,6 @@ public class GUI_Computer extends JFrame{
 	 */
 	public void UnpressedBorderRight(){
 		if (right != null){
-			Border unpressed_border = BorderFactory.createRaisedBevelBorder();
 			right.setBorder(unpressed_border);
 			right.setIcon(right_icon);
 		}
@@ -454,7 +446,6 @@ public class GUI_Computer extends JFrame{
 	 */
 	public void UnpressedBorderLeft(){
 		if (left != null){
-			Border unpressed_border = BorderFactory.createRaisedBevelBorder();
 			left.setBorder(unpressed_border);
 			left.setIcon(left_icon);
 		}
