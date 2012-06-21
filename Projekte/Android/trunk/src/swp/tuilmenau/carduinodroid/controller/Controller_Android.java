@@ -76,12 +76,12 @@ public class Controller_Android
 	public void receiveData(String data) 
 	{
 		String[] parts = data.split(";",-1);
-		log.write(LOG.WARNING, "data: "+parts[0]);//testausgabe
 		
 		switch (Integer.parseInt(parts[0]))
 		{
 		case 1: { // alles mit control signals
-			arduino.SendCommand(Integer.parseInt(parts[1]), Integer.parseInt(parts[2])); // anpassen von lars im arduino	
+			//arduino.SendCommand(Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));// anpassen von lars im arduino
+			log.write(LOG.WARNING, "data: "+parts[1]+";"+parts[2]+";"+parts[3]+";"+parts[4]); //test	
 		}break;
 		case 2: { // alle mit camera settings
 			switch (Integer.parseInt(parts[1]))
