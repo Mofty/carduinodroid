@@ -161,7 +161,7 @@ public class Cam implements CameraCallback
 	public void changeFPS(int fps)
 	{
 		List<Integer> temp = parameters.getSupportedPreviewFrameRates();
-		if(temp.contains(new Integer(fps))){
+		if(temp.contains(Integer.valueOf(fps))){
 			parameters.setPreviewFrameRate(fps);
 			this.fps = fps;
 			camera.setParameters(parameters);
