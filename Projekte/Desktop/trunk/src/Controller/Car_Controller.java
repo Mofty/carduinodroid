@@ -60,10 +60,8 @@ public class Car_Controller {
 	 * the sending was successful.
 	 */
 	private void send_controlsignal(int speed,int angle){		
-		if (controller_computer.network.send_controllsignal(up+";"+speed+";"+right+";"+angle))
+		if (controller_computer.network.send_controllsignal(speed+";"+up+";"+angle+";"+right))
 		 feedback_output();
-		else feedback_output();
-		System.out.println(up+";"+speed+";"+right+";"+angle);
 	}
 	
 	// ***** Feedback Output ***************************************
