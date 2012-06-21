@@ -75,7 +75,8 @@ public class Controller_Android
 	 */
 	public void receiveData(String data) 
 	{
-		String[] parts = data.split(";",-1);;
+		String[] parts = data.split(";",-1);
+		
 
 		int type;
 		int camtype;
