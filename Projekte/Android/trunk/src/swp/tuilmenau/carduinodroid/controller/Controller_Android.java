@@ -80,7 +80,7 @@ public class Controller_Android
 		
 		switch (Integer.parseInt(parts[0]))
 		{
-		case 1: {
+		case 1: { // alles mit control signals
 			switch (Integer.parseInt(parts[1]))
 			{
 			case 1: {
@@ -97,10 +97,10 @@ public class Controller_Android
 					 break;
 			}
 		}break;
-		case 2: {
+		case 2: { // alle mit camera settings
 			arduino.SendCommand(Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
 		}break;
-		case 3: {
+		case 3: { // alles mit sounds
 			sound.horn();
 		}break;
 
