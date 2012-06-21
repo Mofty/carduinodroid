@@ -75,11 +75,10 @@ public class Controller_Android
 	 */
 	public void receiveData(String data) 
 	{
-		String[] parts = new String[(data.length()/2)];
+		String[] parts = data.split(";",-1);;
 
 		int type;
 		int camtype;
-		parts = data.split(";");
 		type = Integer.parseInt(parts[0]);
 		switch (type)
 		{
