@@ -55,13 +55,14 @@ public class Controller_Android
 		String data;
 		data = "";
 		if (connection.getMobileAvailable()) data = data + 1 + ";"; 
-		else data = data + 0 + ";";
+										else data = data + 0 + ";";
 		if (connection.getWLANAvailable())   data = data + 1 + ";"; 
-		else data = data + 0 + ";";	
+										else data = data + 0 + ";";	
 		if (connection.getMobile())			 data = data + 1 + ";"; 
-		else data = data + 0 + ";";
+										else data = data + 0 + ";";
 		if (connection.getWLAN()) 			 data = data + 1 + ";"; 
-		else data = data + 0 + ";";	
+										else data = data + 0 + ";";	
+		
 		data = data + gps.getGPS() + ";";
 
 		return data;
@@ -76,41 +77,44 @@ public class Controller_Android
 	public void receiveData(String data) 
 	{
 		String[] parts = data.split(";",-1);
-		
+
 		switch (Integer.parseInt(parts[0]))
 		{
-		case 1: { // alles mit control signals
-			//arduino.SendCommand(Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));// anpassen von lars im arduino
-			log.write(LOG.WARNING, "data: "+parts[1]+";"+parts[2]+";"+parts[3]+";"+parts[4]); //test	
-		}break;
-		case 2: { // alle mit camera settings
-			switch (Integer.parseInt(parts[1]))
+			case 1: // alles mit control signals
 			{
-			case 1: {
-				cam.switchCam(Integer.parseInt(parts[2]));
-					}break;
-			case 2: {
-				cam.changeRes(Integer.parseInt(parts[2]), Integer.parseInt(parts[3]));
-					}break;
-			case 3: {
-				if (Integer.parseInt(parts[2]) == 1) cam.enableFlash();
-				if (Integer.parseInt(parts[2]) == 0) cam.disableFlash();
-					}break;
-			default: log.write(LOG.WARNING, "Unknown camera command from PC");
-					 break;
-			}
-		}break;
-		case 3: { // alles mit sounds
-			sound.horn();
-		}break;
+				//arduino.SendCommand() anpassen von lars im arduino in car controller java
+				log.write(LOG.INFO, "data: "+parts[1]+";"+parts[2]+";"+parts[3]+";"+parts[4]);	
+			} break;
+			
+			case 2: // alle mit camera settings
+			{
+				switch (Integer.parseInt(parts[1]))
+				{
+					case 1:
+					{
+						cam.switchCam(Integer.parseInt(parts[2]));
+					} break;
+					case 2:
+					{
+						cam.changeRes(Integer.parseInt(parts[2]), Integer.parseInt(parts[3]));
+					} break;
+					
+					case 3:
+					{
+						if (Integer.parseInt(parts[2]) == 1) cam.enableFlash();
+						if (Integer.parseInt(parts[2]) == 0) cam.disableFlash();
+					} break;
+			
+					default: log.write(LOG.WARNING, "Unknown camera command from PC"); break;
+				}
+			} break;
+			
+			case 3: // alles mit sounds
+			{
+				sound.horn();
+			} break;
 
-		default: log.write(LOG.WARNING, "unknown command from PC");
-		break;
+			default: log.write(LOG.WARNING, "unknown command from PC"); break;
 		}
 	}
-
-	public void camerPicture() 
-	{
-
-	}	
 }
