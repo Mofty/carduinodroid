@@ -98,7 +98,7 @@ public class Car_Controller {
 		 */
 	private int SpeedCalculation(int speed)
 	{	
-		return (int) ((speed/9.09)+1);
+		return (int) ((speed/9.09)+1); //Speed divided by (100/(parts-1))
 	}
 	
 	// ***** Direction Calculation ***************************************
@@ -107,9 +107,9 @@ public class Car_Controller {
 			 * car and its motor. Different types often need a different range
 			 * of voltage.
 			 */
-	private int DirectionCalculation(int dir)
+	private int DirectionCalculation(int angle)
 	{	
-		return (int) ((dir/14.28)+1);
+		return (int) ((angle/14.28)+1); //Angle divided by (100/(parts-1))
 	}
 	
 }
