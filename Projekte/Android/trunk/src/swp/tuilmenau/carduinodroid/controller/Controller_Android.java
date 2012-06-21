@@ -76,6 +76,7 @@ public class Controller_Android
 	public void receiveData(String data) 
 	{
 		String[] parts = data.split(";",-1);
+		log.write(LOG.WARNING, "data: "+parts[0]);//testausgabe
 		
 		switch (Integer.parseInt(parts[0]))
 		{
