@@ -9,5 +9,6 @@
     <string name="empty"> </string>
     <string name="LOG_WarningsOnly">Log only critical Warnings</string>
     <string name="LOG_Level_title">Log-Level</string>
+    <string name="LogoDesc">The BIG FAT LOGO you see at the bottom of the App</string>
     
 </resources>

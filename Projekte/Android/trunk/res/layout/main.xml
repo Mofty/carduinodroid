@@ -53,11 +53,12 @@
     </RadioGroup>
 
     <ImageView
+        android:contentDescription="@string/LogoDesc"
         android:id="@+id/imageView1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dip"
         android:layout_weight="1.01"
-        android:src="@drawable/carduinodroid" />
+        android:src="@raw/carduinodroid" />
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
