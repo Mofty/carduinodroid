@@ -89,8 +89,8 @@ public class Controller_Android
 				cam.changeRes(Integer.parseInt(parts[2]), Integer.parseInt(parts[3]));
 					}break;
 			case 3: {
-				if (parts[2] == "1") cam.enableFlash();
-				if (parts[2] == "0") cam.disableFlash();
+				if (Integer.parseInt(parts[2]) == 1) cam.enableFlash();
+				if (Integer.parseInt(parts[2]) == 0) cam.disableFlash();
 					}break;
 			default: log.write(LOG.WARNING, "Unknown camera command from PC");
 					 break;
