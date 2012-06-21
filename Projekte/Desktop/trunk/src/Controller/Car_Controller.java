@@ -27,7 +27,7 @@ public class Car_Controller {
 				int Speed = controller_computer.gui_computer.speed_slider.getValue();
 				int angle = controller_computer.gui_computer.angle_slider.getValue();
 				if(!right&&!left)
-					send_controlsignal(SpeedCalculation(Speed),DirectionCalculation(0));
+					send_controlsignal(SpeedCalculation(Speed),0);
 				else
 					send_controlsignal(SpeedCalculation(Speed),DirectionCalculation(angle));
 			}
@@ -63,6 +63,7 @@ public class Car_Controller {
 		if (controller_computer.network.send_controllsignal(up+";"+speed+";"+right+";"+angle))
 		 feedback_output();
 		else feedback_output();
+		System.out.println(up+";"+speed+";"+right+";"+angle);
 	}
 	
 	// ***** Feedback Output ***************************************
