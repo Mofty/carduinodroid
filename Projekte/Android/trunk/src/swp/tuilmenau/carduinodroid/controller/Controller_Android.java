@@ -93,7 +93,7 @@ public class Controller_Android
 	 * @throws IOException 
 	 */
 	//TODO It work but it looks like shit and is hardly called "easily expandable".
-	public void receiveData(String data) throws IOException 
+	public void receiveData(String data)
 	{
 		String[] parts = data.split(";",-1);
 
