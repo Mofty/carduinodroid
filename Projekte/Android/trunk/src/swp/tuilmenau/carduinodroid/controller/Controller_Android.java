@@ -116,7 +116,7 @@ public class Controller_Android
 				{
 					case 1: 
 					{
-					sound.horn(); // hier sollte noch parts[2] übergeben werden, für mehrere Sounds später
+					sound.horn(); // hier sollte noch parts[2] übergeben werden, für mehrere Sounds später und stimmt das bei der Klasse Sound so mit "onLoad" Listener???
 					log.write(LOG.INFO, "Signal was played");
 					} break;
 					case 2:
