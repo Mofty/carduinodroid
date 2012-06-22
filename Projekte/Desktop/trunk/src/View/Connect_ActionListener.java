@@ -37,7 +37,7 @@ public class Connect_ActionListener implements ActionListener{
 	 * @param e			Event by pressing the connect menuitem.
 	 */
 	public void actionPerformed(ActionEvent e) {
-		while ((Ip_adress = JOptionPane.showInputDialog(Question)).length() >= 7){
+		if ((Ip_adress = JOptionPane.showInputDialog(Question)).length() >= 7){
 			ip.setText(Ip_adress);
 			log.writelogfile("Connect to: " + Ip_adress);
 			gui_computer.controller_Computer.network.connect(Ip_adress);
