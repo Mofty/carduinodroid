@@ -49,15 +49,14 @@ public class Record_Sound
 	/**
 	 * Starts the recording.
 	 */
-	public void startRecord() throws IOException
+	public void startRecord()
 	{
 		time.setToNow();
 		try 
 		{
 			outfile = File.createTempFile("Sound_"+time.month+time.monthDay+"_"+time.hour+time.minute+time.second, ".3gp", storageDir);
-		} catch (IOException e) {}
+		} catch (IOException e) {log.write(LOG.WARNING, "Could not create soundfile");}
 		recorder.setOutputFile(outfile.getAbsolutePath());
-		log.write(LOG.WARNING, "Could not create soundfile"); // ??? wieso steht das hier ohne sinn :D ?
 		try 
 		{
 			recorder.prepare();
@@ -72,7 +71,7 @@ public class Record_Sound
 	/**
 	 * Stops the Recording.
 	 */
-	public void stopRecord () throws IOException
+	public void stopRecord ()
 	{
 		recorder.stop();
 		recorder.reset();
