@@ -27,6 +27,7 @@ public class Connection
 	private WifiManager wifiManager;
 	private NetworkInfo mobileInfo;
 	private NetworkInfo WLANInfo;
+	private NetworkInfo networkInfo;
 	private BroadcastReceiver connectionLogger;
 	private IntentFilter connectivityFilter;
 	private TextView ipBox;
@@ -41,32 +42,28 @@ public class Connection
 		ipBox = (TextView) activity.findViewById(R.id.textView2); 
 		//create and register the connectionLogger
 		connectionLogger = new BroadcastReceiver()
-		{
-			Bundle intentExtras;
-			
+		{			
 			@Override
 			public void onReceive(Context context, Intent intent)
 			{
-				intentExtras = intent.getExtras();
+				Bundle intentExtras = intent.getExtras();
+				String networkType = "";
 				
-				if (getMobileAvailable()) log.write(LOG.INFO, "Mobile Internet is available");
-				else log.write(LOG.WARNING, "Mobile Internet is not available");
-
-				if (getMobile()) log.write(LOG.INFO, "Mobile Internet is connected");
-				else log.write(LOG.WARNING, "Mobile Internet is not connected");
-
-				if (getWLANAvailable()) log.write(LOG.INFO, "WLAN is available");
-				else log.write(LOG.WARNING, "WLAN is not available");
-
-				if (getWLAN())
+				networkInfo = (NetworkInfo) intentExtras.get(ConnectivityManager.EXTRA_NETWORK_INFO);
+				if (networkInfo.getType() == ConnectivityManager.TYPE_MOBILE) networkType = "Mobile Internet ";
+				if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) networkType = "WLAN ";
+				
+				if (networkInfo.isConnected())
 				{
-					log.write(LOG.INFO, "WLAN is connected");
-					ipBox.setText(getLocalWLANIP());
+					log.write(LOG.INFO, networkType + " is connected");
+					if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) ipBox.setText(getLocalWLANIP());
 				}
 				else
-				{
-					ipBox.setText(R.string.LocalIP);
-					log.write(LOG.WARNING, "WLAN is not connected");
+				{ 
+					log.write(LOG.WARNING, networkType + " is not connected");
+					if (networkInfo.isAvailable()) log.write(LOG.INFO, networkType + " is available");
+					else log.write(LOG.WARNING, networkType + " is not available");
+					if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) ipBox.setText(R.string.LocalIP);
 				}
 			}
 		};
