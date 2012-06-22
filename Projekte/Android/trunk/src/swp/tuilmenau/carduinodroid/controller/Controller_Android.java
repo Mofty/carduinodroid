@@ -123,11 +123,11 @@ public class Controller_Android
 					case 2:
 					{
 						if (Integer.parseInt(parts[2]) == 0) {
-							//record_sound.stopRecord();
+							//record_sound.stopRecord(); die Funktion geht nicht 
 							log.write(LOG.INFO, "Sound Recording has stopped");
 						}
 						else {
-							//record_sound.startRecord();
+							//record_sound.startRecord(); die Funktion geht nicht
 							log.write(LOG.INFO, "Sound Recording has started");
 						}
 					} break;
