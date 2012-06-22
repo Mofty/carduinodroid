@@ -1,12 +1,15 @@
 package swp.tuilmenau.carduinodroid.controller;
 
 import java.io.IOException;
+
 import android.content.Context;
 import android.hardware.Camera;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
-import android.view.*;
 import android.view.GestureDetector.OnGestureListener;
+import android.view.MotionEvent;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 
 
 /**
