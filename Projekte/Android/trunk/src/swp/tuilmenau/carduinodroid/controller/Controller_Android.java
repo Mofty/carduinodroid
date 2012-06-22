@@ -7,6 +7,7 @@ import swp.tuilmenau.carduinodroid.model.LOG;
  * Wraps all other classes into this class to be used by the activity.
  * 
  * @author Paul Thorwirth
+ * @author Lars
  * @version 1.0
  */
 public class Controller_Android 
