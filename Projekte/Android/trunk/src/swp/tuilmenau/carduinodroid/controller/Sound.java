@@ -21,7 +21,7 @@ public class Sound
 	public Sound(Context context)
 	{
 		soundpool = new SoundPool (5, AudioManager.STREAM_MUSIC, 0);
-		soundID = soundpool.load(context, R.raw.horn, 1);	
+		soundID = soundpool.load(context, R.raw.horn, 1);
 	}
 	
 	/**
