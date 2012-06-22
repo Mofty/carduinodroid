@@ -75,7 +75,21 @@ public class Controller_Android
 	 * Used to decode a packed command String received from the PC. 
 	 * After the decode the commands are executed.
 	 *
-	 * @param data A String containing the compressed Data.
+	 * @param data A String containing the compressed Data as follows:
+	 * <ol>
+	 * 	<li>Control Signals with settings</li>
+	 * 	<li>Camera Settings</li>
+	 *	<ol>
+	 *		<li>Front or Back Camera</li>
+	 * 		<li>Camera Resolution</li>
+	 * 		<li>Camera Light</li>
+	 * 	</ol>
+	 * 	<li>Sound Signals</li>
+	 * 	<ol>
+	 * 		<li>Play a Sound by Android phone</li>
+	 * 		<li>Start or Stop a Record</li>
+	 * 	</ol>
+	 * </ol>
 	 * @throws IOException 
 	 */
 	//TODO It work but it looks like shit and is hardly called "easily expandable".
@@ -83,17 +97,6 @@ public class Controller_Android
 	{
 		String[] parts = data.split(";",-1);
 
-		/*
-		 * 1. Control Signals with settings
-		 * 2. Camera Settings
-		 * 		1. Front or Back Camera
-		 * 		2. Camera Resolution
-		 * 		3. Camera Light
-		 * 3. Sound Signals
-		 * 		1. Play a Sound by Android phone
-		 * 		2. Start or Stop a Record
-		 */
-		
 		switch (Integer.parseInt(parts[0]))
 		{
 			case 1: // Everything for control signals
@@ -147,7 +150,7 @@ public class Controller_Android
 						}
 					} break;
 				
-					default: log.write(LOG.WARNING, "Unknown camera command from PC"); break;
+					default: log.write(LOG.WARNING, "Unknown Sound command from PC"); break;
 				}
 			} break;
 
