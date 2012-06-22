@@ -1,5 +1,7 @@
 
 package swp.tuilmenau.carduinodroid.controller;
+import java.io.IOException;
+
 import android.util.Log;
 
 
@@ -41,8 +43,9 @@ public class Network
 	/**
 	 * Transfers the message to the controller
 	 * @param message The message
+	 * @throws IOException 
 	 */
-	public void receive_controll(String message) {
+	public void receive_controll(String message) throws IOException {
 		controller.receiveData(message);
 	}
 

@@ -49,7 +49,7 @@ public class Record_Sound
 	/**
 	 * Starts the recording.
 	 */
-	public void startRecord()
+	public void startRecord() throws IOException
 	{
 		time.setToNow();
 		try 
@@ -72,7 +72,7 @@ public class Record_Sound
 	/**
 	 * Stops the Recording.
 	 */
-	public void stopRecord() 
+	public void stopRecord () throws IOException
 	{
 		recorder.stop();
 		recorder.reset();
