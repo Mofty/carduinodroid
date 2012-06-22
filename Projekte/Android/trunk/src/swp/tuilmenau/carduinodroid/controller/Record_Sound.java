@@ -57,7 +57,7 @@ public class Record_Sound
 			outfile = File.createTempFile("Sound_"+time.month+time.monthDay+"_"+time.hour+time.minute+time.second, ".3gp", storageDir);
 		} catch (IOException e) {}
 		recorder.setOutputFile(outfile.getAbsolutePath());
-		log.write(LOG.WARNING, "Could not create soundfile");
+		log.write(LOG.WARNING, "Could not create soundfile"); // ??? wieso steht das hier ohne sinn :D ?
 		try 
 		{
 			recorder.prepare();

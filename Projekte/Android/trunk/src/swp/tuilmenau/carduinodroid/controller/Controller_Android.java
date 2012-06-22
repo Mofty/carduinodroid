@@ -85,23 +85,23 @@ public class Controller_Android
 
 		switch (Integer.parseInt(parts[0]))
 		{
-			case 1: // alles mit control signals
+			case 1: // Everything for control signals
 			{
 				//arduino.SendCommand() anpassen von lars im arduino in car controller java
 				log.write(LOG.INFO, "data: "+parts[1]+";"+parts[2]+";"+parts[3]+";"+parts[4]);	
 			} break;
 			
-			case 2: // alle mit camera settings
+			case 2: // Everything for camera settings
 			{
 				switch (Integer.parseInt(parts[1]))
 				{
 					case 1:
 					{
-						cam.switchCam(Integer.parseInt(parts[2]));
+						cam.switchCam(Integer.parseInt(parts[2])); //Anpassen mit Robin
 					} break;
 					case 2:
 					{
-						cam.changeRes(Integer.parseInt(parts[2]), Integer.parseInt(parts[3]));
+						cam.changeRes(Integer.parseInt(parts[2]), Integer.parseInt(parts[3])); //Anpassen mit Robin
 					} break;
 					
 					case 3:
@@ -114,7 +114,7 @@ public class Controller_Android
 				}
 			} break;
 			
-			case 3: // alles mit sounds
+			case 3: // Everything with sounds
 			{
 				switch (Integer.parseInt(parts[1]))
 				{
@@ -128,13 +128,11 @@ public class Controller_Android
 					{
 						if (Integer.parseInt(parts[2]) == 0) 
 						{
-							record_sound.stopRecord(); //die Funktion geht nicht 
-							log.write(LOG.INFO, "Sound Recording has stopped");
+							record_sound.stopRecord();
 						}
 						else 
 						{
-							record_sound.startRecord(); //die Funktion geht nicht
-							log.write(LOG.INFO, "Sound Recording has started");
+							record_sound.startRecord();
 						}
 					} break;
 				
