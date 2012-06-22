@@ -22,9 +22,9 @@ public class GPS
 	private LocationListener locationListener;
 	private double longitude, latitude;
 
-	public GPS(Context context, LOG n_log) 
+	public GPS(Context context, LOG nlog) 
 	{
-		log = n_log;
+		log = nlog;
 		// ruft eine Instanz des LocationManagers ab
 		locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 

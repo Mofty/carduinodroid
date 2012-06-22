@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.*;
 import android.net.*;
 import android.net.wifi.*;
+import android.os.Bundle;
 import android.text.format.Formatter;
 import android.widget.TextView;
 
@@ -20,28 +21,34 @@ import android.widget.TextView;
  */
 public class Connection 
 {
-	/**
-	 * Provides the callback for logging and reacting to changes in the connection data.
-	 * 
-	 * @see BroadcastReceiver
-	 */
-	public class ConnectionLogger extends BroadcastReceiver
+
+	private LOG log;
+	private ConnectivityManager connectivityManager;
+	private WifiManager wifiManager;
+	private NetworkInfo mobileInfo;
+	private NetworkInfo WLANInfo;
+	private BroadcastReceiver connectionLogger;
+	private IntentFilter connectivityFilter;
+	private TextView ipBox;
+
+	public Connection (Activity activity, LOG nlog)
 	{
-		private TextView ipBox;
-		private Activity activity;
-
-		public ConnectionLogger(Activity activity)
+		log = nlog;
+		connectivityManager = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
+		wifiManager = (WifiManager) activity.getSystemService(Context.WIFI_SERVICE);
+		//retrieve the TextView to hold the local IP
+		ipBox = new TextView(activity);
+		ipBox = (TextView) activity.findViewById(R.id.textView2); 
+		//create and register the connectionLogger
+		connectionLogger = new BroadcastReceiver()
 		{
-			super();
-			this.activity = activity;	
-			ipBox = new TextView(activity);
-		}
-
-		@Override
-		public void onReceive(Context context, Intent intent) 
-		{
-			if (log != null)
-			{	
+			Bundle intentExtras;
+			
+			@Override
+			public void onReceive(Context context, Intent intent)
+			{
+				intentExtras = intent.getExtras();
+				
 				if (getMobileAvailable()) log.write(LOG.INFO, "Mobile Internet is available");
 				else log.write(LOG.WARNING, "Mobile Internet is not available");
 
@@ -54,29 +61,15 @@ public class Connection
 				if (getWLAN())
 				{
 					log.write(LOG.INFO, "WLAN is connected");
-					ipBox = (TextView) activity.findViewById(R.id.textView2); 
 					ipBox.setText(getLocalWLANIP());
 				}
-				else log.write(LOG.WARNING, "WLAN is not connected");
+				else
+				{
+					ipBox.setText(R.string.LocalIP);
+					log.write(LOG.WARNING, "WLAN is not connected");
+				}
 			}
-		}
-	}
-
-	private LOG log = null;
-	private ConnectivityManager connectivityManager;
-	private WifiManager wifiManager;
-	private NetworkInfo mobileInfo;
-	private NetworkInfo WLANInfo;
-	private ConnectionLogger connectionLogger;
-	private IntentFilter connectivityFilter;
-
-	public Connection (Activity activity, LOG log)
-	{
-		this.log = log;
-		connectivityManager = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
-		wifiManager = (WifiManager) activity.getSystemService(Context.WIFI_SERVICE);	
-		//create and register the connectionLogger
-		connectionLogger = new ConnectionLogger(activity);
+		};
 		connectivityFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
 		activity.registerReceiver(connectionLogger, connectivityFilter);
 	}
@@ -102,12 +95,12 @@ public class Connection
 		WLANInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 		return WLANInfo.isAvailable();
 	}
+
 	/**
 	 * Returns true if there is a mobile Internet is connected.
 	 * 
 	 * @return true if connected false if else.
 	 */
-
 	public boolean getMobile()
 	{
 		mobileInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
@@ -118,27 +111,28 @@ public class Connection
 	 * Returns true if there is a WLAN is connected.
 	 * 
 	 * @return true if connected false if else.
-	 */	public boolean getWLAN()
-	 {
-		 WLANInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-		 return WLANInfo.isConnected();
-	 }
+	 */	
+	public boolean getWLAN()
+	{
+		WLANInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+		return WLANInfo.isConnected();
+	}
 
-	 /**
-	  * Returns a String representing the current local IP of the Phone.
-	  * 
-	  * @return {@link String} representing the current local WLAN IP of the Phone.
-	  */
-	 public String getLocalWLANIP()
-	 {
-		 int ipAddress;
-		 WifiInfo wifiInfo;
+	/**
+	 * Returns a String representing the current local IP of the Phone.
+	 * 
+	 * @return {@link String} representing the current local WLAN IP of the Phone.
+	 */
+	public String getLocalWLANIP()
+	{
+		int ipAddress;
+		WifiInfo wifiInfo;
 
-		 if (getWLANAvailable())
-		 {	
-			 wifiInfo = wifiManager.getConnectionInfo();
-			 ipAddress = wifiInfo.getIpAddress(); 
-			 return Formatter.formatIpAddress(ipAddress);
-		 } else return null;		
-	 } 	
+		if (getWLANAvailable())
+		{	
+			wifiInfo = wifiManager.getConnectionInfo();
+			ipAddress = wifiInfo.getIpAddress(); 
+			return Formatter.formatIpAddress(ipAddress);
+		} else return null;		
+	} 	
 }

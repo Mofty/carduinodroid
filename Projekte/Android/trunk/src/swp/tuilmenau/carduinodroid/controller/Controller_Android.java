@@ -75,6 +75,7 @@ public class Controller_Android
 	 *
 	 * @param data A String containing the compressed Data.
 	 */
+	//TODO It work but it looks like shit and is hardly called "easily expandable".
 	public void receiveData(String data) 
 	{
 		String[] parts = data.split(";",-1);
