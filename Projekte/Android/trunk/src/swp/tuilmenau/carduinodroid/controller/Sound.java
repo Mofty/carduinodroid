@@ -3,6 +3,7 @@ package swp.tuilmenau.carduinodroid.controller;
 import swp.tuilmenau.carduinodroid.R;
 
 import android.content.Context;
+import android.media.AudioManager;
 import android.media.SoundPool;
 import android.media.SoundPool.OnLoadCompleteListener;
 
@@ -20,7 +21,7 @@ public class Sound
 	
 	public Sound(Context context)
 	{
-		soundpool = new SoundPool (1, 3, 0);
+		soundpool = new SoundPool (5, AudioManager.STREAM_MUSIC, 0);
 		soundID = soundpool.load(context, R.raw.horn, 1);	
 	}
 	/**
@@ -28,13 +29,13 @@ public class Sound
 	 */
 	public void horn () // Brauchst du hier einen OnLoadComplete Listener ???Nur um den Sound abzuspielen
 	{
-		OnLoadCompleteListener onLoadCompleteListener = new OnLoadCompleteListener()
-		{
-			public void onLoadComplete(SoundPool soundPool, int sampleId, int status) 
-			{
+//		OnLoadCompleteListener onLoadCompleteListener = new OnLoadCompleteListener()
+//		{
+//			public void onLoadComplete(SoundPool soundPool, int sampleId, int status) 
+//			{
 				soundpool.play(soundID, 1, 1, 1, 0, 1);
-			}	
-		};
-		soundpool.setOnLoadCompleteListener(onLoadCompleteListener);
+//			}	
+//		};
+//		soundpool.setOnLoadCompleteListener(onLoadCompleteListener);
 	}
 }

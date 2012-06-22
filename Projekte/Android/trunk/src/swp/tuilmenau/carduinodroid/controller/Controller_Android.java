@@ -114,21 +114,24 @@ public class Controller_Android
 			case 3: // alles mit sounds
 			{
 				log.write(LOG.INFO, "Sound Signal: "+parts[1]+";"+parts[2]);
+				sound.horn(); //test
 				switch (Integer.parseInt(parts[1]))
 				{
 					case 1: 
-					{
-						sound.horn();
+					{	
 						//hier sollte noch parts[2] übergeben werden, für mehrere Sounds später und stimmt das bei der Klasse Sound so mit "onLoad" Listener???
 						log.write(LOG.INFO, "Signal was played");
 					} break;
+					
 					case 2:
 					{
-						if (Integer.parseInt(parts[2]) == 0) {
+						if (Integer.parseInt(parts[2]) == 0) 
+						{
 							//record_sound.stopRecord(); die Funktion geht nicht 
 							log.write(LOG.INFO, "Sound Recording has stopped");
 						}
-						else {
+						else 
+						{
 							//record_sound.startRecord(); die Funktion geht nicht
 							log.write(LOG.INFO, "Sound Recording has started");
 						}
@@ -141,5 +144,4 @@ public class Controller_Android
 			default: log.write(LOG.WARNING, "unknown command from PC"); break;
 		}
 	}
-	
 }
