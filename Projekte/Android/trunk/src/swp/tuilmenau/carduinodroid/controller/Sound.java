@@ -1,6 +1,7 @@
 package swp.tuilmenau.carduinodroid.controller;
 
-import swp.tuilmenau.carduinodroid.*;
+import swp.tuilmenau.carduinodroid.R;
+
 import android.content.Context;
 import android.media.SoundPool;
 import android.media.SoundPool.OnLoadCompleteListener;
@@ -20,7 +21,7 @@ public class Sound
 	public Sound(Context context)
 	{
 		soundpool = new SoundPool (1, 3, 0);
-		soundID = soundpool.load(context, R.raw.horn, 1); // geht das auch wenn ich das bei mir kompiliere? Weiﬂ ja nicht wo die Datei ist?		
+		soundID = soundpool.load(context, R.raw.horn, 1);	
 	}
 	/**
 	 * Plays the SoundFile associated with the horn.
