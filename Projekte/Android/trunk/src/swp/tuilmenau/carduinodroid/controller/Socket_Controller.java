@@ -36,7 +36,8 @@ public class Socket_Controller implements Runnable {
 		Socket client = null;
 		BufferedReader stream = null;
 		Log.e("thread controller","thread controller gestartet");
-
+		long timestamp = System.currentTimeMillis();
+		boolean stop = true;
 		boolean fail = true;
 		try {
 			socket_controller = new ServerSocket(12345);
@@ -75,10 +76,19 @@ public class Socket_Controller implements Runnable {
 				Log.e("thread controller", message);
 				controller_Android.log.write(LOG.INFO, message);
 				controller_Android.receiveData(message);
+				if(message.charAt(0) == 1)
+				{
+				timestamp = System.currentTimeMillis();
+				stop = false;
+				}
 			}
 				
 				else
 				{
+					if((timestamp + 500) < System.currentTimeMillis() && !stop){
+						controller_Android.receiveData("1;0;0;0;0");  //stopp signal
+						stop = true;
+					}
 					try {
 						Thread.sleep(25);
 					} catch (InterruptedException e) {
@@ -92,5 +102,4 @@ public class Socket_Controller implements Runnable {
 		}}
 		Log.e("thread controller", "failor");
 	}
-
 }
