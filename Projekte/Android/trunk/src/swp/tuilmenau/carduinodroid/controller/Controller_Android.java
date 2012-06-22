@@ -83,6 +83,17 @@ public class Controller_Android
 	{
 		String[] parts = data.split(";",-1);
 
+		/*
+		 * 1. Control Signals with settings
+		 * 2. Camera Settings
+		 * 		1. Front or Back Camera
+		 * 		2. Camera Resolution
+		 * 		3. Camera Light
+		 * 3. Sound Signals
+		 * 		1. Play a Sound by Android phone
+		 * 		2. Start or Stop a Record
+		 */
+		
 		switch (Integer.parseInt(parts[0]))
 		{
 			case 1: // Everything for control signals
