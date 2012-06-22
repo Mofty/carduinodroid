@@ -80,7 +80,6 @@ public class CarDuinoDroidAppActivity extends Activity
 		wakelock.release();
 		controller_Android.cam.disableCamera();
 		finish();
-		System.exit(0);
 	}
 
 	/**
