@@ -27,7 +27,7 @@ public class Sound
 	/**
 	 * Plays the SoundFile associated with the horn.
 	 */
-	public void horn ()
+	public void horn (int ID)
 	{
 		soundpool.play(soundID, 1, 1, 1, 0, 1);
 	}

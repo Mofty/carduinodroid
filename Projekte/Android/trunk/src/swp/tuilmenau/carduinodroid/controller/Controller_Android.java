@@ -1,5 +1,7 @@
 package swp.tuilmenau.carduinodroid.controller;
 
+import java.io.IOException;
+
 import android.app.Activity;
 import swp.tuilmenau.carduinodroid.model.LOG;
 
@@ -74,9 +76,10 @@ public class Controller_Android
 	 * After the decode the commands are executed.
 	 *
 	 * @param data A String containing the compressed Data.
+	 * @throws IOException 
 	 */
 	//TODO It work but it looks like shit and is hardly called "easily expandable".
-	public void receiveData(String data) 
+	public void receiveData(String data) throws IOException 
 	{
 		String[] parts = data.split(";",-1);
 
@@ -113,13 +116,11 @@ public class Controller_Android
 			
 			case 3: // alles mit sounds
 			{
-				log.write(LOG.INFO, "Sound Signal: "+parts[1]+";"+parts[2]);
-				sound.horn(); //test
 				switch (Integer.parseInt(parts[1]))
 				{
 					case 1: 
 					{	
-						//hier sollte noch parts[2] übergeben werden, für mehrere Sounds später und stimmt das bei der Klasse Sound so mit "onLoad" Listener???
+						sound.horn(Integer.parseInt(parts[2]));
 						log.write(LOG.INFO, "Signal was played");
 					} break;
 					
@@ -127,12 +128,12 @@ public class Controller_Android
 					{
 						if (Integer.parseInt(parts[2]) == 0) 
 						{
-							//record_sound.stopRecord(); die Funktion geht nicht 
+							record_sound.stopRecord(); //die Funktion geht nicht 
 							log.write(LOG.INFO, "Sound Recording has stopped");
 						}
 						else 
 						{
-							//record_sound.startRecord(); die Funktion geht nicht
+							record_sound.startRecord(); //die Funktion geht nicht
 							log.write(LOG.INFO, "Sound Recording has started");
 						}
 					} break;
