@@ -90,7 +90,6 @@ public class Controller_Android
 	 * 		<li>Start or Stop a Record</li>
 	 * 	</ol>
 	 * </ol>
-	 * @throws IOException 
 	 */
 	//TODO It work but it looks like shit and is hardly called "easily expandable".
 	public void receiveData(String data)
