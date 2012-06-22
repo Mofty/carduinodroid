@@ -29,13 +29,6 @@ public class Sound
 	 */
 	public void horn () // Brauchst du hier einen OnLoadComplete Listener ???Nur um den Sound abzuspielen
 	{
-//		OnLoadCompleteListener onLoadCompleteListener = new OnLoadCompleteListener()
-//		{
-//			public void onLoadComplete(SoundPool soundPool, int sampleId, int status) 
-//			{
-				soundpool.play(soundID, 1, 1, 1, 0, 1);
-//			}	
-//		};
-//		soundpool.setOnLoadCompleteListener(onLoadCompleteListener);
+		soundpool.play(soundID, 1, 1, 1, 0, 1);
 	}
 }
