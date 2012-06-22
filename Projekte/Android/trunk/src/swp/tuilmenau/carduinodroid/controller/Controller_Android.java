@@ -112,8 +112,28 @@ public class Controller_Android
 			case 3: // alles mit sounds
 			{
 				log.write(LOG.INFO, "data: "+parts[1]+";"+parts[2]);
-				sound.horn();
-			} break;
+				switch (Integer.parseInt(parts[1]))
+				{
+					case 1: 
+					{
+					sound.horn(); // hier sollte noch parts[2] übergeben werden, für mehrere Sounds später
+					log.write(LOG.INFO, "Signal was played");
+					} break;
+					case 2:
+					{
+						if (Integer.parseInt(parts[2]) == 0) {
+							record_sound.stopRecord();
+							log.write(LOG.INFO, "Sound Recording has stopped");
+						}
+						else {
+							record_sound.startRecord();
+							log.write(LOG.INFO, "Sound Recording has started");
+						}
+					} break;
+				
+					default: log.write(LOG.WARNING, "Unknown camera command from PC"); break;
+				}
+			}
 
 			default: log.write(LOG.WARNING, "unknown command from PC"); break;
 		}
