@@ -27,13 +27,13 @@ public class Sound
 	 */
 	public void horn ()
 	{
-		/*OnLoadCompleteListener onLoadCompleteListener = new OnLoadCompleteListener()
+		OnLoadCompleteListener onLoadCompleteListener = new OnLoadCompleteListener()
 		{
 			public void onLoadComplete(SoundPool soundPool, int sampleId, int status) 
 			{
-				*/soundpool.play(soundID, 1, 1, 1, 0, 1);/*
+				soundpool.play(soundID, 1, 1, 1, 0, 1);
 			}	
 		};
-		soundpool.setOnLoadCompleteListener(onLoadCompleteListener);*/
+		soundpool.setOnLoadCompleteListener(onLoadCompleteListener);
 	}
 }
