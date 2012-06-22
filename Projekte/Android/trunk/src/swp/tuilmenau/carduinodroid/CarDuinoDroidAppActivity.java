@@ -29,14 +29,13 @@ public class CarDuinoDroidAppActivity extends Activity
 
 	private RadioGroup logLevelSwitch;
 	private RadioGroup.OnCheckedChangeListener logLevelSwitcherListener;
-
+	
 	/**
 	 * Called when the activity is first created.
 	 * 
 	 * @param savedInstanceState holds flags and parameters that were saved when the Android System colses the App.
 	 * @see Activity#onCreate()
 	 */
-	@Override
 	public void onCreate(Bundle savedInstanceState) 
 	{
 		// call onCreate of superclass
@@ -89,7 +88,6 @@ public class CarDuinoDroidAppActivity extends Activity
 	 * 
 	 * @see Activity#onResume()
 	 */
-	@Override
 	public void onResume()
 	{
 		super.onResume();    	

@@ -37,11 +37,12 @@ public class Cam implements CameraCallback
 	private Socket client;
 	private OutputStream os;
 	private ServerSocket ss;
-/**
- * This is the constructor of the Cam-Class. In this Method the Camera object and the Serversocket are created
- * @param controller
- * @param activity
- */
+	
+	/**
+	 * This is the constructor of the Cam-Class. In this Method the Camera object and the Serversocket are created
+	 * @param controller
+	 * @param activity
+	 */
 	public Cam(Controller_Android controller, Activity activity)
 	{	
 		Log.e("cam", "cam erstellung gestartet");
@@ -62,38 +63,38 @@ public class Cam implements CameraCallback
 		setupPictureMode();
 		Thread t = new Thread(new Runnable(){
 			public void run() {
-    			ss = null;
-    			client = null;
-    			Log.e("thread camera","thread camera gestartet");
-    			try {
-    				ss = new ServerSocket(12347);
-    			} catch (IOException e1) {
-    				// TODO Auto-generated catch block
-    					Log.e("thread camera","serversocket fehlgeschlagen");
-    				}
-    				try {
-    					client = ss.accept();
-    				} catch (IOException e1) {
-    					// TODO Auto-generated catch block
-    					Log.e("thread camera","accept fehlgeschlagen");
-    				}
-    				try {
-    					os = client.getOutputStream();
-    					Log.e("thread camera","outputstream gesetzt");
-    				} catch (IOException e1) {
-    					// TODO Auto-generated catch block
-    					Log.e("thread camera","output bekommen fehlgeschlagen");
-    				}
-    				
-    			if(client != null)
-    				Log.e("thread camera","javaprog gefunden" + client.getInetAddress().toString());
-    		}
-        });
-        t.start();
+				ss = null;
+				client = null;
+				Log.e("thread camera","thread camera gestartet");
+				try {
+					ss = new ServerSocket(12347);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					Log.e("thread camera","serversocket fehlgeschlagen");
+				}
+				try {
+					client = ss.accept();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					Log.e("thread camera","accept fehlgeschlagen");
+				}
+				try {
+					os = client.getOutputStream();
+					Log.e("thread camera","outputstream gesetzt");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					Log.e("thread camera","output bekommen fehlgeschlagen");
+				}
+
+				if(client != null)
+					Log.e("thread camera","javaprog gefunden" + client.getInetAddress().toString());
+			}
+		});
+		t.start();
 	}
-/**
- * This Method enables the flashlight of the camera
- */
+	/**
+	 * This Method enables the flashlight of the camera
+	 */
 	public void enableFlash()
 	{
 		parameters = camera.getParameters();
@@ -101,9 +102,9 @@ public class Cam implements CameraCallback
 		camera.setParameters(parameters);
 		flashmode = Parameters.FLASH_MODE_TORCH;
 	}
-/**
- * This Method disables the flashlight of the camera
- */
+	/**
+	 * This Method disables the flashlight of the camera
+	 */
 	public void disableFlash()
 	{
 		parameters = camera.getParameters();
@@ -111,13 +112,13 @@ public class Cam implements CameraCallback
 		camera.setParameters(parameters);
 		flashmode = Parameters.FLASH_MODE_OFF;
 	}
-/**
- * This Method release the current Camera and starts the camera with the ID
- * 
- * @param id of the camera to access
- * 
- * @see android.hardware.Camera#open(int)
- */
+	/**
+	 * This Method release the current Camera and starts the camera with the ID
+	 * 
+	 * @param id of the camera to access
+	 * 
+	 * @see android.hardware.Camera#open(int)
+	 */
 	public void switchCam(int id)
 	{
 		camera.stopPreview();
@@ -129,11 +130,11 @@ public class Cam implements CameraCallback
 		parameters.setFlashMode(flashmode);
 		camera.startPreview();
 	}
-/**
- * Change the Resolution of the preview pictures
- * @param width the width of the pictures, in pixels
- * @param height the height of the pictures, in pixels
- */
+	/**
+	 * Change the Resolution of the preview pictures
+	 * @param width the width of the pictures, in pixels
+	 * @param height the height of the pictures, in pixels
+	 */
 	public void changeRes(int width, int height)
 	{
 		List<Size> temp = parameters.getSupportedPreviewSizes();
@@ -154,10 +155,10 @@ public class Cam implements CameraCallback
 			}
 		}
 	}
-/**
- * Set the preview frame rate
- * @param fps the frame rate
- */
+	/**
+	 * Set the preview frame rate
+	 * @param fps the frame rate
+	 */
 	public void changeFPS(int fps)
 	{
 		List<Integer> temp = parameters.getSupportedPreviewFrameRates();
@@ -171,9 +172,9 @@ public class Cam implements CameraCallback
 			controller.log.write(LOG.WARNING, fps + " fps not supported");
 		}
 	}
-/**
- * Releases the camera
- */
+	/**
+	 * Releases the camera
+	 */
 	public void disableCamera()
 	{
 		disableFlash();
@@ -203,57 +204,57 @@ public class Cam implements CameraCallback
 		return result;
 	}
 
-/**
- * Sets the Surface and the Callback
- */
-    private void setupPictureMode(){
-        camerasurface = new CameraSurface(activity, camera);
-        
-        cameraholder.addView(camerasurface, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
-        
-        camerasurface.setCallback(this);
-    }
- /**
-  * not used
-  */
-        public void onJpegPictureTaken(byte[] data, Camera camera) {
-        }
+	/**
+	 * Sets the Surface and the Callback
+	 */
+	private void setupPictureMode(){
+		camerasurface = new CameraSurface(activity, camera);
 
- /**
-  *   Called as preview frames are displayed. Compress the data too a jpeg-file and send it to the java-program
-  */
-        public void onPreviewFrame(byte[] data, Camera camera) {
-        		if(os != null){
-    			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-				YuvImage temp = new YuvImage(data,camera.getParameters().getPreviewFormat(), camera.getParameters().getPreviewSize().width,  camera.getParameters().getPreviewSize().height, null);
-				Rect rect = new Rect(0,0,camera.getParameters().getPreviewSize().width,camera.getParameters().getPreviewSize().height);
-				temp.compressToJpeg(rect, 30, baos);
-				byte[] image = baos.toByteArray();
-				try {
-					os.write(image);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					Log.e("cam", "fehler beim schreiben des previewimage");
-				}
-        		}
-        }
+		cameraholder.addView(camerasurface, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
 
-/**
- *   	not used      
- */
-        public void onRawPictureTaken(byte[] data, Camera camera) {
-        }
+		camerasurface.setCallback(this);
+	}
+	/**
+	 * not used
+	 */
+	public void onJpegPictureTaken(byte[] data, Camera camera) {
+	}
 
-/**
- *    	not used    
- */
-        public void onShutter() {
-        }
-/**
- *    	not used
- */
-		public String onGetVideoFilename() {
-			// TODO Auto-generated method stub
-			return null;
+	/**
+	 *   Called as preview frames are displayed. Compress the data too a jpeg-file and send it to the java-program
+	 */
+	public void onPreviewFrame(byte[] data, Camera camera) {
+		if(os != null){
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			YuvImage temp = new YuvImage(data,camera.getParameters().getPreviewFormat(), camera.getParameters().getPreviewSize().width,  camera.getParameters().getPreviewSize().height, null);
+			Rect rect = new Rect(0,0,camera.getParameters().getPreviewSize().width,camera.getParameters().getPreviewSize().height);
+			temp.compressToJpeg(rect, 30, baos);
+			byte[] image = baos.toByteArray();
+			try {
+				os.write(image);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				Log.e("cam", "fehler beim schreiben des previewimage");
+			}
 		}
+	}
+
+	/**
+	 *   	not used      
+	 */
+	public void onRawPictureTaken(byte[] data, Camera camera) {
+	}
+
+	/**
+	 *    	not used    
+	 */
+	public void onShutter() {
+	}
+	/**
+	 *    	not used
+	 */
+	public String onGetVideoFilename() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
