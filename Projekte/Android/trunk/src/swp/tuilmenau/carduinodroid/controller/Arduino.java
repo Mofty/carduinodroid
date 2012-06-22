@@ -134,21 +134,26 @@ public class Arduino {
 	 * With this command you would be able to send the direction and
 	 * speed to your arduino.
 	 */
-    public void SendCommand(int speed, int dir){
-    	byte[] buffer = new byte[2]; //Erstellen eines Array der zu übergebenden Daten
+    public void SendCommand(boolean front,int speed, boolean right,int dir){
+    	byte[] buffer = new byte[4]; //Erstellen eines Array der zu übergebenden Daten
     	//Verifizieren der Größe
-    	if(speed > 10){
-            speed = 10;}
-        if(dir > 12){
-            dir = 12;}
-        buffer[0] = (byte)speed;
-        buffer[1] = (byte)dir;
+    	if(speed > 16){
+            speed = 16;}
+        if(dir > 8){
+            dir = 8;}
+        if(front) buffer[0] = 1;
+        	else buffer[0]=0;
+        buffer[1] = (byte)speed;
+        if(right) buffer[2] = 1;
+        	else buffer[2] = 0;
+        buffer[3] = (byte)dir;
+        		
         
-        if (mFileOutputStream != null && buffer[1] != -1){
+        if (mFileOutputStream != null){
             try{
                 // write it
                 mFileOutputStream.write(buffer);
-                log.write(LOG.INFO, "Speed: "+speed+" and direction: "+dir+" sent to Arduino.");
+                log.write(LOG.INFO, "Speed: "+speed+"(front: "+front+") and direction: "+dir+"(right: "+right+") sent to Arduino.");
             }
             catch (IOException e){
                 log.write(LOG.WARNING, "Failed to send commands to Arduino.");
