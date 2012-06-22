@@ -101,5 +101,20 @@ public class CarDuinoDroidAppActivity extends Activity
 		//Pass the Notification to the NotificationManager
 		notificationManager.notify(1337, notification);
 	}
+	
+	/**
+	 * Called when the activity comes into the foreground.
+	 * 
+	 * @see Activity#onResume()
+	 */
+	public void onPause()
+	{
+		controller_Android.log.save();
+		notificationManager.cancel(1337);
+		wakelock.release();
+		controller_Android.cam.disableCamera();
+		finish();
+		System.exit(0);
+	}
 
 }
