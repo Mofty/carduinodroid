@@ -111,6 +111,7 @@ public class Controller_Android
 			
 			case 3: // alles mit sounds
 			{
+				log.write(LOG.INFO, "data: "+parts[1]+";"+parts[2]);
 				sound.horn();
 			} break;
 
