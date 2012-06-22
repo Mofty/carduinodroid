@@ -76,6 +76,9 @@ public class Record_Sound
 	{
 		recorder.stop();
 		recorder.reset();
+		recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+		recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+		recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 		log.write(LOG.INFO, "Stop recording");
 	}
 }
