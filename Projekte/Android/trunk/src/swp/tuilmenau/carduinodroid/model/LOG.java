@@ -41,7 +41,8 @@ public class LOG
 		path = new File(logpath);
 		path.mkdirs();
 		file = new File(logpath,"LOG_"+time.format("%d%m_%H%M%S")+".txt");
-		try {
+		try 
+		{
 			file.createNewFile();
 		} catch (IOException e) { }
 		file.canWrite();
@@ -68,7 +69,7 @@ public class LOG
 		
 		String timestr;
 		time.setToNow(); // aktualisiert die in "time" gespeicherte zeit
-		timestr = time.format("%H%M%S ");
+		timestr = time.format("%H:%M:%S ");
 
 		// schreibt die zeit gefolgt vom übergebenen String "line" in die datei und springt zu nächsten zeile Leerzeile.
 		try {
