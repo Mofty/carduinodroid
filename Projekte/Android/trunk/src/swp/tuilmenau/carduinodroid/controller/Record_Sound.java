@@ -19,7 +19,7 @@ import swp.tuilmenau.carduinodroid.model.LOG;
  */ 
 public class Record_Sound 
 {
-	private MediaRecorder recorder = new MediaRecorder();
+	private MediaRecorder recorder;
 
 	private File outfile = null;
 	Time time;
@@ -29,34 +29,39 @@ public class Record_Sound
 
 	public Record_Sound(LOG Log) 
 	{
-		log = Log;
-		try 
-		{
-			// the soundfile
-			storageDir = new File(Environment.getExternalStorageDirectory(), "/carduinodroid/Recording");
-			storageDir.mkdirs();
-			time = new Time();		
-			// init recorder
-			recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-			recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-			recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-		}
-		catch (IllegalArgumentException e) {log.write(LOG.WARNING, "Illegal sound argument");} 
-		catch (IllegalStateException e) {log.write(LOG.WARNING, "Illegal sound state");}
+		this.log = Log;
+		recorder = new MediaRecorder();
+
+		storageDir = new File(Environment.getExternalStorageDirectory(), "/carduinodroid/Recording");
+		storageDir.mkdirs();
+		time = new Time();		
 	} 
 
-
+	private void init()
+	{
+		time.setToNow();
+		try 
+		{	
+			outfile = new File(storageDir,"REC_"+ time.format("%d%m_%H%M%S") + ".mp4");
+			outfile.createNewFile();
+			outfile.canWrite();
+			outfile.canRead();
+			
+			recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+			recorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+			recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+			recorder.setOutputFile(outfile.getAbsolutePath());
+		}
+		catch (IOException e) {log.write(LOG.WARNING, "Could not create soundfile");}
+		catch (IllegalArgumentException e) {log.write(LOG.WARNING, "Illegal sound argument");} 
+		catch (IllegalStateException e) {log.write(LOG.WARNING, "Illegal sound state");}
+	}
 	/**
 	 * Starts the recording.
 	 */
 	public void startRecord()
 	{
-		time.setToNow();
-		try 
-		{
-			outfile = File.createTempFile("Sound_"+time.month+time.monthDay+"_"+time.hour+time.minute+time.second, ".3gp", storageDir);
-		} catch (IOException e) {log.write(LOG.WARNING, "Could not create soundfile");}
-		recorder.setOutputFile(outfile.getAbsolutePath());
+		init();
 		try 
 		{
 			recorder.prepare();
@@ -75,9 +80,5 @@ public class Record_Sound
 	{
 		recorder.stop();
 		recorder.reset();
-		recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-		recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-		recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-		log.write(LOG.INFO, "Stop recording");
 	}
 }

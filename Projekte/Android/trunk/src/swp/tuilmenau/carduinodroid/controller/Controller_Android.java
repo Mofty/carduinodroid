@@ -1,7 +1,5 @@
 package swp.tuilmenau.carduinodroid.controller;
 
-import java.io.IOException;
-
 import android.app.Activity;
 import swp.tuilmenau.carduinodroid.model.LOG;
 
