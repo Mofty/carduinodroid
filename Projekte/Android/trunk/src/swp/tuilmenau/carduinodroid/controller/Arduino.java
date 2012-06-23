@@ -29,6 +29,7 @@ import com.android.future.usb.UsbAccessory;
 public class Arduino {
 	
 	private LOG log;
+	Activity activity;
 	IntentFilter usbFilter;
 	// UsbManager to check if ADK is connected
     private UsbManager mUsbManager;
@@ -46,8 +47,9 @@ public class Arduino {
     UsbAccessory mUsbAccessory;
     private final BroadcastReceiver mUsbReceiver;
 	
-	public Arduino(Activity activity, LOG Log){
+	public Arduino(Activity nactivity, LOG Log){
 		log = Log;
+		activity = nactivity;
 		
 		mUsbReceiver = new BroadcastReceiver(){
 			 
