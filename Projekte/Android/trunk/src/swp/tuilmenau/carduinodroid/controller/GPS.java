@@ -5,7 +5,6 @@ import swp.tuilmenau.carduinodroid.model.LOG;
 import android.content.Context;
 import android.location.*;
 import android.os.Bundle;
-import android.text.format.Time;
 
 /**
  * Provides an API for handling GPS data.
@@ -33,12 +32,8 @@ public class GPS
 		{
 			public void onLocationChanged(Location location) 
 			{
-				Time time;
-				time = new Time();
-
 				latitude = location.getLatitude();
 				longitude = location.getLongitude();
-				time.set(location.getTime());
 			}
 
 			public void onStatusChanged(String provider, int status, Bundle extras) {}
