@@ -12,6 +12,7 @@ import android.app.PendingIntent;//snipped for brevity this is precisely what US
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.media.MediaRecorder;
 import android.os.ParcelFileDescriptor;//snipped for brevity what we needed to read from ADK, use future because I only have a android 2.3.7 OS with me
 import com.android.future.usb.UsbManager;
@@ -28,13 +29,14 @@ import com.android.future.usb.UsbAccessory;
 public class Arduino {
 	
 	private LOG log;
+	IntentFilter usbFilter;
 	// UsbManager to check if ADK is connected
     private UsbManager mUsbManager;
     // To read permission from ADK
     private PendingIntent mPermissionIntent;
     private boolean mPermissionRequestPending;
     // This is the permission
-    private static final String ACTION_USB_PERMISSION = "com.google.android.ADKTestProject.action.USB_PERMISSION";
+    private static final String ACTION_USB_PERMISSION = "swp.tuilmenau.carduinodroid.USB_PERMISSION";
     // snipped for brevity
     // This is where we read and write from ADK
     FileInputStream mFileInputStream;
@@ -44,7 +46,7 @@ public class Arduino {
     UsbAccessory mUsbAccessory;
     private final BroadcastReceiver mUsbReceiver;
 	
-	public Arduino(Context context, LOG Log){
+	public Arduino(Activity activity, LOG Log){
 		log = Log;
 		
 		mUsbReceiver = new BroadcastReceiver(){
@@ -81,6 +83,14 @@ public class Arduino {
 	            }
 	        }
 	    };
+	    // zum starten des arduino
+	    // es sind noch einige xml sachen notwendig
+	    // siehe: http://developer.android.com/guide/topics/connectivity/usb/accessory.html
+	    // auskommentiert weil diese xml dinger nich da sind und es deswegen zum crash kommen wird
+//	    mPermissionIntent = PendingIntent.getBroadcast(activity, 0, new Intent(ACTION_USB_PERMISSION), 0);
+//	    usbFilter = new IntentFilter(ACTION_USB_PERMISSION);
+//	    activity.registerReceiver(mUsbReceiver, usbFilter);
+//	    mUsbManager.requestPermission(mUsbAccessory, mPermissionIntent);
 	}
     
 	// ***** Open Accessory ***************************************
