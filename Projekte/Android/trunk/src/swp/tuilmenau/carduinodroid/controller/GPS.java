@@ -39,14 +39,9 @@ public class GPS
 				latitude = location.getLatitude();
 				longitude = location.getLongitude();
 				time.set(location.getTime());
-				log.write(LOG.INFO, "GPS Fix found at" + time.hour + time.minute + time.second);
-				//evtl mathemathische änderungen an den gps koordinaten wie zu auto steht wenn speed = 0 und/oder long und lat gleich ins lpg schreiben gps info
 			}
 
-			public void onStatusChanged(String provider, int status, Bundle extras) 
-			{
-				// änderung des gps-status die den status des fahrzeugs beeinflussen ins log schreiben
-			}
+			public void onStatusChanged(String provider, int status, Bundle extras) {}
 
 			public void onProviderEnabled(String provider) 
 			{
@@ -73,5 +68,4 @@ public class GPS
 	{	
 		return longitude+";"+latitude;
 	}
-
 }
