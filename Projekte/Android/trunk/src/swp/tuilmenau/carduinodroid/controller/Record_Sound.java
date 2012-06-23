@@ -30,8 +30,6 @@ public class Record_Sound
 	public Record_Sound(LOG Log) 
 	{
 		this.log = Log;
-		recorder = new MediaRecorder();
-
 		storageDir = new File(Environment.getExternalStorageDirectory(), "/carduinodroid/Recording");
 		storageDir.mkdirs();
 		time = new Time();		
@@ -40,6 +38,7 @@ public class Record_Sound
 	private void init()
 	{
 		time.setToNow();
+		recorder = new MediaRecorder();
 		try 
 		{	
 			outfile = new File(storageDir,"REC_"+ time.format("%d%m_%H%M%S") + ".mp4");
