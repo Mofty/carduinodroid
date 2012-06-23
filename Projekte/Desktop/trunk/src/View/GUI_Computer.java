@@ -2,7 +2,6 @@ package View;
 
 import Controller.*;
 import Model.*;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -57,8 +56,13 @@ public class GUI_Computer extends JFrame{
 	public JLabel left;
 	public JLabel right;
 	public JLabel image;
-
 	
+	//initiate JComboBox
+	JComboBox resolution_change = new JComboBox();
+
+	//initiate Strings
+	String resolution_list[] = {"320x240", "640x480", "720x576", "800x600", "1024x768", "1280x720", "1920x1080"};
+
 	//initiate icons
 	ImageIcon up_icon = new ImageIcon("src/View/Icons/Icon_up.gif");
 	ImageIcon down_icon = new ImageIcon("src/View/Icons/Icon_down.gif");
@@ -131,7 +135,6 @@ public class GUI_Computer extends JFrame{
 		File language_file = new File("src/View/languages/");
 		
 		//initiate Strings
-		String resolution_list[] = {"320x240", "640x480", "720x576", "800x600", "1024x768", "1280x720", "1920x1080"};
 		String languages[] = language_file.list();
 		for (int i = 0; i <= languages.length-1; i++) languages[i] = languages[i].substring(0, languages[i].indexOf('.'));
 		
@@ -166,7 +169,6 @@ public class GUI_Computer extends JFrame{
 		JToggleButton soundrecord_button = new JToggleButton(Names.get(14), false);
 		
 		//initiate ComboBoxes
-		JComboBox resolution_change = new JComboBox(resolution_list);
 		JComboBox language_ComboBox = new JComboBox(languages);
 		
 		//initiate ButtonGroups
@@ -385,6 +387,13 @@ public class GUI_Computer extends JFrame{
 		}
 		
 		return Name;
+	}
+	
+	/** Method for filling the resolution Combo Box.
+	 */
+	public void FillResolutionbox(String [] resolution_list){
+		resolution_change.removeAllItems();
+		for (int i = 0; i <= resolution_list.length-1; i++) resolution_change.addItem(resolution_list[i]);
 	}
 	
 	/** Method for feedback, when car drives forward.
