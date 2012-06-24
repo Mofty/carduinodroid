@@ -15,6 +15,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.MediaRecorder;
 import android.os.ParcelFileDescriptor;//snipped for brevity what we needed to read from ADK, use future because I only have a android 2.3.7 OS with me
+import android.os.Bundle;
+
 import com.android.future.usb.UsbManager;
 import com.android.future.usb.UsbAccessory;
 
@@ -26,7 +28,7 @@ import com.android.future.usb.UsbAccessory;
  * @author Lars
  */ 
 
-public class Arduino {
+public class Arduino extends Activity{
 	
 	private LOG log;
 	Activity activity;
@@ -40,11 +42,11 @@ public class Arduino {
     private static final String ACTION_USB_PERMISSION = "swp.tuilmenau.carduinodroid.USB_PERMISSION";
     // snipped for brevity
     // This is where we read and write from ADK
-    FileInputStream mFileInputStream;
-    FileOutputStream mFileOutputStream;
+    FileInputStream mInputStream;
+    FileOutputStream mOutputStream;
     ParcelFileDescriptor mFileDescriptor;
     // Accesory!!!
-    UsbAccessory mUsbAccessory;
+    UsbAccessory mAccessory;
     private final BroadcastReceiver mUsbReceiver;
 	
 	public Arduino(Activity nactivity, LOG Log){
@@ -79,12 +81,12 @@ public class Arduino {
 	                // get accessory anyway
 	                UsbAccessory accessory = UsbManager.getAccessory(intent);
 	                // accessory is still not close cleanly
-	                if (accessory != null && accessory.equals(mUsbAccessory)){
+	                if (accessory != null && accessory.equals(mAccessory)){
 	                    closeAccessory();
 	                }
 	            }
 	        }
-	    };
+		};
 	    // zum starten des arduino
 	    // es sind noch einige xml sachen notwendig
 	    // siehe: http://developer.android.com/guide/topics/connectivity/usb/accessory.html
@@ -95,6 +97,73 @@ public class Arduino {
 //	    mUsbManager.requestPermission(mUsbAccessory, mPermissionIntent);
 	}
     
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+ 
+		mUsbManager = UsbManager.getInstance(this);
+		mPermissionIntent = PendingIntent.getBroadcast(this, 0, new Intent(ACTION_USB_PERMISSION), 0);
+		IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
+		filter.addAction(UsbManager.ACTION_USB_ACCESSORY_DETACHED);
+		registerReceiver(mUsbReceiver, filter);
+ 
+		if (getLastNonConfigurationInstance() != null) {
+			mAccessory = (UsbAccessory) getLastNonConfigurationInstance();
+			openAccessory(mAccessory);
+		}
+ 
+		//setContentView(R.layout.main);
+		//buttonLED = (ToggleButton) findViewById(R.id.toggleButtonLED);
+		
+	}
+	
+	@Override
+	public Object onRetainNonConfigurationInstance() {
+		if (mAccessory != null) {
+			return mAccessory;
+		} else {
+			return super.onRetainNonConfigurationInstance();
+		}
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+ 
+		if (mInputStream != null && mOutputStream != null) {
+			return;
+		}
+ 
+		UsbAccessory[] accessories = mUsbManager.getAccessoryList();
+		UsbAccessory accessory = (accessories == null ? null : accessories[0]);
+		if (accessory != null) {
+			if (mUsbManager.hasPermission(accessory)) {
+				openAccessory(accessory);
+			} else {
+				synchronized (mUsbReceiver) {
+					if (!mPermissionRequestPending) {
+						mUsbManager.requestPermission(accessory,mPermissionIntent);
+						mPermissionRequestPending = true;
+					}
+				}
+			}
+		} else {
+			log.write(LOG.WARNING, "mAccessory is null");
+		}
+	}
+	
+	@Override
+	public void onPause() {
+		super.onPause();
+		closeAccessory();
+	}
+ 
+	@Override
+	public void onDestroy() {
+		unregisterReceiver(mUsbReceiver);
+		super.onDestroy();
+	}
+	
 	// ***** Open Accessory ***************************************
 	/** 
 	 * It opens the accessory to be able to send commands with your usb
@@ -104,13 +173,13 @@ public class Arduino {
         // the interface is a file file descriptor
         mFileDescriptor = mUsbManager.openAccessory(accessory);
         if (mFileDescriptor != null) {
-            mUsbAccessory = accessory;
+            mAccessory = accessory;
             // get the file descriptor
             FileDescriptor fd = mFileDescriptor.getFileDescriptor();
             // set one to read
-            mFileInputStream = new FileInputStream(fd);
+            mInputStream = new FileInputStream(fd);
             // set one to write
-            mFileOutputStream = new FileOutputStream(fd);
+            mOutputStream = new FileOutputStream(fd);
      
             //Thread thread = new Thread(null,this,"ADKTestProject");
             //thread.start();
@@ -137,7 +206,7 @@ public class Arduino {
         }
         finally {
             mFileDescriptor = null;
-            mUsbAccessory = null;
+            mAccessory = null;
         }
     }
 	
@@ -161,10 +230,10 @@ public class Arduino {
         buffer[3] = (byte)dir;
         		
         
-        if (mFileOutputStream != null){
+        if (mOutputStream != null){
             try{
                 // write it
-                mFileOutputStream.write(buffer);
+                mOutputStream.write(buffer);
                 log.write(LOG.INFO, "Speed: "+speed+"(front: "+front+") and direction: "+dir+"(right: "+right+") sent to Arduino.");
             }
             catch (IOException e){
