@@ -363,7 +363,6 @@ public class GUI_Computer extends JFrame{
 		}
 		
 		Language_Name = Language_name(Language);
-		//language_reader.close();
 		return Language_Name;
 	}
 	
