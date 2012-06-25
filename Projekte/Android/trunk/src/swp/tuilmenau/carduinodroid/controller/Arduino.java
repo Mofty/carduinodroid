@@ -87,14 +87,39 @@ public class Arduino extends Activity{
 	            }
 	        }
 		};
-	    // zum starten des arduino
-	    // es sind noch einige xml sachen notwendig
-	    // siehe: http://developer.android.com/guide/topics/connectivity/usb/accessory.html
-	    // auskommentiert weil diese xml dinger nich da sind und es deswegen zum crash kommen wird
-//	    mPermissionIntent = PendingIntent.getBroadcast(activity, 0, new Intent(ACTION_USB_PERMISSION), 0);
-//	    usbFilter = new IntentFilter(ACTION_USB_PERMISSION);
-//	    activity.registerReceiver(mUsbReceiver, usbFilter);
-//	    mUsbManager.requestPermission(mUsbAccessory, mPermissionIntent);
+	    
+		mUsbManager = UsbManager.getInstance(this);
+		mPermissionIntent = PendingIntent.getBroadcast(this, 0, new Intent(ACTION_USB_PERMISSION), 0);
+		IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
+		filter.addAction(UsbManager.ACTION_USB_ACCESSORY_DETACHED);
+		registerReceiver(mUsbReceiver, filter);
+ 
+		if (getLastNonConfigurationInstance() != null) {
+			mAccessory = (UsbAccessory) getLastNonConfigurationInstance();
+			openAccessory(mAccessory);}
+	
+		if (mInputStream != null && mOutputStream != null) {
+			return;
+		}
+ 
+		UsbAccessory[] accessories = mUsbManager.getAccessoryList();
+		UsbAccessory accessory = (accessories == null ? null : accessories[0]);
+		if (accessory != null) {
+			if (mUsbManager.hasPermission(accessory)) {
+				openAccessory(accessory);
+			} else {
+				synchronized (mUsbReceiver) {
+					if (!mPermissionRequestPending) {
+						mUsbManager.requestPermission(accessory,mPermissionIntent);
+						mPermissionRequestPending = true;
+					}
+				}
+			}
+		} else {
+			log.write(LOG.WARNING, "mAccessory is null");
+		}
+
+		
 	}
     
 	@Override
