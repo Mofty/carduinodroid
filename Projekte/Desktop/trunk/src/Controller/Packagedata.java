@@ -27,7 +27,11 @@ public class Packagedata {
 	{
 		tokens = data.split(";",-1);
 		for (int i = 0; i < tokens.length; i++) tokens[i] = tokens[i].trim(); //Leerzeichen weg vorn und hinten
-		updateInformationbox();
+		
+		if (tokens[0].equals("1"))
+			updateInformationbox();
+		if (tokens[0].equals("2"))
+			updateItemIndex();
 	}
 	
 	/**
@@ -36,23 +40,35 @@ public class Packagedata {
 	
 	private void updateInformationbox()
 	{
-		double longi= ((double)Math.round(Double.parseDouble(tokens[4]) * 100000)) / 100000;
-		double lat= ((double)Math.round(Double.parseDouble(tokens[5]) * 100000)) / 100000;
+		double longi= ((double)Math.round(Double.parseDouble(tokens[5]) * 100000)) / 100000;
+		double lat= ((double)Math.round(Double.parseDouble(tokens[6]) * 100000)) / 100000;
 		controller_computer.gui_computer.longitude.setText(String.valueOf(longi));
 		controller_computer.gui_computer.latitude.setText(String.valueOf(lat));
-		
-		if (tokens[3].equals("1"))
+	
+		if (tokens[4].equals("1"))
 			controller_computer.gui_computer.connection_type.setText("WLAN");
-		if (tokens[2].equals("1"))
+		if (tokens[3].equals("1"))
 			controller_computer.gui_computer.connection_type.setText("Mobile Internet");
-		/*
 			else
-				controller_computer.gui_computer.connection_type.setText("No Connection");*/
+				controller_computer.gui_computer.connection_type.setText("No Connection");
+
+		//MobileAvailable tokens[1]; 
+		//WLANAvailable tokens[2];
+		//Mobile tokens[3];
+		//WLAN tokens[4];
+	}
+	
+	private void updateItemIndex()
+	{
+		int itemslength = tokens.length;
+		String[] resolution = new String[itemslength-1];
 		
-		//MobileAvailable tokens[0]; 
-		//WLANAvailable tokens[1];
-		//Mobile tokens[2];
-		//WLAN tokens[3];
+		for (int i = 0; i<itemslength-2; i++)
+		{
+			resolution[i] = tokens[i+1];
+		}
+		
+		controller_computer.gui_computer.FillResolutionbox(resolution[]);
 	}
 	
 }
