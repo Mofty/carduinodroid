@@ -20,7 +20,7 @@ public class Resolution_ActionListener implements ActionListener{
 	
 	/** 
 	 * @param controllercomputer 	Used instance of Controller_Computer.
-	 * @param LOG					Used log. 
+	 * @param LOG					Log which is used. 
 	 * @param STATUS				ComboBox including the different Resultions.
 	 */
 	public Resolution_ActionListener (Controller_Computer controllercomputer, Log LOG, JComboBox STATUS){

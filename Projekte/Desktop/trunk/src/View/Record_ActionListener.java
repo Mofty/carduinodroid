@@ -21,7 +21,7 @@ public class Record_ActionListener implements ActionListener{
 	
 	/** 
 	 * @param controllercomputer	used instance of Controller_Computer.
-	 * @param LOG					Used log. 
+	 * @param LOG					Log which is used.
 	 * @param STATUS				Record ToggleButton. 
 	 */
 	public Record_ActionListener (Controller_Computer controllercomputer, Log LOG, JToggleButton STATUS){

@@ -18,7 +18,7 @@ public class Quality_MouseListener implements MouseListener{
 	/**
 	 * 
 	 * @param QUALITY_SLIDER	Slider which changes quality.
-	 * @param LOG				Use log.
+	 * @param LOG				Log which is used.
 	 */
 	public Quality_MouseListener(JSlider QUALITY_SLIDER, Controller_Computer Controller_computer){
 		quality_slider = QUALITY_SLIDER;

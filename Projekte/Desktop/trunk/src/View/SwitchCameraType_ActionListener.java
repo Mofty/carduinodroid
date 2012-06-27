@@ -18,7 +18,7 @@ public class SwitchCameraType_ActionListener implements ActionListener{
 	
 	/** 
 	 * @param controllercomputer	Used instance of Controller_Computer.
-	 * @param LOG					Used log. 
+	 * @param LOG					Log which is used.
 	 * @param CAMERA				Boolean which camera should be activated.
 	 */
 	public SwitchCameraType_ActionListener (Controller_Computer controllercomputer, Log LOG, boolean CAMERA)

@@ -16,7 +16,7 @@ public class Quit_ActionListener implements ActionListener {
 	GPSTrack gpstrack;
 	
 	/** 
-	 * @param LOG					Used log. 
+	 * @param LOG					Log which is used.
 	 * @param GPS_Track				Used gpstrack.
 	 */
 	public Quit_ActionListener (Log LOG, GPSTrack GPS_Track)
