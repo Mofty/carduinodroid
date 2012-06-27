@@ -57,6 +57,7 @@ public class GUI_Computer extends JFrame{
 	public JLabel left;
 	public JLabel right;
 	public JLabel image;
+	JPanel panel_video;
 	
 	//initiate JComboBox
 	JComboBox resolution_change = new JComboBox();
@@ -214,7 +215,7 @@ public class GUI_Computer extends JFrame{
 		
 		//initiate JPanels
 		JPanel panel_other = new JPanel();
-		JPanel panel_video = new JPanel();
+		panel_video = new JPanel();
 
 		//edit Layout
 		this.setLayout(new BorderLayout());
@@ -470,5 +471,13 @@ public class GUI_Computer extends JFrame{
 			left.setBorder(unpressed_border);
 			left.setIcon(left_icon);
 		}
+	}
+	
+	public int getPanelHeight(){
+		return panel_video.getHeight();
+	}
+	
+	public int getPanelWidth(){
+		return panel_video.getWidth();
 	}
 }
