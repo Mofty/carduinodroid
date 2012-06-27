@@ -214,18 +214,20 @@ public class GUI_Computer extends JFrame{
 		
 		//initiate JPanels
 		JPanel panel_other = new JPanel();
+		JPanel panel_video = new JPanel();
 
 		//edit Layout
 		this.setLayout(new BorderLayout());
-		this.getContentPane().add(image, BorderLayout.CENTER);
+		panel_video.add(image);
+		this.getContentPane().add(panel_video, BorderLayout.CENTER);
 		this.getContentPane().add(panel_other, BorderLayout.EAST);
 		this.getContentPane().add(Live_Log_Scrollbar, BorderLayout.SOUTH);
-		image.setBackground(Color.lightGray);
+		panel_video.setBackground(Color.lightGray);
 		panel_other.setPreferredSize(new Dimension(200,500));
 		panel_other.setLayout(null);
 		Live_Log_Scrollbar.setPreferredSize(new Dimension(800,100));
 		panel_other.setFocusable(false);
-		image.setFocusable(false);
+		panel_video.setFocusable(false);
 			
 		//menu "file"
 		Quit.addActionListener(new Quit_ActionListener(log,gpstrack));
