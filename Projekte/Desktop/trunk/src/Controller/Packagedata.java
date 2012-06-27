@@ -64,7 +64,7 @@ public class Packagedata {
 		int itemslength = tokens.length;
 		String[] resolution = new String[itemslength-1];
 		
-		for (int i = 0; i<itemslength-2; i++)
+		for (int i = 0; i<itemslength-1; i++)
 		{
 			resolution[i] = tokens[i+1];
 		}
