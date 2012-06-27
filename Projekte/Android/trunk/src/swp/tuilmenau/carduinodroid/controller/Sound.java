@@ -16,11 +16,14 @@ import android.media.SoundPool;
 public class Sound 
 {
 	SoundPool soundpool;
+	AudioManager audioManager;
 	int soundID;
+	int volume;
 	
 	public Sound(Context context)
 	{
 		soundpool = new SoundPool (5, AudioManager.STREAM_MUSIC, 0);
+		audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 		soundID = soundpool.load(context, R.raw.horn, 1);
 	}
 	
@@ -29,6 +32,9 @@ public class Sound
 	 */
 	public void horn (int ID)
 	{
+		volume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 		soundpool.play(soundID, 1, 1, 1, 0, 1);
+		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, volume, 0);
 	}
 }
