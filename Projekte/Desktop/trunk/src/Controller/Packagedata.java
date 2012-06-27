@@ -2,6 +2,8 @@ package Controller;
 
 import java.text.DecimalFormat;
 
+import Model.GPSTrack;
+
 /**
  * Methods receive the data strings from the Android and send them to the GUI.
  * @version 18.06.2012
@@ -13,6 +15,7 @@ public class Packagedata {
 			
 	Controller_Computer controller_computer;
 	String [] tokens;
+	GPSTrack gpstrack;
 	
 	public Packagedata(Controller_Computer ControllerComputer){
 		controller_computer = ControllerComputer;
@@ -45,6 +48,7 @@ public class Packagedata {
 		double lat= ((double)Math.round(Double.parseDouble(tokens[6]) * 100000)) / 100000;
 		controller_computer.gui_computer.longitude.setText(String.valueOf(longi));
 		controller_computer.gui_computer.latitude.setText(String.valueOf(lat));
+		gpstrack.writegpxfile(String.valueOf(longi), String.valueOf(lat));
 	
 		if (tokens[4].equals("1"))
 			controller_computer.gui_computer.connection_type.setText("WLAN");

@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.GPSTrack;
 import Model.Log;
 import View.GUI_Computer;
 /** Class to include the controller classes. 
@@ -9,6 +10,7 @@ import View.GUI_Computer;
 */
 public class Controller_Computer {
 	public Log log;
+	public GPSTrack gpstrack;
 	public Sound_Output sound_output;
 	public Camera_Settings camera_settings;
 	public Camera_Picture camera_picture;
@@ -25,9 +27,10 @@ public class Controller_Computer {
 	 * @param GUI_computer		includes an instance of GUI_computer
 	 * @param LOG 				includes an instance of LOG
 	 */
-	public Controller_Computer(Log LOG, GUI_Computer GUI_computer) {
+	public Controller_Computer(Log LOG, GUI_Computer GUI_computer, GPSTrack gpsTrack) {
 		gui_computer = GUI_computer;
 		log = LOG;
+		gpstrack = gpsTrack;
 		camera_picture=new Camera_Picture(this);
 		packagedata=new Packagedata(this);
 		gps_map=new GPS_Map(this);
