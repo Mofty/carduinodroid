@@ -54,7 +54,7 @@ public class Controller_Android
 	public String packData() 
 	{
 		String data;
-		data = "";
+		data = "1;";
 		if (connection.getMobileAvailable()) data = data + 1 + ";"; 
 										else data = data + 0 + ";";
 		if (connection.getWLANAvailable())   data = data + 1 + ";"; 
