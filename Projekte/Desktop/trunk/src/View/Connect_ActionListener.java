@@ -21,7 +21,7 @@ public class Connect_ActionListener implements ActionListener{
 	
 	/** 
 	 * @param QUESTION		Questiontext by opening the connectwindow. 
-	 * @param LOG			Used log. 
+	 * @param LOG			Log which is used.
 	 * @param IP			Label which should show the actual connected IP.
 	 * @param gui_Computer	The GUI which calls this constructer. 
 	 */

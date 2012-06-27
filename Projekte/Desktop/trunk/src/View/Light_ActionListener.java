@@ -21,8 +21,8 @@ public class Light_ActionListener implements ActionListener{
 	
 	/**  
 	 * @param controllercomputer	Used instance of Controller_Computer.
-	 * @param LOG					Used log.
-	 * @param STATUS					ToggleButton for switching light on/off.
+	 * @param LOG					Log which is used.
+	 * @param STATUS				ToggleButton for switching light on/off.
 	 */
 	public Light_ActionListener (Controller_Computer controllercomputer, Log LOG, JToggleButton STATUS)
 	{
