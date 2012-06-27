@@ -292,6 +292,7 @@ public class GUI_Computer extends JFrame{
 		//quality_slider
 		quality_slider.setBounds(5, 180, 190, 20);
 		quality_label.setBounds(5, 155, 190, 20);
+		quality_slider.addChangeListener(new Quality_ChangeListener(quality_slider, log));
 		panel_other.add(quality_slider);
 		panel_other.add(quality_label);
 		quality_slider.setFocusable(false);
