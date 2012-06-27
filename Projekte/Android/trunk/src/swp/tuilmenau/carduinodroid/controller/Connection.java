@@ -21,14 +21,14 @@ import android.widget.TextView;
  */
 public class Connection 
 {
-
+	public BroadcastReceiver connectionLogger;
+	
 	private LOG log;
 	private ConnectivityManager connectivityManager;
 	private WifiManager wifiManager;
 	private NetworkInfo mobileInfo;
 	private NetworkInfo WLANInfo;
 	private NetworkInfo networkInfo;
-	private BroadcastReceiver connectionLogger;
 	private IntentFilter connectivityFilter;
 	private TextView ipBox;
 
