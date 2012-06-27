@@ -120,7 +120,7 @@ public class GUI_Computer extends JFrame{
 		});
 		
 		//KeyListener
-		this.addKeyListener(new Direction_KeyListener(this));		
+		this.addKeyListener(new Direction_KeyListener(this, controller_Computer));		
 	}
 	
 	//method: create window
@@ -181,7 +181,7 @@ public class GUI_Computer extends JFrame{
 		JScrollPane Live_Log_Scrollbar = new JScrollPane(Live_Log, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
 		//initiate JSliders
-		JSlider quality_slider = new JSlider(1, 100, 20);
+		JSlider quality_slider = new JSlider(1, 100, 30);
 		speed_slider = new JSlider(1, 100, 20);
 		angle_slider = new JSlider(1, 100, 50);
 				
