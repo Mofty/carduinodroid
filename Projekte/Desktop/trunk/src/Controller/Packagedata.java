@@ -68,7 +68,7 @@ public class Packagedata {
 			resolution[i] = tokens[i+1];
 		}
 		
-		controller_computer.gui_computer.FillResolutionbox(resolution[]);
+		controller_computer.gui_computer.FillResolutionbox(resolution);
 	}
 	
 }
