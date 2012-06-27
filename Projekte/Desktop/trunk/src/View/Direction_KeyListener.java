@@ -3,6 +3,8 @@ package View;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import Controller.Controller_Computer;
+
 /**
 * methods for working with KeyEvents and calculate direction/speed
 * 
@@ -12,10 +14,12 @@ import java.awt.event.KeyListener;
 
 public class Direction_KeyListener implements KeyListener{
 	GUI_Computer gui_computer;
+	Controller_Computer controller_computer;
 	boolean up = false, left = false, right = false, down = false;
 	
-	public Direction_KeyListener(GUI_Computer GUI_computer){
+	public Direction_KeyListener(GUI_Computer GUI_computer, Controller_Computer Controller_computer){
 		gui_computer = GUI_computer;
+		controller_computer = Controller_computer;
 	}
 	
 	// ***** KeyPressed Event ***************************************
@@ -31,6 +35,7 @@ public class Direction_KeyListener implements KeyListener{
 		if (key == KeyEvent.VK_RIGHT) {right=true;gui_computer.controller_Computer.car_controller.UpdateVariables(up,down,right,left);};
 		if (key == KeyEvent.VK_LEFT) {left=true;gui_computer.controller_Computer.car_controller.UpdateVariables(up,down,right,left);};
 		if (key == KeyEvent.VK_DOWN) {down=true;gui_computer.controller_Computer.car_controller.UpdateVariables(up,down,right,left);};
+		if (key == KeyEvent.VK_SPACE) {controller_computer.sound_output.send_output_soundsignal("1");}
 	}
 	
 	// ***** KeyRelease Event ***************************************
