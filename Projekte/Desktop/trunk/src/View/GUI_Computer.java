@@ -86,7 +86,7 @@ public class GUI_Computer extends JFrame{
 		//create objects of other classes
 		log  = new Log(this);
 		gpstrack = new GPSTrack();
-		controller_Computer = new Controller_Computer(log, this);
+		controller_Computer = new Controller_Computer(log, this, gpstrack);
 		
 		//create programwindow
 		this.initWindow();
