@@ -2,7 +2,8 @@ package Controller;
 
 /**
 * methods for sending camera changes
-* @author Lars Vogel
+* @author Lars
+* @author Benjamin L
 * @version 12.06.2012
 */
 
@@ -56,6 +57,18 @@ public class Camera_Settings {
 			controller_computer.log.writelogfile("Camera light was switched");
 		} else {
 			controller_computer.log.writelogfile("Camera light wasn't switched");
+		}
+	}
+	
+	/**
+	 * 
+	 * @param Percent
+	 */
+	public void send_change_quality(String Percent){
+		if  (controller_computer.network.send_camera_settings("4;" + Percent)) {
+			controller_computer.log.writelogfile("Quality has been changed");
+		} else {
+			controller_computer.log.writelogfile("Quality hasn't been changed");
 		}
 	}
 
