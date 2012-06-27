@@ -25,4 +25,4 @@ https://carl-adam.theoinf.tu-ilmenau.de/trac/swp_s12_12
 Sprache
 OK
 Die Änderungen werden erst nach dem Neustart wirksam!
-QualitŠt
+Qualität
