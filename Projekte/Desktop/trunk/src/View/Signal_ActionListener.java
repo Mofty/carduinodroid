@@ -32,6 +32,5 @@ public class Signal_ActionListener implements ActionListener{
 	 */
 	public void actionPerformed(ActionEvent e) {
 		controller_Computer.sound_output.send_output_soundsignal("1");
-		controller_Computer.packagedata.receive_package("2;640x852;52x5720;572x67307;76622x57");
 	}
 }
