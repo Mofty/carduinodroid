@@ -28,7 +28,7 @@ public class Controller_Android
 	{
 		log = new LOG();
 
-		//arduino = new Arduino(activity, log);
+		arduino = new Arduino(activity, log);
 		cam = new Cam(this, activity);
 		connection = new Connection(activity, log);
 		gps = new GPS(activity, log);

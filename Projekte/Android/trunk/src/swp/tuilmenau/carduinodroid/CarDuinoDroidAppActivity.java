@@ -109,12 +109,24 @@ public class CarDuinoDroidAppActivity extends Activity
 	 */
 	public void onPause()
 	{
+		finish();
+		System.exit(0);
+	}
+	
+	/**
+	 * Called by the System when the Activity is destroyed.
+	 * 
+	 * @see Activity#onDestroy()
+	 */
+	public void onDestroy()
+	{
 		controller_Android.log.save();
 		notificationManager.cancel(1337);
 		wakelock.release();
 		controller_Android.cam.disableCamera();
-		finish();
-		System.exit(0);
+		unregisterReceiver(controller_Android.connection.connectionLogger);
+		unregisterReceiver(controller_Android.arduino.mUsbReceiver);
+		controller_Android.arduino.closeAccessory();
+		super.onDestroy();
 	}
-
 }
