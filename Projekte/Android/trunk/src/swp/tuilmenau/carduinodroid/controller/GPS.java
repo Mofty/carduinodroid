@@ -45,7 +45,9 @@ public class GPS
 
 			public void onProviderDisabled(String provider) 
 			{
-				log.write(LOG.WARNING, "GPS reciever disabled");	
+				log.write(LOG.WARNING, "GPS reciever disabled");
+				latitude = 0;
+				longitude = 0;
 			}
 
 		};	
