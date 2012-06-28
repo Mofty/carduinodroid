@@ -54,8 +54,6 @@ public class Packagedata {
 			controller_computer.gui_computer.connection_type.setText("WLAN");
 		if (tokens[3].equals("1"))
 			controller_computer.gui_computer.connection_type.setText("Mobile Internet");
-			else
-				controller_computer.gui_computer.connection_type.setText("No Connection");
 
 		//MobileAvailable tokens[1]; 
 		//WLANAvailable tokens[2];
