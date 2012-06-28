@@ -52,9 +52,10 @@ public class Cam implements CameraCallback
 		parameters = camera.getParameters();
 		this.controller = controller;
 		parameters.setRotation(270);
-		camera.setParameters(parameters);
 		height = parameters.getPreviewSize().height;
 		width = parameters.getPreviewSize().width;
+		parameters.setPreviewSize(640, 480);
+		camera.setParameters(parameters);
 		fps = parameters.getPreviewFrameRate();
 		flashmode = parameters.getFlashMode();
 		Log.e("cam", "cam erstellung fertig");
@@ -228,7 +229,7 @@ public class Cam implements CameraCallback
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			YuvImage temp = new YuvImage(data,camera.getParameters().getPreviewFormat(), camera.getParameters().getPreviewSize().width,  camera.getParameters().getPreviewSize().height, null);
 			Rect rect = new Rect(0,0,camera.getParameters().getPreviewSize().width,camera.getParameters().getPreviewSize().height);
-			temp.compressToJpeg(rect, 30, baos);
+			temp.compressToJpeg(rect, 20, baos);
 			byte[] image = baos.toByteArray();
 			try {
 				os.write(image);
