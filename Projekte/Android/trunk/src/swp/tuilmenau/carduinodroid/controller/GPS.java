@@ -24,9 +24,7 @@ public class GPS
 	public GPS(Context context, LOG nlog) 
 	{
 		log = nlog;
-		longitude = 0;
-		latitude = 0;
-		altitude = 0;
+		reset();
 		// ruft eine Instanz des LocationManagers ab
 		locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 
@@ -40,7 +38,13 @@ public class GPS
 				altitude = location.getAltitude();
 			}
 
-			public void onStatusChanged(String provider, int status, Bundle extras) {}
+			public void onStatusChanged(String provider, int status, Bundle extras)
+			{
+				if ((status == LocationProvider.OUT_OF_SERVICE) | (status == LocationProvider.TEMPORARILY_UNAVAILABLE))
+				{	
+					reset();
+				}
+			}
 
 			public void onProviderEnabled(String provider) 
 			{
@@ -50,14 +54,19 @@ public class GPS
 			public void onProviderDisabled(String provider) 
 			{
 				log.write(LOG.WARNING, "GPS reciever disabled");
-				latitude = 0;
-				longitude = 0;
-				altitude = 0;
+				reset();
 			}
 
 		};	
 		// registriert den LocationListener zum erhalten von Updates zur Position jede sekunde (1000 ms)
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
+	}
+	
+	private void reset()
+	{
+		latitude = 0;
+		longitude = 0;
+		altitude = 0;
 	}
 
 	/**
