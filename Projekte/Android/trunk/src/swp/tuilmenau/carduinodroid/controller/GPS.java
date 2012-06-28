@@ -19,13 +19,14 @@ public class GPS
 
 	private LocationManager locationManager;
 	private LocationListener locationListener;
-	private double longitude, latitude;
+	private double longitude, latitude, altitude;
 
 	public GPS(Context context, LOG nlog) 
 	{
 		log = nlog;
 		longitude = 0;
 		latitude = 0;
+		altitude = 0;
 		// ruft eine Instanz des LocationManagers ab
 		locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 
@@ -36,6 +37,7 @@ public class GPS
 			{
 				latitude = location.getLatitude();
 				longitude = location.getLongitude();
+				altitude = location.getAltitude();
 			}
 
 			public void onStatusChanged(String provider, int status, Bundle extras) {}
@@ -50,6 +52,7 @@ public class GPS
 				log.write(LOG.WARNING, "GPS reciever disabled");
 				latitude = 0;
 				longitude = 0;
+				altitude = 0;
 			}
 
 		};	
@@ -65,6 +68,6 @@ public class GPS
 	 */
 	public String getGPS()
 	{	
-		return longitude+";"+latitude;
+		return longitude + ";" + latitude + ";" + altitude;
 	}
 }
