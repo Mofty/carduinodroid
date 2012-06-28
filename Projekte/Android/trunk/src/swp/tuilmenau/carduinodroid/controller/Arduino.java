@@ -37,7 +37,7 @@ public class Arduino{
     private PendingIntent mPermissionIntent;
     private boolean mPermissionRequestPending;
     // This is the permission
-    private static final String ACTION_USB_PERMISSION = "swp.tuilmenau.carduinodroid.USB_PERMISSION";
+    private static final String ACTION_USB_PERMISSION = "swp.tuilmenau.carduinodroid.action.USB_PERMISSION";
     // snipped for brevity
     // This is where we read and write from ADK
     FileInputStream mInputStream;
