@@ -76,23 +76,21 @@ public class GPSTrack {
 			 *@param Lat Contains the latitude value
 			 */
 	public void writegpxfile(String Long, String Lat){
-		if(!(Long.equals("0.0")&Lat.equals("0.0")))
-		{
-			try {
-				Date data = new Date();
-				SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-DD");
-				SimpleDateFormat time = new SimpleDateFormat("HH:mm:ss");
-				String formatdate = date.format(data);
-				String formattime = time.format(data);
-				writer.write("\t\t\t\u003Ctrkpt lat=\""+Lat+"\" lon=\""+Long+"\"\u003E");
-				writer.write(System.getProperty("line.separator"));
-				writer.write("\t\t\t\t\u003Ctime\u003E"+formatdate+"T"+formattime+"Z"+"\u003C/time\u003E");
-				writer.write(System.getProperty("line.separator"));
-				writer.write("\t\t\t\u003C/trkpt\u003E" );
-				writer.write(System.getProperty("line.separator"));
-				writer.flush();	
-			} catch (IOException e) { e.printStackTrace(); }
-		}
+	
+		try {
+			Date data = new Date();
+			SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-DD");
+			SimpleDateFormat time = new SimpleDateFormat("HH:mm:ss");
+			String formatdate = date.format(data);
+			String formattime = time.format(data);
+			writer.write("\t\t\t\u003Ctrkpt lat=\""+Lat+"\" lon=\""+Long+"\"\u003E");
+			writer.write(System.getProperty("line.separator"));
+			writer.write("\t\t\t\t\u003Ctime\u003E"+formatdate+"T"+formattime+"Z"+"\u003C/time\u003E");
+			writer.write(System.getProperty("line.separator"));
+			writer.write("\t\t\t\u003C/trkpt\u003E" );
+			writer.write(System.getProperty("line.separator"));
+			writer.flush();	
+		} catch (IOException e) { e.printStackTrace(); }
 	}
 	
 	// ***** Save GPX File ***************************************

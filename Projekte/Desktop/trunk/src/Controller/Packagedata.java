@@ -43,12 +43,22 @@ public class Packagedata {
 	
 	private void updateInformationbox()
 	{
-		double longi= ((double)Math.round(Double.parseDouble(tokens[5]) * 1000000)) / 1000000;
-		double lat= ((double)Math.round(Double.parseDouble(tokens[6]) * 1000000)) / 1000000;
-		controller_computer.gui_computer.longitude.setText(String.valueOf(longi));
-		controller_computer.gui_computer.latitude.setText(String.valueOf(lat));
-		controller_computer.gpstrack.writegpxfile(String.valueOf(tokens[5]), String.valueOf(tokens[6]));
-	
+		double doublelong= ((double)Math.round(Double.parseDouble(tokens[5]) * 1000000)) / 1000000;
+		double doublelat= ((double)Math.round(Double.parseDouble(tokens[6]) * 1000000)) / 1000000;
+		String Long = String.valueOf(doublelong);
+		String Lat = String.valueOf(doublelat);
+		
+		if(!(Long.equals("0.0")&Lat.equals("0.0")))
+		{	
+			controller_computer.gui_computer.longitude.setText(Long);
+			controller_computer.gui_computer.latitude.setText(Lat);
+			controller_computer.gpstrack.writegpxfile(String.valueOf(tokens[5]), String.valueOf(tokens[6]));
+		}else
+		{
+			controller_computer.gui_computer.longitude.setText("N/A");
+			controller_computer.gui_computer.latitude.setText("N/A");
+		}
+		
 		if (tokens[4].equals("1"))
 			controller_computer.gui_computer.connection_type.setText("WLAN");
 		if (tokens[3].equals("1"))
