@@ -29,7 +29,7 @@ public class Packagedata {
 	
 	public void receive_package(String data) 
 	{
-		controller_computer.log.writelogfile("Package Data Emfpangen");
+		controller_computer.log.writelogfile("Package Data Emfpangen");//Testen wegen GPS Daten
 		tokens = data.split(";",-1);
 		for (int i = 0; i < tokens.length; i++) tokens[i] = tokens[i].trim(); //Leerzeichen weg vorn und hinten
 		if (tokens[0].equals("1"))
@@ -44,11 +44,11 @@ public class Packagedata {
 	
 	private void updateInformationbox()
 	{
-		double longi= ((double)Math.round(Double.parseDouble(tokens[5]) * 100000)) / 100000;
-		double lat= ((double)Math.round(Double.parseDouble(tokens[6]) * 100000)) / 100000;
+		double longi= ((double)Math.round(Double.parseDouble(tokens[5]) * 1000000)) / 1000000;
+		double lat= ((double)Math.round(Double.parseDouble(tokens[6]) * 1000000)) / 1000000;
 		controller_computer.gui_computer.longitude.setText(String.valueOf(longi));
 		controller_computer.gui_computer.latitude.setText(String.valueOf(lat));
-		gpstrack.writegpxfile(String.valueOf(tokens[5]), String.valueOf(tokens[6]));
+		controller_computer.gpstrack.writegpxfile(String.valueOf(tokens[5]), String.valueOf(tokens[6]));
 	
 		if (tokens[4].equals("1"))
 			controller_computer.gui_computer.connection_type.setText("WLAN");
