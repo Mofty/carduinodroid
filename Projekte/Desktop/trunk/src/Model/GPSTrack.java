@@ -99,7 +99,6 @@ public class GPSTrack {
 			 */
 	public void savegpxfile(){
 		try {
-			writegpxfile("10.9199","50.6912"); //Test meiner FUnktion beim Schlieﬂen des Fensters Ilmenau-Koordinaten
 			writer.write("\t\t\u003C/trkseg\u003E");writer.write(System.getProperty("line.separator"));
 			writer.write("\t\u003C/trk\u003E");writer.write(System.getProperty("line.separator"));
 			writer.write("\u003C/gpx\u003E");writer.write(System.getProperty("line.separator"));
