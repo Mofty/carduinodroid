@@ -24,6 +24,8 @@ public class GPS
 	public GPS(Context context, LOG nlog) 
 	{
 		log = nlog;
+		longitude = 0;
+		latitude = 0;
 		// ruft eine Instanz des LocationManagers ab
 		locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 
