@@ -29,7 +29,6 @@ public class Packagedata {
 	
 	public void receive_package(String data) 
 	{
-		controller_computer.log.writelogfile("Package Data Emfpangen");//Testen wegen GPS Daten
 		tokens = data.split(";",-1);
 		for (int i = 0; i < tokens.length; i++) tokens[i] = tokens[i].trim(); //Leerzeichen weg vorn und hinten
 		if (tokens[0].equals("1"))
