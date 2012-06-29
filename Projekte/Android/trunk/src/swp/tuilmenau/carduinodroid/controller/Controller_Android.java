@@ -92,13 +92,17 @@ public class Controller_Android
 	//TODO It work but it looks like shit and is hardly called "easily expandable".
 	public void receiveData(String data)
 	{
+		boolean front, right;
+		String trueString = "true";
 		String[] parts = data.split(";",-1);
 
 		switch (Integer.parseInt(parts[0]))
 		{
 			case 1: // Everything for control signals
 			{
-				//arduino.SendCommand() anpassen von lars im arduino in car controller java
+				front = (parts[2].equals(trueString));
+				right = (parts[4].equals(trueString));
+				arduino.SendCommand(front, Integer.parseInt(parts[1]), right, Integer.parseInt(parts[3])); //anpassen von lars im arduino in car controller java
 				log.write(LOG.INFO, "data: "+parts[1]+";"+parts[2]+";"+parts[3]+";"+parts[4]);	
 			} break;
 			

@@ -109,6 +109,10 @@ public class CarDuinoDroidAppActivity extends Activity
 	 */
 	public void onPause()
 	{
+		controller_Android.log.save();
+		notificationManager.cancel(1337);
+		wakelock.release();
+		controller_Android.cam.disableCamera();
 		finish();
 		System.exit(0);
 	}
