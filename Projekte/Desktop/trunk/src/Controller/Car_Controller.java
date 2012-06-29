@@ -97,7 +97,7 @@ public class Car_Controller {
 		 */
 	private int SpeedCalculation(int speed)
 	{	
-		return (int) ((speed/9.09)+1); //Speed divided by (100/(parts-1))
+		return (int) ((speed/6.67)+1); //Speed divided by (100/(parts-1))
 	}
 	
 	// ***** Direction Calculation ***************************************
