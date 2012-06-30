@@ -68,7 +68,7 @@ public class CarDuinoDroidAppActivity extends Activity
 	}   
 
 	/**
-	 * Called when the close button is pressed;
+	 * Called when the close button is pressed.
 	 * 
 	 * @param view The {@link View} of the button that has been pressed.
 	 * @see Activity#finish()
