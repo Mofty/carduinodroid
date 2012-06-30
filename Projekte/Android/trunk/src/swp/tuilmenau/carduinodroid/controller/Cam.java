@@ -1,19 +1,22 @@
 package swp.tuilmenau.carduinodroid.controller;
 
-import swp.tuilmenau.carduinodroid.model.LOG;
-import swp.tuilmenau.carduinodroid.R;
-
-import java.io.*;
-import java.net.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.List;
 
+import swp.tuilmenau.carduinodroid.R;
+import swp.tuilmenau.carduinodroid.model.LOG;
 import android.app.Activity;
 import android.graphics.Rect;
 import android.graphics.YuvImage;
 import android.hardware.Camera;
-import android.hardware.Camera.*;
+import android.hardware.Camera.Parameters;
+import android.hardware.Camera.Size;
 import android.util.Log;
-import android.view.*;
+import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 /**
  * The Cam Class is used to set the settings, initialized the cam, the socket and the preview.
@@ -52,10 +55,9 @@ public class Cam implements CameraCallback
 		parameters = camera.getParameters();
 		this.controller = controller;
 		parameters.setRotation(270);
+		camera.setParameters(parameters);
 		height = parameters.getPreviewSize().height;
 		width = parameters.getPreviewSize().width;
-		parameters.setPreviewSize(640, 480);
-		camera.setParameters(parameters);
 		fps = parameters.getPreviewFrameRate();
 		flashmode = parameters.getFlashMode();
 		Log.e("cam", "cam erstellung fertig");
@@ -225,20 +227,41 @@ public class Cam implements CameraCallback
 	 *   Called as preview frames are displayed. Compress the data too a jpeg-file and send it to the java-program
 	 */
 	public void onPreviewFrame(byte[] data, Camera camera) {
-		if(os != null){
+		if(os != null && !client.isClosed()){
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			YuvImage temp = new YuvImage(data,camera.getParameters().getPreviewFormat(), camera.getParameters().getPreviewSize().width,  camera.getParameters().getPreviewSize().height, null);
 			Rect rect = new Rect(0,0,camera.getParameters().getPreviewSize().width,camera.getParameters().getPreviewSize().height);
-			temp.compressToJpeg(rect, 20, baos);
+			temp.compressToJpeg(rect, 30, baos);
 			byte[] image = baos.toByteArray();
 			try {
 				os.write(image);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				Log.e("cam", "fehler beim schreiben des previewimage");
-			}
 		}
-	}
+		}}
+	
+		
+		
+		public String[] getSupportedSize(){
+			List<Size> supsize = parameters.getSupportedPreviewSizes();
+			String[] result = new String[supsize.size()];
+			for(int i = 0; i< supsize.size(); i++)
+			{
+				result[i] = supsize.get(i).width+";"+supsize.get(i).height;
+			}
+			return result;
+			}
+		
+		public String[] getSupportedFPS(){
+			List<Integer> supfps = parameters.getSupportedPreviewFrameRates();
+			String[] result = new String[supfps.size()];
+			for(int i = 0; i< supfps.size(); i++)
+			{
+				result[i] = supfps.get(i).intValue() + "";
+			}
+			return result;
+			}
 
 	/**
 	 *   	not used      
@@ -257,5 +280,34 @@ public class Cam implements CameraCallback
 	public String onGetVideoFilename() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public void close() {
+		try {
+		if(client != null){
+				os = null;
+				client.close();
+				}
+		Thread t = new Thread(new Runnable(){
+			public void run() {
+				client = null;
+					try {
+						if(ss != null)
+						{
+							Log.e("cam","serversocket da");
+						}
+						client = ss.accept();
+						os = client.getOutputStream();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+							e.printStackTrace();
+					}
+			}
+		});
+		t.start();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 }
