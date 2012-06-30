@@ -112,7 +112,7 @@ public class CarDuinoDroidAppActivity extends Activity
 	}
 	
 	/**
-	 * Called by the System when the App is minimized or the Close-Button is pressed.
+	 * Called by when the App is minimized or the Close-Button is pressed.
 	 */
 	private void cleanUp()
 	{
