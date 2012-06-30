@@ -125,9 +125,6 @@ public class Arduino{
             FileDescriptor fd = mFileDescriptor.getFileDescriptor();
             // set one to write
             mOutputStream = new FileOutputStream(fd);
-     
-            //Thread thread = new Thread(null,this,"ADKTestProject");
-            //thread.start();
             log.write(LOG.INFO, "Accessory Opened");
      
         }
