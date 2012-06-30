@@ -81,6 +81,7 @@ public class Controller_Android
 	 *		<li>Front or Back Camera</li>
 	 * 		<li>Camera Resolution</li>
 	 * 		<li>Camera Light</li>
+	 * 		<li>Quality</>
 	 * 	</ol>
 	 * 	<li>Sound Signals</li>
 	 * 	<ol>
@@ -89,7 +90,6 @@ public class Controller_Android
 	 * 	</ol>
 	 * </ol>
 	 */
-	//TODO It work but it looks like shit and is hardly called "easily expandable".
 	public void receiveData(String data)
 	{
 		boolean front, right;
@@ -102,7 +102,7 @@ public class Controller_Android
 			{
 				front = (parts[2].equals(trueString));
 				right = (parts[4].equals(trueString));
-				arduino.SendCommand(front, Integer.parseInt(parts[1]), right, Integer.parseInt(parts[3])); //anpassen von lars im arduino in car controller java
+				arduino.SendCommand(front, Integer.parseInt(parts[1]), right, Integer.parseInt(parts[3]));
 				log.write(LOG.INFO, "data: "+parts[1]+";"+parts[2]+";"+parts[3]+";"+parts[4]);	
 			} break;
 			
@@ -113,6 +113,7 @@ public class Controller_Android
 					case 1:
 					{
 						cam.switchCam(Integer.parseInt(parts[2])); //Anpassen mit Robin
+						log.write(LOG.INFO, "Switched Camera");
 					} break;
 					case 2:
 					{
@@ -123,6 +124,11 @@ public class Controller_Android
 					{
 						if (Integer.parseInt(parts[2]) == 1) cam.enableFlash();
 						if (Integer.parseInt(parts[2]) == 0) cam.disableFlash();
+					} break;
+					
+					case 4:
+					{
+						
 					} break;
 			
 					default: log.write(LOG.WARNING, "Unknown camera command from PC"); break;
@@ -144,10 +150,12 @@ public class Controller_Android
 						if (Integer.parseInt(parts[2]) == 0) 
 						{
 							record_sound.stopRecord();
+							log.write(LOG.INFO, "Stopped recording");
 						}
 						else 
 						{
 							record_sound.startRecord();
+							log.write(LOG.INFO, "Starting recording");
 						}
 					} break;
 				
