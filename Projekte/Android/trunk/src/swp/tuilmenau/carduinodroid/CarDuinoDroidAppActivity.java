@@ -75,6 +75,7 @@ public class CarDuinoDroidAppActivity extends Activity
 	 */
 	public void close(View view)
 	{
+		notificationManager.cancel(1337);
 		finish();
 		System.exit(0);
 	}
@@ -105,6 +106,7 @@ public class CarDuinoDroidAppActivity extends Activity
 	 */
 	public void onPause()
 	{
+		notificationManager.cancel(1337);
 		finish();
 		System.exit(0);
 	}
@@ -117,7 +119,6 @@ public class CarDuinoDroidAppActivity extends Activity
 	public void onDestroy()
 	{
 		controller_Android.log.save();
-		notificationManager.cancel(1337);
 		wakelock.release();
 		controller_Android.cam.disableCamera();
 		unregisterReceiver(controller_Android.connection.connectionLogger);

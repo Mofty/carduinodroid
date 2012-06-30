@@ -14,6 +14,7 @@ import android.media.SoundPool;
  * @author Paul Thorwirth & Felix Lewandowski
  * @version 1.0
  * @see SoundPool
+ * @see AudioManager
  */
 public class Sound 
 {
