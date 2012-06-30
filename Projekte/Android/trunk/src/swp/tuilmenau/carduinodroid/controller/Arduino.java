@@ -1,19 +1,18 @@
 package swp.tuilmenau.carduinodroid.controller;
 
-//usbmanager expose ADK as a File Descriptor
+
 import java.io.FileDescriptor;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 import swp.tuilmenau.carduinodroid.model.LOG;
-import android.app.Activity;//hold ADK Intent, because it is not always connected
-import android.app.PendingIntent;//snipped for brevity this is precisely what USB-manager expose
+import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.ParcelFileDescriptor;//snipped for brevity what we needed to read from ADK, use future because I only have a android 2.3.7 OS with me
+import android.os.ParcelFileDescriptor;
 
 import com.android.future.usb.UsbManager;
 import com.android.future.usb.UsbAccessory;
@@ -22,15 +21,17 @@ import com.android.future.usb.UsbAccessory;
  * This method is about the control of our arduino controller.
  * But it is still untested.
  * 
- * @version 12.06.12
- * @author Lars
+ * @version 1.0
+ * @author Paul Thorwirth
+ * @author Lars Vogel
+ * 
  */ 
 
 public class Arduino{
 	
 	private LOG log;
-	Activity activity;
-	IntentFilter usbFilter;
+	private Activity activity;
+	private IntentFilter usbFilter;
 	// UsbManager to check if ADK is connected
     private UsbManager mUsbManager;
     // To read permission from ADK
@@ -40,11 +41,10 @@ public class Arduino{
     private static final String ACTION_USB_PERMISSION = "swp.tuilmenau.carduinodroid.action.USB_PERMISSION";
     // snipped for brevity
     // This is where we read and write from ADK
-    FileInputStream mInputStream;
-    FileOutputStream mOutputStream;
-    ParcelFileDescriptor mFileDescriptor;
+    private FileOutputStream mOutputStream;
+    private ParcelFileDescriptor mFileDescriptor;
     // Accesory!!!
-    UsbAccessory mAccessory;
+    private UsbAccessory mAccessory;
     public BroadcastReceiver mUsbReceiver;
 	
 	public Arduino(Activity nactivity, LOG Log){
@@ -88,9 +88,9 @@ public class Arduino{
 	    
 		mUsbManager = UsbManager.getInstance(activity);
 		mPermissionIntent = PendingIntent.getBroadcast(activity, 0, new Intent(ACTION_USB_PERMISSION), 0);
-		IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
-		filter.addAction(UsbManager.ACTION_USB_ACCESSORY_DETACHED);
-		activity.registerReceiver(mUsbReceiver, filter);
+		usbFilter = new IntentFilter(ACTION_USB_PERMISSION);
+		usbFilter.addAction(UsbManager.ACTION_USB_ACCESSORY_DETACHED);
+		activity.registerReceiver(mUsbReceiver, usbFilter);
  
 		UsbAccessory[] accessories = mUsbManager.getAccessoryList();
 		UsbAccessory accessory = (accessories == null ? null : accessories[0]);
@@ -123,8 +123,6 @@ public class Arduino{
             mAccessory = accessory;
             // get the file descriptor
             FileDescriptor fd = mFileDescriptor.getFileDescriptor();
-            // set one to read
-            mInputStream = new FileInputStream(fd);
             // set one to write
             mOutputStream = new FileOutputStream(fd);
      
