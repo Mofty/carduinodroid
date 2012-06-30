@@ -21,9 +21,9 @@ public class Record_Sound
 {
 	private MediaRecorder recorder;
 
-	private File outfile = null;
-	Time time;
-	File storageDir;
+	private File outfile;
+	private Time time;
+	private File storageDir;
 
 	LOG log;
 
@@ -50,6 +50,7 @@ public class Record_Sound
 			recorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
 			recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
 			recorder.setOutputFile(outfile.getAbsolutePath());
+			recorder.prepare();
 		}
 		catch (IOException e) {log.write(LOG.WARNING, "Could not create soundfile");}
 		catch (IllegalArgumentException e) {log.write(LOG.WARNING, "Illegal sound argument");} 
@@ -58,26 +59,25 @@ public class Record_Sound
 	/**
 	 * Starts the recording.
 	 */
-	public void startRecord()
+	public void start()
 	{
 		init();
 		try 
 		{
-			recorder.prepare();
 			recorder.start();
-			log.write(LOG.INFO, "Start recording");
+			log.write(LOG.INFO, "Starting recording");
 		} 
-		catch (IllegalStateException e) {log.write(LOG.WARNING, "Invalid recorder state");} 
-		catch (IOException e) {log.write(LOG.WARNING, "Could not create soundfile");}
+		catch (IllegalStateException e) { log.write(LOG.WARNING, "Invalid recorder state"); } 
 	}
 
 
 	/**
 	 * Stops the Recording.
 	 */
-	public void stopRecord ()
+	public void stop()
 	{
 		recorder.stop();
 		recorder.reset();
+		log.write(LOG.INFO, "Stopped recording");
 	}
 }
