@@ -32,7 +32,7 @@ public class Network
 		Log.e("hauptporg","t1 wird gestartet");
 		t1 = new Thread(socket_controller, "socketcontroll"); 
 		t1.start();
-		socket_package = new Socket_Package(controller);
+		socket_package = new Socket_Package(controller, this);
 		Log.e("hauptporg","t2 wird gestartet");
 		t2 = new Thread(socket_package, "socketpackage"); 
 		t2.start();
@@ -47,6 +47,16 @@ public class Network
 	 */
 	public void receive_controll(String message) throws IOException {
 		controller.receiveData(message);
+	}
+
+
+
+	public void close() {
+		// TODO Auto-generated method stub
+		Log.e("network", "connection lost...wait for new connection");
+		socket_package.close();
+		socket_controller.close();
+		controller.cam.close();
 	}
 
 	
