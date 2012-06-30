@@ -33,7 +33,7 @@ public class Controller_Android
 		connection = new Connection(activity, log);
 		gps = new GPS(activity, log);
 		record_sound = new Record_Sound(log);
-		sound = new Sound(activity);	
+		sound = new Sound(activity, log);	
 
 		final Controller_Android temp = this;
 		new Thread(new Runnable()
@@ -149,13 +149,11 @@ public class Controller_Android
 					{
 						if (Integer.parseInt(parts[2]) == 0) 
 						{
-							record_sound.stopRecord();
-							log.write(LOG.INFO, "Stopped recording");
+							record_sound.stop();
 						}
 						else 
 						{
-							record_sound.startRecord();
-							log.write(LOG.INFO, "Starting recording");
+							record_sound.start();
 						}
 					} break;
 				
