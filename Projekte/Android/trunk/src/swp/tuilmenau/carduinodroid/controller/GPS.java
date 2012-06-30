@@ -2,6 +2,7 @@ package swp.tuilmenau.carduinodroid.controller;
 
 import swp.tuilmenau.carduinodroid.model.LOG;
 
+import android.app.Activity;
 import android.content.Context;
 import android.location.*;
 import android.os.Bundle;
@@ -21,12 +22,12 @@ public class GPS
 	private LocationListener locationListener;
 	private double longitude, latitude, altitude;
 
-	public GPS(Context context, LOG nlog) 
+	public GPS(Activity activity, LOG nlog) 
 	{
 		log = nlog;
 		reset();
 		// ruft eine Instanz des LocationManagers ab
-		locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+		locationManager = (LocationManager) activity.getSystemService(Context.LOCATION_SERVICE);
 
 		// erstellt einen LocationListener der auf änderung der GPS Position reagiert
 		locationListener = new LocationListener() 
