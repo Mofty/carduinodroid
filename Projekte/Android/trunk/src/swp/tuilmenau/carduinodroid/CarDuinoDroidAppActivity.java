@@ -75,7 +75,7 @@ public class CarDuinoDroidAppActivity extends Activity
 	 */
 	public void close(View view)
 	{
-		notificationManager.cancel(1337);
+		cleanUp();
 		finish();
 		System.exit(0);
 	}
@@ -106,24 +106,24 @@ public class CarDuinoDroidAppActivity extends Activity
 	 */
 	public void onPause()
 	{
-		notificationManager.cancel(1337);
+		cleanUp();
 		finish();
 		System.exit(0);
 	}
 	
 	/**
-	 * Called by the System when the Activity is destroyed.
+	 * Called by the System when the App is minimized or the close-Button is pressed.
 	 * 
 	 * @see Activity#onDestroy()
 	 */
-	public void onDestroy()
+	private void cleanUp()
 	{
+		notificationManager.cancel(1337);
 		controller_Android.log.save();
 		wakelock.release();
 		controller_Android.cam.disableCamera();
 		unregisterReceiver(controller_Android.connection.connectionLogger);
 		unregisterReceiver(controller_Android.arduino.mUsbReceiver);
 		controller_Android.arduino.closeAccessory();
-		super.onDestroy();
 	}
 }
