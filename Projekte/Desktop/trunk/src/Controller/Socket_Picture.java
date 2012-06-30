@@ -36,9 +36,9 @@ public class Socket_Picture implements Runnable{
 	 */
 	public void connect(InetSocketAddress nport_picture)
 	{
-		System.out.println("cam connection gestartet");
 		port_picture = nport_picture;
 		try {
+			socket_picture = new Socket();
 			socket_picture.connect(port_picture);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -83,13 +83,13 @@ public class Socket_Picture implements Runnable{
 	public void run() {
 		BufferedImage buffer;
 		int i = 0;
-		while(socket_picture.isConnected())
+		while(!socket_picture.isClosed())
 		{
 			try {
 				i =picturestream.available();
 				if(i > 0){
 				network.receive_picture(readpicture());
-				System.out.println("was da zum lesen" + i);
+				System.out.println("was da zum lesen" + i + "      " + System.currentTimeMillis());
 				}
 					
 					else
@@ -104,7 +104,6 @@ public class Socket_Picture implements Runnable{
 					System.out.println("fehler beim lesen");
 				}
 			}
-			connect();
 		}
 
 	/**
@@ -127,6 +126,15 @@ public class Socket_Picture implements Runnable{
 		} catch (IOException e) {
 		}
 		return null;
+	}
+
+	public void close() {
+		try {
+			socket_picture.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
 

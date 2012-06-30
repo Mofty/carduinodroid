@@ -21,7 +21,6 @@ public class Socket_Controller {
 
 
 	Socket_Controller(){
-		socket_controll = new Socket();
 	}
 	
 	/**
@@ -31,6 +30,7 @@ public class Socket_Controller {
 	public void connect(InetSocketAddress port_controll)
 	{
 		try {
+			socket_controll = new Socket();
 			socket_controll.connect(port_controll);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -58,7 +58,7 @@ public class Socket_Controller {
 	 */
 	public boolean send_controllsignal(String direction)
 	{
-		if(socket_controll.isConnected())
+		if(!socket_controll.isClosed())
 		{
 			String bufferdirection = "1;" + direction;
 			try {
@@ -84,7 +84,7 @@ public class Socket_Controller {
 	 */
 	public boolean send_camera_settings(String settings)
 	{
-		if(socket_controll.isConnected())
+		if(!socket_controll.isClosed())
 		{
 			String buffersettings = "2;" + settings;
 			try {
@@ -110,7 +110,7 @@ public class Socket_Controller {
 	 */
 	public boolean send_sound(String sound_id)
 	{
-		if(socket_controll.isConnected())
+		if(!socket_controll.isClosed())
 		{
 			String buffersound_id = "3;" + sound_id;
 			try {
@@ -126,6 +126,15 @@ public class Socket_Controller {
 		
 		else{
 		return false;
+		}
+	}
+
+	public void close() {
+		try {
+			socket_controll.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
