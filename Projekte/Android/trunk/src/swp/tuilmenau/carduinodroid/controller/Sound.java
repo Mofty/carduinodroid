@@ -3,6 +3,7 @@ package swp.tuilmenau.carduinodroid.controller;
 import swp.tuilmenau.carduinodroid.R;
 import swp.tuilmenau.carduinodroid.model.LOG;
 
+import android.app.Activity;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.SoundPool;
@@ -23,12 +24,12 @@ public class Sound
 	int soundID;
 	int volume;
 	
-	public Sound(Context context, LOG log)
+	public Sound(Activity activity, LOG log)
 	{
 		this.log = log;
 		soundpool = new SoundPool (5, AudioManager.STREAM_MUSIC, 0);
-		audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-		soundID = soundpool.load(context, R.raw.horn, 1);
+		audioManager = (AudioManager) activity.getSystemService(Context.AUDIO_SERVICE);
+		soundID = soundpool.load(activity, R.raw.horn, 1);
 	}
 	
 	/**
