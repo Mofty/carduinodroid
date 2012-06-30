@@ -141,8 +141,7 @@ public class Controller_Android
 				{
 					case 1: 
 					{	
-						sound.horn(Integer.parseInt(parts[2]));
-						log.write(LOG.INFO, "Signal was played");
+						sound.horn();
 					} break;
 					
 					case 2:

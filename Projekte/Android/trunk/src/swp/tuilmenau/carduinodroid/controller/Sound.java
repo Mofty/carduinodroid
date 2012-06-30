@@ -35,7 +35,7 @@ public class Sound
 	/**
 	 * Plays the SoundFile associated with the horn.
 	 */
-	public void horn (int ID)
+	public void horn()
 	{
 		volume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
 		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
