@@ -1,8 +1,10 @@
 package Controller;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.*;
 
 import Model.Log;
@@ -14,17 +16,22 @@ import Model.Log;
  */
 public class Socket_Package implements Runnable{
 	
+	private static final String ACKNOWLEDGE = "ACK";
 	Socket socket_package;
 	Network network;
 	BufferedReader packagereader;
+	BufferedWriter  packagewriter;
 	InetSocketAddress port_package;
 	Log log;
+	
+	
 	
 	Socket_Package(Network n_network)
 	{
 		socket_package = new Socket();
 		network = n_network;
 		//log = new Log();
+		System.out.println(ACKNOWLEDGE);
 	}
 
 	/**
@@ -35,6 +42,7 @@ public class Socket_Package implements Runnable{
 	{
 		port_package = nport_package;
 		try {
+			socket_package = new Socket();
 			socket_package.connect(port_package);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -46,6 +54,7 @@ public class Socket_Package implements Runnable{
 		
 		try {
 			packagereader = new BufferedReader(new InputStreamReader(socket_package.getInputStream()));
+			packagewriter = new BufferedWriter(new OutputStreamWriter(socket_package.getOutputStream()));
 		} catch (IOException e) {
 			System.out.println("fehler beim inputstream");
 		}
@@ -69,6 +78,7 @@ public class Socket_Package implements Runnable{
 			
 			try {
 				packagereader = new BufferedReader(new InputStreamReader(socket_package.getInputStream()));
+				packagewriter = new BufferedWriter(new OutputStreamWriter(socket_package.getOutputStream()));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -82,17 +92,36 @@ public class Socket_Package implements Runnable{
 	@Override
 	public void run() {
 		String message;
-		while(socket_package.isConnected())
+		long lastpackage = System.currentTimeMillis();
+		while(!socket_package.isClosed())
 		{
 			try {
 				if(packagereader.ready()){
-				System.out.println("was da zum lesen");
 				message = (String) packagereader.readLine();
+				System.out.println(message);
+				//connection available
+				if(message.equals(ACKNOWLEDGE))
+				{
+					System.out.println("ack gesendet");
+					packagewriter.write(ACKNOWLEDGE);
+					packagewriter.newLine();
+					packagewriter.flush();
+					System.out.println("fertig");
+				}
+				else
+				{
+				lastpackage = System.currentTimeMillis();
 				network.receive_package(message);
+				}
 				}
 					
 					else
 					{
+						if(System.currentTimeMillis() > lastpackage + 10000) //10 sec
+						{
+							network.camera_picture.controller.log.writelogfile("Timeout. Please reconnect");
+							network.close();
+						}
 						try {
 							Thread.sleep(25);
 						} catch (InterruptedException e) {
@@ -103,6 +132,14 @@ public class Socket_Package implements Runnable{
 					System.out.println("fehler beim lesen");
 				}
 			}
-			log.savelogfile();
 		}
+	
+	public void close() {
+		try {
+			socket_package.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
