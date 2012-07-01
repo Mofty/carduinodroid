@@ -34,8 +34,8 @@ public class Socket_Controller implements Runnable {
 	 * @see java.lang.Runnable#run()
 	 */
 	public void run() {
+		socket_controller = null;
 		while (true) {
-			socket_controller = null;
 			client = null;
 			BufferedReader stream = null;
 			long timestamp = System.currentTimeMillis();
