@@ -40,6 +40,7 @@ public class Cam implements CameraCallback
 	private Socket client;
 	private OutputStream os;
 	private ServerSocket ss;
+	private int quality;
 	
 	/**
 	 * This is the constructor of the Cam-Class. In this Method the Camera object and the Serversocket are created
@@ -49,6 +50,7 @@ public class Cam implements CameraCallback
 	public Cam(Controller_Android controller, Activity activity)
 	{	
 		Log.e("cam", "cam erstellung gestartet");
+		quality = 30;
 		this.activity = activity;
 		camera = Camera.open();
 		cameraholder = (ViewGroup) activity.findViewById(R.id.preview);
@@ -136,27 +138,22 @@ public class Cam implements CameraCallback
 	/**
 	 * Change the Resolution of the preview pictures
 	 * @param width the width of the pictures, in pixels
-	 * @param height the height of the pictures, in pixels
 	 */
-	public void changeRes(int width, int height)
+	public void changeRes(int index)
 	{
+		camera.stopPreview();
+		Log.e("cam", "preview stop changeres");
 		List<Size> temp = parameters.getSupportedPreviewSizes();
-		if(temp.contains(camera.new Size(width, height))){
-			parameters = camera.getParameters();
-			parameters.setPreviewSize(width, height);
+		int newwidth = temp.get(index).width;
+		int newheight = temp.get(index).height;
+		parameters = camera.getParameters();
+		parameters.setPreviewSize(newwidth, newheight);
 			camera.setParameters(parameters);
-			this.width = width;
-			this.height = height;
-		}
-		else
-		{
-			Camera.Size buffer = getBestPreviewSize(width, height);
-			if(buffer != null){
-				parameters.setPreviewSize(buffer.width, buffer.height);
-				this.width = buffer.width;
-				this.height = buffer.height;		
-			}
-		}
+		this.width = newwidth;
+		this.height = newheight;
+		camera.startPreview();
+		Log.e("cam", "preview restarted changeres");
+
 	}
 	/**
 	 * Set the preview frame rate
@@ -185,27 +182,7 @@ public class Cam implements CameraCallback
 		camera.release();
 	}
 
-	private Camera.Size getBestPreviewSize(int width, int height) {
-		Camera.Size result=null;
-		List<Size> supsize = parameters.getSupportedPreviewSizes();
 
-		for (int i = 0; i<supsize.size(); i++) {
-			if (supsize.get(i).width<=width && supsize.get(i).height<=height) {
-				if (result==null) {
-					result=supsize.get(i);
-				}
-				else {
-					int resultArea=result.width*result.height;
-					int newArea=supsize.get(i).width*supsize.get(i).height;
-
-					if (newArea>resultArea) {
-						result=supsize.get(i);
-					}
-				}
-			}
-		}
-		return result;
-	}
 
 	/**
 	 * Sets the Surface and the Callback
@@ -227,11 +204,12 @@ public class Cam implements CameraCallback
 	 *   Called as preview frames are displayed. Compress the data too a jpeg-file and send it to the java-program
 	 */
 	public void onPreviewFrame(byte[] data, Camera camera) {
-		if(os != null && !client.isClosed()){
+		if(os != null && !client.isClosed() && (width * height) == data.length){
+			Log.e("cam", "previewimage");
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			YuvImage temp = new YuvImage(data,camera.getParameters().getPreviewFormat(), camera.getParameters().getPreviewSize().width,  camera.getParameters().getPreviewSize().height, null);
 			Rect rect = new Rect(0,0,camera.getParameters().getPreviewSize().width,camera.getParameters().getPreviewSize().height);
-			temp.compressToJpeg(rect, 30, baos);
+			temp.compressToJpeg(rect, quality, baos);
 			byte[] image = baos.toByteArray();
 			try {
 				os.write(image);
@@ -243,12 +221,12 @@ public class Cam implements CameraCallback
 	
 		
 		
-		public String[] getSupportedSize(){
+		public String getSupportedSize(){
 			List<Size> supsize = parameters.getSupportedPreviewSizes();
-			String[] result = new String[supsize.size()];
-			for(int i = 0; i< supsize.size(); i++)
+			String result = supsize.get(0).width+"x"+supsize.get(0).height;
+			for(int i = 1; i< supsize.size(); i++)
 			{
-				result[i] = supsize.get(i).width+";"+supsize.get(i).height;
+				result = result + ";" +supsize.get(i).width+"x"+supsize.get(i).height;
 			}
 			return result;
 			}
@@ -280,6 +258,17 @@ public class Cam implements CameraCallback
 	public String onGetVideoFilename() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public void setQuality(int quality){
+		if(quality > 100){
+			this.quality = 100;
+			controller.log.write(LOG.WARNING, "Quality changed to 100");
+		}
+		else{
+			this.quality = quality;
+			controller.log.write(LOG.WARNING, "Quality changed to " + quality);
+			}
 	}
 	
 	public void close() {
