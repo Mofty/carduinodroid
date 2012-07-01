@@ -102,7 +102,7 @@ public class CarDuinoDroidAppActivity extends Activity
 	/**
 	 * Called when the App is minimized.
 	 * 
-	 * @see Activity#onResume()
+	 * @see Activity#onStop()
 	 */
 	public void onPause()
 	{
@@ -112,7 +112,7 @@ public class CarDuinoDroidAppActivity extends Activity
 	}
 	
 	/**
-	 * Called by when the App is minimized or the Close-Button is pressed.
+	 * Called when the App is minimized or the Close-Button is pressed.
 	 */
 	private void cleanUp()
 	{
