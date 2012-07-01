@@ -127,17 +127,15 @@ public class Socket_Package implements Runnable {
 			} 
 		}
 	public void sendCameraSizes() {
-		String[] sizes = network.controller.cam.getSupportedSize();
-		for(int i = 0 ; i < sizes.length; i++){
+		String sizes = network.controller.cam.getSupportedSize();
 			try {
-				packagewriter.write("2;" + sizes[i]);
+				packagewriter.write("2;" + sizes);
 				packagewriter.newLine();
 				packagewriter.flush();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				network.controller.log.write(LOG.WARNING, "Error by writing onto Packagesocket");
 			}
-		}
 	}
 
 	public void close() {
