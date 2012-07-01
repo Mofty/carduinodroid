@@ -117,7 +117,7 @@ public class Controller_Android
 					} break;
 					case 2:
 					{
-						cam.changeRes(Integer.parseInt(parts[2]), Integer.parseInt(parts[3])); //Anpassen mit Robin
+						cam.changeRes(Integer.parseInt(parts[2])); //Anpassen mit Robin
 					} break;
 					
 					case 3:
@@ -128,7 +128,7 @@ public class Controller_Android
 					
 					case 4:
 					{
-						
+						cam.setQuality(Integer.parseInt(parts[2]));
 					} break;
 			
 					default: log.write(LOG.WARNING, "Unknown camera command from PC"); break;
