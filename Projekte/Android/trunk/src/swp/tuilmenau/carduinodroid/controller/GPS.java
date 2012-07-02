@@ -22,14 +22,20 @@ public class GPS
 	private LocationListener locationListener;
 	private double longitude, latitude, altitude;
 
+	/**
+	 * Gets an Instance of the LocationManager and creates and registers a LocationListener
+	 * 
+	 * @param activity the current Activity
+	 * @param nlog 	The Log
+	 * 
+	 * @see LocationManager
+	 * @see LocationListener
+	 */
 	public GPS(Activity activity, LOG nlog) 
 	{
 		log = nlog;
 		reset();
-		// ruft eine Instanz des LocationManagers ab
 		locationManager = (LocationManager) activity.getSystemService(Context.LOCATION_SERVICE);
-
-		// erstellt einen LocationListener der auf änderung der GPS Position reagiert
 		locationListener = new LocationListener() 
 		{
 			public void onLocationChanged(Location location) 
@@ -62,10 +68,13 @@ public class GPS
 			}
 
 		};	
-		// registriert den LocationListener zum erhalten von Updates zur Position jede sekunde (1000 ms)
+
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
 	}
 	
+	/**
+	 * Sets the Fields to zero.
+	 */
 	private void reset()
 	{
 		latitude = 0;

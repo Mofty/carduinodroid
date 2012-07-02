@@ -22,8 +22,11 @@ public class Controller_Android
 	public Record_Sound record_sound;
 	public Sound sound;
 
-	public int framerate;
-
+	/**
+	 * Calls the Constructor of all other sub-classes.
+	 * 
+	 * @param activity the current Activity
+	 */
 	public Controller_Android(Activity activity) 
 	{
 		log = new LOG();

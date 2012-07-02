@@ -10,8 +10,7 @@ import android.text.format.Time;
 import swp.tuilmenau.carduinodroid.model.LOG;
 
 /**
- * The method starts and stops recording the Sound. 
- * After that, it will we saved at the Smartphone.
+ * Used to record audio and save it to the sdcard. 
  * 
  * @version 1.0
  * @author Christian Schulze & Paul Thorwirth
@@ -27,6 +26,11 @@ public class Record_Sound
 
 	private LOG log;
 
+	/**
+	 * Creates the directories for saving the audio-files.
+	 * 
+	 * @param Log The Log
+	 */
 	public Record_Sound(LOG Log) 
 	{
 		this.log = Log;
@@ -35,6 +39,11 @@ public class Record_Sound
 		time = new Time();		
 	} 
 
+	/**
+	 * Initializes the MediaRecorder.
+	 * 
+	 * @see MediaRecorder
+	 */
 	private void init()
 	{
 		time.setToNow();
