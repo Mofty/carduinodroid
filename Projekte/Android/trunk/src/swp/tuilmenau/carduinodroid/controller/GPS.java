@@ -41,10 +41,13 @@ public class GPS
 
 			public void onStatusChanged(String provider, int status, Bundle extras)
 			{
+				int satellites;
 				if ((status == LocationProvider.OUT_OF_SERVICE) | (status == LocationProvider.TEMPORARILY_UNAVAILABLE))
 				{	
 					reset();
 				}
+				satellites = (Integer) extras.get("satellites");
+				if (satellites == 0) reset();
 			}
 
 			public void onProviderEnabled(String provider) 
