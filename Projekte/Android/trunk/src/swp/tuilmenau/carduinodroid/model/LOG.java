@@ -23,7 +23,7 @@ public class LOG
 	public static final int LOG_WARNINGS_ONLY = 2;
 	public static final int INFO = 3;
 	public static final int WARNING = 4;
-	private final String logpath = Environment.getExternalStorageDirectory().getPath()+"/carduinodroid/log";
+	private final String LOGPATH = Environment.getExternalStorageDirectory().getPath()+"/carduinodroid/log";
 
 	private Time time;
 	private File path;
@@ -38,9 +38,9 @@ public class LOG
 		time = new Time();
 		time.setToNow();
 		// erstellt datei mit schreibrechten
-		path = new File(logpath);
+		path = new File(LOGPATH);
 		path.mkdirs();
-		file = new File(logpath,"LOG_"+time.format("%d%m_%H%M%S")+".txt");
+		file = new File(LOGPATH,"LOG_"+time.format("%d%m_%H%M%S")+".txt");
 		try 
 		{
 			file.createNewFile();
