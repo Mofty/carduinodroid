@@ -141,6 +141,7 @@ public class Cam implements CameraCallback
 	 */
 	public void changeRes(int index)
 	{
+		/*
 		camera.stopPreview();
 		Log.e("cam", "preview stop changeres");
 		List<Size> temp = parameters.getSupportedPreviewSizes();
@@ -153,6 +154,7 @@ public class Cam implements CameraCallback
 		this.height = newheight;
 		camera.startPreview();
 		Log.e("cam", "preview restarted changeres");
+		*/
 
 	}
 	/**
