@@ -17,6 +17,7 @@ public class Resolution_ActionListener implements ActionListener{
 	Controller_Computer controller_Computer;
 	Log log;
 	JComboBox status;
+	String resolution;
 	
 	/** 
 	 * @param controllercomputer 	Used instance of Controller_Computer.
@@ -37,8 +38,8 @@ public class Resolution_ActionListener implements ActionListener{
 	 * @param e			Event by changing a resolution.
 	 */
 	public void actionPerformed(ActionEvent e) {
-		String resolution = String.valueOf(status.getSelectedIndex());
-		log.writelogfile("Sent: Change resolution to " + status.getSelectedItem() + ".");
+		resolution = String.valueOf(status.getSelectedIndex());
+		log.writelogfile("Sent: Change resolution to " + resolution + ".");
 		controller_Computer.camera_settings.send_change_resolution(resolution);
 	}
 
