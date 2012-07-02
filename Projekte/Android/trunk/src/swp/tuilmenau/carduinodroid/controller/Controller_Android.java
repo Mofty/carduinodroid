@@ -92,16 +92,17 @@ public class Controller_Android
 	 */
 	public void receiveData(String data)
 	{
+		final String TRUE_STRING = "true";
+		
 		boolean front, right;
-		String trueString = "true";
 		String[] parts = data.split(";",-1);
 
 		switch (Integer.parseInt(parts[0]))
 		{
 			case 1: // Everything for control signals
 			{
-				front = (parts[2].equals(trueString));
-				right = (parts[4].equals(trueString));
+				front = (parts[2].equals(TRUE_STRING));
+				right = (parts[4].equals(TRUE_STRING));
 				arduino.SendCommand(front, Integer.parseInt(parts[1]), right, Integer.parseInt(parts[3]));
 				log.write(LOG.INFO, "data: "+parts[1]+";"+parts[2]+";"+parts[3]+";"+parts[4]);	
 			} break;

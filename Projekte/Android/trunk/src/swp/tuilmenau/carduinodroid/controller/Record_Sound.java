@@ -25,7 +25,7 @@ public class Record_Sound
 	private Time time;
 	private File storageDir;
 
-	LOG log;
+	private LOG log;
 
 	public Record_Sound(LOG Log) 
 	{
