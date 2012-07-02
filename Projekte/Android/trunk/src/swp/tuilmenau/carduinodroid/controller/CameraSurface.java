@@ -102,10 +102,15 @@ public class CameraSurface extends SurfaceView implements SurfaceHolder.Callback
          */
         public void surfaceChanged(SurfaceHolder holder, int format, int width,int height) 
         {
-                if(null != camera)
-                {
-                        camera.startPreview();
-                }
+        	 try {
+                 camera.setPreviewDisplay(holder);
+                 camera.setPreviewCallback(new Camera.PreviewCallback() {
+                         
+                         public void onPreviewFrame(byte[] data, Camera camera) {
+                                 if(null != callback) callback.onPreviewFrame(data, camera);
+                         }
+                 });
+         } catch (IOException e) { e.printStackTrace(); }
         }
 
         
