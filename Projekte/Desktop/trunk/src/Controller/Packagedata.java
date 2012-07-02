@@ -77,7 +77,7 @@ public class Packagedata {
 		
 		for (int i = 0; i<itemslength-1; i++)
 		{
-			resolution[itemslength-1-i] = tokens[i+1];
+			resolution[itemslength-2-i] = tokens[i+1];
 		}
 		
 		controller_computer.gui_computer.FillResolutionbox(resolution);
