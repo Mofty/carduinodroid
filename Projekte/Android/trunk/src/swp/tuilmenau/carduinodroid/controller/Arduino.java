@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.ParcelFileDescriptor;
+import android.util.Log;
 
 import com.android.future.usb.UsbManager;
 import com.android.future.usb.UsbAccessory;
@@ -171,7 +172,7 @@ public class Arduino{
         	else buffer[2] = 0;
         buffer[3] = (byte)dir;
         		
-        
+        Log.e("arduino", front+" "+ speed + " " + right + " "+ dir);
         if (mOutputStream != null){
             try{
                 // write it
