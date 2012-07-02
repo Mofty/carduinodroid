@@ -65,8 +65,8 @@ public class Network {
 			InetSocketAddress port_controll = new InetSocketAddress(ip, 12345);
 			InetSocketAddress port_package = new InetSocketAddress(ip, 12346);
 			InetSocketAddress port_picture = new InetSocketAddress(ip, 12347);
-			socket_controller.connect(port_controll);
 			socket_picture.connect(port_picture);
+			socket_controller.connect(port_controll);
 			socket_package.connect(port_package);
 			t1 = new Thread(socket_picture);
 			t2 = new Thread(socket_package);
@@ -133,6 +133,12 @@ public class Network {
 	 */
 	public void receive_picture(ImageIcon imageIcon) {
 		camera_picture.receive_picture(imageIcon);
+	}
+
+	public void close() {
+		socket_picture.close();
+		socket_package.close();
+		socket_controller.close();
 	}
 	
 	
