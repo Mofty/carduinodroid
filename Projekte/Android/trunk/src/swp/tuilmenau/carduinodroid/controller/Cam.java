@@ -206,8 +206,7 @@ public class Cam implements CameraCallback
 	 *   Called as preview frames are displayed. Compress the data too a jpeg-file and send it to the java-program
 	 */
 	public void onPreviewFrame(byte[] data, Camera camera) {
-		if(os != null && !client.isClosed() && (width * height) == data.length){
-			Log.e("cam", "previewimage");
+		if(os != null && !client.isClosed()){
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			YuvImage temp = new YuvImage(data,camera.getParameters().getPreviewFormat(), camera.getParameters().getPreviewSize().width,  camera.getParameters().getPreviewSize().height, null);
 			Rect rect = new Rect(0,0,camera.getParameters().getPreviewSize().width,camera.getParameters().getPreviewSize().height);

@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import android.util.Log;
+
 import swp.tuilmenau.carduinodroid.model.LOG;
 
 /**
@@ -60,14 +62,15 @@ public class Socket_Controller implements Runnable {
 						message = (String) stream.readLine();
 						controller_Android.log.write(LOG.INFO, message);
 						controller_Android.receiveData(message);
-						if (message.charAt(0) == 1) {
+						if (message.charAt(0) == '1') {
+							Log.e("controllersocket", "stopsignal");
 							timestamp = System.currentTimeMillis();
 							stop = false;
 						}
 					}
 
 					else {
-						if ((timestamp + 500) < System.currentTimeMillis()
+						if ((timestamp + 150) < System.currentTimeMillis()
 								&& !stop) {
 							controller_Android.receiveData("1;0;0;0;0"); // stopp
 																			// signal
