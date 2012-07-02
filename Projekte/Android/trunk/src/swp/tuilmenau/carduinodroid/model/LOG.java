@@ -31,23 +31,23 @@ public class LOG
 	private BufferedWriter buffwrite;
 	private int logLevel;
 
+	/**
+	 * Creates the directories and the file required for logging.
+	 */
 	public LOG() 
 	{
 		logLevel = LOG_ALL; 
-		// ruft datum und zeit ab	
 		time = new Time();
 		time.setToNow();
-		// erstellt datei mit schreibrechten
 		path = new File(LOGPATH);
 		path.mkdirs();
-		file = new File(LOGPATH,"LOG_"+time.format("%d%m_%H%M%S")+".txt");
+		file = new File(path,"LOG_"+time.format("%d%m_%H%M%S")+".txt");
 		try 
 		{
 			file.createNewFile();
 		} catch (IOException e) { }
 		file.canWrite();
 		file.canRead();
-		// erstellt den BufferedWriter zum schreiben von strings in die datei
 		try {
 			buffwrite = new BufferedWriter(new FileWriter(file));
 		} catch (IOException e) { }
@@ -68,10 +68,8 @@ public class LOG
 		final String WARNING_STR = "[WARNING] ";
 		
 		String timestr;
-		time.setToNow(); // aktualisiert die in "time" gespeicherte zeit
+		time.setToNow();
 		timestr = time.format("%H:%M:%S ");
-
-		// schreibt die zeit gefolgt vom übergebenen String "line" in die datei und springt zu nächsten zeile Leerzeile.
 		try {
 			if (type == INFO)
 			{
@@ -113,7 +111,6 @@ public class LOG
 	public void save() 
 	{
 		write(LOG.INFO, "App beendet");
-		// speichert und schliesst die datei
 		try {
 			buffwrite.flush();
 			buffwrite.close();

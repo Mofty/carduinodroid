@@ -25,12 +25,22 @@ public class Sound
 	int soundID;
 	int volume;
 	
+	/**
+	 * Initializes the SoundPool and loads the audio-file for the horn. 
+	 * Sets the Media-Volume to Maximum.
+	 * 
+	 * @param activity The current Activity
+	 * @param log The Log
+	 */
 	public Sound(Activity activity, LOG log)
 	{
 		this.log = log;
 		soundpool = new SoundPool (5, AudioManager.STREAM_MUSIC, 0);
 		audioManager = (AudioManager) activity.getSystemService(Context.AUDIO_SERVICE);
 		soundID = soundpool.load(activity, R.raw.horn, 1);
+		volume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+		
 	}
 	
 	/**
@@ -38,10 +48,15 @@ public class Sound
 	 */
 	public void horn()
 	{
-		volume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 		soundpool.play(soundID, 1, 1, 1, 0, 1);
-		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, volume, 0);
 		log.write(LOG.INFO, "Sound played.");
+	}
+	
+	/**
+	 * Sets the Media-Volume to the previously saved value.
+	 */
+	public void resetVolume()
+	{
+		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, volume, 0);
 	}
 }

@@ -32,6 +32,12 @@ public class Connection
 	private IntentFilter connectivityFilter;
 	private TextView ipBox;
 
+	/**
+	 * Retrieves an Instance of the ConnectivityManager and registers a BroadcastReciever to react on Connectivity-Events
+	 * 
+	 * @param activity The current Activity
+	 * @param nlog The Log
+	 */
 	public Connection (Activity activity, LOG nlog)
 	{
 		log = nlog;
