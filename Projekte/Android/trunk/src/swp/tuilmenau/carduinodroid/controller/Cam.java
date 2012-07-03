@@ -156,8 +156,8 @@ public class Cam implements CameraCallback
 		camera.stopPreview();
 		Log.e("cam", "preview stop changeres");
 		List<Size> temp = parameters.getSupportedPreviewSizes();
-		int newwidth = temp.get(index).width;
-		int newheight = temp.get(index).height;
+		int newwidth = temp.get(temp.size()-1-index).width;
+		int newheight = temp.get(temp.size()-1-index).height;
 		width = newwidth;
 		height = newheight;
 		parameters = camera.getParameters();
