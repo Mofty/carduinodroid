@@ -102,7 +102,7 @@ public class CarDuinoDroidAppActivity extends Activity
 	/**
 	 * Called when the App is minimized.
 	 * 
-	 * @see Activity#onStop()
+	 * @see Activity#onPause()
 	 */
 	public void onPause()
 	{
