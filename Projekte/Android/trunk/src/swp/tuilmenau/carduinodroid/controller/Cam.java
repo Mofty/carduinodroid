@@ -49,6 +49,7 @@ public class Cam implements CameraCallback, Runnable
 	private int iwidth;
 	private int camId;
 	private int ipreviewFormat;
+	private boolean onPreviewFrameInProgress;
 	
 	/**
 	 * This is the constructor of the Cam-Class. In this Method the Camera object and the Serversocket are created
@@ -58,6 +59,7 @@ public class Cam implements CameraCallback, Runnable
 	public Cam(Controller_Android controller, Activity activity)
 	{	
 		previewcallback = new MyPreviewCallback(this);
+		onPreviewFrameInProgress = false;
 		Log.e("cam", "cam erstellung gestartet");
 		quality = 30;
 		this.activity = activity;
@@ -158,23 +160,11 @@ public class Cam implements CameraCallback, Runnable
 	 */
 	public void changeRes(int index)
 	{
-        stopCamera();
-        camera = Camera.open(camId);
-        try {
-            camera.setPreviewDisplay(camerasurface.holder);
-            camera.setPreviewCallback(previewcallback);
-    } catch (IOException e) { e.printStackTrace(); }
-	    camerasurface.setCamera(camera);
-		camerasurface.setCallback(this);
-	    parameters = camera.getParameters();
-		List<Size> temp = parameters.getSupportedPreviewSizes();
-	    int width = temp.get(temp.size()-1-index).width;
-		int height = temp.get(temp.size()-1-index).height;
-	    parameters.setPreviewSize(width, height);
-	    camera.setParameters(parameters);
-	    previewFormat = parameters.getPreviewFormat();
-	    camera.startPreview();
-	/*	Log.e("cam", "preview stop changeres");
+		while(onPreviewFrameInProgress)
+		{
+			Log.e("bla", "bla");
+		}
+		Log.e("cam", "preview stop changeres");
 		List<Size> temp = parameters.getSupportedPreviewSizes();
 		int newwidth = temp.get(temp.size()-1-index).width;
 		int newheight = temp.get(temp.size()-1-index).height;
@@ -185,7 +175,7 @@ public class Cam implements CameraCallback, Runnable
 		camera.setParameters(parameters);
 		camera.startPreview();
 		Log.e("cam", "preview restarted changeres");
-		wantToChangeRes = false;*/
+		wantToChangeRes = false;
 	}
 	/**
 	 * Set the preview frame rate
@@ -239,12 +229,16 @@ public class Cam implements CameraCallback, Runnable
 	 */
 	public void onPreviewFrame(byte[] data, Camera camera) {
 		if(os != null && !client.isClosed() && inPreviewFrame == false && !wantToChangeRes){
+			onPreviewFrameInProgress = true;
+
 			iwidth = width;
 			iheight = height;
 			ipreviewFormat = previewFormat;
 			this.data = data.clone();
 			newFrame = true;
-		}}
+			onPreviewFrameInProgress = false;
+			}
+		}
 	
 		
 		
@@ -346,6 +340,7 @@ public class Cam implements CameraCallback, Runnable
 			if(newFrame && !wantToChangeRes){
 				newFrame = false;
 				inPreviewFrame = true;
+				Log.e("bla", newFrame + " " + inPreviewFrame);
 				ByteArrayOutputStream baos = new ByteArrayOutputStream();
 				YuvImage temp = new YuvImage(data, ipreviewFormat, iwidth,
 						iheight, null);
@@ -359,6 +354,7 @@ public class Cam implements CameraCallback, Runnable
 					Log.e("cam", "fehler beim schreiben des previewimage");
 				}
 				inPreviewFrame = false;
+				Log.e("bla", newFrame + " " + inPreviewFrame);
 	}}
 	}
 }
