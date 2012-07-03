@@ -20,9 +20,11 @@ import android.view.SurfaceView;
 public class CameraSurface extends SurfaceView implements SurfaceHolder.Callback, OnGestureListener
 {    
         private Camera camera = null;
-        private SurfaceHolder holder = null;
+        SurfaceHolder holder = null;
         private CameraCallback callback = null;
         private GestureDetector gesturedetector = null;
+		private Context context;
+		private Cam cam;
         
         /**
          * Calls the constructor of SurfaceView and initialize the SurfaceHolder
@@ -43,11 +45,18 @@ public class CameraSurface extends SurfaceView implements SurfaceHolder.Callback
          * @param camera
          * @see android.view.SurfaceView#SurfaceView(android.content.Context)
          */
-        public CameraSurface(Context context, Camera camera) 
+        public CameraSurface(Context context, Camera camera, Cam cam) 
         {
                 super(context);
+                this.cam = cam;
+                this.context = context;
                 this.camera = camera;
                 initialize(context);
+        }
+        
+        public void setCamera(Camera camera){
+            this.camera = camera;
+            initialize(context);
         }
 
         /**
@@ -104,12 +113,7 @@ public class CameraSurface extends SurfaceView implements SurfaceHolder.Callback
         {
         	 try {
                  camera.setPreviewDisplay(holder);
-                 camera.setPreviewCallback(new Camera.PreviewCallback() {
-                         
-                         public void onPreviewFrame(byte[] data, Camera camera) {
-                                 if(null != callback) callback.onPreviewFrame(data, camera);
-                         }
-                 });
+                 camera.setPreviewCallback(cam.previewcallback);
          } catch (IOException e) { e.printStackTrace(); }
         }
 
@@ -133,12 +137,7 @@ public class CameraSurface extends SurfaceView implements SurfaceHolder.Callback
 				*/
                 try {
                         camera.setPreviewDisplay(holder);
-                        camera.setPreviewCallback(new Camera.PreviewCallback() {
-                                
-                                public void onPreviewFrame(byte[] data, Camera camera) {
-                                        if(null != callback) callback.onPreviewFrame(data, camera);
-                                }
-                        });
+                        camera.setPreviewCallback(cam.previewcallback);
                 } catch (IOException e) { e.printStackTrace(); }
         }
 
@@ -223,10 +222,9 @@ public class CameraSurface extends SurfaceView implements SurfaceHolder.Callback
         private void initialize(Context context) 
         {
                 holder = getHolder();
-                
                 holder.addCallback(this);
                 holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-                
+                if(gesturedetector == null)
                 gesturedetector = new GestureDetector(this); //wozu genau brauchen wir den?
         }
 }
