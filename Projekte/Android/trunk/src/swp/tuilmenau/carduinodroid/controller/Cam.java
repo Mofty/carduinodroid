@@ -44,6 +44,11 @@ public class Cam implements CameraCallback, Runnable
 	public int previewFormat;
 	private byte[] data;
 	private boolean newFrame;
+	private boolean wantToChangeRes = false;
+	private int iheight;
+	private int iwidth;
+	private int camId;
+	private int ipreviewFormat;
 	
 	/**
 	 * This is the constructor of the Cam-Class. In this Method the Camera object and the Serversocket are created
@@ -57,6 +62,7 @@ public class Cam implements CameraCallback, Runnable
 		quality = 30;
 		this.activity = activity;
 		camera = Camera.open();
+		camId = 0;
 		cameraholder = (ViewGroup) activity.findViewById(R.id.preview);
 		parameters = camera.getParameters();
 		width = parameters.getPreviewSize().width;
@@ -69,6 +75,7 @@ public class Cam implements CameraCallback, Runnable
 		camera.startPreview();
 		Log.e("cam", "preview gestartet");
 		setupPictureMode();
+		new Thread(this).start();
 		Thread t = new Thread(new Runnable(){
 			public void run() {
 				ss = null;
@@ -126,7 +133,7 @@ public class Cam implements CameraCallback, Runnable
 	 * @see android.hardware.Camera#open(int)
 	 */
 	public void switchCam(int cameraId) {
-
+		camId = cameraId;
 	    if (camera != null) {
 	        stopCamera();
 	    }
@@ -151,8 +158,23 @@ public class Cam implements CameraCallback, Runnable
 	 */
 	public void changeRes(int index)
 	{
-		camera.stopPreview();
-		Log.e("cam", "preview stop changeres");
+        stopCamera();
+        camera = Camera.open(camId);
+        try {
+            camera.setPreviewDisplay(camerasurface.holder);
+            camera.setPreviewCallback(previewcallback);
+    } catch (IOException e) { e.printStackTrace(); }
+	    camerasurface.setCamera(camera);
+		camerasurface.setCallback(this);
+	    parameters = camera.getParameters();
+		List<Size> temp = parameters.getSupportedPreviewSizes();
+	    int width = temp.get(temp.size()-1-index).width;
+		int height = temp.get(temp.size()-1-index).height;
+	    parameters.setPreviewSize(width, height);
+	    camera.setParameters(parameters);
+	    previewFormat = parameters.getPreviewFormat();
+	    camera.startPreview();
+	/*	Log.e("cam", "preview stop changeres");
 		List<Size> temp = parameters.getSupportedPreviewSizes();
 		int newwidth = temp.get(temp.size()-1-index).width;
 		int newheight = temp.get(temp.size()-1-index).height;
@@ -163,6 +185,7 @@ public class Cam implements CameraCallback, Runnable
 		camera.setParameters(parameters);
 		camera.startPreview();
 		Log.e("cam", "preview restarted changeres");
+		wantToChangeRes = false;*/
 	}
 	/**
 	 * Set the preview frame rate
@@ -215,9 +238,11 @@ public class Cam implements CameraCallback, Runnable
 	 *   Called as preview frames are displayed. Compress the data too a jpeg-file and send it to the java-program
 	 */
 	public void onPreviewFrame(byte[] data, Camera camera) {
-		if(os != null && !client.isClosed() && inPreviewFrame == false){
-		    previewFormat = camera.getParameters().getPreviewFormat();
-		    this.data = data.clone();
+		if(os != null && !client.isClosed() && inPreviewFrame == false && !wantToChangeRes){
+			iwidth = width;
+			iheight = height;
+			ipreviewFormat = previewFormat;
+			this.data = data.clone();
 			newFrame = true;
 		}}
 	
@@ -313,15 +338,18 @@ public class Cam implements CameraCallback, Runnable
 	    }
 	}
 	public void run() {
+		iwidth = width;
+		iheight = height;
+		ipreviewFormat = previewFormat;
 		while(true)
 		{
-			if(newFrame){
+			if(newFrame && !wantToChangeRes){
 				newFrame = false;
 				inPreviewFrame = true;
 				ByteArrayOutputStream baos = new ByteArrayOutputStream();
-				YuvImage temp = new YuvImage(data, previewFormat, width,
-						height, null);
-				Rect rect = new Rect(0, 0, width, height);
+				YuvImage temp = new YuvImage(data, ipreviewFormat, iwidth,
+						iheight, null);
+				Rect rect = new Rect(0, 0, iwidth, iheight);
 				temp.compressToJpeg(rect, quality, baos);
 				byte[] image = baos.toByteArray();
 				try {
