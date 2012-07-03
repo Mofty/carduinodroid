@@ -23,7 +23,7 @@ import android.view.ViewGroup.LayoutParams;
  * @author Robin
  * @see android.hardware.Camera
  */
-public class Cam implements CameraCallback
+public class Cam implements CameraCallback, Runnable
 {
 	Camera camera;
 	Parameters parameters;
@@ -42,6 +42,8 @@ public class Cam implements CameraCallback
 	public int width;
 	public MyPreviewCallback previewcallback;
 	public int previewFormat;
+	private byte[] data;
+	private boolean newFrame;
 	
 	/**
 	 * This is the constructor of the Cam-Class. In this Method the Camera object and the Serversocket are created
@@ -149,10 +151,6 @@ public class Cam implements CameraCallback
 	 */
 	public void changeRes(int index)
 	{
-		while(inPreviewFrame)
-		{
-			
-		}
 		camera.stopPreview();
 		Log.e("cam", "preview stop changeres");
 		List<Size> temp = parameters.getSupportedPreviewSizes();
@@ -217,22 +215,10 @@ public class Cam implements CameraCallback
 	 *   Called as preview frames are displayed. Compress the data too a jpeg-file and send it to the java-program
 	 */
 	public void onPreviewFrame(byte[] data, Camera camera) {
-		if(os != null && !client.isClosed()){
-			inPreviewFrame = true;
-			if(camera.getParameters() != null)
+		if(os != null && !client.isClosed() && inPreviewFrame == false){
 		    previewFormat = camera.getParameters().getPreviewFormat();
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			YuvImage temp = new YuvImage(data, previewFormat, width,  height, null);
-			Rect rect = new Rect(0, 0, width, height);
-			temp.compressToJpeg(rect, quality, baos);
-			byte[] image = baos.toByteArray();
-			try {
-				os.write(image);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				Log.e("cam", "fehler beim schreiben des previewimage");
-		}
-			inPreviewFrame = false;
+		    this.data = data.clone();
+			newFrame = true;
 		}}
 	
 		
@@ -318,12 +304,33 @@ public class Cam implements CameraCallback
 	
 
 	private void stopCamera(){
-	    if (camera != null){
+		if (camera != null){
 	        camera.stopPreview();
 	        camera.release();
 	        camera = null;
 	        camerasurface.holder.removeCallback(camerasurface);
 	        camerasurface.setCallback(null);
 	    }
+	}
+	public void run() {
+		while(true)
+		{
+			if(newFrame){
+				newFrame = false;
+				inPreviewFrame = true;
+				ByteArrayOutputStream baos = new ByteArrayOutputStream();
+				YuvImage temp = new YuvImage(data, previewFormat, width,
+						height, null);
+				Rect rect = new Rect(0, 0, width, height);
+				temp.compressToJpeg(rect, quality, baos);
+				byte[] image = baos.toByteArray();
+				try {
+					os.write(image);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					Log.e("cam", "fehler beim schreiben des previewimage");
+				}
+				inPreviewFrame = false;
+	}}
 	}
 }
