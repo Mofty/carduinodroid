@@ -128,11 +128,11 @@ public class Network {
 	
 	/**
 	 * Transfer the image to the Camera_Picture
-	 * @param imageIcon
+	 * @param bufferedImage
 	 * @see Camera_Picture#receive_picture(ImageIcon)
 	 */
-	public void receive_picture(ImageIcon imageIcon) {
-		camera_picture.receive_picture(imageIcon);
+	public void receive_picture(BufferedImage bufferedImage) {
+		camera_picture.receive_picture(bufferedImage);
 	}
 
 	public void close() {
