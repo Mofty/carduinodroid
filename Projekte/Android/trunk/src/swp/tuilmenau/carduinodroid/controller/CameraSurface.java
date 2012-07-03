@@ -2,6 +2,7 @@ package swp.tuilmenau.carduinodroid.controller;
 
 import java.io.IOException;
 
+import android.app.Activity;
 import android.content.Context;
 import android.hardware.Camera;
 import android.util.AttributeSet;
@@ -71,6 +72,7 @@ public class CameraSurface extends SurfaceView implements SurfaceHolder.Callback
                 
                 initialize(context);
         }
+  
         
         /**
          * Set the CameraCallback
