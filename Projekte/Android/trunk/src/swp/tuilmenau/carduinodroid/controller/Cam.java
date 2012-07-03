@@ -30,10 +30,6 @@ public class Cam implements CameraCallback
 
 	LOG log;
 	private Controller_Android controller;
-	private int height;
-	private int width;
-	private String flashmode;
-	private int fps;
 	private Activity activity;
 	private CameraSurface camerasurface;
 	private ViewGroup cameraholder;
@@ -41,6 +37,11 @@ public class Cam implements CameraCallback
 	private OutputStream os;
 	private ServerSocket ss;
 	private int quality;
+	private boolean inPreviewFrame = false;
+	public int height;
+	public int width;
+	public MyPreviewCallback previewcallback;
+	public int previewFormat;
 	
 	/**
 	 * This is the constructor of the Cam-Class. In this Method the Camera object and the Serversocket are created
@@ -49,19 +50,19 @@ public class Cam implements CameraCallback
 	 */
 	public Cam(Controller_Android controller, Activity activity)
 	{	
+		previewcallback = new MyPreviewCallback(this);
 		Log.e("cam", "cam erstellung gestartet");
 		quality = 30;
 		this.activity = activity;
 		camera = Camera.open();
 		cameraholder = (ViewGroup) activity.findViewById(R.id.preview);
 		parameters = camera.getParameters();
+		width = parameters.getPreviewSize().width;
+		height = parameters.getPreviewSize().height;
+		previewFormat = parameters.getPreviewFormat();
 		this.controller = controller;
 		parameters.setRotation(270);
 		camera.setParameters(parameters);
-		height = parameters.getPreviewSize().height;
-		width = parameters.getPreviewSize().width;
-		fps = parameters.getPreviewFrameRate();
-		flashmode = parameters.getFlashMode();
 		Log.e("cam", "cam erstellung fertig");
 		camera.startPreview();
 		Log.e("cam", "preview gestartet");
@@ -105,7 +106,6 @@ public class Cam implements CameraCallback
 		parameters = camera.getParameters();
 		parameters.setFlashMode(Parameters.FLASH_MODE_TORCH);
 		camera.setParameters(parameters);
-		flashmode = Parameters.FLASH_MODE_TORCH;
 	}
 	/**
 	 * This Method disables the flashlight of the camera
@@ -115,7 +115,6 @@ public class Cam implements CameraCallback
 		parameters = camera.getParameters();
 		parameters.setFlashMode(Parameters.FLASH_MODE_OFF);
 		camera.setParameters(parameters);
-		flashmode = Parameters.FLASH_MODE_OFF;
 	}
 	/**
 	 * This Method release the current Camera and starts the camera with the ID
@@ -124,38 +123,48 @@ public class Cam implements CameraCallback
 	 * 
 	 * @see android.hardware.Camera#open(int)
 	 */
-	public void switchCam(int id)
-	{
-		camera.stopPreview();
-		camera.release();
-		camera = Camera.open(id);
-		parameters = camera.getParameters();
-		parameters.setPreviewFrameRate(fps);
-		parameters.setPreviewSize(width, height);
-		parameters.setFlashMode(flashmode);
-		camera.startPreview();
+	public void switchCam(int cameraId) {
+
+	    if (camera != null) {
+	        stopCamera();
+	    }
+	    
+	    camera = Camera.open(cameraId);
+        try {
+            camera.setPreviewDisplay(camerasurface.holder);
+            camera.setPreviewCallback(previewcallback);
+    } catch (IOException e) { e.printStackTrace(); }
+	    camerasurface.setCamera(camera);
+		camerasurface.setCallback(this);
+	    parameters = camera.getParameters();
+	    width = parameters.getPreviewSize().width;
+	    height = parameters.getPreviewSize().height;
+	    previewFormat = parameters.getPreviewFormat();
+	    camera.startPreview();
 	}
+	
 	/**
 	 * Change the Resolution of the preview pictures
 	 * @param width the width of the pictures, in pixels
 	 */
 	public void changeRes(int index)
 	{
-		/*
+		while(inPreviewFrame)
+		{
+			
+		}
 		camera.stopPreview();
 		Log.e("cam", "preview stop changeres");
 		List<Size> temp = parameters.getSupportedPreviewSizes();
 		int newwidth = temp.get(index).width;
 		int newheight = temp.get(index).height;
+		width = newwidth;
+		height = newheight;
 		parameters = camera.getParameters();
 		parameters.setPreviewSize(newwidth, newheight);
-			camera.setParameters(parameters);
-		this.width = newwidth;
-		this.height = newheight;
+		camera.setParameters(parameters);
 		camera.startPreview();
 		Log.e("cam", "preview restarted changeres");
-		*/
-
 	}
 	/**
 	 * Set the preview frame rate
@@ -166,7 +175,6 @@ public class Cam implements CameraCallback
 		List<Integer> temp = parameters.getSupportedPreviewFrameRates();
 		if(temp.contains(Integer.valueOf(fps))){
 			parameters.setPreviewFrameRate(fps);
-			this.fps = fps;
 			camera.setParameters(parameters);
 		}
 		else
@@ -190,8 +198,11 @@ public class Cam implements CameraCallback
 	 * Sets the Surface and the Callback
 	 */
 	private void setupPictureMode(){
-		camerasurface = new CameraSurface(activity, camera);
-
+		if(camerasurface  == null)
+		camerasurface = new CameraSurface(activity, camera, this);
+		else
+			camerasurface.setCamera(camera);
+		cameraholder.removeAllViews();
 		cameraholder.addView(camerasurface, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
 
 		camerasurface.setCallback(this);
@@ -207,9 +218,12 @@ public class Cam implements CameraCallback
 	 */
 	public void onPreviewFrame(byte[] data, Camera camera) {
 		if(os != null && !client.isClosed()){
+			inPreviewFrame = true;
+			if(camera.getParameters() != null)
+		    previewFormat = camera.getParameters().getPreviewFormat();
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			YuvImage temp = new YuvImage(data,camera.getParameters().getPreviewFormat(), camera.getParameters().getPreviewSize().width,  camera.getParameters().getPreviewSize().height, null);
-			Rect rect = new Rect(0,0,camera.getParameters().getPreviewSize().width,camera.getParameters().getPreviewSize().height);
+			YuvImage temp = new YuvImage(data, previewFormat, width,  height, null);
+			Rect rect = new Rect(0, 0, width, height);
 			temp.compressToJpeg(rect, quality, baos);
 			byte[] image = baos.toByteArray();
 			try {
@@ -218,6 +232,7 @@ public class Cam implements CameraCallback
 				// TODO Auto-generated catch block
 				Log.e("cam", "fehler beim schreiben des previewimage");
 		}
+			inPreviewFrame = false;
 		}}
 	
 		
@@ -299,5 +314,16 @@ public class Cam implements CameraCallback
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+	}
+	
+
+	private void stopCamera(){
+	    if (camera != null){
+	        camera.stopPreview();
+	        camera.release();
+	        camera = null;
+	        camerasurface.holder.removeCallback(camerasurface);
+	        camerasurface.setCallback(null);
+	    }
 	}
 }
