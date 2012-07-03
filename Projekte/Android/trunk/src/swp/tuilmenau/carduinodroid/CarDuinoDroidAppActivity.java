@@ -124,5 +124,6 @@ public class CarDuinoDroidAppActivity extends Activity
 		unregisterReceiver(controller_Android.arduino.mUsbReceiver);
 		controller_Android.arduino.closeAccessory();
 		controller_Android.sound.resetVolume();
+		//controller_Android.network.close();
 	}
 }
