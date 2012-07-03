@@ -2,6 +2,7 @@ package Controller;
 
 
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -110,18 +111,33 @@ public class Socket_Picture implements Runnable{
 	 * reads the imagedata from the Socket
 	 * @return returns the Image
 	 */
-	private ImageIcon readpicture() {
+	private BufferedImage readpicture() {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		boolean completeImage = false;
+		byte[] lastBytes = new byte[2];
 		try {
 			int i = picturestream.available();	
-			while(i>0){
+			while(!completeImage){
 				byte[] buffer = new byte[i];
 				picturestream.read(buffer);
+				if(i >= 4){
+					lastBytes[0] = buffer[i - 2];
+					lastBytes[1] = buffer[i - 1];
+					System.out.println("daten holen" + new String(lastBytes));
+				}else if(i == 1){
+					lastBytes[0] = lastBytes[1];
+					lastBytes[1] = buffer[0];
+				}
+				
+				if(lastBytes[0] == (byte)255 && lastBytes[1] ==  (byte)217){
+					System.out.println("komplettes bild");
+					completeImage = true;
+				}
 				baos.write(buffer);
 				i = picturestream.available();
 			}
 			byte[] image = baos.toByteArray();
-			ImageIcon picture = new ImageIcon(image);
+			BufferedImage picture = ImageIO.read(new ByteArrayInputStream(image));
 			return picture;
 		} catch (IOException e) {
 		}
