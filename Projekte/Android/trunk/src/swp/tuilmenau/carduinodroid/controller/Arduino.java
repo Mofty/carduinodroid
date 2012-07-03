@@ -19,68 +19,71 @@ import com.android.future.usb.UsbManager;
 import com.android.future.usb.UsbAccessory;
 
 /**
- * This method is about the control of our arduino controller.
- * But it is still untested.
+ * Establishes a connection with the Arduino-Board and provides methods to send commands to control the car.
  * 
  * @version 1.0
  * @author Paul Thorwirth
  * @author Lars Vogel
  * 
+ * @see UsbManager
+ * @see UsbAccessory
  */ 
 
-public class Arduino{
-	
+public class Arduino
+{	
+    private static final String ACTION_USB_PERMISSION = "swp.tuilmenau.carduinodroid.action.USB_PERMISSION";
+    
 	private LOG log;
 	private Activity activity;
 	private IntentFilter usbFilter;
-	// UsbManager to check if ADK is connected
     private UsbManager mUsbManager;
-    // To read permission from ADK
     private PendingIntent mPermissionIntent;
     private boolean mPermissionRequestPending;
-    // This is the permission
-    private static final String ACTION_USB_PERMISSION = "swp.tuilmenau.carduinodroid.action.USB_PERMISSION";
-    // snipped for brevity
-    // This is where we read and write from ADK
     private FileOutputStream mOutputStream;
     private ParcelFileDescriptor mFileDescriptor;
-    // Accesory!!!
     private UsbAccessory mAccessory;
     public BroadcastReceiver mUsbReceiver;
 	
-	public Arduino(Activity nactivity, LOG Log){
+    /**
+     * Defines and registers a BroadcastReciever to react on USB-Events.
+     * Also the USB-Permission is requested.
+     * 
+     * @param nactivity The current Activity
+     * @param Log The Log
+     * 
+     * @see BroadcastReciever
+     */
+	public Arduino(Activity nactivity, LOG Log)
+	{
 		log = Log;
 		activity = nactivity;
 		
-		mUsbReceiver = new BroadcastReceiver(){
-			 
+		mUsbReceiver = new BroadcastReceiver()
+		{	 
 	        @Override
-	        public void onReceive(Context context, Intent intent) {
+	        public void onReceive(Context context, Intent intent)
+	        {
 	            String action = intent.getAction();
-	            // permission ok?
 	            if(ACTION_USB_PERMISSION.equals(action)){
-	                synchronized (this) {
-	                    // get accessory definition
+	                synchronized (this)
+	                {
 	                    UsbAccessory accessory = UsbManager.getAccessory(intent);
-	                    // any extra permission?
-	                    if (intent.getBooleanExtra(
-	                            UsbManager.EXTRA_PERMISSION_GRANTED, false)){
-	                        // start accessory!!!!
+	                    if (intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false))
+	                    {
 	                        openAccessory(accessory);
 	                    }
-	                    else {
-	                        // oops
-	                    	log.write(LOG.WARNING, "Permission Denied For Accessory"+ accessory);
+	                    else 
+	                    {
+	                        log.write(LOG.WARNING, "Permission Denied For Accessory"+ accessory);
 	                    }
 	                    mPermissionRequestPending = false;
 	                }
 	            }
-	            // it is not connected
-	            else if(UsbManager.ACTION_USB_ACCESSORY_DETACHED.equals(action)) {
-	                // get accessory anyway
+	            else if(UsbManager.ACTION_USB_ACCESSORY_DETACHED.equals(action))
+	            {
 	                UsbAccessory accessory = UsbManager.getAccessory(intent);
-	                // accessory is still not close cleanly
-	                if (accessory != null && accessory.equals(mAccessory)){
+	                if (accessory != null && accessory.equals(mAccessory))
+	                {
 	                    closeAccessory();
 	                }
 	            }
@@ -95,76 +98,90 @@ public class Arduino{
  
 		UsbAccessory[] accessories = mUsbManager.getAccessoryList();
 		UsbAccessory accessory = (accessories == null ? null : accessories[0]);
-		if (accessory != null) {
-			if (mUsbManager.hasPermission(accessory)) {
+		if (accessory != null) 
+		{
+			if (mUsbManager.hasPermission(accessory)) 
+			{
 				openAccessory(accessory);
-			} else {
-				synchronized (mUsbReceiver) {
-					if (!mPermissionRequestPending) {
+			} 
+			else 
+			{
+				synchronized (mUsbReceiver) 
+				{
+					if (!mPermissionRequestPending) 
+					{
 						mUsbManager.requestPermission(accessory,mPermissionIntent);
 						mPermissionRequestPending = true;
 					}
 				}
 			}
-		} else {
+		}
+		else 
+		{
 			log.write(LOG.WARNING, "mAccessory is null");
 		}
-		
 	}
     		
-	// ***** Open Accessory ***************************************
-	/** 
-	 * It opens the accessory to be able to send commands with your usb
-	 * port. 
+	/**
+	 * Opens and prepares an Accessory.
+	 * 
+	 * @param accessory The Accessory to open.
 	 */
-    private void openAccessory(UsbAccessory accessory){
-        // the interface is a file file descriptor
+	private void openAccessory(UsbAccessory accessory)
+	{
         mFileDescriptor = mUsbManager.openAccessory(accessory);
-        if (mFileDescriptor != null) {
+        if (mFileDescriptor != null) 
+        {
             mAccessory = accessory;
-            // get the file descriptor
             FileDescriptor fd = mFileDescriptor.getFileDescriptor();
-            // set one to write
             mOutputStream = new FileOutputStream(fd);
             log.write(LOG.INFO, "Accessory Opened");
-     
         }
-        else {
+        else 
+        {
         	log.write(LOG.WARNING, "Accessory Open Fail");
         }
     }
     
-	// ***** Close Accessory ***************************************
 	/** 
-	 * It closes the accessory on your usb port. If u don't need it.
+	 * It closes the accessory on your USB-Port.
 	 */
-    public void closeAccessory(){
-        try{
-            if (mFileDescriptor != null){
+    public void closeAccessory()
+    {
+        try
+        {
+            if (mFileDescriptor != null)
+            {
                 mFileDescriptor.close();
             } 
         }
-        catch (IOException e) {
- 
-        }
-        finally {
+        catch (IOException e) { }
+        finally 
+        {
             mFileDescriptor = null;
             mAccessory = null;
         }
     }
 	
-	// ***** Send Command ***************************************
-	/** 
-	 * With this command you would be able to send the direction and
-	 * speed to your arduino.
+	/**
+	 * Sends a control command to the Arduino-Board.
+	 * 
+	 * @param front Determines whether to drive forward or backward.
+	 * @param speed The Speed at wich the car should drive. (Range 0 - 16)
+	 * @param right Determines whether to turn left or right.
+	 * @param dir The Angle at which the car should turn. (Range 0 - 8)
 	 */
-    public void SendCommand(boolean front,int speed, boolean right,int dir){
-    	byte[] buffer = new byte[4]; //Erstellen eines Array der zu übergebenden Daten
-    	//Verifizieren der Größe
-    	if(speed > 16){
-            speed = 16;}
-        if(dir > 8){
-            dir = 8;}
+    public void SendCommand(boolean front,int speed, boolean right,int dir)
+    {
+    	byte[] buffer = new byte[4]; 
+    	if(speed > 16)
+    	{
+            speed = 16;
+        }
+        if(dir > 8)
+        {
+            dir = 8;
+        }
         if(front) buffer[0] = 1;
         	else buffer[0]=0;
         buffer[1] = (byte)speed;
@@ -173,13 +190,15 @@ public class Arduino{
         buffer[3] = (byte)dir;
         		
         Log.e("arduino", front+" "+ speed + " " + right + " "+ dir);
-        if (mOutputStream != null){
-            try{
-                // write it
+        if (mOutputStream != null)
+        {
+            try
+            {
                 mOutputStream.write(buffer);
                 log.write(LOG.INFO, "Speed: "+speed+"(front: "+front+") and direction: "+dir+"(right: "+right+") sent to Arduino.");
             }
-            catch (IOException e){
+            catch (IOException e)
+            {
                 log.write(LOG.WARNING, "Failed to send commands to Arduino.");
             }
         }      
