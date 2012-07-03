@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.hardware.Camera;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
@@ -113,6 +114,7 @@ public class CameraSurface extends SurfaceView implements SurfaceHolder.Callback
          */
         public void surfaceChanged(SurfaceHolder holder, int format, int width,int height) 
         {
+        	Log.e("camsurface", "surfaceChanged");
         	 try {
                  camera.setPreviewDisplay(holder);
                  camera.setPreviewCallback(cam.previewcallback);
