@@ -170,7 +170,13 @@ public class Controller_Android
 		}
 	}
 
-	public void setNetwork(Network network) {
+	/**
+	 * Sets the Network
+	 * 
+	 * @param network the Network to set.
+	 */
+	public void setNetwork(Network network) 
+	{
 		this.network = network;
 	}
 }
