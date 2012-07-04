@@ -151,6 +151,7 @@ public class Cam implements CameraCallback, Runnable
 	    width = parameters.getPreviewSize().width;
 	    height = parameters.getPreviewSize().height;
 	    previewFormat = parameters.getPreviewFormat();
+	    controller.network.socket_package.newPreviewSizes();
 	    camera.startPreview();
 	}
 	
@@ -165,7 +166,9 @@ public class Cam implements CameraCallback, Runnable
 			Log.e("bla", "bla");
 		}
 		Log.e("cam", "preview stop changeres");
+		parameters = camera.getParameters();
 		List<Size> temp = parameters.getSupportedPreviewSizes();
+		if(index < temp.size() && index >= 0){
 		int newwidth = temp.get(temp.size()-1-index).width;
 		int newheight = temp.get(temp.size()-1-index).height;
 		width = newwidth;
@@ -175,7 +178,7 @@ public class Cam implements CameraCallback, Runnable
 		camera.setParameters(parameters);
 		camera.startPreview();
 		Log.e("cam", "preview restarted changeres");
-		wantToChangeRes = false;
+		}
 	}
 	/**
 	 * Set the preview frame rate
