@@ -28,6 +28,7 @@ public class Network
 	public Network(Controller_Android n_controller)
 	{		
 		controller = n_controller;
+		controller.setNetwork(this);
 		socket_controller = new Socket_Controller(controller);
 		Log.e("hauptporg","t1 wird gestartet");
 		t1 = new Thread(socket_controller, "socketcontroll"); 
