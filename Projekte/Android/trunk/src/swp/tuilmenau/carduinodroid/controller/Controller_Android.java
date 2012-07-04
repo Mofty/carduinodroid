@@ -1,6 +1,7 @@
 package swp.tuilmenau.carduinodroid.controller;
 
 import android.app.Activity;
+import android.util.Log;
 import swp.tuilmenau.carduinodroid.model.LOG;
 
 /**
@@ -121,6 +122,7 @@ public class Controller_Android
 					} break;
 					case 2:
 					{
+						Log.wtf("cam", "reschange" + parts[2]);
 						cam.changeRes(Integer.parseInt(parts[2])); //Anpassen mit Robin
 					} break;
 					
@@ -166,5 +168,9 @@ public class Controller_Android
 
 			default: log.write(LOG.WARNING, "unknown command from PC"); break;
 		}
+	}
+
+	public void setNetwork(Network network) {
+		this.network = network;
 	}
 }
