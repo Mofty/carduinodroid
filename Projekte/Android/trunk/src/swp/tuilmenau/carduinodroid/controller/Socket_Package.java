@@ -24,6 +24,7 @@ public class Socket_Package implements Runnable {
 	Controller_Android controller_Android;
 	BufferedReader packagereader;
 	private Network network;
+	private boolean newPreviewSizes = true;
 
 	/**
 	 * The constructor
@@ -66,7 +67,6 @@ public class Socket_Package implements Runnable {
 	 */
 	public void run() {
 		ServerSocket socket_package = null;
-		boolean isCameraInfoSend = false;
 		while (true) {
 			client = null;
 			packagewriter = null;
@@ -85,57 +85,60 @@ public class Socket_Package implements Runnable {
 				// TODO Auto-generated catch block
 			}
 
-			 if(client != null && !isCameraInfoSend)
-				 sendCameraSizes();
 
-				while (!client.isClosed() && fail) {
-					try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {
-					}
-					i++;
-					if (i > 15) {
-						sendpackage(ACKNOWLEDGE);
-						new Thread(new Runnable() {
+			while (!client.isClosed() && fail) {
 
-							public void run() {
-								long currenttime = System.currentTimeMillis();
-								boolean getMessage = false;
-								while (currenttime + 5000 > System.currentTimeMillis() && client.isConnected() && !getMessage) {
-									try {
-										if (packagereader.ready()) {
-											String msg = packagereader.readLine();
-											if (msg.equals(ACKNOWLEDGE)) {
-												getMessage = true;
-											}
+				if(client != null && newPreviewSizes){
+					sendCameraSizes();
+					newPreviewSizes = false;
+				}
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+				}
+				i++;
+				if (i > 15) {
+					sendpackage(ACKNOWLEDGE);
+					new Thread(new Runnable() {
+
+						public void run() {
+							long currenttime = System.currentTimeMillis();
+							boolean getMessage = false;
+							while (currenttime + 5000 > System.currentTimeMillis() && client.isConnected() && !getMessage) {
+								try {
+									if (packagereader.ready()) {
+										String msg = packagereader.readLine();
+										if (msg.equals(ACKNOWLEDGE)) {
+											getMessage = true;
 										}
-									} catch (IOException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
 									}
-								}
-								if (!getMessage) {
-									network.close();
+								} catch (IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
 								}
 							}
-						}).start();
-						i = 0;
-					}
-					String message = controller_Android.packData();
-					sendpackage(message);
+							if (!getMessage) {
+								network.close();
+							}
+						}
+					}).start();
+					i = 0;
 				}
-			} 
-		}
+				String message = controller_Android.packData();
+				sendpackage(message);
+			}
+		} 
+	}
 	public void sendCameraSizes() {
 		String sizes = network.controller.cam.getSupportedSize();
-			try {
-				packagewriter.write("2;" + sizes);
-				packagewriter.newLine();
-				packagewriter.flush();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				network.controller.log.write(LOG.WARNING, "Error by writing onto Packagesocket");
-			}
+		try {
+			packagewriter.write("2;" + sizes);
+			packagewriter.newLine();
+			packagewriter.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			network.controller.log.write(LOG.WARNING, "Error by writing onto Packagesocket");
+		}
 	}
 
 	public void close() {
@@ -146,5 +149,9 @@ public class Socket_Package implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public void newPreviewSizes() {
+		newPreviewSizes  = true;
 	}
 }
