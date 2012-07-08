@@ -47,7 +47,7 @@ public class Cam implements CameraCallback, Runnable
 	private boolean wantToChangeRes = false;
 	private int iheight;
 	private int iwidth;
-	private int camId;
+	public int camId;
 	private int ipreviewFormat;
 	private boolean onPreviewFrameInProgress;
 	
