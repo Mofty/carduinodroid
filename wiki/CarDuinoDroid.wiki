@@ -1,4 +1,8 @@
-"CarDuinoDroid" is a creation of three components. As anyone can see, it consists of car, (Ar)Duino and (An)Droid. It thus combines the important parts of our former software project.
+"CarDuinoDroid" is a creation of three components. As you can see, it consists of car, (Ar)Duino and (An)Droid. It thus combines the important parts of our former software project.
 
 ==Origin==
-During our study of engineering computer science, we have to manage a software project. 
+During our study of engineering computer science, we have to manage a software project. With a group size of 8 people, we began our task.  About half a year we worked enthusiastically in different phases of the project. Every small step in progress was celebrated.
+  * Interface
+  * Network
+  * Arduino USB communication
+  * picture sending and receiving
