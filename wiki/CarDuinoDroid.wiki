@@ -1,0 +1,4 @@
+"CarDuinoDroid" is a creation of three components. As anyone can see, it consists of car, (Ar)Duino and (An)Droid. It thus combines the important parts of our former software project.
+
+==Origin==
+During our study of engineering computer science, we have to manage a software project. 
