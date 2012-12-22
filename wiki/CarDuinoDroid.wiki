@@ -5,4 +5,14 @@ During our study of engineering computer science at the University of Technology
   * Interface
   * Network
   * Arduino USB communication
-  * picture sending and receiving
+  * Picture sending and receiving
+It was great fun. But the work goes on, in addition to studying.
+Team members during the software project:
+  * Benjamin Behlau
+  * Sven Haueisen
+  * Benjamin Lewandowski
+  * Felix Lewandowski
+  * Christian Schulze
+  * Robin Strenger
+  * Paul Thorwirth
+  * Lars Vogel
