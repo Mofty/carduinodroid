@@ -8,11 +8,11 @@ During our study of engineering computer science at the University of Technology
   * Picture sending and receiving
 It was great fun. But the work goes on, in addition to studying.
 Team members during the software project:
-  * Benjamin Behlau
-  * Sven Haueisen
-  * Benjamin Lewandowski
-  * Felix Lewandowski
-  * Christian Schulze
-  * Robin Strenger
-  * Paul Thorwirth
-  * Lars Vogel
+  * Benjamin B.
+  * Sven H.
+  * Benjamin L.
+  * Felix L.
+  * Christian S.
+  * Robin S.
+  * Paul T.
+  * Lars V.
